@@ -1,0 +1,62 @@
+aid: act
+name: Act! CRM
+description: >-
+  Act! is a CRM and marketing automation platform from Swiftpage built for
+  small and mid-sized businesses, providing contact and activity management,
+  opportunity tracking, email marketing, and pipeline reporting in cloud or
+  on-premise editions. The Act! Web API is a JSON-based REST API that exposes
+  contacts, companies, groups, opportunities, activities, notes, and history
+  with OData query support and an OpenAPI (Swagger) 2.0 specification. The
+  API supports both HTTP Basic Authentication and Bearer token authentication.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - CRM
+  - Customer Relationship Management
+  - Marketing Automation
+  - Contact Management
+  - Sales
+  - Swiftpage
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/act/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: act:web-api
+    name: Act! Web API
+    description: >-
+      JSON-based REST API for Act! CRM exposing contacts, companies, groups,
+      opportunities, activities, notes, and history. Supports OData querying
+      and is described by an OpenAPI (Swagger) 2.0 specification, with HTTP
+      Basic or Bearer token authentication.
+    humanURL: https://developer.act.com/
+    baseURL: https://apimta.act.com/act.web.api
+    tags:
+      - CRM
+      - REST API
+      - OData
+      - OpenAPI
+    properties:
+      - type: Documentation
+        url: https://developer.act.com/
+      - type: API Reference
+        url: https://apimta.act.com/act.web.api/
+      - type: OpenAPI
+        url: https://apimta.act.com/act.web.api/swagger/index.html
+      - type: Admin Guide
+        url: https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf
+common:
+  - type: Website
+    url: https://www.act.com
+  - type: Documentation
+    url: https://developer.act.com/
+  - type: Support
+    url: https://support.act.com/
+  - type: Pricing
+    url: https://www.act.com/pricing/
+  - type: Sign Up
+    url: https://www.act.com/free-trial/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
