@@ -47,6 +47,8 @@ apis:
       - type: Admin Guide
         url: https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/actsoftware
   - type: Website
     url: https://www.act.com
   - type: Documentation
