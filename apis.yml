@@ -9,7 +9,7 @@ description: >-
   with OData query support and an OpenAPI (Swagger) 2.0 specification. The
   API supports both HTTP Basic Authentication and Bearer token authentication.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - CRM
   - Customer Relationship Management
