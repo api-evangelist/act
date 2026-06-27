@@ -57,7 +57,7 @@ common:
     url: https://support.act.com/
   - type: Pricing
     url: https://www.act.com/pricing/
-  - type: SignUp
+  - type: Signup
     url: https://www.act.com/free-trial/
 maintainers:
   - FN: Kin Lane
