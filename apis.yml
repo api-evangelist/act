@@ -47,6 +47,8 @@ apis:
       - type: Admin Guide
         url: https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf
 common:
+  - type: DomainSecurity
+    url: security/act-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/actsoftware
   - type: Website
@@ -59,6 +61,8 @@ common:
     url: https://www.act.com/pricing/
   - type: Signup
     url: https://www.act.com/free-trial/
+  - type: Blog
+    url: https://www.act.com/blog/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
