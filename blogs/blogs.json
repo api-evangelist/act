@@ -2,10 +2,10 @@
   "repo": "act",
   "feeds": [
     {
-      "source": "https://www.act.com/free-trial/",
+      "source": "https://www.act.com/legal/privacy-policy/",
       "error": "HTTPError"
     }
   ],
-  "fetched": "2026-08-06T14:08:46Z",
+  "fetched": "2026-08-15T12:22:01Z",
   "post_count": 13
 }
