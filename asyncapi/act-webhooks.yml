@@ -1,0 +1,199 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://apimta.act.com/act.web.api/ActHooks/Index (Act! WebHooks —
+  Notifications) and the Webhooks operations in
+  openapi/act-webhooks-api-openapi.yml.
+type: Webhooks
+asyncapi_published: false
+asyncapi_note: >-
+  Act! publishes no AsyncAPI document. Probed /asyncapi.yaml, /asyncapi.json and
+  the Swiftpage GitHub organization — nothing. The event surface is documented
+  in prose plus a REST registration API, so this file is the webhook catalog,
+  not a spec.
+description: >-
+  Act! Web API ships a first-class webhook registration API: a client POSTs a
+  webhook describing an entity to monitor, a trigger event, an optional OData
+  query to shape the payload, a callback URL and a symmetric callback token.
+  Notably, delivery is POLLED, not pushed at the moment of change — the Act!
+  Webhook Notifications service polls on an interval (default 900 seconds) and
+  then fires callbacks. An integrator expecting real-time semantics from the
+  word "webhook" will be surprised: worst-case latency is the polling interval,
+  not milliseconds.
+
+availability:
+  self_hosted: true
+  cloud: false
+  cloud_note: >-
+    "This is not available in the cloud as of now, but coming soon." Webhooks
+    are configured by the Act! installer, which creates or connects to a webhook
+    registration database — so today the event surface belongs to self-hosted
+    Act! Premium for Web deployments, not Act! Premium Cloud.
+  source: https://apimta.act.com/act.web.api/ActHooks/Index
+
+registration:
+  endpoint: POST /api/webhooks
+  operationId: Webhooks_Post_EE3CCFA8
+  spec: openapi/act-webhooks-api-openapi.yml
+  request_fields:
+    monitor: The entity monitored for notifications.
+    triggerEvent: The event that fires the notification.
+    queryOption: >-
+      Any valid OData query, used to target/filter the webhook and to request
+      additional properties in the notification body. Optional. If null or
+      blank the notification carries only the default properties. The provider
+      warns that repeating a default property inside queryOption can stop the
+      webhook firing correctly.
+    callbackUrl: The endpoint the notification is POSTed to.
+    callbackToken: A symmetric key added to the Authorization header of the callback.
+    description: Free-text description of the webhook.
+
+management_operations:
+  - operationId: Webhooks_Get_3F017BC6
+    method: GET
+    path: /api/webhooks
+    summary: List registered webhooks (OData query supported).
+  - operationId: Webhooks_Get_8857FC56
+    method: GET
+    path: /api/webhooks/{id}
+  - operationId: Webhooks_Put_20B03A3C
+    method: PUT
+    path: /api/webhooks/{id}
+  - operationId: Webhooks_Patch_B8C243E8
+    method: PATCH
+    path: /api/webhooks/{id}
+  - operationId: Webhooks_Delete_649F8293
+    method: DELETE
+    path: /api/webhooks/{id}
+  - operationId: Webhooks_Suspend_A12B132D
+    method: PUT
+    path: /api/webhooks/{id}/suspend
+    summary: Suspend a webhook.
+  - operationId: Webhooks_Continue_511537A0
+    method: PUT
+    path: /api/webhooks/{id}/continue
+    summary: Resume a suspended webhook.
+  - operationId: Webhooks_PutTokenReset_C1A718D3
+    method: PUT
+    path: /api/webhooks/reset-token
+    summary: Rotate the webhook callback token.
+
+monitors:
+  - Activities
+  - Companies
+  - Contacts
+  - Fields
+  - Groups
+  - History
+  - Opportunities
+  - Products
+
+trigger_events:
+  - Created
+  - Updated
+  - Alarms
+
+events:
+  - name: Activities.Created
+    monitor: Activities
+    triggerEvent: Created
+  - name: Activities.Updated
+    monitor: Activities
+    triggerEvent: Updated
+  - name: Activities.Alarms
+    monitor: Activities
+    triggerEvent: Alarms
+    note: >-
+      Alarms behave differently from the other events — they are pulled into a
+      queue on the polling cycle but are not broadcast until the alarm actually
+      sounds. Default payload properties for Alarms are id, startTime and
+      leadMinutes.
+  - name: Companies.Created
+    monitor: Companies
+    triggerEvent: Created
+  - name: Companies.Updated
+    monitor: Companies
+    triggerEvent: Updated
+  - name: Contacts.Created
+    monitor: Contacts
+    triggerEvent: Created
+  - name: Contacts.Updated
+    monitor: Contacts
+    triggerEvent: Updated
+  - name: Fields.Created
+    monitor: Fields
+    triggerEvent: Created
+    note: >-
+      Metadata is cached, so Fields webhooks do not send notifications when a
+      field is created or updated OUTSIDE the API.
+  - name: Fields.Updated
+    monitor: Fields
+    triggerEvent: Updated
+    note: Same metadata-cache caveat as Fields.Created.
+  - name: Groups.Created
+    monitor: Groups
+    triggerEvent: Created
+  - name: Groups.Updated
+    monitor: Groups
+    triggerEvent: Updated
+  - name: History.Created
+    monitor: History
+    triggerEvent: Created
+  - name: History.Updated
+    monitor: History
+    triggerEvent: Updated
+  - name: Opportunities.Created
+    monitor: Opportunities
+    triggerEvent: Created
+  - name: Opportunities.Updated
+    monitor: Opportunities
+    triggerEvent: Updated
+  - name: Products.Created
+    monitor: Products
+    triggerEvent: Created
+  - name: Products.Updated
+    monitor: Products
+    triggerEvent: Updated
+
+payload:
+  default_properties: [id, created, edited]
+  alarm_default_properties: [id, startTime, leadMinutes]
+  shaping: queryOption (OData $select/$expand) adds properties to the notification body.
+
+delivery:
+  model: polled-then-pushed
+  polling_interval_seconds: 900
+  polling_interval_setting: PollingIntervalSeconds
+  retry_interval_seconds: 120
+  retry_interval_setting: PollingRetryIntervalSeconds
+  retry_attempts: 3
+  retry_attempts_setting: RetryAttempts
+  on_exhaustion: The webhook is suspended (resume with PUT /api/webhooks/{id}/continue).
+  configuration_service: Act.Webhook.Notifications
+  note: >-
+    These are service-configuration settings on the Act! installation, so an
+    on-premises administrator can change them; the values above are the
+    documented defaults.
+
+security:
+  callback_auth: >-
+    The callbackToken supplied at registration is sent back in the
+    Authorization header of each callback — a shared bearer secret, not a
+    signature.
+  signature: false
+  signature_note: >-
+    There is no HMAC payload signature and no timestamp/replay defence. A
+    receiver can only compare the Authorization header to the token it
+    registered, which means the secret travels on every delivery.
+  tls: >-
+    The provider explicitly documents registering an http:// callbackUrl when
+    the receiver has no valid certificate, and registering the Act! Web API over
+    http when IT is not certificated — so plaintext delivery of the shared token
+    is a documented path.
+
+gaps:
+  - No AsyncAPI document.
+  - No HMAC signature on deliveries; the shared token is replayed on every callback.
+  - Plaintext (http) callback registration is documented as supported.
+  - Not available on Act! Premium Cloud ("coming soon").
+  - Minimum 15-minute notification latency by default.

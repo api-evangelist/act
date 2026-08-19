@@ -1,0 +1,733 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Documents
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Documents
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/companies/{id}/documents:
+    get:
+      tags:
+      - Documents
+      summary: Get all history documents for a given company matching an (optional) OData query.
+      operationId: Documents_GetByCompany_C720909D
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given company.
+        schema:
+          type: string
+      - name: showFor
+        in: query
+        required: false
+        description: 'Filtering based on associations: 0 = All associations, 1 = Company associations,
+          2 = Company contact associations.'
+        schema:
+          type: string
+          enum:
+          - All
+          - Company
+          - CompanyContact
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{id}/documents:
+    get:
+      tags:
+      - Documents
+      summary: Get all history documents for a given contact matching an (optional) OData query.
+      operationId: Documents_GetByContact_82B4A666
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/groups/{id}/documents:
+    get:
+      tags:
+      - Documents
+      summary: Get all history documents for a given group matching an (optional) OData query.
+      operationId: Documents_GetByGroup_EE07FD6E
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group.
+        schema:
+          type: string
+      - name: showFor
+        in: query
+        required: false
+        description: 'Filtering based on associations: 0 = All associations, 1 = Company associations,
+          2 = Company contact associations.'
+        schema:
+          type: string
+          enum:
+          - All
+          - Group
+          - GroupContact
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/{id}/documents:
+    get:
+      tags:
+      - Documents
+      summary: Get all history documents for a given opportunity matching an (optional) OData query.
+      operationId: Documents_GetByOpportunity_FCF404D8
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/Documents/{id}:
+    get:
+      tags:
+      - Documents
+      summary: Get a specific history document.
+      operationId: Documents_Get_7BF30D0C
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given history document.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Documents
+      summary: Update an already existing history
+      operationId: Documents_Put_33A1CD5B
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given history item.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Histories.History'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Histories.History'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Histories.History'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        description: The history definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Documents
+      summary: Delete an existing history document.
+      operationId: Documents_Delete_279427F5
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given history document.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '423':
+          description: Locked indicates that an attachment upload is currently in progress for this document.
+        '500':
+          description: Unexpected error.
+  /api/Documents:
+    get:
+      tags:
+      - Documents
+      summary: Get all history documents matching an (optional) OData query.
+      operationId: Documents_Get_B0F423DF
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Documents
+      summary: Create a new history document.
+      operationId: Documents_Post_EFF22DA1
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Histories.History'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Histories.History'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Histories.History'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        description: The history definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Histories.History'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files
+            or the workgroup supplemental files.
+          type: boolean
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
+    act.web.api.models.Contacts.EmbeddedContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+          readOnly: true
+        company:
+          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+          type: string
+        isInvited:
+          description: Invited contact flag
+          type: boolean
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
+    act.web.api.models.Histories.History:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        recordManagerID:
+          description: ''
+          type: string
+        recordManager:
+          description: ''
+          type: string
+        createUserID:
+          description: ''
+          type: string
+        createUserName:
+          description: ''
+          type: string
+        editUserID:
+          description: ''
+          type: string
+        editUserName:
+          description: ''
+          type: string
+        contactEmail:
+          description: ''
+          type: string
+        contactPhone:
+          description: ''
+          type: string
+        contactPhoneExt:
+          description: ''
+          type: string
+        contactCompany:
+          description: ''
+          type: string
+        isPrivate:
+          description: ''
+          type: boolean
+        details:
+          description: ''
+          type: string
+        regarding:
+          description: ''
+          type: string
+        duration:
+          description: ''
+          type: string
+        startTime:
+          format: date-time
+          description: ''
+          type: string
+        endTime:
+          format: date-time
+          description: ''
+          type: string
+        outlookID:
+          description: ''
+          type: string
+        historyTypeID:
+          format: int32
+          description: ''
+          type: integer
+        historyType:
+          $ref: '#/components/schemas/act.web.api.models.Histories.HistoryType'
+          description: ''
+        created:
+          format: date-time
+          description: ''
+          type: string
+        edited:
+          format: date-time
+          description: ''
+          type: string
+        companies:
+          description: List of companies that are associated to this history entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
+        contacts:
+          description: List of contacts that are associated to this history entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Contacts.EmbeddedContact'
+        groups:
+          description: List a groups that are associated to this history entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
+        opportunities:
+          description: List a opportunities that are associated to this history entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
+        attachment:
+          $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+          description: Gets the attachment referenced by this history item.
+    act.web.api.models.Histories.HistoryType:
+      description: This class provides information about the history event.
+      type: object
+      properties:
+        id:
+          format: int32
+          description: This unique identifier (HistoryTypeId) for a given history type.
+          type: integer
+        name:
+          description: This defines the type of history event at which it will be known.
+          type: string
+        activityTypeId:
+          format: int32
+          description: This defines the type of activity event at which it will be known.
+          type: integer
+        activityTypeName:
+          description: This defines the type of activity event at which it will be known.
+          type: string
+        description:
+          description: A written representation or account of a history event.
+          type: string
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
+          type: string

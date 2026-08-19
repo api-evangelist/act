@@ -1,0 +1,1683 @@
+{
+  "item": [
+    {
+      "id": "cc7b29cc-978f-43d6-84d7-ea9e05f010fe",
+      "name": "Calendar",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81de5ef6-4b79-4a76-b389-7db9f44126a5",
+          "name": "Get calendar schedule for the current user matching an (optional) OData query.",
+          "request": {
+            "name": "Get calendar schedule for the current user matching an (optional) OData query.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "calendar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ada43ab9-1770-4e21-b1ff-8b198cf882cb",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"string\",\n  \"total\": 9994,\n  \"totalActivities\": 5836,\n  \"totalHistories\": 123,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"recordType\": \"Activity\",\n      \"title\": \"string\",\n      \"duration\": 7056.630946540972,\n      \"durationDisplay\": \"string\",\n      \"startTime\": \"2016-03-17T19:42:42.474Z\",\n      \"endTime\": \"2005-01-09T18:41:27.401Z\",\n      \"details\": \"string\",\n      \"isPrivate\": false\n    },\n    {\n      \"id\": \"string\",\n      \"recordType\": \"History\",\n      \"title\": \"string\",\n      \"duration\": 7258.960398470955,\n      \"durationDisplay\": \"string\",\n      \"startTime\": \"2008-02-24T22:26:20.480Z\",\n      \"endTime\": \"1994-01-05T18:55:19.186Z\",\n      \"details\": \"string\",\n      \"isPrivate\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "431ca5b7-ff32-4434-8871-5cf274c66559",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2b97b04c-6f9c-4111-976b-c45dd1b7a913",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f26ebc33-8e36-416e-8a86-aab716395f74",
+          "name": "Get user's calendar preferences.",
+          "request": {
+            "name": "Get user's calendar preferences.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "calendar",
+                "preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f437c6d7-50cd-4f6a-802f-c65238dc1514",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"firsDayOfWorkWeek\": \"Sunday\",\n  \"numberOfWorkWeekDays\": 6558,\n  \"startTime\": \"1960-09-08T15:44:26.360Z\",\n  \"endTme\": \"1972-06-29T23:38:06.337Z\",\n  \"dailyCalendarIncrement\": 117,\n  \"workWeekCalendarIncrement\": 2176,\n  \"firsDayOfWeek\": \"Saturday\",\n  \"firstWeekOfYearMonth\": 5161,\n  \"firstWeekOfYearDay\": 1931,\n  \"calendarShowOn\": \"string\",\n  \"enablePopupsFor\": \"string\",\n  \"activityDurationBanner\": 9968,\n  \"displayEvents\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "764c433e-3b59-4240-8d82-2b5356ca318b",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c4c5bf0-77c5-4bcf-8faa-59f3968e3a8d",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23abc9e7-d1c9-4048-82f5-ed98cce2bbb5",
+          "name": "Update the user's calendar preferences.",
+          "request": {
+            "name": "Update the user's calendar preferences.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "calendar",
+                "preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "firsDayOfWorkWeek",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "numberOfWorkWeekDays",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTme",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dailyCalendarIncrement",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "workWeekCalendarIncrement",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firsDayOfWeek",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstWeekOfYearMonth",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstWeekOfYearDay",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "calendarShowOn",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enablePopupsFor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "activityDurationBanner",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "displayEvents",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0a087d43-7962-4083-b0d2-00144e5e9521",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"firsDayOfWorkWeek\": \"Sunday\",\n  \"numberOfWorkWeekDays\": 6558,\n  \"startTime\": \"1960-09-08T15:44:26.360Z\",\n  \"endTme\": \"1972-06-29T23:38:06.337Z\",\n  \"dailyCalendarIncrement\": 117,\n  \"workWeekCalendarIncrement\": 2176,\n  \"firsDayOfWeek\": \"Saturday\",\n  \"firstWeekOfYearMonth\": 5161,\n  \"firstWeekOfYearDay\": 1931,\n  \"calendarShowOn\": \"string\",\n  \"enablePopupsFor\": \"string\",\n  \"activityDurationBanner\": 9968,\n  \"displayEvents\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07adabca-425a-4c89-81ff-eac6879d0b6d",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5c68b83c-4af3-403e-89b1-314cfbc86b37",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "baae4e34-1464-4f0a-9580-66eaf0af6ef0",
+              "name": "NotFound indicates that the requested resource does not exist on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5bfe6282-052c-48d5-bc79-6155bb5cdf08",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eea42b96-5637-4c7b-86e8-4ac175931db9",
+          "name": "Create the user's calendar preferences.",
+          "request": {
+            "name": "Create the user's calendar preferences.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "calendar",
+                "preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "firsDayOfWorkWeek",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "numberOfWorkWeekDays",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTme",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dailyCalendarIncrement",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "workWeekCalendarIncrement",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firsDayOfWeek",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstWeekOfYearMonth",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstWeekOfYearDay",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "calendarShowOn",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enablePopupsFor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "activityDurationBanner",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "displayEvents",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f8f51162-99ee-48ef-aba8-ca29cc528c5c",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"firsDayOfWorkWeek\": \"Sunday\",\n  \"numberOfWorkWeekDays\": 6558,\n  \"startTime\": \"1960-09-08T15:44:26.360Z\",\n  \"endTme\": \"1972-06-29T23:38:06.337Z\",\n  \"dailyCalendarIncrement\": 117,\n  \"workWeekCalendarIncrement\": 2176,\n  \"firsDayOfWeek\": \"Saturday\",\n  \"firstWeekOfYearMonth\": 5161,\n  \"firstWeekOfYearDay\": 1931,\n  \"calendarShowOn\": \"string\",\n  \"enablePopupsFor\": \"string\",\n  \"activityDurationBanner\": 9968,\n  \"displayEvents\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cc2018c-d6ec-4fdb-b197-cbb110a36bc9",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed4add18-199b-40bb-b550-266e1efa8662",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "012943ba-93a1-4c04-84d9-8613a0b7a4b3",
+              "name": "NotFound indicates that the requested resource does not exist on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0351a9f1-2496-402a-92ca-97dd627b5426",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "calendar",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWorkWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "numberOfWorkWeekDays",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "endTme",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dailyCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "workWeekCalendarIncrement",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firsDayOfWeek",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearMonth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstWeekOfYearDay",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "calendarShowOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enablePopupsFor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "activityDurationBanner",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "displayEvents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimta.act.com/act.web.api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5896d0e7-8ca8-4fa3-b12d-5a5f1bea12ab",
+    "name": "Act! Web API — Calendar",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.\n\nContact Support:\n Name: Act! Developers",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — MarketingAutomations",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MarketingAutomations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all Campaign Results matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:id/campaign-results",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Get all Campaign Results matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all Campaign matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:id/campaigns",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Get all Campaign matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new Marketing Automation Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/MarketingAutomations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Marketing Automation Email"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

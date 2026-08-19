@@ -1,0 +1,2790 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Analytics
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Analytics
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/activities/analytics/task-list:
+    get:
+      tags:
+      - Analytics
+      summary: Generates the task list activities for analytics task list widget
+      operationId: Analytics_GetLimitedTaskListActivities_65ECB9F3
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: max
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: typeIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: priorityIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.TaskListActivity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.TaskListActivity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.TaskListActivity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/activities/analytics/activity-by-user:
+    get:
+      tags:
+      - Analytics
+      summary: Generates activity sales by user data for given users.
+      operationId: Analytics_GetActivityByUser_EE78D56B
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: typeIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.UserActivityCount'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.UserActivityCount'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.UserActivityCount'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/activities/analytics/activity-by-user-details:
+    get:
+      tags:
+      - Analytics
+      summary: Generates activity sales by user detail data for a given user.
+      operationId: Analytics_GetActivityByUserDetails_703CA4FB
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: typeIds
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.UserActivityDetail'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.UserActivityDetail'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.UserActivityDetail'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/emarketing/analytics/campaign-leads:
+    get:
+      tags:
+      - Analytics
+      summary: Gets contacts leads.
+      operationId: Analytics_GetCampaignLeads_417AF467
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.MarketingLead'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.MarketingLead'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.MarketingLead'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/emarketing/analytics/campaign-lead-info:
+    get:
+      tags:
+      - Analytics
+      summary: Gets opportunities within a campaign within a specified date range (optional filters on
+        statuses and user ids).
+      operationId: Analytics_GetCampaignLeadInfo_E08EC92C
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignLeadInfo'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignLeadInfo'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignLeadInfo'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/emarketing/analytics/campaign-sent:
+    get:
+      tags:
+      - Analytics
+      summary: Gets campaign sent within a specified date range.
+      operationId: Analytics_GetCampaignSent_4B94D20E
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignInfo'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignInfo'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignInfo'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/emarketing/analytics/campaign-results:
+    get:
+      tags:
+      - Analytics
+      summary: Gets campaign result information.
+      operationId: Analytics_GetCampaignResults_0F89CFC0
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: campaignIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignResult'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignResult'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CampaignResult'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/{entityname}/analytics/query:
+    get:
+      tags:
+      - Analytics
+      summary: Gets a custom analytic query to view specific data.
+      operationId: Analytics_GetCustomData_B83CB8C8
+      parameters:
+      - name: entityname
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: field
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: operation
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: dateType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: valueType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityValue
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: amountValue
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: amountOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: omitPrivate
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: typeIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: stageIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pickListItemIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.CustomData'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.CustomData'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.CustomData'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/{entityname}/analytics/query-details:
+    get:
+      tags:
+      - Analytics
+      summary: Gets a custom analytic query to view specific data.
+      operationId: Analytics_GetCustomDataDetails_AE15B56B
+      parameters:
+      - name: entityname
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: field
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: fieldValue
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: dateType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: valueType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityValue
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: amountValue
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: amountOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: omitPrivate
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: typeIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: stageIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pickListItemIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.CustomData'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.CustomData'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.CustomData'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/emarketing/analytics/history:
+    get:
+      tags:
+      - Analytics
+      summary: Gets historical e-marketing information for a given date range.
+      operationId: Analytics_GetEmarketingHistory_1FECBF61
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.EmarketingHistory'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.EmarketingHistory'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.EmarketingHistory'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/analytics/kpi:
+    get:
+      tags:
+      - Analytics
+      summary: Gets analytic KPI query to view specific data.
+      operationId: Analytics_GetKpiData_4DFFF7FB
+      parameters:
+      - name: groupName
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: dateType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: valueType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityValue
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: amountValue
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: amountOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: omitPrivate
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: typeIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: stageIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pickListItemIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.KpiData'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.KpiData'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Analytics.KpiData'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/actual-predicted:
+    get:
+      tags:
+      - Analytics
+      summary: Generates actual vs predicted opportunity revenue.
+      operationId: Analytics_GetOpportunityActualVersusPredictedRevenue_3DBFEBCE
+      parameters:
+      - name: args.interval
+        in: query
+        required: false
+        description: An intervening period of time.
+        schema:
+          type: string
+          enum:
+          - Daily
+          - Weekly
+          - Monthly
+          - Quarterly
+          - Yearly
+      - name: args.start
+        in: query
+        required: false
+        description: The start date that the period requesting.
+        schema:
+          type: string
+          format: date-time
+      - name: args.end
+        in: query
+        required: false
+        description: The end date that the period requesting.
+        schema:
+          type: string
+          format: date-time
+      - name: args.fiscalYearStart
+        in: query
+        required: false
+        description: The oppourtunity products that will be evaludated to generate the revenue data.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PeriodicActualAndPredictedRevenue'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PeriodicActualAndPredictedRevenue'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PeriodicActualAndPredictedRevenue'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/forecast-by-product:
+    get:
+      tags:
+      - Analytics
+      summary: Generates forecasted opportunity data by given products.
+      operationId: Analytics_GetOpportunityForecastByProduct_6A5F800E
+      parameters:
+      - name: productIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByProduct'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByProduct'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByProduct'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/forecast-by-product-details:
+    get:
+      tags:
+      - Analytics
+      summary: Generates forecasted opportunity data by a given product.
+      operationId: Analytics_GetOpportunityForecastByProductDetails_E8BE0DD8
+      parameters:
+      - name: productId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByProductDetail'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByProductDetail'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByProductDetail'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/forecast-by-rep:
+    get:
+      tags:
+      - Analytics
+      summary: Generates forecasted opportunity data by given users.
+      operationId: Analytics_GetOpportunityForecastByRep_F4797D7A
+      parameters:
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByRep'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByRep'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByRep'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/forecast-by-rep-details:
+    get:
+      tags:
+      - Analytics
+      summary: Generates forecasted opportunity data by a given user.
+      operationId: Analytics_GetOpportunityForecastByRepDetails_987464AE
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByRepDetail'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByRepDetail'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.ForecastByRepDetail'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/analytics/pipeline:
+    get:
+      tags:
+      - Analytics
+      summary: Gets all opportunity matching the custom filter that are currently being worked.
+      operationId: Analytics_GetOpportunityInPipeline_28599DA0
+      parameters:
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: dateType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: valueType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityValue
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: amountValue
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: amountOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: omitPrivate
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: typeIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: stageIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pickListItemIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/analytics/pipelines:
+    post:
+      tags:
+      - Analytics
+      summary: Gets all opportunity matching the custom filter that are currently being worked.
+      operationId: Analytics_GetOpportunityInPipeline_139FD0C7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.Controllers.AnalyticsPipeline'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.Controllers.AnalyticsPipeline'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.Controllers.AnalyticsPipeline'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.Controllers.AnalyticsPipeline'
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/analytics/top-open:
+    get:
+      tags:
+      - Analytics
+      summary: Gets all opportunity matching the custom filter that are currently being worked.
+      operationId: Analytics_GetTopOpenOpportunities_19FBF97E
+      parameters:
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: dateType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: valueType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityValue
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: amountValue
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: amountOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: omitPrivate
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: max
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: typeIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: stageIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pickListItemIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PipelineOpportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/stage-time:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunity data for the average time in a stage.
+      operationId: Analytics_GetOpportunityAverageTimeInStage_DCAE7DC3
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: stageIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.TimeInStage'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.TimeInStage'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.TimeInStage'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/close-reason:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunity data to summerizes how many times a reason has been closed.
+      operationId: Analytics_GetOpportunityCloseReasonCount_ABE6C32D
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: status
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Open
+          - Won
+          - Lost
+          - Inactive
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CloseReasonCount'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CloseReasonCount'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CloseReasonCount'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/close-reason-details:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunity data that details the reason for being closed.
+      operationId: Analytics_GetOpportunityCloseReasonDetails_6BBA1207
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: status
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Open
+          - Won
+          - Lost
+          - Inactive
+      - name: closeReason
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CloseReasonDetails'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CloseReasonDetails'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.CloseReasonDetails'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/stages/analytics/opportunity-count:
+    get:
+      tags:
+      - Analytics
+      summary: Generates a summary of the total number of opportunities within a stage.
+      operationId: Analytics_GetOpportunityCountByStages_CD8840AE
+      parameters:
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: dateType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: valueType
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityValue
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: probabilityOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: amountValue
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: amountOperation
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: omitPrivate
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: typeIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: stageIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pickListItemIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.OpportunityStageCount'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.OpportunityStageCount'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.OpportunityStageCount'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/cost:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunity periodic revenue versus cost data for given products.
+      operationId: Analytics_GetOpportunityRevenueVersusCost_D5AA80A8
+      parameters:
+      - name: productIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: args.interval
+        in: query
+        required: false
+        description: An intervening period of time.
+        schema:
+          type: string
+          enum:
+          - Daily
+          - Weekly
+          - Monthly
+          - Quarterly
+          - Yearly
+      - name: args.start
+        in: query
+        required: false
+        description: The start date that the period requesting.
+        schema:
+          type: string
+          format: date-time
+      - name: args.end
+        in: query
+        required: false
+        description: The end date that the period requesting.
+        schema:
+          type: string
+          format: date-time
+      - name: args.fiscalYearStart
+        in: query
+        required: false
+        description: The oppourtunity products that will be evaludated to generate the revenue data.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PeriodicRevenueAndCost'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PeriodicRevenueAndCost'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.PeriodicRevenueAndCost'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/sales-by-product:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunity sales by product data for given products.
+      operationId: Analytics_GetOpportunitySalesByProduct_E254EF71
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: productIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByProduct'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByProduct'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByProduct'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/sales-by-product-details:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunity sales by product detail data for a given product.
+      operationId: Analytics_GetOpportunitySalesByProductDetails_89CE77DD
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: productId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByProductDetail'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByProductDetail'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByProductDetail'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/sales-by-rep:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunity sales by user data for given users.
+      operationId: Analytics_GetOpportunitySalesByRep_75FC5215
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: userIds
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByRep'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByRep'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByRep'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/sales-by-rep-details:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunity sales by user data for a given user.
+      operationId: Analytics_GetOpportunitySalesByRepDetails_4BE7FF32
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByRepDetail'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByRepDetail'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.SalesByRepDetail'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/analytics/revenue/won-lost:
+    get:
+      tags:
+      - Analytics
+      summary: Generates opportunty win versus loss data.
+      operationId: Analytics_GetOpportunityWonVersusLost_797C4A7F
+      parameters:
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.WonLostMetrics'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.WonLostMetrics'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Analytics.WonLostMetrics'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    act.web.api.Controllers.AnalyticsPipeline:
+      description: ''
+      type: object
+      properties:
+        start:
+          format: date-time
+          description: ''
+          type: string
+        end:
+          format: date-time
+          description: ''
+          type: string
+        dateType:
+          format: int32
+          description: ''
+          type: integer
+        valueType:
+          format: int32
+          description: ''
+          type: integer
+        probabilityValue:
+          format: int32
+          description: ''
+          type: integer
+        probabilityOperation:
+          description: ''
+          type: string
+        amountValue:
+          format: double
+          description: ''
+          type: number
+        amountOperation:
+          description: ''
+          type: string
+        omitPrivate:
+          description: ''
+          type: boolean
+        typeIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        userIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        stageIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        pickListItemIds:
+          description: ''
+          type: array
+          items:
+            type: string
+        statuses:
+          description: ''
+          type: array
+          items:
+            type: string
+    act.web.api.models.Analytics.CampaignInfo:
+      description: ''
+      type: object
+      properties:
+        campaignId:
+          description: ''
+          type: string
+        campaignName:
+          description: ''
+          type: string
+        sendDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.CampaignLeadInfo:
+      description: A Breakdown of opportunities within a campaign (# of opportunities, total and weighted
+        values).
+      type: object
+      properties:
+        campaignId:
+          description: ''
+          type: string
+        campaignName:
+          description: ''
+          type: string
+        leadCount:
+          format: int32
+          description: ''
+          type: integer
+        totalValue:
+          format: double
+          description: ''
+          type: number
+        weightedValue:
+          format: double
+          description: ''
+          type: number
+    act.web.api.models.Analytics.CampaignResult:
+      description: ''
+      type: object
+      properties:
+        campaignDate:
+          format: date-time
+          description: ''
+          type: string
+        campaignName:
+          description: ''
+          type: string
+        sends:
+          format: int32
+          description: ''
+          type: integer
+        opens:
+          format: int32
+          description: ''
+          type: integer
+        clicks:
+          format: int32
+          description: ''
+          type: integer
+        uniqueClicks:
+          format: int32
+          description: ''
+          type: integer
+        uniqueSends:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.CloseReasonCount:
+      description: Totals the number of closed reasons.
+      type: object
+      properties:
+        reason:
+          description: ''
+          type: string
+        count:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.CloseReasonDetails:
+      description: ''
+      type: object
+      properties:
+        oppId:
+          description: ''
+          type: string
+        oppName:
+          description: ''
+          type: string
+        status:
+          description: ''
+          type: string
+        closeReason:
+          description: ''
+          type: string
+        actualValue:
+          format: double
+          description: ''
+          type: number
+        actualCloseDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.CustomData:
+      description: ''
+      type: object
+      properties:
+        label:
+          description: ''
+          type: string
+        value:
+          format: double
+          description: ''
+          type: number
+        numbericFormat:
+          description: ''
+          type: string
+    act.web.api.models.Analytics.EmailAction:
+      description: Describes information about e-marketing email actions
+      type: object
+      properties:
+        action:
+          description: Gets the e-marketing action.
+          type: string
+        count:
+          format: int32
+          description: Gets the total number of actions related to the number of e-marketing emails sent.
+          type: integer
+        percent:
+          format: int32
+          description: Gets the percentage of actions to sent e-marketing emails.
+          type: integer
+    act.web.api.models.Analytics.EmarketingHistory:
+      description: Describes historical e-marketing information.
+      type: object
+      properties:
+        sends:
+          format: int32
+          description: Gets the total number of e-marketing emails sent.
+          type: integer
+        emailActions:
+          description: Describes information about e-marketing email actions
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Analytics.EmailAction'
+    act.web.api.models.Analytics.ForecastByProduct:
+      description: Sales revenue or revenues is income received from selling goods or services over a
+        period of time.
+      type: object
+      properties:
+        productId:
+          description: Unique identifier for the product.
+          type: string
+        productName:
+          description: Defines a unique name for the product.
+          type: string
+        totalValue:
+          format: double
+          description: The total product amount.
+          type: number
+        weightedValue:
+          format: double
+          description: ''
+          type: number
+        oppCount:
+          format: int32
+          description: ''
+          type: integer
+        totalValuePercent:
+          format: double
+          description: ''
+          type: number
+        weightedValuePercent:
+          format: double
+          description: ''
+          type: number
+        countPercent:
+          format: double
+          description: ''
+          type: number
+    act.web.api.models.Analytics.ForecastByProductDetail:
+      description: ''
+      type: object
+      properties:
+        oppName:
+          description: ''
+          type: string
+        productName:
+          description: ''
+          type: string
+        probabilityPct:
+          format: int32
+          description: ''
+          type: integer
+        status:
+          description: ''
+          type: string
+        productWeightedValue:
+          format: double
+          description: ''
+          type: number
+        estCloseDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.ForecastByRep:
+      description: Sales revenue or revenues is income received from selling goods or services over a
+        period of time.
+      type: object
+      properties:
+        salesRep:
+          description: The name of the sales rep.
+          type: string
+        userId:
+          description: Unique identifier for the user.
+          type: string
+        totalValue:
+          format: double
+          description: The total product amount.
+          type: number
+        weightedValue:
+          format: double
+          description: ''
+          type: number
+        oppCount:
+          format: int32
+          description: ''
+          type: integer
+        totalValuePercent:
+          format: double
+          description: ''
+          type: number
+        weightedValuePercent:
+          format: double
+          description: ''
+          type: number
+        countPercent:
+          format: double
+          description: ''
+          type: number
+    act.web.api.models.Analytics.ForecastByRepDetail:
+      description: ''
+      type: object
+      properties:
+        oppName:
+          description: ''
+          type: string
+        repName:
+          description: ''
+          type: string
+        probabilityPct:
+          format: int32
+          description: ''
+          type: integer
+        status:
+          description: ''
+          type: string
+        weightedValue:
+          format: double
+          description: ''
+          type: number
+        estCloseDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.KpiData:
+      description: ''
+      type: object
+      properties:
+        label:
+          description: ''
+          type: string
+        value:
+          format: double
+          description: ''
+          type: number
+    act.web.api.models.Analytics.MarketingLead:
+      description: ''
+      type: object
+      properties:
+        contactId:
+          description: ''
+          type: string
+        contactName:
+          description: ''
+          type: string
+        companyName:
+          description: ''
+          type: string
+        businessPhone:
+          description: ''
+          type: string
+        businessEmail:
+          description: ''
+          type: string
+        amaScore:
+          format: int32
+          description: ''
+          type: integer
+        sends:
+          format: int32
+          description: ''
+          type: integer
+        totalClicks:
+          format: int32
+          description: ''
+          type: integer
+        totalOpens:
+          format: int32
+          description: ''
+          type: integer
+        uniqueClicks:
+          format: int32
+          description: ''
+          type: integer
+        uniqueOpens:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.OpportunityStageCount:
+      description: ''
+      type: object
+      properties:
+        stageId:
+          description: A unique identifier that represents the stage of the opportunity.
+          type: string
+        stageName:
+          description: The name of the stage that the opportunity is in.
+          type: string
+        value:
+          format: double
+          description: The total cost of the product or services.
+          type: number
+        count:
+          format: int32
+          description: Total number of opportunties in this stage.
+          type: integer
+        ordinal:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.PeriodicActualAndPredictedRevenue:
+      description: "This model describes actual revenue vs. potential revenue vs. projected (weighted)\
+        \ revenue for a given time period. Projected values\r\n            are available for future time\
+        \ periods and describe the weighted total value of open activities. Potential is the total value\r\
+        \n            of all active opportunities for the time period"
+      type: object
+      properties:
+        timePeriod:
+          description: The name of a specific time interval
+          type: string
+        actual:
+          format: double
+          description: The actual revenue with the time period.
+          type: number
+        potential:
+          format: double
+          description: The total value of all active opportunities for the time period.
+          type: number
+        projected:
+          format: double
+          description: The projected weighted revenue for a given time period.
+          type: number
+    act.web.api.models.Analytics.PeriodicRevenueAndCost:
+      description: Sales revenue or revenues is income received from selling goods or services over a
+        period of time.
+      type: object
+      properties:
+        timePeriod:
+          description: The name of a specific time interval.
+          type: string
+        alternateText:
+          description: ''
+          type: string
+        revenue:
+          format: double
+          description: The income generated from sale of goods or services, or any other use of capital
+            or assets, associated with the main operations of an organization before any costs or expenses
+            are deducted.
+          type: number
+        cost:
+          format: double
+          description: An amount that has to be paid or given up in order to get something.
+          type: number
+        oppCount:
+          format: int32
+          description: Total count of opportunity produces assicated with the revenue.
+          type: integer
+    act.web.api.models.Analytics.PipelineOpportunity:
+      description: Opportunity currently being worked.
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents an opportunity in the pipeline.
+          type: string
+        name:
+          description: The name of the opportunity
+          type: string
+        contactName:
+          description: The name of the contact.
+          type: string
+        companyName:
+          description: The name of the company
+          type: string
+        stageId:
+          description: A unique identifier that represents the stage of the opportunity.
+          type: string
+        stageName:
+          description: The name of the stage that the opportunity is in.
+          type: string
+        estCloseDate:
+          format: date-time
+          description: The date the opportunity is expected to be closed.
+          type: string
+        totalValue:
+          format: double
+          description: The total cost of the product or services.
+          type: number
+        weightedValue:
+          format: double
+          description: The weight of the product.
+          type: number
+        contactCount:
+          format: int32
+          description: The number of contacts
+          type: integer
+        probabilityPct:
+          format: int32
+          description: Probability of successfully winning the sale
+          type: integer
+    act.web.api.models.Analytics.SalesByProduct:
+      description: ''
+      type: object
+      properties:
+        productId:
+          description: ''
+          type: string
+        productName:
+          description: ''
+          type: string
+        revenue:
+          format: double
+          description: ''
+          type: number
+        percent:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.SalesByProductDetail:
+      description: ''
+      type: object
+      properties:
+        oppName:
+          description: ''
+          type: string
+        productName:
+          description: ''
+          type: string
+        productValue:
+          format: double
+          description: ''
+          type: number
+        closedDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.SalesByRep:
+      description: ''
+      type: object
+      properties:
+        salesRep:
+          description: ''
+          type: string
+        revenue:
+          format: double
+          description: ''
+          type: number
+        oppCount:
+          format: int32
+          description: ''
+          type: integer
+        revenuePercent:
+          format: int32
+          description: ''
+          type: integer
+        countPercent:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.SalesByRepDetail:
+      description: ''
+      type: object
+      properties:
+        oppName:
+          description: ''
+          type: string
+        repName:
+          description: ''
+          type: string
+        oppValue:
+          format: double
+          description: ''
+          type: number
+        closedDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.TaskListActivity:
+      description: Activity to display in user's analytics task list
+      type: object
+      properties:
+        id:
+          description: A unique identifier for the activity
+          type: string
+        accessorActivityId:
+          description: The unique id of the intersection between the accessor and the activity
+          type: string
+        contactCount:
+          format: int32
+          description: The number of contacts associated with this activity
+          type: integer
+        startTime:
+          format: date-time
+          description: The start time of the activity
+          type: string
+        regarding:
+          description: The subject of the activity
+          type: string
+        type:
+          description: The type of the activity
+          type: string
+        typeId:
+          format: int32
+          description: The numerical type of the activity
+          type: integer
+        priority:
+          description: The priority of the activity
+          type: string
+        scheduledWith:
+          description: One or more of the contacts associated with the activity
+          type: string
+    act.web.api.models.Analytics.TimeInStage:
+      description: Describes information about the average time an opportunity is in a stage.
+      type: object
+      properties:
+        stageId:
+          description: Unique identifier for the stage.
+          type: string
+        stageName:
+          description: The name of the stage.
+          type: string
+        avgDays:
+          format: double
+          description: The average time in stage (days).
+          type: number
+    act.web.api.models.Analytics.UserActivityCount:
+      description: ''
+      type: object
+      properties:
+        userId:
+          description: ''
+          type: string
+        userName:
+          description: ''
+          type: string
+        activityCount:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.UserActivityDetail:
+      description: ''
+      type: object
+      properties:
+        activityId:
+          description: ''
+          type: string
+        regarding:
+          description: ''
+          type: string
+        startTime:
+          format: date-time
+          description: ''
+          type: string
+        type:
+          description: ''
+          type: string
+        userName:
+          description: ''
+          type: string
+        contactName:
+          description: ''
+          type: string
+        location:
+          description: ''
+          type: string
+    act.web.api.models.Analytics.WonLostMetrics:
+      description: Describes opportunity wins vs losses.
+      type: object
+      properties:
+        status:
+          description: ''
+          type: string
+        revenue:
+          format: double
+          description: ''
+          type: number
+        count:
+          format: int32
+          description: ''
+          type: integer
+        revenuePercent:
+          format: int32
+          description: ''
+          type: integer
+        countPercent:
+          format: int32
+          description: ''
+          type: integer

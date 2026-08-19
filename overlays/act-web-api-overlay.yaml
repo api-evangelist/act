@@ -1,0 +1,135 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements to the Act! Web API contract
+  version: 1.0.0
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: >-
+    Captures every difference between the provider's own Swagger 2.0 document
+    (openapi/_original/act-web-api-swagger.json, fetched verbatim from
+    https://apimta.act.com/act.web.api/swagger/docs/v1 on 2026-08-13) and the
+    refined OpenAPI 3.1.0 documents in openapi/. Nothing here is invented: each
+    action carries the Act!-published URL the value came from.
+  extends: openapi/_original/act-web-api-swagger.json
+  applies_to: openapi/act-*-api-openapi.yml
+  note: >-
+    The provider document is never mutated. It declares no securitySchemes, no
+    servers block beyond host+basePath, no info.description, no contact and no
+    termsOfService, so an agent reading it alone cannot authenticate or reach
+    the API. These actions add exactly those facts, each sourced from Act!'s own
+    documentation.
+actions:
+  - target: $.info
+    description: >-
+      Add a description explaining the OData query surface, batching and the
+      /authorize token exchange, plus contact and terms links. Sourced from
+      https://apimta.act.com/act.web.api/ and
+      https://apimta.act.com/act.web.api/OData/Index.
+    update:
+      description: >-
+        Act! Web API is a JSON-based REST API for the Act! CRM database,
+        exposing contacts, companies, groups, opportunities, activities, notes,
+        history and custom entities. Reads support OData query options ($filter,
+        $orderby, $top, $skip, $select, $expand) and requests may be batched via
+        POST /api/$batch. Authentication is a JWT bearer token obtained from GET
+        /authorize using HTTP Basic credentials plus an Act-Database-Name header.
+      contact:
+        name: Act! Developers
+        url: https://www.act.com/developer/
+      termsOfService: https://www.act.com/legal/terms-of-service/
+
+  - target: $
+    description: >-
+      Swagger 2.0 expresses only host + basePath, which flattens Act!'s three
+      real deployment shapes into one. Replace with an OpenAPI 3.1 servers[]
+      block carrying the concrete cloud host from the provider document plus the
+      two templated forms Act! publishes on its Web API home page under
+      "EndPoints".
+    update:
+      servers:
+        - url: https://apimta.act.com/act.web.api
+          description: >-
+            Act! Premium Cloud API — US region (host and basePath as published
+            in the provider Swagger document).
+        - url: https://{server}/{customer}-api/act.web.api
+          description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+          variables:
+            server:
+              default: apimta.act.com
+            customer:
+              default: customer
+        - url: https://{server}/act.web.api
+          description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+          variables:
+            server:
+              default: localhost
+
+  - target: $.components
+    description: >-
+      The provider document declares NO securityDefinitions, so a generated
+      client has no way to authenticate. Add the three schemes Act! documents at
+      https://apimta.act.com/act.web.api/ — Basic (RFC 7617) to mint the token,
+      Bearer JWT (RFC 6750) to call, and the Act-Database-Name header that
+      selects the database.
+    update:
+      securitySchemes:
+        basicAuth:
+          type: http
+          scheme: basic
+          description: >-
+            HTTP Basic credentials (Act! user name and password, RFC 7617)
+            presented to GET /authorize together with the Act-Database-Name
+            header to mint a JWT bearer token.
+        bearerAuth:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+          description: >-
+            JWT bearer token returned by GET /authorize (RFC 6750). Sent as
+            Authorization: Bearer <token> on every API request.
+        actDatabaseName:
+          type: apiKey
+          in: header
+          name: Act-Database-Name
+          description: Name of the Act! database the request is scoped to.
+
+  - target: $
+    description: Apply the documented default security requirement to every operation.
+    update:
+      security:
+        - bearerAuth: []
+          actDatabaseName: []
+
+  - target: $.paths..responses
+    description: >-
+      NOTE — NOT APPLIED. Recorded as a recommendation only, because the
+      provider publishes no 429 and no Retry-After anywhere. Act! documents
+      X-RateLimit-Limit / -Remaining / -Reset for Act! Premium Cloud
+      (https://apimta.act.com/act.web.api/) but names no throttled status code,
+      so adding a 429 response would be an invention. Left for Act! to declare.
+    x-recommendation: >-
+      Declare the throttled status code and the X-RateLimit-* response headers
+      on operations subject to Act! Premium Cloud rate limiting.
+
+  - target: $.paths
+    description: >-
+      NOTE — NOT APPLIED. Eleven operations carry "Deprecated" or "Dep" inside
+      their generated operationId while advertising deprecated:false (listed in
+      lifecycle/act-lifecycle.yml under deprecated_by_naming_only). Marking them
+      deprecated:true here would assert a provider decision we cannot confirm;
+      it is recorded as a finding instead.
+    x-recommendation: >-
+      Set deprecated: true on ActivitySeries_*Deprecated_*,
+      Notes_GetByGroupDep_998BE8AB, HistoryTypes_GetDeprecated*,
+      System_GetMultilanguageCurrencyDeprecated_F1F71F04 and
+      Notes_GetByOpportunityDeprecated_8998BFA6.
+
+x-conversion-notes:
+  - Swagger 2.0 body parameters converted to OpenAPI 3.1 requestBody, preserving the operation's declared consumes[] as the content media types.
+  - Swagger 2.0 formData parameters converted to a requestBody object schema.
+  - Response schema blocks converted to content keyed by the operation's declared produces[] (defaulting to application/json where produces was empty).
+  - '#/definitions/* references rewritten to #/components/schemas/*; schema names retained verbatim, including their dotted .NET namespace form.'
+  - x-nullable folded into JSON Schema 2020-12 type unions.
+  - 'deprecated: false was dropped as noise; no operation carried deprecated: true.'
+  - Split one document per tag (31 tags, 410 operations), carrying the transitive closure of the schemas each tag references.

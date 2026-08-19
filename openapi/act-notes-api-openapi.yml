@@ -1,0 +1,1052 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Notes
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Notes
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/notes/{id}:
+    get:
+      tags:
+      - Notes
+      summary: Get all notes matching an (optional) OData query and associated with a contact.
+      operationId: Notes_Get_2C9BCB52
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Notes
+      summary: Update an already existing note
+      operationId: Notes_Put_3281DF1B
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        description: The note definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Notes
+      summary: Delete an existing note.
+      operationId: Notes_Delete_158A8476
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Notes
+      summary: Update an already existing note
+      description: "NoteTypeID is optional. If not supplied, the existing note type is preserved.\r\n\
+        \            Passing an invalid NoteTypeID returns HTTP 400."
+      operationId: Notes_Patch_5F3A0F8F
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        description: The note definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{contactId}/notes/{id}:
+    delete:
+      tags:
+      - Notes
+      summary: Delete an existing contact note.
+      operationId: Notes_DeleteNoteFromContact_285BFDC0
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact that is associated with a note.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/notes/{id}/contacts/{contactId}:
+    put:
+      tags:
+      - Notes
+      summary: Associate the contact (if it is not already present) to a note.
+      operationId: Notes_PutContactInNote_E698D4D1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact that is associated with a history
+          item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Notes
+      summary: 'DEPRECATED: DELETE: api/notes/{id}/contacts/{contactID} instead.'
+      operationId: Notes_DEPRECATE_DisassociateNoteFromContact_A08A29EE
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact that is associated with history item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Notes
+      summary: Disassociate a contact (if it is present) from a note.
+      operationId: Notes_DisassociateNoteFromContact_8FEB308D
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact that is associated with history item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/notes:
+    get:
+      tags:
+      - Notes
+      summary: Get all notes that are associated with a given company and matching an (optional) OData
+        query.
+      operationId: Notes_Get_82BA5566
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Notes
+      summary: Create a new note.
+      description: NoteTypeID is optional. If not supplied, it defaults to 100 (General).
+      operationId: Notes_Post_DE6D7616
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        description: The note definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/companies/{id}/notes:
+    get:
+      tags:
+      - Notes
+      summary: Get all notes that are associated with a given company and matching an (optional) OData
+        query.
+      operationId: Notes_GetByCompanies_AFA93DFF
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given company that is associated with a note.
+        schema:
+          type: string
+      - name: showFor
+        in: query
+        required: false
+        description: 'Filtering based on associations: 0 = All associations, 1 = Company associations,
+          2 = Company contact associations.'
+        schema:
+          type: string
+          enum:
+          - All
+          - Company
+          - CompanyContact
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{id}/notes:
+    get:
+      tags:
+      - Notes
+      summary: Get all notes that are associated with a given contact and matching an (optional) OData
+        query.
+      operationId: Notes_GetByContact_0ECBDD59
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact that is associated with a note.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/group/{id}/notes:
+    get:
+      tags:
+      - Notes
+      summary: 'This route has been deprecated use: api/groups/{id}/notes instead.'
+      operationId: Notes_GetByGroupDep_998BE8AB
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group that is associated with a note.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/groups/{id}/notes:
+    get:
+      tags:
+      - Notes
+      summary: Get all notes that are associated with a given group and matching an (optional) OData query.
+      operationId: Notes_GetByGroup_032215FF
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group that is associated with a note.
+        schema:
+          type: string
+      - name: showFor
+        in: query
+        required: false
+        description: 'Filtering based on associations: 0 = All associations, 1 = Company associations,
+          2 = Company contact associations.'
+        schema:
+          type: string
+          enum:
+          - All
+          - Group
+          - GroupContact
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/opportunity/{id}/notes:
+    get:
+      tags:
+      - Notes
+      summary: 'deprecated: use this api/opportunities/{id}/notes.'
+      operationId: Notes_GetByOpportunityDeprecated_8998BFA6
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity that is associated with a note.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/{id}/notes:
+    get:
+      tags:
+      - Notes
+      summary: Get all notes that are associated with a given opportunity and matching an (optional) OData
+        query.
+      operationId: Notes_GetByOpportunity_DB8CCF05
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity that is associated with a note.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the noteText ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Notes.Note'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files
+            or the workgroup supplemental files.
+          type: boolean
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
+    act.web.api.models.Contacts.EmbeddedContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+          readOnly: true
+        company:
+          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+          type: string
+        isInvited:
+          description: Invited contact flag
+          type: boolean
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
+    act.web.api.models.Notes.Note:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        recordManager:
+          description: ''
+          type: string
+        recordManagerID:
+          description: ''
+          type: string
+        createUserID:
+          description: ''
+          type: string
+        isPrivate:
+          description: ''
+          type: boolean
+        noteText:
+          description: ''
+          type: string
+        noteTypeID:
+          format: int32
+          description: "The type of note.\r\n            POST: optional — defaults to 100 (General) if\
+            \ omitted.\r\n            PATCH: optional — existing value preserved if omitted.\r\n     \
+            \       PUT: required — omitting returns 400."
+          type: integer
+        displayDate:
+          format: date-time
+          description: ''
+          type: string
+        created:
+          format: date-time
+          description: ''
+          type: string
+        edited:
+          format: date-time
+          description: ''
+          type: string
+        companies:
+          description: List of companies that are associated to this note entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
+        contacts:
+          description: List of companies that are associated to this note entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Contacts.EmbeddedContact'
+        groups:
+          description: List a groups that are associated to this note entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
+        opportunities:
+          description: List a opportunities that are associated to this note entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
+        attachment:
+          $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+          description: Gets the attachment referenced by this note.
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
+          type: string

@@ -1,0 +1,430 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Notes",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all notes matching an (optional) OData query and associated with a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all notes matching an (optional) OData query and associated with a contact."
+        },
+        {
+          "info": {
+            "name": "Update an already existing note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing note"
+        },
+        {
+          "info": {
+            "name": "Update an already existing note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "NoteTypeID is optional. If not supplied, the existing note type is preserved.\r\n            Passing an invalid NoteTypeID returns HTTP 400."
+        },
+        {
+          "info": {
+            "name": "Delete an existing note.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              }
+            ]
+          },
+          "docs": "Delete an existing note."
+        },
+        {
+          "info": {
+            "name": "Delete an existing contact note.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with a note."
+              }
+            ]
+          },
+          "docs": "Delete an existing contact note."
+        },
+        {
+          "info": {
+            "name": "DEPRECATED: DELETE: api/notes/{id}/contacts/{contactID} instead.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/notes/:id/contacts/:contactId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with history item."
+              }
+            ]
+          },
+          "docs": "DEPRECATED: DELETE: api/notes/{id}/contacts/{contactID} instead."
+        },
+        {
+          "info": {
+            "name": "Associate the contact (if it is not already present) to a note.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/notes/:id/contacts/:contactId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with a history item."
+              }
+            ]
+          },
+          "docs": "Associate the contact (if it is not already present) to a note."
+        },
+        {
+          "info": {
+            "name": "Disassociate a contact (if it is present) from a note.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/notes/:id/contacts/:contactId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with history item."
+              }
+            ]
+          },
+          "docs": "Disassociate a contact (if it is present) from a note."
+        },
+        {
+          "info": {
+            "name": "Get all notes that are associated with a given company and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/notes",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all notes that are associated with a given company and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new note.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/notes",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "NoteTypeID is optional. If not supplied, it defaults to 100 (General)."
+        },
+        {
+          "info": {
+            "name": "Get all notes that are associated with a given company and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company that is associated with a note."
+              },
+              {
+                "name": "showFor",
+                "value": "",
+                "type": "query",
+                "description": "Filtering based on associations: 0 = All associations, 1 = Company associations, 2 = Company contact associations."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all notes that are associated with a given company and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all notes that are associated with a given contact and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with a note."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all notes that are associated with a given contact and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "This route has been deprecated use: api/groups/{id}/notes instead.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/group/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group that is associated with a note."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "This route has been deprecated use: api/groups/{id}/notes instead."
+        },
+        {
+          "info": {
+            "name": "Get all notes that are associated with a given group and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group that is associated with a note."
+              },
+              {
+                "name": "showFor",
+                "value": "",
+                "type": "query",
+                "description": "Filtering based on associations: 0 = All associations, 1 = Company associations, 2 = Company contact associations."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all notes that are associated with a given group and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "deprecated: use this api/opportunities/{id}/notes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity that is associated with a note."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "deprecated: use this api/opportunities/{id}/notes."
+        },
+        {
+          "info": {
+            "name": "Get all notes that are associated with a given opportunity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity that is associated with a note."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the noteText ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all notes that are associated with a given opportunity and matching an (optional) OData query."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

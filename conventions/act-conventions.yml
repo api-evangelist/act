@@ -1,0 +1,225 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://apimta.act.com/act.web.api/ (Act! Web API home — authorization, error
+  codes, endpoints, rate limits, version route),
+  https://apimta.act.com/act.web.api/OData/Index (OData query options, batching,
+  paging), https://apimta.act.com/act.web.api/ActHooks/Index (webhook
+  registration), https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf, and
+  the provider Swagger 2.0 document at
+  https://apimta.act.com/act.web.api/swagger/docs/v1.
+description: >-
+  Cross-cutting request/response semantics that apply to every Act! Web API
+  operation and that the Swagger document does not express: how a token is
+  minted, how a database is selected, how collections are queried and paged with
+  OData, how requests are batched, what the error envelope looks like, and how
+  rate limiting is signalled.
+
+base_url: https://apimta.act.com/act.web.api
+api_style: >-
+  REST over HTTPS, JSON request/response (XML and form-encoded also accepted on
+  writes), with OData v4 query options on collection reads. Implemented as an
+  ASP.NET Web API application on Microsoft-IIS/10.0.
+
+deployment_model:
+  note: >-
+    Act! Web API is deployed per-database, not as one multi-tenant API. The host
+    is either Act!'s cloud or the customer's own IIS server, which is why the
+    OpenAPI servers[] block carries templated hosts alongside the concrete one.
+  endpoints:
+    - name: Act! Premium — Windows or Act! Premium for Web (self-hosted)
+      pattern: https://{server}/act.web.api
+      note: IIS application installed alongside Act! Premium for Web (v18+).
+    - name: Act! Premium Cloud (hosted by Act!)
+      pattern: https://{server}/{customer}-api/act.web.api
+      note: Per-tenant path segment.
+    - name: Act! Premium Cloud API — US region (the published reference instance)
+      pattern: https://apimta.act.com/act.web.api
+  source: https://apimta.act.com/act.web.api/
+
+authentication:
+  scheme: >-
+    JWT bearer. GET /authorize with HTTP Basic credentials (RFC 7617) plus an
+    Act-Database-Name header returns a JWT; that token is then sent as
+    Authorization: Bearer <token> (RFC 6750) on every subsequent request. A
+    bearer token may itself be presented to /authorize to obtain a fresh token.
+  database_selection: Act-Database-Name request header names the Act! database.
+  anonymous_routes:
+    - GET /api/system   # version information, no credentials required
+  docs: https://apimta.act.com/act.web.api/
+  detail: authentication/act-authentication.yml
+
+idempotency:
+  supported: false
+  mechanism: null
+  note: >-
+    Act! publishes no idempotency key mechanism. No Idempotency-Key (or
+    equivalent) header appears in the Swagger document, on the Web API home
+    page, in the OData reference, or in the Web API Administrator's Guide.
+    Retrying a POST creates a duplicate record. Writes that must not be
+    duplicated should be guarded client-side (for example by an OData $filter
+    read-before-write on a unique field). This is the single largest
+    runtime-semantics gap in the API.
+  checked: '2026-08-13'
+
+pagination:
+  style: odata-offset
+  request_params:
+    $top: Maximum number of items returned in each page.
+    $skip: Number of rows to skip in the result set before returning results.
+  response_fields: >-
+    Collection responses are bare JSON arrays; there is no envelope, no
+    has_more flag, no next-page link and no total count. The client is
+    responsible for advancing $skip until a short page is returned.
+  applies_to: >-
+    GET operations that return more than one element. Not every collection
+    supports every OData option — see supported_odata_surfaces below.
+  example: GET /api/activityseries/?$skip=10&$top=5
+  docs: https://apimta.act.com/act.web.api/OData/Index
+
+query_language:
+  standard: OData (Open Data Protocol, OASIS)
+  supported_on: GET operations that return a collection
+  options:
+    $filter:
+      operators: [eq, ne, lt, le, gt, ge]
+      logical: [and, or]
+      functions: [contains, startswith, endswith]
+      note: Navigation properties can be filtered (businessAddress/State eq 'CA') and collections with any() lambdas.
+    $orderby: Specifies the order of the result set; supports 'desc'.
+    $select: Sparse fieldsets — return only the named properties.
+    $expand: Inline related entities; nestable and combinable with $select.
+    $top: Page size.
+    $skip: Page offset.
+  unsupported: >-
+    "Anything not listed is unsupported" — the provider states unimplemented
+    OData features throw an exception on use.
+  supported_odata_surfaces:
+    - GET /api/activities
+    - GET /api/contacts/{contactID}/activities
+    - GET /api/activityseries
+    - GET /api/calendar
+    - GET /api/companies
+    - GET /api/contacts
+    - GET /api/contacts/{contactID}/companies
+    - GET /api/contacts/{contactID}/groups
+    - GET /api/contacts/{contactID}/note
+    - GET /api/groups
+    - GET /api/groups/{id}/contacts
+    - GET /api/history
+    - GET /api/opportunities
+    - GET /api/opportunities/{id}/companies
+    - GET /api/opportunities/{id}/contacts
+    - GET /api/opportunities/{id}/groups
+    - GET /api/opportunities/{id}/products
+    - GET /api/products/{productID}
+    - GET /api/custom/entities/{entityname}
+  docs: https://apimta.act.com/act.web.api/OData/Index
+
+batching:
+  supported: true
+  endpoint: POST /api/$batch
+  content_type: multipart/mixed; boundary="<boundary>"
+  part_content_type: application/http; msgtype=request
+  description: >-
+    Pack several independent API requests into one HTTP request and receive a
+    single multipart response. Auth (Bearer) and Act-Database-Name are set on
+    the outer request.
+  docs: https://apimta.act.com/act.web.api/OData/Index
+
+field_expansion:
+  supported: true
+  mechanism: OData $expand (with nested $select / $expand inside parentheses)
+  example: GET /api/companies?$select=phone,name,id&$expand=address($select=city,postalCode)
+
+sparse_fields:
+  supported: true
+  mechanism: OData $select
+
+metadata:
+  supported: true
+  note: >-
+    Act! exposes the database schema itself as an API — GET /api/metadata/fields,
+    /api/metadata/entities, /api/metadata/{recordType}/fields and
+    /api/metadata/{recordType}/picklists let a client discover custom fields,
+    custom entities and drop-down lists at runtime. Because Act! databases are
+    per-customer and user-extensible, this metadata surface is effectively part
+    of the contract: the same operation returns different fields per tenant.
+  operations:
+    - MetadataInfo_GetField_76332063     # GET /api/metadata/fields
+    - MetadataInfo_GetFields_387CA408    # GET /api/metadata/{recordType}/fields
+    - MetadataInfo_GetEntities_76EDEF77  # GET /api/metadata/entities
+    - MetadataInfo_GetPicklists_8295BDC6 # GET /api/metadata/{recordType}/picklists
+
+request_id_tracing:
+  supported: false
+  note: >-
+    No correlation/request-id response header is documented, and none was
+    observed on live probes of https://apimta.act.com/act.web.api/api/system or
+    /authorize. Responses carry only Server, X-AspNet-Version and
+    Strict-Transport-Security.
+  observed: '2026-08-13'
+
+content_negotiation:
+  request: [application/json, application/xml, text/xml, application/x-www-form-urlencoded]
+  response: [application/json, application/xml, text/xml]
+  note: >-
+    Some operations also accept a ?format= query parameter (50 operations in the
+    Swagger document) and phone/date formatting query parameters (phoneFormat,
+    dateFormat) that shape the representation.
+
+versioning:
+  scheme: >-
+    Build-number versioning of the deployed Web API application; there is no
+    version segment in the URL and no version request header.
+  discovery: GET /api/system (anonymous) returns apiVersion and sdkVersion.
+  observed:
+    apiVersion: 1.1.1324.1
+    sdkVersion: 25.101.0.0
+    observed_at: '2026-08-13'
+    host: https://apimta.act.com/act.web.api
+  note: >-
+    Because customers self-host, the version a client sees is whatever build
+    that server runs. A client should call GET /api/system before assuming an
+    operation exists.
+  detail: lifecycle/act-lifecycle.yml
+
+error_envelope:
+  format: ASP.NET Web API error object (not RFC 9457 problem+json)
+  media_type: application/json
+  fields: [message, exceptionMessage, exceptionType, stackTrace]
+  example_observed: >-
+    GET https://apimta.act.com/act.web.api/api/contacts without credentials
+    returned HTTP 500 with
+    {"message":"An error has occurred.","exceptionMessage":"Object reference not
+    set to an instance of an object.","exceptionType":"System.NullReferenceException","stackTrace":"..."}
+  finding: >-
+    Two defects are visible from an anonymous request. First, a missing
+    credential is answered 500 rather than 401. Second, the deployed instance
+    returns full .NET stack traces including server build paths — ASP.NET
+    IncludeErrorDetailPolicy is left at a development setting on the public
+    Act! Premium Cloud API host.
+  detail: errors/act-problem-types.yml
+
+rate_limiting:
+  applies_to: Act! Premium Cloud
+  headers:
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-RateLimit-Reset
+  detail: rate-limits/act-rate-limits.yml
+  docs: https://apimta.act.com/act.web.api/
+
+webhooks:
+  supported: true
+  registration: POST /api/webhooks
+  detail: asyncapi/act-webhooks.yml
+  docs: https://apimta.act.com/act.web.api/ActHooks/Index
+
+cross_links:
+  authentication: authentication/act-authentication.yml
+  errors: errors/act-problem-types.yml
+  lifecycle: lifecycle/act-lifecycle.yml
+  rate_limits: rate-limits/act-rate-limits.yml
+  data_model: data-model/act-data-model.yml
+  conformance: conformance/act-conformance.yml

@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Teams",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a team roster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/teams/:teamNameOrId/roster",
+            "params": [
+              {
+                "name": "teamNameOrId",
+                "value": "",
+                "type": "path",
+                "description": "The team name or id."
+              }
+            ]
+          },
+          "docs": "Get a team roster."
+        },
+        {
+          "info": {
+            "name": "Get a specific team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/teams/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given team."
+              }
+            ]
+          },
+          "docs": "Get a specific team."
+        },
+        {
+          "info": {
+            "name": "Update an already existing team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/teams/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given team."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing team."
+        },
+        {
+          "info": {
+            "name": "Partially update an already existing team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/teams/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given team."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update an already existing team."
+        },
+        {
+          "info": {
+            "name": "Delete an existing team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/teams/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given team."
+              }
+            ]
+          },
+          "docs": "Delete an existing team."
+        },
+        {
+          "info": {
+            "name": "Get all teams.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/teams"
+          },
+          "docs": "Get all teams."
+        },
+        {
+          "info": {
+            "name": "Create a new team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new team."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

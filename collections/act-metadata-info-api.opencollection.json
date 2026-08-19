@@ -1,0 +1,461 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — MetadataInfo",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MetadataInfo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get specific drop-down list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/drop-down/lists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a field."
+              }
+            ]
+          },
+          "docs": "Get specific drop-down list"
+        },
+        {
+          "info": {
+            "name": "Update an already existing drop-down list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/drop-down/lists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given drop-down list."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing drop-down list"
+        },
+        {
+          "info": {
+            "name": "Delete an existing drop-down list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/drop-down/lists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given drop-down list."
+              }
+            ]
+          },
+          "docs": "Delete an existing drop-down list"
+        },
+        {
+          "info": {
+            "name": "Get a specific field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/:recordType/fields/:id",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a field."
+              }
+            ]
+          },
+          "docs": "Get a specific field"
+        },
+        {
+          "info": {
+            "name": "Update an already existing field.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/:recordType/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given field."
+              },
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing field."
+        },
+        {
+          "info": {
+            "name": "Delete an existing field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/:recordType/fields/:id",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given drop-down list."
+              }
+            ]
+          },
+          "docs": "Delete an existing field"
+        },
+        {
+          "info": {
+            "name": "Get all available defined field data types for each Act! record type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/datatypes",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name)."
+              }
+            ]
+          },
+          "docs": "Get all available defined field data types for each Act! record type."
+        },
+        {
+          "info": {
+            "name": "Get all drop-down list matching an (optional) OData query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/drop-down/lists"
+          },
+          "docs": "Get all drop-down list matching an (optional) OData query"
+        },
+        {
+          "info": {
+            "name": "Create a new drop-down list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/drop-down/lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new drop-down list"
+        },
+        {
+          "info": {
+            "name": "Gets a specific drop-down pick list item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/drop-down/lists/:list/items/:item",
+            "params": [
+              {
+                "name": "list",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given PickList."
+              },
+              {
+                "name": "item",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given item within a PickList."
+              }
+            ]
+          },
+          "docs": "Gets a specific drop-down pick list item."
+        },
+        {
+          "info": {
+            "name": "Gets all drop-down pick list item(s).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/drop-down/lists/:list/items",
+            "params": [
+              {
+                "name": "list",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given PickList."
+              }
+            ]
+          },
+          "docs": "Gets all drop-down pick list item(s)."
+        },
+        {
+          "info": {
+            "name": "Get all entity matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/entities"
+          },
+          "docs": "Get all entity matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new custom table (custom entity), optionally linked to parent entities.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/entities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom table (custom entity), optionally linked to parent entities."
+        },
+        {
+          "info": {
+            "name": "Get all fields matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/fields",
+            "params": [
+              {
+                "name": "showAll",
+                "value": "",
+                "type": "query",
+                "description": "This defines if it only shows customizable (false) metadata or visible (true) metadata"
+              }
+            ]
+          },
+          "docs": "Get all fields matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get a specific field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a field."
+              }
+            ]
+          },
+          "docs": "Get a specific field"
+        },
+        {
+          "info": {
+            "name": "Get all fields matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/:recordType/fields",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name)."
+              },
+              {
+                "name": "showAll",
+                "value": "",
+                "type": "query",
+                "description": "This defines if it only shows customizable (false) metadata or visible (true) metadata"
+              }
+            ]
+          },
+          "docs": "Get all fields matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new field.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/:recordType/fields",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new field."
+        },
+        {
+          "info": {
+            "name": "Get specific pick list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/:recordType/picklists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a field."
+              },
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the core mutable types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name)."
+              },
+              {
+                "name": "showAll",
+                "value": "",
+                "type": "query",
+                "description": "This defines if it only shows customizable (false) metadata or visible (true) metadata"
+              }
+            ]
+          },
+          "docs": "Get specific pick list"
+        },
+        {
+          "info": {
+            "name": "Get all pick list matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/:recordType/picklists",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the core mutable types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name)."
+              },
+              {
+                "name": "showAll",
+                "value": "",
+                "type": "query",
+                "description": "This defines if it only shows customizable (false) metadata or visible (true) metadata"
+              }
+            ]
+          },
+          "docs": "Get all pick list matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Delete an existing custom table (custom entity), including any parent-link junction tables.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/metadata/entities/:recordType",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing custom table (custom entity), including any parent-link junction tables."
+        },
+        {
+          "info": {
+            "name": "Refresh metadata cache.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/cache-refresh"
+          },
+          "docs": "Refresh metadata cache."
+        },
+        {
+          "info": {
+            "name": "Refresh metadata cache.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/cache-refresh"
+          },
+          "docs": "Refresh metadata cache."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

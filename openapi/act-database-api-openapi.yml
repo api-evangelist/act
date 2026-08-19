@@ -1,0 +1,592 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Database
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Database
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/database/backups/{filename}:
+    get:
+      tags:
+      - Database
+      summary: Get a specific database backup file.
+      operationId: Database_GetDatabaseBackup_A1F60887
+      parameters:
+      - name: filename
+        in: path
+        required: true
+        description: The unique identifier (filename) for a given database backupUser file.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupInfo'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupInfo'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Database
+      summary: Delete an existing database backup file.
+      operationId: Database_DeleteDatabaseBackup_13928FFB
+      parameters:
+      - name: filename
+        in: path
+        required: true
+        description: The unique identifier (filename) for a given database backupUser file.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/database/demo-data:
+    post:
+      tags:
+      - Database
+      summary: Create demo data.
+      operationId: Database_PostDemoData_8BC3A811
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Database
+      summary: Delete demo data.
+      operationId: Database_DeleteDemoData_E0546CC6
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/database/demo-data-status:
+    get:
+      tags:
+      - Database
+      operationId: Database_GetDemoDataStatus_D1CD9D1F
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/database/backups:
+    get:
+      tags:
+      - Database
+      summary: Get all database backup file.
+      operationId: Database_GetDatabaseBackups_202FE0BB
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupInfo'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupInfo'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Database
+      summary: Upload a database backup file.
+      operationId: Database_PutDatabaseBackup_7E76A423
+      responses:
+        '202':
+          description: Accepted indicates that the request is accepted for processing, but the processing
+            has not been completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Database
+      summary: Create a new database backup file.
+      operationId: Database_PostDatabaseBackup_C5EC02BE
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+      responses:
+        '202':
+          description: Accepted indicates that the request is accepted for processing, but the processing
+            has not been completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.DatabaseBackupUser'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/database/maintenance/lock:
+    get:
+      tags:
+      - Database
+      summary: Get the database's lock state.
+      operationId: Database_GetLock_1B68F9F3
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Database
+      summary: Lock or apply pending lock to the database.
+      operationId: Database_PostLock_59B1C239
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.LockRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.LockRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.LockRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.LockRequest'
+        description: Defines the type of lock.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.LockResult'
+        '202':
+          description: Accepted indicates that the request was successfully received and is being processed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Database.LockResult'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/database:
+    post:
+      tags:
+      - Database
+      summary: Create a new database.
+      operationId: Database_PostDatabase_2EBCD826
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.NewDatabaseRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.NewDatabaseRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.NewDatabaseRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Database.NewDatabaseRequest'
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/database/maintenance/unlock:
+    post:
+      tags:
+      - Database
+      summary: Unlock the database.
+      operationId: Database_PostUnlock_2CD3DC88
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/opened/sessions:
+    get:
+      tags:
+      - Database
+      summary: Get all open connections to the database.
+      operationId: Database_GetOpenSessions_E10D6976
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Database.DatabaseBackupInfo:
+      description: ''
+      type: object
+      properties:
+        fileName:
+          description: ''
+          type: string
+        submitted:
+          description: ''
+          type: string
+        created:
+          description: ''
+          type: string
+        isUploaded:
+          description: ''
+          type: boolean
+        message:
+          description: ''
+          type: string
+    act.web.api.models.Database.DatabaseBackupUser:
+      description: This model is used to create a database backup file.
+      type: object
+      properties:
+        username:
+          description: An Act! user that has administrative privileges
+          type: string
+        password:
+          description: The password that will be used to secure the database basckup file.
+          type: string
+    act.web.api.models.Database.LockRequest:
+      description: The request model when posting a database lock.
+      type: object
+      properties:
+        comments:
+          description: A brief description for the database lock.
+          type: string
+        delayUntilLock:
+          format: int32
+          description: The number of minutes to delay before a lock is placed on the database.
+          type: integer
+        reason:
+          description: The reason for the lock.
+          enum:
+          - General
+          - Restore
+          - SchemaChanges
+          type: string
+    act.web.api.models.Database.LockResult:
+      description: ''
+      type: object
+      properties:
+        userId:
+          description: The user identifier that is requesting a database lock.
+          type: string
+        username:
+          description: The user's name.
+          type: string
+        lockTypeId:
+          description: An identifier for the type of lock being applied.
+          enum:
+          - UNLOCK
+          - PENDING_LOCK
+          - LOCK
+          type: string
+        lockType:
+          description: The name of the locking type.
+          type: string
+        reasonId:
+          description: An identifier for the reason of the lock being applied.
+          enum:
+          - General
+          - Restore
+          - Delete
+          - Repair
+          - SchemaChanges
+          - TierUpgrade
+          - SchemaUpdate
+          - MoveDatabase
+          type: string
+        reason:
+          description: The name of the locking reason.
+          type: string
+        issued:
+          format: date-time
+          description: The datetime that the database lock was requested.
+          type: string
+        effective:
+          format: date-time
+          description: The datetime that the database lock was applied or will be applied.
+          type: string
+        applyLockIn:
+          description: Amount of time until a database lock is applied.
+          type: string
+        comments:
+          description: A brief description for the database lock.
+          type: string
+    act.web.api.models.Database.NewDatabaseRequest:
+      description: The database name must begin with a letter, consists only of letters, numbers, and
+        underscore characters.
+      required:
+      - databaseName
+      - username
+      - password
+      type: object
+      properties:
+        databaseName:
+          description: Database name (no spaces, punctuation, and must begin with a letter)  Maximum length
+            is 32 characters.
+          maxLength: 32
+          minLength: 0
+          type: string
+        username:
+          description: The database administrator
+          type: string
+        password:
+          description: The database administrator's password.
+          type: string
+        shared:
+          description: Database will be a shared
+          type: boolean
+        currency:
+          description: "The currency format that will be used (default if not supplied).\r\n         \
+            \   api/multilanguage/currencies -- (DisplayText)"
+          type: string

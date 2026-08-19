@@ -1,0 +1,223 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Preferences",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Preferences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or modify user preferences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or modify user preferences."
+        },
+        {
+          "info": {
+            "name": "Delete an existing user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given user preference."
+              }
+            ]
+          },
+          "docs": "Delete an existing user."
+        },
+        {
+          "info": {
+            "name": "Get the current user's preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/preferences",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A comma delimited base64 string of preference keys."
+              }
+            ]
+          },
+          "docs": "Get the current user's preferences"
+        },
+        {
+          "info": {
+            "name": "Create or modify user preferences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/preferences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or modify user preferences."
+        },
+        {
+          "info": {
+            "name": "Get salutation and name affixes settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/contact/salutation-and-names"
+          },
+          "docs": "Get salutation and name affixes settings"
+        },
+        {
+          "info": {
+            "name": "Update salutations and name affixes preferences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/contact/salutation-and-names",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update salutations and name affixes preferences."
+        },
+        {
+          "info": {
+            "name": "Get task preferences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/tasks"
+          },
+          "docs": "Get task preferences."
+        },
+        {
+          "info": {
+            "name": "Update task preferences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update task preferences."
+        },
+        {
+          "info": {
+            "name": "Gets all task types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/tasks/color-palette"
+          },
+          "docs": "Gets all task types."
+        },
+        {
+          "info": {
+            "name": "Get list of fields for selected record type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/duplicates-checking/:recordType/fields",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Record type identifier (Contact|Company|Group)."
+              }
+            ]
+          },
+          "docs": "Get list of fields for selected record type."
+        },
+        {
+          "info": {
+            "name": "Get selected dup-checking options for selected record type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/duplicates-checking/:recordType",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Record type identifier (Contact|Company|Group)."
+              }
+            ]
+          },
+          "docs": "Get selected dup-checking options for selected record type."
+        },
+        {
+          "info": {
+            "name": "Update or create indexes info for selected record type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/preferences/duplicates-checking/:recordType",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "Record type identifier (Contact|Company|Group)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update or create indexes info for selected record type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

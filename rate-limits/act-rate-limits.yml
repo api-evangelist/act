@@ -1,0 +1,45 @@
+generated: '2026-08-13'
+method: searched
+source: https://apimta.act.com/act.web.api/
+description: >-
+  Act! states that Act! Premium Cloud API requests are rate limited and names
+  the three response headers a client should read. It does not publish a
+  number: no request-per-minute figure, no per-plan quota, no burst allowance,
+  and no status code for exhaustion. The runtime signal is therefore the only
+  way to discover the limit — read X-RateLimit-Limit on the first response.
+provider: Act! CRM
+providerId: act
+scope_note: >-
+  Rate limiting is documented for Act! Premium Cloud (Act!-hosted). Self-hosted
+  Act! Web API instances run on the customer's own IIS server; Act! publishes no
+  limits for those, and any throttling there is whatever the customer's IIS
+  configuration imposes.
+limit_count: 0
+limits: []
+headers:
+  X-RateLimit-Limit: The number of calls you can make a minute.
+  X-RateLimit-Remaining: The number of calls you have left this minute.
+  X-RateLimit-Reset: The next time the limit will be reset.
+window: minute
+responseCodes:
+  throttled: null
+  note: >-
+    Act! documents no status code for a throttled request and no Retry-After
+    header. The Swagger document declares no 429 on any of its 410 operations.
+retry_guidance: >-
+  Not published. Because X-RateLimit-Reset names the next reset instant, a
+  client should back off until that instant rather than using a fixed delay.
+probe:
+  url: https://apimta.act.com/act.web.api/api/system
+  http_status: 200
+  fetched: '2026-08-13'
+  observed_headers: [Cache-Control, Content-Type, Server, X-AspNet-Version, Strict-Transport-Security]
+  note: >-
+    The anonymous version route returns no X-RateLimit-* headers, so the
+    documented headers could not be confirmed live without credentials. They are
+    recorded here as the provider publishes them, not as observed values.
+gaps:
+  - No published numeric limit.
+  - No per-plan or per-tier quota published on https://www.act.com/pricing/.
+  - No documented status code or Retry-After on exhaustion.
+docs: https://apimta.act.com/act.web.api/

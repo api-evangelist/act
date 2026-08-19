@@ -1,0 +1,324 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Calendar
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Calendar
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/calendar:
+    get:
+      tags:
+      - Calendar
+      summary: Get calendar schedule for the current user matching an (optional) OData query.
+      operationId: Calendar_Get_4342D274
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.Schedule'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.Schedule'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.Schedule'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/calendar/preferences:
+    get:
+      tags:
+      - Calendar
+      summary: Get user's calendar preferences.
+      operationId: Calendar_GetPreferences_AD38D5BE
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Calendar
+      summary: Update the user's calendar preferences.
+      operationId: Calendar_PutPreference_DE71004C
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+        description: The calendar preferences definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Calendar
+      summary: Create the user's calendar preferences.
+      operationId: Calendar_PostPreference_4E44150A
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+        description: The calendar preferences definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Calendar.CalendarPreferences'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    act.web.api.models.Calendar.CalendarPreferences:
+      description: ''
+      type: object
+      properties:
+        firsDayOfWorkWeek:
+          description: ''
+          enum:
+          - Sunday
+          - Monday
+          - Tuesday
+          - Wednesday
+          - Thursday
+          - Friday
+          - Saturday
+          type: string
+        numberOfWorkWeekDays:
+          format: int32
+          description: ''
+          type: integer
+        startTime:
+          format: date-time
+          description: ''
+          type: string
+        endTme:
+          format: date-time
+          description: ''
+          type: string
+        dailyCalendarIncrement:
+          format: int32
+          description: ''
+          type: integer
+        workWeekCalendarIncrement:
+          format: int32
+          description: ''
+          type: integer
+        firsDayOfWeek:
+          description: ''
+          enum:
+          - Sunday
+          - Monday
+          - Tuesday
+          - Wednesday
+          - Thursday
+          - Friday
+          - Saturday
+          type: string
+        firstWeekOfYearMonth:
+          format: int32
+          description: ''
+          type: integer
+        firstWeekOfYearDay:
+          format: int32
+          description: ''
+          type: integer
+        calendarShowOn:
+          description: ''
+          type: string
+        enablePopupsFor:
+          description: ''
+          type: string
+        activityDurationBanner:
+          format: int32
+          description: ''
+          type: integer
+        displayEvents:
+          description: ''
+          type: boolean
+    act.web.api.models.Calendar.Schedule:
+      description: ''
+      type: object
+      properties:
+        date:
+          description: ''
+          type: string
+        total:
+          format: int32
+          description: ''
+          type: integer
+        totalActivities:
+          format: int32
+          description: ''
+          type: integer
+        totalHistories:
+          format: int32
+          description: ''
+          type: integer
+        items:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Calendar.ScheduledItems'
+    act.web.api.models.Calendar.ScheduledItems:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        recordType:
+          description: ''
+          enum:
+          - Activity
+          - History
+          type: string
+        title:
+          description: ''
+          type: string
+        duration:
+          format: double
+          description: ''
+          type: number
+        durationDisplay:
+          description: ''
+          type: string
+        startTime:
+          format: date-time
+          description: ''
+          type: string
+        endTime:
+          format: date-time
+          description: ''
+          type: string
+        details:
+          description: ''
+          type: string
+        isPrivate:
+          description: ''
+          type: boolean

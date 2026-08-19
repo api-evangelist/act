@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — System",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of currency symbol from system regional settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/multilanguage/currencies"
+          },
+          "docs": "Get a list of currency symbol from system regional settings."
+        },
+        {
+          "info": {
+            "name": "Gets the configured culture settings for the database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/multilanguage/currencies/current"
+          },
+          "docs": "Gets the configured culture settings for the database."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use 'api/multilanguage/currencies/current' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/multilanguage/currency"
+          },
+          "docs": "Deprecated (Please use 'api/multilanguage/currencies/current' instead)."
+        },
+        {
+          "info": {
+            "name": "Gets the registered Act! serial number and the total number of client access licenses.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/registration"
+          },
+          "docs": "Gets the registered Act! serial number and the total number of client access licenses."
+        },
+        {
+          "info": {
+            "name": "Gets version information for Act! and the Web API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/system"
+          },
+          "docs": "Gets version information for Act! and the Web API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

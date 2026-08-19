@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — CustomEntities",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CustomEntities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a specific custom entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/custom/entities/:entityName/:id",
+            "params": [
+              {
+                "name": "entityName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given custom entity."
+              }
+            ]
+          },
+          "docs": "Get a specific custom entity."
+        },
+        {
+          "info": {
+            "name": "Create a new custom entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/custom/entities/:entityName/:id",
+            "params": [
+              {
+                "name": "entityName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given custom entity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom entity."
+        },
+        {
+          "info": {
+            "name": "Delete an existing custom entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/custom/entities/:entityName/:id",
+            "params": [
+              {
+                "name": "entityName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given custom entity."
+              }
+            ]
+          },
+          "docs": "Delete an existing custom entity."
+        },
+        {
+          "info": {
+            "name": "Get all custom entity data matching an (optional) OData query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/custom/entities/:entityName",
+            "params": [
+              {
+                "name": "entityName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity."
+              }
+            ]
+          },
+          "docs": "Get all custom entity data matching an (optional) OData query"
+        },
+        {
+          "info": {
+            "name": "Create a new custom entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/custom/entities/:entityName",
+            "params": [
+              {
+                "name": "entityName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom entity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

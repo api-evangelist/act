@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Calendar",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calendar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get calendar schedule for the current user matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/calendar"
+          },
+          "docs": "Get calendar schedule for the current user matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get user's calendar preferences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/calendar/preferences"
+          },
+          "docs": "Get user's calendar preferences."
+        },
+        {
+          "info": {
+            "name": "Create the user's calendar preferences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/calendar/preferences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create the user's calendar preferences."
+        },
+        {
+          "info": {
+            "name": "Update the user's calendar preferences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/calendar/preferences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the user's calendar preferences."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

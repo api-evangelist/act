@@ -1,0 +1,297 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Derived from openapi/*.yml — the 244 schema definitions of the provider
+  Swagger 2.0 document (https://apimta.act.com/act.web.api/swagger/docs/v1) —
+  reading $ref links between models and id-reference fields. Relationship
+  cardinality follows the schema: an array of Embedded<Entity> is has_many, a
+  single <entity>ID string is belongs_to.
+description: >-
+  Act!'s object graph is a classic CRM core (Contact, Company, Group,
+  Opportunity) with three activity-stream entities hung off it (Note, History,
+  Activity/Task) and one distinguishing shape: the association entities are
+  MANY-TO-MANY in both directions. A Note, a History record and an Opportunity
+  each carry arrays of embedded companies, contacts, groups and opportunities —
+  so "log this call against three contacts and their company" is one object, not
+  four. Every top-level record also carries a recordManagerID, which is Act!'s
+  row-level ownership and access-control field.
+entities:
+  - name: Contact
+    schema: act.web.api.models.Contacts.Contact
+    id_field: id
+    id_type: string (GUID)
+    property_count: 70
+    spec: openapi/act-contacts-api-openapi.yml
+    collection: /api/contacts
+    note: The root record of the database. Extensible per tenant via custom fields.
+
+  - name: Company
+    schema: act.web.api.models.Companies.Company
+    id_field: id
+    property_count: 36
+    spec: openapi/act-companies-api-openapi.yml
+    collection: /api/companies
+    note: Self-referencing hierarchy via parentID / rootParentID (divisions).
+
+  - name: Group
+    schema: act.web.api.models.Groups.Group
+    id_field: id
+    property_count: 17
+    spec: openapi/act-groups-api-openapi.yml
+    collection: /api/groups
+    note: Self-referencing hierarchy via parentID (subgroups).
+
+  - name: Opportunity
+    schema: act.web.api.models.Opportunities.Opportunity
+    id_field: id
+    property_count: 39
+    spec: openapi/act-opportunities-api-openapi.yml
+    collection: /api/opportunities
+
+  - name: OpportunityProduct
+    schema: act.web.api.models.Opportunities.OpportunityProduct
+    id_field: id
+    spec: openapi/act-opportunities-api-openapi.yml
+    note: Join entity carrying opportunityID and productID plus line-item pricing.
+
+  - name: Product
+    schema: act.web.api.models.Products.Product
+    id_field: id
+    spec: openapi/act-products-api-openapi.yml
+
+  - name: Note
+    schema: act.web.api.models.Notes.Note
+    id_field: id
+    spec: openapi/act-notes-api-openapi.yml
+    collection: /api/notes
+
+  - name: History
+    schema: act.web.api.models.Histories.History
+    id_field: id
+    spec: openapi/act-history-api-openapi.yml
+    collection: /api/History
+    note: A completed interaction (call, meeting, email), typed by historyTypeID.
+
+  - name: ActivitySeries
+    schema: act.web.api.models.Activities.ActivitySeries
+    spec: openapi/act-activity-series-api-openapi.yml
+    note: Recurring activity definition (RecurSpec/RecurDay); all six operations are named *Deprecated*.
+
+  - name: ActivityOccurrence
+    schema: act.web.api.models.Activities.ActivityOccurrence
+    spec: openapi/act-tasks-api-openapi.yml
+
+  - name: AlarmedActivity
+    schema: act.web.api.models.Activities.AlarmedActivity
+    spec: openapi/act-tasks-api-openapi.yml
+
+  - name: TaskType
+    schema: act.web.api.models.TaskTypes.TaskType
+    spec: openapi/act-task-types-api-openapi.yml
+
+  - name: HistoryType
+    schema: act.web.api.models.Histories.HistoryType
+    spec: openapi/act-history-types-api-openapi.yml
+
+  - name: SecondaryContact
+    spec: openapi/act-secondary-contacts-api-openapi.yml
+    note: People attached to a Contact without their own Contact record.
+
+  - name: User
+    schema: act.web.api.models.Users.UserInfo
+    id_field: id
+    spec: openapi/act-users-api-openapi.yml
+
+  - name: Team
+    spec: openapi/act-teams-api-openapi.yml
+
+  - name: Document
+    spec: openapi/act-documents-api-openapi.yml
+
+  - name: Attachment
+    schema: act.web.api.models.Attachments.Attachment
+    spec: openapi/act-supplemental-files-api-openapi.yml
+
+  - name: Address
+    schema: act.web.api.models.Address
+    embedded_only: true
+    note: Value object reused as address / billingAddress / shippingAddress / businessAddress / homeAddress.
+
+  - name: CustomEntity
+    spec: openapi/act-custom-entities-api-openapi.yml
+    note: >-
+      Tenant-defined tables. Shape is not in the spec — discover it at runtime
+      via /api/metadata/entities and /api/metadata/{recordType}/fields.
+
+  - name: Webhook
+    schema: act.web.api.models.WebHooks.WebhookRequest
+    spec: openapi/act-webhooks-api-openapi.yml
+
+relationships:
+  - from: Contact
+    to: Company
+    type: belongs_to
+    via: companyID
+  - from: Company
+    to: Company
+    type: belongs_to
+    via: parentID
+    note: Also rootParentID for the top of the hierarchy.
+  - from: Group
+    to: Group
+    type: belongs_to
+    via: parentID
+  - from: Company
+    to: Contact
+    type: has_many
+    via: /api/companies/{id}/contacts
+  - from: Group
+    to: Contact
+    type: has_many
+    via: /api/groups/{id}/contacts
+  - from: Contact
+    to: Group
+    type: has_many
+    via: /api/contacts/{contactID}/groups
+  - from: Contact
+    to: Company
+    type: has_many
+    via: /api/contacts/{contactID}/companies
+    note: >-
+      A contact has a single companyID field AND a companies collection route.
+      Both exist; the field is the primary association.
+  - from: Note
+    to: Contact
+    type: has_many
+    via: contacts[] (EmbeddedContact)
+  - from: Note
+    to: Company
+    type: has_many
+    via: companies[] (EmbeddedCompany)
+  - from: Note
+    to: Group
+    type: has_many
+    via: groups[] (EmbeddedGroup)
+  - from: Note
+    to: Opportunity
+    type: has_many
+    via: opportunities[] (EmbeddedOpportunity)
+  - from: Note
+    to: Attachment
+    type: has_one
+    via: attachment
+  - from: History
+    to: Contact
+    type: has_many
+    via: contacts[] (EmbeddedContact)
+  - from: History
+    to: Company
+    type: has_many
+    via: companies[] (EmbeddedCompany)
+  - from: History
+    to: Group
+    type: has_many
+    via: groups[] (EmbeddedGroup)
+  - from: History
+    to: Opportunity
+    type: has_many
+    via: opportunities[] (EmbeddedOpportunity)
+  - from: History
+    to: HistoryType
+    type: belongs_to
+    via: historyTypeID
+  - from: History
+    to: Attachment
+    type: has_one
+    via: attachment
+  - from: Opportunity
+    to: Contact
+    type: has_many
+    via: contacts[] (EmbeddedContact)
+  - from: Opportunity
+    to: Company
+    type: has_many
+    via: companies[] (EmbeddedCompany)
+  - from: Opportunity
+    to: Group
+    type: has_many
+    via: groups[] (EmbeddedGroup)
+  - from: Opportunity
+    to: Stage
+    type: has_one
+    via: stage
+  - from: OpportunityProduct
+    to: Opportunity
+    type: belongs_to
+    via: opportunityID
+  - from: OpportunityProduct
+    to: Product
+    type: belongs_to
+    via: productID
+  - from: Contact
+    to: User
+    type: belongs_to
+    via: recordManagerID
+  - from: Company
+    to: User
+    type: belongs_to
+    via: recordManagerID
+  - from: Group
+    to: User
+    type: belongs_to
+    via: recordManagerID
+  - from: Note
+    to: User
+    type: belongs_to
+    via: recordManagerID
+    note: Also createUserID.
+  - from: History
+    to: User
+    type: belongs_to
+    via: recordManagerID
+    note: Also createUserID and editUserID.
+  - from: Opportunity
+    to: User
+    type: belongs_to
+    via: recordManagerID
+  - from: Attachment
+    to: Contact
+    type: polymorphic
+    via: /api/attachments/{activities|documents|history|notes}/{id}
+
+id_conventions:
+  format: string GUID for record ids; integer for type/lookup ids (historyTypeID, noteTypeID).
+  prefixes: none — Act! ids carry no type prefix, so an id alone does not say what it points at.
+
+external_system_ids:
+  note: >-
+    Several models carry foreign-system identifiers, which are useful joins for
+    an integrator and are worth knowing exist.
+  fields:
+    - entity: Contact
+      field: quickbooksId
+    - entity: Contact
+      field: nylasContactId
+    - entity: Contact
+      field: messengerID
+    - entity: Opportunity
+      field: quickbooksInvoiceId
+    - entity: History
+      field: outlookID
+
+access_control:
+  field: recordManagerID
+  note: >-
+    Act! enforces record-level access. An operation can return 404 for a record
+    that exists but is private to another user, so a missing record is not proof
+    of absence.
+  related_fields: [isPrivate]
+  query_params_observed: [omitPrivate, includePrivate, showAll, showFor]
+
+runtime_schema:
+  note: >-
+    The static model above is the SHIPPED shape. Real Act! databases add custom
+    fields and custom entities per tenant, so a client should read
+    /api/metadata/fields, /api/metadata/entities and
+    /api/metadata/{recordType}/fields before assuming a field exists.
+  operations: [MetadataInfo_GetField_76332063, MetadataInfo_GetEntities_76EDEF77]

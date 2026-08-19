@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Webhooks",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Continue a suspended webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks/:id/continue",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given webhook."
+              }
+            ]
+          },
+          "docs": "Continue a suspended webhook."
+        },
+        {
+          "info": {
+            "name": "Get a specific webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given webhook."
+              }
+            ]
+          },
+          "docs": "Get a specific webhook."
+        },
+        {
+          "info": {
+            "name": "Update a webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook."
+        },
+        {
+          "info": {
+            "name": "Update (Partial) an already existing webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update (Partial) an already existing webhook."
+        },
+        {
+          "info": {
+            "name": "Delete an existing webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given webhook."
+              }
+            ]
+          },
+          "docs": "Delete an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Get all webhooks matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks"
+          },
+          "docs": "Get all webhooks matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook."
+        },
+        {
+          "info": {
+            "name": "Update the current user's registrations with a new token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks/reset-token"
+          },
+          "docs": "Update the current user's registrations with a new token."
+        },
+        {
+          "info": {
+            "name": "Suspend webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/webhooks/:id/suspend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given webhook."
+              }
+            ]
+          },
+          "docs": "Suspend webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

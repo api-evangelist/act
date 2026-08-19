@@ -1,0 +1,1015 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Users
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Users
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/users/{id}:
+    get:
+      tags:
+      - Users
+      summary: Get a specific user
+      operationId: Users_Get_8564C547
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given user.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Users
+      summary: Delete an existing user.
+      operationId: Users_Delete_3C7F08ED
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given user.
+        schema:
+          type: string
+      - name: reassignTo
+        in: query
+        required: false
+        description: The unique identifier (id) for the user to reassign records to.  If null, all records
+          for this user will be deleted.
+        schema:
+          type: string
+      - name: removeContact
+        in: query
+        required: false
+        description: If true, the contact for this user will also be removed.
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/users/{id}/contact-info:
+    delete:
+      tags:
+      - Users
+      summary: 'Deprecated: Delete an existing user.'
+      operationId: Users_DeleteAndContact_6643F4AA
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/users/analytics/configurations/view-definitions/{id}:
+    put:
+      tags:
+      - Users
+      summary: 'Deprecated (Please use Configurations: ''/api/analytics/definitions/insight-views'' instead).'
+      operationId: Users_PutAnalyticConfigurationViewDefinitions_676A59FA
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for the current logged in user.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+        description: The user's profile.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Users
+      summary: 'Deprecated (Please use Configurations: ''/api/analytics/definitions/insight-views'' instead).'
+      operationId: Users_DeleteAnalyticConfigurationViewDefinitions_BDE9AD07
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for the current logged in user.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/users:
+    get:
+      tags:
+      - Users
+      summary: Get all users
+      operationId: Users_Get_BF8BFFDA
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Users
+      summary: Create a new user.
+      operationId: Users_Post_0F04839D
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.NewUser'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.NewUser'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.NewUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.NewUser'
+        description: Information about the user.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/accessors:
+    get:
+      tags:
+      - Users
+      summary: Get all accessors matching an (optional) OData query.
+      operationId: Users_GetAccessors_17298FE5
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/users/analytics/configurations/view-definitions:
+    get:
+      tags:
+      - Users
+      summary: 'Deprecated (Please use Configurations: ''/api/analytics/definitions/insight-views'' instead).'
+      operationId: Users_GetAnalyticConfigurationViewDefinitions_3800DA22
+      deprecated: true
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/users/permissions:
+    get:
+      tags:
+      - Users
+      summary: Get a specific permission.
+      operationId: Users_GetAvailablePermissions_784083AF
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Permission'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Permission'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Permission'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/users/analytics/configurations/opportunity-pipeline:
+    get:
+      tags:
+      - Users
+      summary: 'Deprecated (Please use Configurations: ''/api/analytics/settings/opportunity-pipeline''
+        instead).'
+      operationId: Users_GetOpportunityPipelineViewSettings_C69F11A7
+      deprecated: true
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.OpportunityPipelineViewSettings'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.OpportunityPipelineViewSettings'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.OpportunityPipelineViewSettings'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/permissions/{id}:
+    get:
+      tags:
+      - Users
+      summary: Get a specific permission.
+      operationId: Users_GetPermissions_B71A17B9
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the user's permission.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/users/{userId}/permissions/{id}:
+    get:
+      tags:
+      - Users
+      summary: Get a specific user permission.
+      operationId: Users_GetPermissions_FAE9EF9C
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/users/{userId}/permissions:
+    get:
+      tags:
+      - Users
+      summary: Gets all user's permissions.
+      operationId: Users_GetPermissions_BB6D4D6B
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/permissions:
+    get:
+      tags:
+      - Users
+      summary: Get all permissions.
+      operationId: Users_GetPermissions_DD385B36
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Users.Feature'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{id}/users:
+    post:
+      tags:
+      - Users
+      summary: Convert an existing contact to a user.
+      operationId: Users_Post_3CF6457E
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for the contact.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.ConvertContact'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.ConvertContact'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.ConvertContact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.ConvertContact'
+        description: Information about the user.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/users/analytics/configurations/opportunity-pipeline/{userId}:
+    put:
+      tags:
+      - Users
+      summary: 'Deprecated (Please use Configurations: ''/api/analytics/settings/opportunity-pipeline''
+        instead).'
+      operationId: Users_PutOpportunityPipelineViewSettings_CB26E079
+      deprecated: true
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The unique identifier (id) for the current logged in user.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationSettings'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationSettings'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationSettings'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationSettings'
+        description: The user's pipeline settings.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Configuration.ConfigurationDefinition:
+      description: This class defines a generic view definitions.
+      type: object
+      properties:
+        userId:
+          description: The unique identifier (id) for the user.
+          type: string
+        definition:
+          description: The configuration schema definitions file (XML|Json)
+          type: string
+    act.web.api.models.Configuration.ConfigurationSettings:
+      description: This class defines a generic view settings.
+      type: object
+      properties:
+        userId:
+          description: The unique identifier (id) the user.
+          type: string
+        settingsDefinition:
+          description: The configuration schema definitions file (XML|Json)
+          type: string
+    act.web.api.models.Users.Accessor:
+      description: The user/team that is granted access.
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the accessor/user id
+          type: string
+        type:
+          description: The type of accessor (User = 1 or Team = 2)
+          enum:
+          - Unknown
+          - User
+          - Team
+          - Resource
+          type: string
+        name:
+          description: The name of the accessor
+          type: string
+    act.web.api.models.Users.ConvertContact:
+      description: Create a new user account
+      type: object
+      properties:
+        username:
+          description: A unique login id
+          type: string
+        password:
+          description: The password used to login
+          type: string
+        roleName:
+          description: ''
+          type: string
+        status:
+          description: ''
+          enum:
+          - Active
+          - Inactive
+          - Deleted
+          type: string
+        mustChangePassword:
+          description: ''
+          type: boolean
+        canChangePassword:
+          description: ''
+          type: boolean
+        passwordExpires:
+          description: ''
+          type: boolean
+        permissions:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Permission'
+    act.web.api.models.Users.CurrencySettings:
+      description: ''
+      type: object
+      properties:
+        symbol:
+          description: ''
+          type: string
+        decimalSeparator:
+          description: ''
+          type: string
+        groupSeparator:
+          description: ''
+          type: string
+        symbolPosition:
+          description: ''
+          type: string
+    act.web.api.models.Users.Feature:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier for the user's permission.
+          type: string
+        name:
+          description: The static name of a feature (for lookup purposes).
+          type: string
+        alias:
+          description: The display name of a feature.
+          type: string
+        description:
+          description: The display description of a feature.
+          type: string
+        isAllowed:
+          description: Indicates whether the feature is currently allowed.
+          type: boolean
+        type:
+          description: Gets or sets the feature type of the feature.
+          enum:
+          - CreateEdit
+          - DeleteMy
+          - DeleteOther
+          - ManagerOther
+          - Other
+          type: string
+        category:
+          $ref: '#/components/schemas/act.web.api.models.Users.FeatureSet'
+          description: The feature set of which this feature is a part.
+    act.web.api.models.Users.FeatureSet:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier for the featureSet.
+          type: string
+        name:
+          description: The static name of a featureSet (for lookup purposes).
+          type: string
+        alias:
+          description: The display name of a featureSet.
+          type: string
+        description:
+          description: The display description of a featureSet.
+          type: string
+    act.web.api.models.Users.NewUser:
+      description: Create a new user account
+      type: object
+      properties:
+        username:
+          description: A unique login id
+          type: string
+        password:
+          description: The password used to login
+          type: string
+        firstName:
+          description: Represents the first name of a contact name.
+          type: string
+        middleName:
+          description: Represents the middle name of a contact name.
+          type: string
+        lastName:
+          description: Represents the last name of a contact name.
+          type: string
+        namePrefix:
+          description: Represents the first name prefix of a contact name.
+          type: string
+        nameSuffix:
+          description: Represents the suffix of a contact name.
+          type: string
+        fullName:
+          description: The first name, any middle names, and surname of a contact.  This may also include
+            name prefixes and sufixes that are defined within Act!
+          type: string
+        salutation:
+          description: Represents the salutation of the contact name
+          type: string
+        roleName:
+          description: ''
+          type: string
+        status:
+          description: ''
+          enum:
+          - Active
+          - Inactive
+          - Deleted
+          type: string
+        mustChangePassword:
+          description: ''
+          type: boolean
+        canChangePassword:
+          description: ''
+          type: boolean
+        passwordExpires:
+          description: ''
+          type: boolean
+        permissions:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Permission'
+    act.web.api.models.Users.OpportunityPipelineViewSettings:
+      description: ''
+      type: object
+      properties:
+        userId:
+          description: ''
+          type: string
+        fiscalYearStartMonth:
+          format: int32
+          description: ''
+          type: integer
+        currencySettings:
+          $ref: '#/components/schemas/act.web.api.models.Users.CurrencySettings'
+          description: ''
+        filterPreferences:
+          description: ''
+          type: string
+    act.web.api.models.Users.Permission:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: The unique identitifer for a permission
+          type: string
+        alias:
+          description: The display name of a feature.
+          type: string
+    act.web.api.models.Users.UserInfo:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        username:
+          description: ''
+          type: string
+        role:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+        email:
+          description: ''
+          type: string
+        firstName:
+          description: ''
+          type: string
+        lastLogOnDate:
+          format: date-time
+          description: ''
+          type: string
+        lastName:
+          description: ''
+          type: string
+        status:
+          description: ''
+          type: string

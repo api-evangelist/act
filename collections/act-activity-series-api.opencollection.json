@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — ActivitySeries",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ActivitySeries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a specific series activity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/ActivitySeries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given series activity."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get a specific series activity."
+        },
+        {
+          "info": {
+            "name": "Update an already existing series activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/ActivitySeries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given series activity."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing series activity"
+        },
+        {
+          "info": {
+            "name": "Partially update an already existing series activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/ActivitySeries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given series activity."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update an already existing series activity"
+        },
+        {
+          "info": {
+            "name": "Delete an existing series activity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/ActivitySeries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given series activity."
+              }
+            ]
+          },
+          "docs": "This will not remove activities that were part of the series and were rescheduled."
+        },
+        {
+          "info": {
+            "name": "Get all series activities matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/ActivitySeries",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              },
+              {
+                "name": "filterBy",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all series activities matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new series activity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/ActivitySeries",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new series activity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

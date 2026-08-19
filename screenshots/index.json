@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "act",
+    "captured_at": "2026-08-17T121405",
+    "source_url": "https://www.act.com/developer/",
+    "source_type": "DeveloperPortal",
+    "file": "act-2026-08-17T121405.png",
+    "bytes": 239703,
+    "capture": "playwright-local"
+  }
+]

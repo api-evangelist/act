@@ -1,0 +1,1448 @@
+{
+  "item": [
+    {
+      "id": "f9f55a99-e04e-4497-94dd-405fa5b52b28",
+      "name": "MarketingAutomations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "94cac04b-2919-447a-b692-174cfe9ba23b",
+          "name": "Get all Campaign Results matching an (optional) OData query.",
+          "request": {
+            "name": "Get all Campaign Results matching an (optional) OData query.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "contacts",
+                ":id",
+                "campaign-results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (id) for a given contact."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "888cc1c3-60b6-48e0-a92c-25458968664b",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contacts",
+                    ":id",
+                    "campaign-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given contact."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"campaignId\": \"string\",\n    \"campaignEmailId\": \"string\",\n    \"campaignName\": \"string\",\n    \"campaignResultsId\": \"string\",\n    \"clicks\": 8407,\n    \"createDate\": \"2025-09-22T06:50:40.072Z\",\n    \"createUserId\": \"string\",\n    \"creatorName\": \"string\",\n    \"editDate\": \"2012-02-23T15:00:45.235Z\",\n    \"editorName\": \"string\",\n    \"editUserId\": \"string\",\n    \"hasComplained\": false,\n    \"isBounced\": true,\n    \"isPrivate\": true,\n    \"isUnsubscribed\": true,\n    \"jumpToURL\": \"string\",\n    \"lastClickDate\": \"1977-05-17T22:26:46.096Z\",\n    \"managerName\": \"string\",\n    \"manageUserId\": \"string\",\n    \"openDate\": \"1947-09-16T13:27:51.852Z\",\n    \"opens\": 5195,\n    \"recipientEmail\": \"string\",\n    \"sendDate\": \"2002-05-09T22:09:20.763Z\",\n    \"senderEmail\": \"string\",\n    \"subjectLine\": \"string\",\n    \"typeEnum\": 7357,\n    \"url\": \"string\"\n  },\n  {\n    \"campaignId\": \"string\",\n    \"campaignEmailId\": \"string\",\n    \"campaignName\": \"string\",\n    \"campaignResultsId\": \"string\",\n    \"clicks\": 7629,\n    \"createDate\": \"2025-03-22T12:26:27.166Z\",\n    \"createUserId\": \"string\",\n    \"creatorName\": \"string\",\n    \"editDate\": \"2024-10-27T07:56:02.126Z\",\n    \"editorName\": \"string\",\n    \"editUserId\": \"string\",\n    \"hasComplained\": true,\n    \"isBounced\": false,\n    \"isPrivate\": false,\n    \"isUnsubscribed\": true,\n    \"jumpToURL\": \"string\",\n    \"lastClickDate\": \"1987-12-28T12:22:41.375Z\",\n    \"managerName\": \"string\",\n    \"manageUserId\": \"string\",\n    \"openDate\": \"2009-12-10T18:50:34.260Z\",\n    \"opens\": 2883,\n    \"recipientEmail\": \"string\",\n    \"sendDate\": \"2017-05-29T10:30:59.218Z\",\n    \"senderEmail\": \"string\",\n    \"subjectLine\": \"string\",\n    \"typeEnum\": 184,\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fce8207-499a-46d2-8a69-7cf9cd01feca",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contacts",
+                    ":id",
+                    "campaign-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given contact."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "329ab19d-6b57-4126-bb26-bc15b5c4280b",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contacts",
+                    ":id",
+                    "campaign-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given contact."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4868612-eb8b-4ac9-bf94-bb45341460aa",
+          "name": "Get all Campaign matching an (optional) OData query.",
+          "request": {
+            "name": "Get all Campaign matching an (optional) OData query.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "contacts",
+                ":id",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (id) for a given contact."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b465dbdf-2b03-4df4-82d5-77141b47e21c",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contacts",
+                    ":id",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given contact."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"emailId\": \"string\",\n    \"campaignId\": \"string\",\n    \"campaignName\": \"string\",\n    \"contacts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"receiverEmail\": \"string\",\n    \"senderEmail\": \"string\",\n    \"sendDate\": \"1952-02-14T20:47:47.682Z\",\n    \"subject\": \"string\",\n    \"url\": \"string\",\n    \"jumpUrl\": \"string\",\n    \"clicks\": true,\n    \"clickDate\": \"2014-01-09T04:18:18.886Z\",\n    \"opens\": false,\n    \"openDate\": \"2023-07-24T07:20:29.894Z\",\n    \"bounced\": false,\n    \"unsubscribed\": false,\n    \"complained\": false,\n    \"isPrivate\": true,\n    \"createDate\": \"2023-08-12T16:31:09.893Z\",\n    \"createUserId\": \"string\",\n    \"creatorName\": \"string\",\n    \"editDate\": \"2006-06-19T08:29:19.077Z\",\n    \"editUserId\": \"string\",\n    \"editorName\": \"string\",\n    \"manageUserId\": \"string\",\n    \"managerName\": \"string\",\n    \"recipientEmail\": \"string\",\n    \"typeEnum\": 4477\n  },\n  {\n    \"id\": \"string\",\n    \"emailId\": \"string\",\n    \"campaignId\": \"string\",\n    \"campaignName\": \"string\",\n    \"contacts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"receiverEmail\": \"string\",\n    \"senderEmail\": \"string\",\n    \"sendDate\": \"1962-12-21T04:12:44.253Z\",\n    \"subject\": \"string\",\n    \"url\": \"string\",\n    \"jumpUrl\": \"string\",\n    \"clicks\": true,\n    \"clickDate\": \"2024-11-17T23:08:06.334Z\",\n    \"opens\": false,\n    \"openDate\": \"2016-11-03T06:45:47.414Z\",\n    \"bounced\": true,\n    \"unsubscribed\": false,\n    \"complained\": true,\n    \"isPrivate\": true,\n    \"createDate\": \"1955-06-17T17:05:49.924Z\",\n    \"createUserId\": \"string\",\n    \"creatorName\": \"string\",\n    \"editDate\": \"1954-07-31T23:42:42.669Z\",\n    \"editUserId\": \"string\",\n    \"editorName\": \"string\",\n    \"manageUserId\": \"string\",\n    \"managerName\": \"string\",\n    \"recipientEmail\": \"string\",\n    \"typeEnum\": 7954\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71f78a58-16b0-40b1-bb76-e65deba5ab10",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contacts",
+                    ":id",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given contact."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2b27b561-5d1e-45f5-bc63-cfe6b177b0a2",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "contacts",
+                    ":id",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given contact."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35ab183f-bc1c-4822-9b85-6b4cd4e32adb",
+          "name": "Create a new Marketing Automation Email",
+          "request": {
+            "name": "Create a new Marketing Automation Email",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "MarketingAutomations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "emailId",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier (id) for this email."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaignId",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier (id) for this campaign."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaignName",
+                  "value": "<string>",
+                  "description": "(Required) The friendly name of the campaign."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "contacts",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "contacts",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "receiverEmail",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "senderEmail",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sendDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subject",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "jumpUrl",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clicks",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clickDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "opens",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "openDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bounced",
+                  "value": "<boolean>",
+                  "description": "When an email message cannot be delivered to an email address"
+                },
+                {
+                  "disabled": false,
+                  "key": "unsubscribed",
+                  "value": "<boolean>",
+                  "description": "Cancel from an electronic mailing list."
+                },
+                {
+                  "disabled": false,
+                  "key": "complained",
+                  "value": "<boolean>",
+                  "description": "A statement that a situation is unsatisfactory or unacceptable"
+                },
+                {
+                  "disabled": false,
+                  "key": "isPrivate",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2754cc41-053e-4656-821f-16faede65484",
+              "name": "Created indicates that the request resulted in a new resource created before the response was sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "MarketingAutomations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this email.",
+                        "type": "text/plain"
+                      },
+                      "key": "emailId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The friendly name of the campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unique identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "receiverEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "senderEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sendDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "jumpUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clicks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clickDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "opens",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "openDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "When an email message cannot be delivered to an email address",
+                        "type": "text/plain"
+                      },
+                      "key": "bounced",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Cancel from an electronic mailing list.",
+                        "type": "text/plain"
+                      },
+                      "key": "unsubscribed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A statement that a situation is unsatisfactory or unacceptable",
+                        "type": "text/plain"
+                      },
+                      "key": "complained",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isPrivate",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"emailId\": \"string\",\n  \"campaignId\": \"string\",\n  \"campaignName\": \"string\",\n  \"id\": \"string\",\n  \"contacts\": [\n    \"string\",\n    \"string\"\n  ],\n  \"receiverEmail\": \"string\",\n  \"senderEmail\": \"string\",\n  \"sendDate\": \"2001-01-20T05:17:58.228Z\",\n  \"subject\": \"string\",\n  \"url\": \"string\",\n  \"jumpUrl\": \"string\",\n  \"clicks\": true,\n  \"clickDate\": \"1989-04-25T19:06:06.908Z\",\n  \"opens\": false,\n  \"openDate\": \"1988-10-23T00:48:13.507Z\",\n  \"bounced\": true,\n  \"unsubscribed\": false,\n  \"complained\": true,\n  \"isPrivate\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4567805b-68be-4698-b6fa-bc3db65f36e5",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "MarketingAutomations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this email.",
+                        "type": "text/plain"
+                      },
+                      "key": "emailId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The friendly name of the campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unique identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "receiverEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "senderEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sendDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "jumpUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clicks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clickDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "opens",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "openDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "When an email message cannot be delivered to an email address",
+                        "type": "text/plain"
+                      },
+                      "key": "bounced",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Cancel from an electronic mailing list.",
+                        "type": "text/plain"
+                      },
+                      "key": "unsubscribed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A statement that a situation is unsatisfactory or unacceptable",
+                        "type": "text/plain"
+                      },
+                      "key": "complained",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isPrivate",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e66fb25-7ae3-4c6f-8cb9-4d692bf2014f",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "MarketingAutomations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this email.",
+                        "type": "text/plain"
+                      },
+                      "key": "emailId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The friendly name of the campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unique identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "receiverEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "senderEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sendDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "jumpUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clicks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clickDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "opens",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "openDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "When an email message cannot be delivered to an email address",
+                        "type": "text/plain"
+                      },
+                      "key": "bounced",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Cancel from an electronic mailing list.",
+                        "type": "text/plain"
+                      },
+                      "key": "unsubscribed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A statement that a situation is unsatisfactory or unacceptable",
+                        "type": "text/plain"
+                      },
+                      "key": "complained",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isPrivate",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1eb7bdd3-2f3e-443b-9a91-039ede1ddbe1",
+              "name": "NotFound indicates that the requested resource does not exist on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "MarketingAutomations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this email.",
+                        "type": "text/plain"
+                      },
+                      "key": "emailId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The friendly name of the campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unique identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "receiverEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "senderEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sendDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "jumpUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clicks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clickDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "opens",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "openDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "When an email message cannot be delivered to an email address",
+                        "type": "text/plain"
+                      },
+                      "key": "bounced",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Cancel from an electronic mailing list.",
+                        "type": "text/plain"
+                      },
+                      "key": "unsubscribed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A statement that a situation is unsatisfactory or unacceptable",
+                        "type": "text/plain"
+                      },
+                      "key": "complained",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isPrivate",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d1dc51b-0d18-4371-96a4-79bacd3381e7",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "MarketingAutomations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this email.",
+                        "type": "text/plain"
+                      },
+                      "key": "emailId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The unique identifier (id) for this campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The friendly name of the campaign.",
+                        "type": "text/plain"
+                      },
+                      "key": "campaignName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unique identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contacts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "receiverEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "senderEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sendDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "jumpUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clicks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "clickDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "opens",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "openDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "When an email message cannot be delivered to an email address",
+                        "type": "text/plain"
+                      },
+                      "key": "bounced",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Cancel from an electronic mailing list.",
+                        "type": "text/plain"
+                      },
+                      "key": "unsubscribed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A statement that a situation is unsatisfactory or unacceptable",
+                        "type": "text/plain"
+                      },
+                      "key": "complained",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isPrivate",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimta.act.com/act.web.api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4b4ffce5-1a3c-429e-b0dd-2148cdb7cfae",
+    "name": "Act! Web API — MarketingAutomations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.\n\nContact Support:\n Name: Act! Developers",
+      "type": "text/plain"
+    }
+  }
+}

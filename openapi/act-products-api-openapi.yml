@@ -1,0 +1,344 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Products
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Products
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/Products/{id}:
+    get:
+      tags:
+      - Products
+      summary: Get a specific product.
+      operationId: Products_Get_00075A29
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given product.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Products
+      summary: Update an already existing product.
+      operationId: Products_Put_90182304
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given product.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+        description: The product definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Products
+      summary: Delete an existing product.
+      operationId: Products_Delete_8EB4A086
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given product.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Products
+      summary: Partially update an already existing product.
+      operationId: Products_Patch_779E4AF5
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given product.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+        description: The product definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/Products:
+    get:
+      tags:
+      - Products
+      summary: Get all products matching an (optional) OData query.
+      operationId: Products_Get_C9A89283
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Products.Product'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Products
+      summary: Create a new product.
+      operationId: Products_Post_37AD3DE4
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Products.Product'
+        description: The product definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Products.Product'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Products.Product:
+      description: This class describes a particular product.
+      type: object
+      properties:
+        id:
+          description: A unique identifier (id) for a given product.
+          type: string
+        name:
+          description: The name of the product.
+          type: string
+        cost:
+          format: double
+          description: The cost of the product.
+          type: number
+        createDate:
+          format: date-time
+          description: The date that the product was created.
+          type: string
+        editDate:
+          format: date-time
+          description: The date that the opportunity product was lasted modified.
+          type: string
+        itemNumber:
+          description: A item number assigned to this opportunity product.
+          type: string
+        price:
+          format: double
+          description: The price of the opportunity product.
+          type: number

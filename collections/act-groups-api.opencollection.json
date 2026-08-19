@@ -1,0 +1,657 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Groups",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of groups from a specific contact and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-groups",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "List of groups from a specific contact and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Associate a list of groups to a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-groups",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate a list of groups to a specific contact."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of groups from a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-groups",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dissociate a list of groups from a specific contact."
+        },
+        {
+          "info": {
+            "name": "Associate a group to a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-groups/:groupId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ]
+          },
+          "docs": "Associate a group to a specific contact."
+        },
+        {
+          "info": {
+            "name": "Dissociate a group from a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-groups/:groupId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Dissociate a group from a specific contact."
+        },
+        {
+          "info": {
+            "name": "List of groups from a specific opportunity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-groups",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              }
+            ]
+          },
+          "docs": "List of groups from a specific opportunity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Associate a list of groups to a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-groups",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate a list of groups to a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of groups from a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-groups",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dissociate a list of groups from a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Associate a group to a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-groups/:groupId",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ]
+          },
+          "docs": "Associate a group to a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of groups from a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-groups/:groupId",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ]
+          },
+          "docs": "Dissociate a list of groups from a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Get a specific Group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ]
+          },
+          "docs": "Get a specific Group."
+        },
+        {
+          "info": {
+            "name": "Update an already existing group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing group."
+        },
+        {
+          "info": {
+            "name": "Update (partially) an already existing group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update (partially) an already existing group."
+        },
+        {
+          "info": {
+            "name": "Delete an existing group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ]
+          },
+          "docs": "Delete an existing group."
+        },
+        {
+          "info": {
+            "name": "Get all groups matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups"
+          },
+          "docs": "Get all groups matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new group."
+        },
+        {
+          "info": {
+            "name": "List of groups from a specific custom entity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/:entityName/:id/associated-groups",
+            "params": [
+              {
+                "name": "entityName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given entity row"
+              }
+            ]
+          },
+          "docs": "List of groups from a specific custom entity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "List of groups from a specific group and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/associated-groups",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ]
+          },
+          "docs": "List of groups from a specific group and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get the criteria for a dynamic list matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/lists/:listId/dynamic-criteria",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given list"
+              }
+            ]
+          },
+          "docs": "Get the criteria for a dynamic list matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Edit the criteria for a dynamic list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/lists/:listId/dynamic-criteria",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given list."
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format string for parsing date criteria values (e.g., \"dd/MM/yyyy\" or \"MM/dd/yyyy\"). If not provided, defaults to dd/MM/yyyy."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit the criteria for a dynamic list."
+        },
+        {
+          "info": {
+            "name": "Get the dynamic list metadata matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/dynamic-list/metadata"
+          },
+          "docs": "Get the dynamic list metadata matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get the dynamic list operators for a given datatype",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/dynamic-list/operators"
+          },
+          "docs": "Get the dynamic list operators for a given datatype"
+        },
+        {
+          "info": {
+            "name": "Get all group access levels matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/access",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the group."
+              }
+            ]
+          },
+          "docs": "Get all group access levels matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Update an already existing group access levels accessors.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/access",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing group access levels accessors."
+        },
+        {
+          "info": {
+            "name": "Get the dynamic list criteria preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/dynamic-list/company-preview",
+            "params": [
+              {
+                "name": "includePrivate",
+                "value": "",
+                "type": "query",
+                "description": "Include entities that are marked as private"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format string for parsing date criteria values (e.g., \"dd/MM/yyyy\" or \"MM/dd/yyyy\"). If not provided, defaults to dd/MM/yyyy."
+              }
+            ]
+          },
+          "docs": "Get the dynamic list criteria preview"
+        },
+        {
+          "info": {
+            "name": "Get the dynamic list criteria preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/dynamic-list/preview",
+            "params": [
+              {
+                "name": "includePrivate",
+                "value": "",
+                "type": "query",
+                "description": "Include entities that are marked as private"
+              },
+              {
+                "name": "includeUsers",
+                "value": "",
+                "type": "query",
+                "description": "Include contacts and users"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format string for parsing date criteria values (e.g., \"dd/MM/yyyy\" or \"MM/dd/yyyy\"). If not provided, defaults to dd/MM/yyyy."
+              }
+            ]
+          },
+          "docs": "Get the dynamic list criteria preview"
+        },
+        {
+          "info": {
+            "name": "Get the dynamic list criteria preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/dynamic-list/contact-preview",
+            "params": [
+              {
+                "name": "includePrivate",
+                "value": "",
+                "type": "query",
+                "description": "Include entities that are marked as private"
+              },
+              {
+                "name": "includeUsers",
+                "value": "",
+                "type": "query",
+                "description": "Include contacts and users"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format string for parsing date criteria values (e.g., \"dd/MM/yyyy\" or \"MM/dd/yyyy\"). If not provided, defaults to dd/MM/yyyy."
+              }
+            ]
+          },
+          "docs": "Get the dynamic list criteria preview"
+        },
+        {
+          "info": {
+            "name": "Get the dynamic list criteria preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/dynamic-list/group-preview",
+            "params": [
+              {
+                "name": "includePrivate",
+                "value": "",
+                "type": "query",
+                "description": "Include entities that are marked as private"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format string for parsing date criteria values (e.g., \"dd/MM/yyyy\" or \"MM/dd/yyyy\"). If not provided, defaults to dd/MM/yyyy."
+              }
+            ]
+          },
+          "docs": "Get the dynamic list criteria preview"
+        },
+        {
+          "info": {
+            "name": "Get the dynamic list criteria preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/dynamic-list/opportunity-preview",
+            "params": [
+              {
+                "name": "includePrivate",
+                "value": "",
+                "type": "query",
+                "description": "Include entities that are marked as private"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format string for parsing date criteria values (e.g., \"dd/MM/yyyy\" or \"MM/dd/yyyy\"). If not provided, defaults to dd/MM/yyyy."
+              }
+            ]
+          },
+          "docs": "Get the dynamic list criteria preview"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

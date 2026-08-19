@@ -1,0 +1,819 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Contacts",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Associate a contact to a specific company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/associated-contacts/:contactId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Associate a contact to a specific company."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of contact from a specific company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/associated-contacts/:contactId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Dissociate a list of contact from a specific company."
+        },
+        {
+          "info": {
+            "name": "List of contacts from a specific company and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/associated-contacts",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List of contacts from a specific company and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Associate a list of contact to a specific company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/associated-contacts",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate a list of contact to a specific company."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of contact from a specific company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/associated-contacts",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dissociate a list of contact from a specific company."
+        },
+        {
+          "info": {
+            "name": "List of contacts from a specific group and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/associated-contacts",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List of contacts from a specific group and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Assign the list of contacts to selected group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/associated-contacts",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign the list of contacts to selected group."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of contact from a specific group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/associated-contacts",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dissociate a list of contact from a specific group."
+        },
+        {
+          "info": {
+            "name": "Assign a contacts to selected group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/associated-contacts/:contactId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Assign a contacts to selected group."
+        },
+        {
+          "info": {
+            "name": "Dissociate a contact from a specific group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/associated-contacts/:contactId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Dissociate a contact from a specific group."
+        },
+        {
+          "info": {
+            "name": "List of contacts from a specific opportunity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-contacts",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List of contacts from a specific opportunity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Associate a list of contacts to a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-contacts",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate a list of contacts to a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of contacts from a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-contacts",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dissociate a list of contacts from a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Associate a list of contacts to a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-contacts/:contactId",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Associate a list of contacts to a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Dissociate a contact from a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-contacts/:contactId",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Dissociate a contact from a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Get a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a specific contact."
+        },
+        {
+          "info": {
+            "name": "Update an already existing contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing contact."
+        },
+        {
+          "info": {
+            "name": "Update (partially) an already existing contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update (partially) an already existing contact."
+        },
+        {
+          "info": {
+            "name": "Delete a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Delete a specific contact."
+        },
+        {
+          "info": {
+            "name": "List of contacts from a specific custom entity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/:entityName/:id/associated-contacts",
+            "params": [
+              {
+                "name": "entityName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given entity row"
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List of contacts from a specific custom entity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/by-ids",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A list of unique identifier (id) for a given contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a specific contact."
+        },
+        {
+          "info": {
+            "name": "Get all contact access levels matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/access",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the contact."
+              }
+            ]
+          },
+          "docs": "Get all contact access levels matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Update an already existing contact access level accessors.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/access",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing contact access level accessors."
+        },
+        {
+          "info": {
+            "name": "Get all contacts matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts",
+            "params": [
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all contacts matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new Contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/contacts",
+            "params": [
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Contact."
+        },
+        {
+          "info": {
+            "name": "Get a distinct list of contact(s) within a comma-delimited group array matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/group-contacts",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "An comma-delimited string array of unique identifier (id) for a given group."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a distinct list of contact(s) within a comma-delimited group array matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all contact(s) that are nearby a given latitude and longitude and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/nearby",
+            "params": [
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query",
+                "description": "The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes."
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query",
+                "description": "The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes."
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "The circumference distance in kilometers from the given latitude and longitude."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all contact(s) that are nearby a given latitude and longitude and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get contact webinfo hyperlinks matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/webinfo"
+          },
+          "docs": "Get contact webinfo hyperlinks matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get the current users contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/myrecord",
+            "params": [
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the current users contact."
+        },
+        {
+          "info": {
+            "name": "Duplicate an array of contacts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/duplicate",
+            "params": [
+              {
+                "name": "primaryFields",
+                "value": "",
+                "type": "query",
+                "description": "Duplicate contact will only primary fields: {Primary Fields: True | All Fields: false"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplicate an array of contacts."
+        },
+        {
+          "info": {
+            "name": "Duplicate a given contacts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/duplicate",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "primaryFields",
+                "value": "",
+                "type": "query",
+                "description": "Duplicate contact will only primary fields: {Primary Fields: True | All Fields: false"
+              }
+            ]
+          },
+          "docs": "Duplicate a given contacts."
+        },
+        {
+          "info": {
+            "name": "Update an already existing contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/hotlead-subscription",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "If the contact will be subscribed to hot leads."
+              }
+            ]
+          },
+          "docs": "Update an already existing contact."
+        },
+        {
+          "info": {
+            "name": "Contacts_PutWebInfo_802BA403",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/webinfo/:id/HyperLink/:linkId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given WebInfo Group."
+              },
+              {
+                "name": "linkId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a WebInfo Group HyperLink."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Analytics",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generates the task list activities for analytics task list widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/activities/analytics/task-list",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "priorityIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates the task list activities for analytics task list widget"
+        },
+        {
+          "info": {
+            "name": "Generates activity sales by user data for given users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/activities/analytics/activity-by-user",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates activity sales by user data for given users."
+        },
+        {
+          "info": {
+            "name": "Generates activity sales by user detail data for a given user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/activities/analytics/activity-by-user-details",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates activity sales by user detail data for a given user."
+        },
+        {
+          "info": {
+            "name": "Gets contacts leads.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/emarketing/analytics/campaign-leads"
+          },
+          "docs": "Gets contacts leads."
+        },
+        {
+          "info": {
+            "name": "Gets opportunities within a campaign within a specified date range (optional filters on statuses and user ids).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/emarketing/analytics/campaign-lead-info",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "campaignIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets opportunities within a campaign within a specified date range (optional filters on statuses and user ids)."
+        },
+        {
+          "info": {
+            "name": "Gets campaign sent within a specified date range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/emarketing/analytics/campaign-sent",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets campaign sent within a specified date range."
+        },
+        {
+          "info": {
+            "name": "Gets campaign result information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/emarketing/analytics/campaign-results",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "campaignIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets campaign result information."
+        },
+        {
+          "info": {
+            "name": "Gets a custom analytic query to view specific data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/:entityname/analytics/query",
+            "params": [
+              {
+                "name": "entityname",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "operation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "valueType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "omitPrivate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stageIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickListItemIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a custom analytic query to view specific data."
+        },
+        {
+          "info": {
+            "name": "Gets a custom analytic query to view specific data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/:entityname/analytics/query-details",
+            "params": [
+              {
+                "name": "entityname",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fieldValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "valueType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "omitPrivate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stageIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickListItemIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a custom analytic query to view specific data."
+        },
+        {
+          "info": {
+            "name": "Gets historical e-marketing information for a given date range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/emarketing/analytics/history",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets historical e-marketing information for a given date range."
+        },
+        {
+          "info": {
+            "name": "Gets analytic KPI query to view specific data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/kpi",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "valueType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "omitPrivate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stageIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickListItemIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets analytic KPI query to view specific data."
+        },
+        {
+          "info": {
+            "name": "Generates actual vs predicted opportunity revenue.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/actual-predicted",
+            "params": [
+              {
+                "name": "args.interval",
+                "value": "",
+                "type": "query",
+                "description": "An intervening period of time."
+              },
+              {
+                "name": "args.start",
+                "value": "",
+                "type": "query",
+                "description": "The start date that the period requesting."
+              },
+              {
+                "name": "args.end",
+                "value": "",
+                "type": "query",
+                "description": "The end date that the period requesting."
+              },
+              {
+                "name": "args.fiscalYearStart",
+                "value": "",
+                "type": "query",
+                "description": "The oppourtunity products that will be evaludated to generate the revenue data."
+              }
+            ]
+          },
+          "docs": "Generates actual vs predicted opportunity revenue."
+        },
+        {
+          "info": {
+            "name": "Generates forecasted opportunity data by given products.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/forecast-by-product",
+            "params": [
+              {
+                "name": "productIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates forecasted opportunity data by given products."
+        },
+        {
+          "info": {
+            "name": "Generates forecasted opportunity data by a given product.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/forecast-by-product-details",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates forecasted opportunity data by a given product."
+        },
+        {
+          "info": {
+            "name": "Generates forecasted opportunity data by given users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/forecast-by-rep",
+            "params": [
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates forecasted opportunity data by given users."
+        },
+        {
+          "info": {
+            "name": "Generates forecasted opportunity data by a given user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/forecast-by-rep-details",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates forecasted opportunity data by a given user."
+        },
+        {
+          "info": {
+            "name": "Gets all opportunity matching the custom filter that are currently being worked.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/analytics/pipeline",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "valueType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "omitPrivate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stageIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickListItemIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all opportunity matching the custom filter that are currently being worked."
+        },
+        {
+          "info": {
+            "name": "Gets all opportunity matching the custom filter that are currently being worked.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/analytics/pipelines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Gets all opportunity matching the custom filter that are currently being worked."
+        },
+        {
+          "info": {
+            "name": "Gets all opportunity matching the custom filter that are currently being worked.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/analytics/top-open",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "valueType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "omitPrivate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stageIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickListItemIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all opportunity matching the custom filter that are currently being worked."
+        },
+        {
+          "info": {
+            "name": "Generates opportunity data for the average time in a stage.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/stage-time",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stageIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates opportunity data for the average time in a stage."
+        },
+        {
+          "info": {
+            "name": "Generates opportunity data to summerizes how many times a reason has been closed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/close-reason",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates opportunity data to summerizes how many times a reason has been closed."
+        },
+        {
+          "info": {
+            "name": "Generates opportunity data that details the reason for being closed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/close-reason-details",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "closeReason",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates opportunity data that details the reason for being closed."
+        },
+        {
+          "info": {
+            "name": "Generates a summary of the total number of opportunities within a stage.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/stages/analytics/opportunity-count",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "valueType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "probabilityOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountValue",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amountOperation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "omitPrivate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stageIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pickListItemIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates a summary of the total number of opportunities within a stage."
+        },
+        {
+          "info": {
+            "name": "Generates opportunity periodic revenue versus cost data for given products.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/cost",
+            "params": [
+              {
+                "name": "productIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "args.interval",
+                "value": "",
+                "type": "query",
+                "description": "An intervening period of time."
+              },
+              {
+                "name": "args.start",
+                "value": "",
+                "type": "query",
+                "description": "The start date that the period requesting."
+              },
+              {
+                "name": "args.end",
+                "value": "",
+                "type": "query",
+                "description": "The end date that the period requesting."
+              },
+              {
+                "name": "args.fiscalYearStart",
+                "value": "",
+                "type": "query",
+                "description": "The oppourtunity products that will be evaludated to generate the revenue data."
+              }
+            ]
+          },
+          "docs": "Generates opportunity periodic revenue versus cost data for given products."
+        },
+        {
+          "info": {
+            "name": "Generates opportunity sales by product data for given products.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/sales-by-product",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "productIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates opportunity sales by product data for given products."
+        },
+        {
+          "info": {
+            "name": "Generates opportunity sales by product detail data for a given product.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/sales-by-product-details",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "productId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates opportunity sales by product detail data for a given product."
+        },
+        {
+          "info": {
+            "name": "Generates opportunity sales by user data for given users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/sales-by-rep",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates opportunity sales by user data for given users."
+        },
+        {
+          "info": {
+            "name": "Generates opportunity sales by user data for a given user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/sales-by-rep-details",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates opportunity sales by user data for a given user."
+        },
+        {
+          "info": {
+            "name": "Generates opportunty win versus loss data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunity/analytics/revenue/won-lost",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates opportunty win versus loss data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Cors",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cors_GetAllowedCors_656A6DCA",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/Cors"
+          }
+        },
+        {
+          "info": {
+            "name": "Cors_GetAllowedCors_949584D1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/Cors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Add a cors entry to the cors customer config (web.customer.config)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/Cors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The cors domain entry. sample( http://mydomain:8080)"
+              }
+            ]
+          },
+          "docs": "Add a cors entry to the cors customer config (web.customer.config)"
+        },
+        {
+          "info": {
+            "name": "Remove a cors entry from the cors customer config (web.customer.config).",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/Cors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The cors domain entry. sample( http://mydomain:8080)"
+              }
+            ]
+          },
+          "docs": "Remove a cors entry from the cors customer config (web.customer.config)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

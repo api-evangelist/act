@@ -1,0 +1,807 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Tasks",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Associate the contact (if it is not already present) to an task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-tasks/:taskId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given task."
+              }
+            ]
+          },
+          "docs": "Associate the contact (if it is not already present) to an task."
+        },
+        {
+          "info": {
+            "name": "Disassociate a task from a contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-tasks/:taskId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given task."
+              }
+            ]
+          },
+          "docs": "Disassociate a task from a contact."
+        },
+        {
+          "info": {
+            "name": "History a task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/:taskId/clear",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given tasks."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "History a task."
+        },
+        {
+          "info": {
+            "name": "UnclearTasks an activity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/:taskId/clear",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given tasks."
+              }
+            ]
+          },
+          "docs": "UnclearTasks an activity."
+        },
+        {
+          "info": {
+            "name": "History a list of task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/clear",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "History a list of task."
+        },
+        {
+          "info": {
+            "name": "UnclearTasks a cleared task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/clear",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "UnclearTasks a cleared task."
+        },
+        {
+          "info": {
+            "name": "Get a specific recurring tasks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/recurring-tasks/:recurringId",
+            "params": [
+              {
+                "name": "recurringId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given recurring tasks."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get a specific recurring tasks."
+        },
+        {
+          "info": {
+            "name": "Update an already existing recurring tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/recurring-tasks/:recurringId",
+            "params": [
+              {
+                "name": "recurringId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given recurring tasks."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing recurring tasks"
+        },
+        {
+          "info": {
+            "name": "Partially update an already existing recurring tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/recurring-tasks/:recurringId",
+            "params": [
+              {
+                "name": "recurringId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given recurring tasks."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update an already existing recurring tasks"
+        },
+        {
+          "info": {
+            "name": "Delete an existing recurring tasks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/recurring-tasks/:recurringId",
+            "params": [
+              {
+                "name": "recurringId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given recurring tasks."
+              }
+            ]
+          },
+          "docs": "This will not remove activities that were part of the series and were rescheduled."
+        },
+        {
+          "info": {
+            "name": "Get a specific tasks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given tasks."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get a specific tasks."
+        },
+        {
+          "info": {
+            "name": "Update an already existing task  (Recur Spec will be ignored)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given task."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing task  (Recur Spec will be ignored)"
+        },
+        {
+          "info": {
+            "name": "Partially update an existing tasks  (Recur Spec will be ignored)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given tasks."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update an existing tasks  (Recur Spec will be ignored)"
+        },
+        {
+          "info": {
+            "name": "Delete an existing task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier (id) for a given task."
+              }
+            ]
+          },
+          "docs": "Delete an existing task."
+        },
+        {
+          "info": {
+            "name": "Get all task matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/tasks",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all task matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new tasks (Recur Spec will be ignored).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/tasks",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new tasks (Recur Spec will be ignored)."
+        },
+        {
+          "info": {
+            "name": "Delete an existing task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete an existing task."
+        },
+        {
+          "info": {
+            "name": "Get tasks associations with a given company (?showAll=All|Company|CompanyContacts) and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/associated-tasks",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company that is associated with a task."
+              },
+              {
+                "name": "showFor",
+                "value": "",
+                "type": "query",
+                "description": "Filtering based on associations: 0 = All associations, 1 = Company associations, 2 = Company contact associations."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get tasks associations with a given company (?showAll=All|Company|CompanyContacts) and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all tasks that are associated with a given contact and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-tasks",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with a tasks."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all tasks that are associated with a given contact and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all tasks that are associated with a given contact and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:groupId/associated-tasks",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group that is associated with a tasks."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all tasks that are associated with a given contact and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all tasks that are associated with a given opportunity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-tasks",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity that is associated with a task."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all tasks that are associated with a given opportunity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all recurring tasks matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/recurring-tasks",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              },
+              {
+                "name": "restriction",
+                "value": "",
+                "type": "query",
+                "description": "Controls how each recurring series is represented: All (every occurrence), FirstOccurrence (the first occurrence of each series - the default), or FirstUnclearedOccurrence (the first uncleared occurrence). Defaults to FirstOccurrence."
+              },
+              {
+                "name": "filterBy",
+                "value": "",
+                "type": "query",
+                "description": "Controls how a startTime filter is interpreted: InRange (the default - the filter selects occurrences in the range, so a series spanning several ranges is returned once per range) or InSeries (the filter is applied to the first occurrence of the whole series, so each series is returned only from the range containing its first occurrence). InSeries requires a startTime filter and cannot be combined with restriction=FirstUnclearedOccurrence."
+              }
+            ]
+          },
+          "docs": "Get all recurring tasks matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new recurring tasks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/recurring-tasks",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new recurring tasks."
+        },
+        {
+          "info": {
+            "name": "Get a a list of task matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/tasks-lists",
+            "params": [
+              {
+                "name": "taskIds",
+                "value": "",
+                "type": "query",
+                "description": "An array of unique identifier (id) for a given tasks."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get a a list of task matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all activity priorities.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/priorities"
+          },
+          "docs": "Get all activity priorities."
+        },
+        {
+          "info": {
+            "name": "Create a new task on behalf of (ScheduleFor).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/organizers/:userId/tasks",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for the user that is organizing the task (ScheduledFor)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task on behalf of (ScheduleFor)."
+        },
+        {
+          "info": {
+            "name": "Gets all currently alarmed activities for the logged-in user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/alarms"
+          },
+          "docs": "Gets all currently alarmed activities for the logged-in user."
+        },
+        {
+          "info": {
+            "name": "Gets the current alarm state for a set of activities the client is tracking,\r\n            and indicates which are no longer alarmed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/alarms/updates",
+            "params": [
+              {
+                "name": "activityIds",
+                "value": "",
+                "type": "query",
+                "description": "The activity IDs to check."
+              }
+            ]
+          },
+          "docs": "Gets the current alarm state for a set of activities the client is tracking,\r\n            and indicates which are no longer alarmed."
+        },
+        {
+          "info": {
+            "name": "Snoozes the alarms for the specified activities.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/alarms/snooze",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Snoozes the alarms for the specified activities."
+        },
+        {
+          "info": {
+            "name": "Marks active snoozes as read for the specified activities.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/alarms/mark-snooze-read",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks active snoozes as read for the specified activities."
+        },
+        {
+          "info": {
+            "name": "Marks all active snoozes as read for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/alarms/mark-all-snooze-read"
+          },
+          "docs": "Marks all active snoozes as read for the current user."
+        },
+        {
+          "info": {
+            "name": "Clears alarms for the specified activities.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/clear-alarms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clears alarms for the specified activities."
+        },
+        {
+          "info": {
+            "name": "Clears all alarms for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/clear-all-alarms"
+          },
+          "docs": "Clears all alarms for the current user."
+        },
+        {
+          "info": {
+            "name": "Clears the alarm for a single task. Accepts either a 44-character composite ID (activityId + MMddyyyy,\r\n            as returned by the alarms endpoint) or a plain 36-character GUID (clears all occurrences of that activity).",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/:id/clear-alarms",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The alarm identifier — either the 44-character composite format (activityId+MMddyyyy) or a plain 36-character activity GUID."
+              }
+            ]
+          },
+          "docs": "Clears the alarm for a single task. Accepts either a 44-character composite ID (activityId + MMddyyyy,\r\n            as returned by the alarms endpoint) or a plain 36-character GUID (clears all occurrences of that activity)."
+        },
+        {
+          "info": {
+            "name": "Duplicate task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/:taskId/duplicate",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given tasks."
+              }
+            ]
+          },
+          "docs": "Duplicate task."
+        },
+        {
+          "info": {
+            "name": "Duplicate a list of task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/tasks/duplicate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplicate a list of task."
+        },
+        {
+          "info": {
+            "name": "Modify an existing task on behalf of (ScheduleFor).",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/organizers/:userId/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given task."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for the user that is organizing the task (ScheduledFor)."
+              }
+            ]
+          },
+          "docs": "Modify an existing task on behalf of (ScheduleFor)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

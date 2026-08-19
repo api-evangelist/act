@@ -1,0 +1,687 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Preferences
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Preferences
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/preferences/{id}:
+    put:
+      tags:
+      - Preferences
+      summary: Create or modify user preferences.
+      operationId: Preferences_PutPreferences_6DBB04E0
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Preferences
+      summary: Delete an existing user.
+      operationId: Preferences_DeletePreferences_DAC20CCD
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given user preference.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/preferences:
+    get:
+      tags:
+      - Preferences
+      summary: Get the current user's preferences
+      operationId: Preferences_GetPreferences_1BE4A240
+      parameters:
+      - name: search
+        in: query
+        required: false
+        description: A comma delimited base64 string of preference keys.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Preferences
+      summary: Create or modify user preferences.
+      operationId: Preferences_PostPreferences_AC8AE5E2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.Preference'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/preferences/contact/salutation-and-names:
+    get:
+      tags:
+      - Preferences
+      summary: Get salutation and name affixes settings
+      operationId: Preferences_GetContactSalutationPreferences_2C8E9C92
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Preferences
+      summary: Update salutations and name affixes preferences.
+      operationId: Preferences_PutContactSalutationPreferences_610E1A3F
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+        description: '{act.web.api.models.Preferences.SalutationNamePreferences}'
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationNamePreferences'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server or
+            item not found. BadRequest is sent when no other error is applicable, or if the exact error
+            is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/preferences/tasks:
+    get:
+      tags:
+      - Preferences
+      summary: Get task preferences.
+      operationId: Preferences_GetTasksPreferences_0D5D4992
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Preferences
+      summary: Update task preferences.
+      operationId: Preferences_PutTasksPreferences_33BB4F54
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+        description: Input data for task settings. {act.web.api.models.Preferences.TaskPreferences}
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.TaskPreferences'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/preferences/tasks/color-palette:
+    get:
+      tags:
+      - Preferences
+      summary: Gets all task types.
+      operationId: Preferences_GetColorPalette_CD5A7DAC
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Preferences.CalendarColorPalette'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Preferences.CalendarColorPalette'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Preferences.CalendarColorPalette'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/preferences/duplicates-checking/{recordType}/fields:
+    get:
+      tags:
+      - Preferences
+      summary: Get list of fields for selected record type.
+      operationId: Preferences_GetDuplicateFields_D08C6E56
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: Record type identifier (Contact|Company|Group).
+        schema:
+          type: string
+          enum:
+          - Contact
+          - Company
+          - Group
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesField'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesField'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesField'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/preferences/duplicates-checking/{recordType}:
+    get:
+      tags:
+      - Preferences
+      summary: Get selected dup-checking options for selected record type.
+      operationId: Preferences_GetContactsDuplicatesSettings_35C0DB85
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: Record type identifier (Contact|Company|Group).
+        schema:
+          type: string
+          enum:
+          - Contact
+          - Company
+          - Group
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Preferences
+      summary: Update or create indexes info for selected record type.
+      operationId: Preferences_PutContactsDuplicatesSettings_331AE30F
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: Record type identifier (Contact|Company|Group).
+        schema:
+          type: string
+          enum:
+          - Contact
+          - Company
+          - Group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+        description: List of column names for indexes.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Preferences.DuplicatesPreferences'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Preferences.CalendarColorPalette:
+      description: ''
+      type: object
+      properties:
+        name:
+          description: ''
+          enum:
+          - Green
+          - Orange
+          - Purple
+          - Plum
+          - Blue
+          - Yellow
+          - Raspberry
+          - Emerald
+          - DarkBlue
+          - Grape
+          type: string
+        hex:
+          description: ''
+          type: string
+        rgb:
+          description: Stands for "Red Green Blue." RGB refers to three hues of light that can be mixed
+            together to create different colors.
+          type: string
+        cmyk:
+          description: Stands for "Cyan Magenta Yellow Black." These are the four basic colors used for
+            printing color images.
+          type: string
+        hsv:
+          description: HSV (hue, saturation, value).
+          type: string
+        hsl:
+          description: HSL (hue, saturation, lighting).
+          type: string
+    act.web.api.models.Preferences.DuplicatesField:
+      description: Allowed for index field info.
+      type: object
+      properties:
+        columnName:
+          description: Field column name
+          type: string
+        displayName:
+          description: Field display name
+          type: string
+    act.web.api.models.Preferences.DuplicatesPreferences:
+      description: Dup-checking preferences
+      type: object
+      properties:
+        fields:
+          description: List of selected indexes
+          type: string
+    act.web.api.models.Preferences.NameAffixSetting:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: Affix type identifier.
+          type: string
+        name:
+          description: Affix typ name.
+          type: string
+        items:
+          description: List of affix values.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Preferences.SalutationNamePreferences:
+      description: ''
+      type: object
+      properties:
+        nameAffixSettings:
+          description: List of affix types and values.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Preferences.NameAffixSetting'
+        salutationSettings:
+          description: List of salutation types.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationSetting'
+        autoShowDialog:
+          description: ''
+          type: boolean
+    act.web.api.models.Preferences.SalutationSetting:
+      description: Salutation type  input model.
+      type: object
+      properties:
+        code:
+          type: string
+        value:
+          type: boolean
+    act.web.api.models.Preferences.TaskPreferences:
+      description: Activity preferences model.
+      type: object
+      properties:
+        clearingTasks:
+          description: When clearing tasks.
+          enum:
+          - Grey
+          - Strikeout
+          type: string
+        taskConflictChecking:
+          description: Activity conflict checking.
+          type: boolean
+        makeNewTaskPublic:
+          description: Make new activity public.
+          type: boolean
+        schedulingSeparateTasks:
+          description: Schedule separate activities.
+          type: boolean
+        scheduleTaskForNewContact:
+          description: Prompt to schedule an task for new contact.
+          type: boolean
+    act.web.api.models.Users.Preference:
+      description: User preferences.
+      type: object
+      properties:
+        id:
+          description: A base64 representation of the unique identifier (name).
+          type: string
+        name:
+          description: A unique identifier (key) for this preference.
+          type: string
+        value:
+          $ref: '#/components/schemas/System.Object'
+          description: The preference setting.
+        isAdmin:
+          description: ''
+          type: boolean

@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Geographics",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geographics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete the phone number mask.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/geographics/phonenumber/masks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given mask."
+              }
+            ]
+          },
+          "docs": "Delete the phone number mask."
+        },
+        {
+          "info": {
+            "name": "Get all geolocation codes for a given contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/geographics/contact-geolocation"
+          },
+          "docs": "Get all geolocation codes for a given contact."
+        },
+        {
+          "info": {
+            "name": "Get all countries with phone format masks matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/geographics/phonenumber/countries"
+          },
+          "docs": "Get all countries with phone format masks matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all phone format mask matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/geographics/phonenumber/masks",
+            "params": [
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "Refreshing the Act! phone format mask cache."
+              }
+            ]
+          },
+          "docs": "Get all phone format mask matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Set the phone number mask to be the default.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/geographics/phonenumber/default-masks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given mask."
+              }
+            ]
+          },
+          "docs": "Set the phone number mask to be the default."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

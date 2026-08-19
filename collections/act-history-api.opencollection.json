@@ -1,0 +1,355 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — History",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Associate the contact (if it is not already present) to history item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/history/:id/contacts/:contactId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with a history item."
+              }
+            ]
+          },
+          "docs": "Associate the contact (if it is not already present) to history item."
+        },
+        {
+          "info": {
+            "name": "Disassociate a contact (if it is present) from history item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/history/:id/contacts/:contactId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with history item."
+              }
+            ]
+          },
+          "docs": "Disassociate a contact (if it is present) from history item."
+        },
+        {
+          "info": {
+            "name": "Get all history items that are associated with a given activity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/activities/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given activity."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history items that are associated with a given activity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all history items for a given company and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company that is associated with a history item."
+              },
+              {
+                "name": "showFor",
+                "value": "",
+                "type": "query",
+                "description": "Filtering based on associations: 0 = All associations, 1 = Company associations, 2 = Company contact associations."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history items for a given company and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all history items for a given contact and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with a history item."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history items for a given contact and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all history items for a given group and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact that is associated with a history item."
+              },
+              {
+                "name": "showFor",
+                "value": "",
+                "type": "query",
+                "description": "Filtering based on associations: 0 = All associations, 1 = Company associations, 2 = Company contact associations."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history items for a given group and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all history items for a given opportunity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity that is associated with a history item."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history items for a given opportunity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get a specific history entry.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/History/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history entry."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get a specific history entry."
+        },
+        {
+          "info": {
+            "name": "Update an already existing history",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/History/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing history"
+        },
+        {
+          "info": {
+            "name": "Partially update an already existing history",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/History/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update an already existing history"
+        },
+        {
+          "info": {
+            "name": "Delete an existing history.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/History/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history entry."
+              }
+            ]
+          },
+          "docs": "Delete an existing history."
+        },
+        {
+          "info": {
+            "name": "Get all history items matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/History",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history items matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new history item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/History",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new history item."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

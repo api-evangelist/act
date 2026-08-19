@@ -1,0 +1,62 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Authored by API Evangelist from openapi/*.yml (the refined OpenAPI 3.1
+  conversions of the provider Swagger 2.0 document) plus Act!'s own published
+  references at https://apimta.act.com/act.web.api/,
+  /act.web.api/OData/Index and /act.web.api/ActHooks/Index. Searched first for
+  provider-published Agent Skills or an AGENTS.md — Act! publishes neither.
+description: >-
+  Packaged Agent Skills for the Act! Web API. Every operationId cited in these
+  skills was read out of the spec and verified present; none were composed by
+  hand. The skills are sequenced — act-connect-and-discover is a prerequisite
+  for the other four, because Act!'s host, credentials and schema are all
+  per-tenant.
+provider_published_skills: false
+provider_agents_md: false
+api: act:web-api
+skills:
+  - name: act-connect-and-discover
+    file: act-connect-and-discover.md
+    description: >-
+      Find the right host, mint a JWT from Basic credentials, confirm the
+      deployed build with the anonymous /api/system route, and read the tenant's
+      real field and entity schema. Prerequisite for every other skill.
+    operations: 5
+  - name: act-sync-contacts
+    file: act-sync-contacts.md
+    description: >-
+      Search, read, create, update and associate Act! contacts with OData
+      queries, including safe write patterns for an API with no idempotency key.
+    operations: 13
+  - name: act-manage-opportunity-pipeline
+    file: act-manage-opportunity-pipeline.md
+    description: >-
+      Read per-database processes and stages, create and advance opportunities,
+      attach products, associate contacts and companies, and use Act!'s own
+      pipeline analytics instead of aggregating client-side.
+    operations: 14
+  - name: act-log-interactions
+    file: act-log-interactions.md
+    description: >-
+      Write History, Notes, Tasks and attachments back into Act!, using the
+      embedded association arrays to link one record to many contacts,
+      companies, groups and opportunities in a single call.
+    operations: 14
+  - name: act-register-webhooks
+    file: act-register-webhooks.md
+    description: >-
+      Register, shape, rotate and suspend Act! webhooks — with the three facts
+      that change the design up front: polled delivery, no cloud availability,
+      and a replayed shared token instead of a signature.
+    operations: 9
+prerequisite_order:
+  - act-connect-and-discover
+  - [act-sync-contacts, act-manage-opportunity-pipeline, act-log-interactions, act-register-webhooks]
+cross_links:
+  conventions: conventions/act-conventions.yml
+  errors: errors/act-problem-types.yml
+  authentication: authentication/act-authentication.yml
+  rate_limits: rate-limits/act-rate-limits.yml
+  data_model: data-model/act-data-model.yml
+  webhooks: asyncapi/act-webhooks.yml

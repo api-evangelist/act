@@ -1,0 +1,160 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Status codes and their descriptions derived verbatim from openapi/*.yml (the
+  provider Swagger 2.0 document at
+  https://apimta.act.com/act.web.api/swagger/docs/v1); the authentication error
+  codes and the 403 sub-codes searched from
+  https://apimta.act.com/act.web.api/ (Act! Web API home, "Authentication Error
+  Codes"); the error envelope observed live on
+  https://apimta.act.com/act.web.api/api/contacts on 2026-08-13.
+format: aspnet-web-api
+rfc9457: false
+media_type: application/json
+description: >-
+  Act! Web API does not use RFC 9457 problem+json. Errors are the stock ASP.NET
+  Web API error object, and the meaning of a failure is carried almost entirely
+  by the HTTP status code plus, for authentication, a small set of Act!-specific
+  numeric codes. There is no machine-readable error code in the body: a client
+  cannot distinguish "field validation failed" from "malformed JSON" from
+  "unknown query option" — all three are a bare 400.
+
+envelope:
+  fields:
+    message: Human-readable summary, e.g. "An error has occurred."
+    exceptionMessage: The .NET exception message.
+    exceptionType: The .NET exception type name, e.g. System.NullReferenceException.
+    stackTrace: The full .NET stack trace.
+  observed:
+    url: https://apimta.act.com/act.web.api/api/contacts
+    http_status: 500
+    fetched: '2026-08-13'
+    note: >-
+      Anonymous request. The response body included a full stack trace with
+      server-side source paths. This is an information-disclosure finding, not a
+      documented feature: the deployed Act! Premium Cloud API host leaves the
+      ASP.NET IncludeErrorDetailPolicy at a development value. It also means a
+      missing credential surfaces as 500 rather than 401 on this route.
+
+problem_types:
+  - status: 400
+    title: BadRequest
+    description: >-
+      The request could not be understood by the server. BadRequest is sent when
+      no other error is applicable, or if the exact error is unknown or does not
+      have its own error code.
+    occurrences: 323
+    remediation: >-
+      Validate the request body against the operation schema in openapi/. Also
+      returned for unsupported OData query options — the provider states that
+      "anything that is not implemented will throw an exception upon use", so an
+      unrecognised $filter function or an OData option on an unsupported
+      collection lands here. Check
+      conventions/act-conventions.yml#query_language.supported_odata_surfaces.
+
+  - status: 401
+    title: Unauthorized
+    description: >-
+      The requested resource requires authentication. The WWW-Authenticate
+      header contains the details of how to perform the authentication.
+    occurrences: 408
+    remediation: >-
+      Mint a JWT with GET /authorize using HTTP Basic credentials plus the
+      Act-Database-Name header, then send Authorization: Bearer <token>. Tokens
+      expire; re-authorize on 401.
+
+  - status: 403
+    title: Forbidden
+    description: The user does not have the necessary permissions for the resource.
+    source: https://apimta.act.com/act.web.api/
+    sub_codes:
+      - code: 4030
+        message: Incompatibility issue with Act!
+        remediation: >-
+          The Web API build and the Act! database/product version do not match.
+          Call GET /api/system to read apiVersion/sdkVersion of the target
+          instance.
+      - code: 4031
+        message: Subscription required.
+        remediation: >-
+          The Act! subscription on that database does not include API access.
+          This is a billing/entitlement wall, not a credential problem.
+      - code: 4032
+        message: API access permission required.
+        remediation: >-
+          The Act! user authenticating does not hold the API access permission.
+          An Act! administrator grants it in the database's user settings.
+
+  - status: 404
+    title: NotFound
+    description: The requested resource does not exist on the server.
+    occurrences: 251
+    remediation: Verify the record id and that the authenticated user can see the record (Act! record-level access can hide a record rather than 403 it).
+
+  - status: 409
+    title: Conflict
+    description: >-
+      The request could not be completed due to a conflict with the current
+      state of the resource. Also returned when a custom entity with the
+      requested name already exists.
+    occurrences: 6
+    remediation: Re-read the resource, resolve the conflict, retry. For CustomEntities, choose a different entity name.
+
+  - status: 415
+    title: UnsupportedMediaType
+    description: The entity of the request is in a format not supported by the requested resource.
+    occurrences: 5
+    remediation: >-
+      Send one of the media types the operation declares — application/json,
+      application/xml, text/xml or application/x-www-form-urlencoded (file
+      operations use multipart/form-data).
+
+  - status: 423
+    title: Locked
+    description: >-
+      An upload is currently in progress for this resource (document or
+      attachment).
+    occurrences: 4
+    remediation: Wait for the in-flight chunked upload to complete, then retry. See the SupplementalFiles and Documents operations.
+
+  - status: 500
+    title: Unexpected error
+    description: Unexpected error.
+    occurrences: 408
+    remediation: >-
+      Retry with backoff. Because the deployed instance returns .NET exception
+      detail, the exceptionType field is currently the only signal available for
+      triage — do not build client logic on it, it is not a contract.
+
+success_codes:
+  - status: 200
+    description: OK — the request succeeded and the requested information is in the response.
+    occurrences: 310
+  - status: 201
+    description: Created — the request resulted in a new resource created before the response was sent.
+    occurrences: 26
+  - status: 202
+    description: Accepted — the request has been accepted for processing, but processing may not have completed.
+    occurrences: 8
+  - status: 204
+    description: NoContent — the request was successfully processed and the response is intentionally blank.
+    occurrences: 82
+  - status: 206
+    description: Partial Content — an intermediate chunk was accepted during a chunked upload.
+    occurrences: 3
+
+not_used:
+  - status: 429
+    note: >-
+      Act! documents X-RateLimit-* response headers for Act! Premium Cloud but
+      declares no throttled status code anywhere in the Swagger document, and
+      publishes none on the Web API home page. The status returned on exhaustion
+      is undocumented. See rate-limits/act-rate-limits.yml.
+  - status: 422
+    note: Not used; validation failures collapse into 400.
+
+gaps:
+  - No application-level error code in the response body (outside the three 403 auth sub-codes).
+  - No RFC 9457 application/problem+json representation.
+  - No documented 429 or Retry-After on rate-limit exhaustion.
+  - Stack traces leaked to anonymous callers on the public cloud API host.

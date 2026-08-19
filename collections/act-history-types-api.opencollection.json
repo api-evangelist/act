@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — HistoryTypes",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "HistoryTypes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a specific history type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/history-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history type."
+              }
+            ]
+          },
+          "docs": "Get a specific history type."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use '/api/history-types/{name}' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/historytypes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the history document type."
+              }
+            ]
+          },
+          "docs": "Deprecated (Please use '/api/history-types/{name}' instead)."
+        },
+        {
+          "info": {
+            "name": "Gets all history types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/history-types"
+          },
+          "docs": "Gets all history types."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use '/api/history-types' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/historytypes"
+          },
+          "docs": "Deprecated (Please use '/api/history-types' instead)."
+        },
+        {
+          "info": {
+            "name": "Gets all history types for a specific tasks type by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/task-types/:id/history-types",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given activity type."
+              }
+            ]
+          },
+          "docs": "Gets all history types for a specific tasks type by id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

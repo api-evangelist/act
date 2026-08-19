@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.act.com/products/whats-new/
+description: >-
+  Act! publishes a dated "What's New in Act!" page that groups release notes by
+  month, filterable by product line (Act! Advantage, Act! Premium Cloud, Act!
+  Premium Desktop, Act! Mobile) and reaching back to July 2019. It is a PRODUCT
+  changelog, not an API changelog: no entry is scoped to the Act! Web API, no
+  entry names an operation, schema or breaking change, and there is no feed. The
+  only way to see that the API build moved is to call the anonymous route GET
+  /api/system and compare apiVersion.
+scheme: monthly product release notes
+url: https://www.act.com/products/whats-new/
+feed: null
+api_scoped: false
+breaking_change_notices: false
+current_api_version:
+  apiVersion: 1.1.1324.1
+  sdkVersion: 25.101.0.0
+  source: https://apimta.act.com/act.web.api/api/system
+  probed: '2026-08-13'
+latest_month: '2026-08'
+months_published:
+  - '2026-08'
+  - '2026-07'
+  - '2026-06'
+  - '2026-05'
+  - '2026-04'
+  - '2026-02'
+  - '2026-01'
+  - '2025-12'
+  - '2025-10'
+  - '2025-09'
+  - '2025-08'
+  - '2025-07'
+  - '2025-06'
+  - '2025-05'
+  - '2025-04'
+  - '2025-02'
+entries_note: >-
+  Titles below are the most recent items listed on the page, in page order
+  (newest first). The page groups items under a month filter rather than
+  stamping each item with its own date, so no per-entry date is asserted here.
+recent_entries:
+  - title: Smarter in-app help
+    products: [Act! Premium Cloud, Act! Advantage]
+    highlight: New Help Drawer side panel surfaces context-relevant articles, videos and resources.
+    breaking: false
+  - title: What's New in Act! Mobile
+    products: [Act! Mobile]
+    highlight: >-
+      Act! Mobile 1.21 adds guided phone-contact import into Act! Cloud with
+      field matching and background processing, and refreshes Proximity Search.
+    breaking: false
+  - title: What's New in Act! Payments
+    products: [Act! Advantage]
+    breaking: false
+  - title: Notification Center Now Available in Act! Mobile
+    products: [Act! Mobile]
+    breaking: false
+  - title: AI History Summary and Contact List Experience Enhancements
+    products: [Act! Advantage]
+    breaking: false
+  - title: Act! Premium Desktop v27.1
+    products: [Act! Premium Desktop]
+    breaking: false
+  - title: AI History Summary
+    products: [Act! Advantage]
+    breaking: false
+  - title: Notes Experience Enhancements
+    products: [Act! Advantage]
+    breaking: false
+  - title: Accept Payments with Act! Advantage
+    products: [Act! Advantage]
+    breaking: false
+  - title: Notification Center and List Experience Enhancements
+    products: [Act! Advantage]
+    breaking: false
+  - title: Notification Center and Added Email Campaign Support
+    products: [Act! Advantage]
+    breaking: false
+  - title: Companies and Groups List Enhancements
+    products: [Act! Advantage]
+    breaking: false
+  - title: Faster task editing and simplified navigation
+    products: [Act! Advantage]
+    breaking: false
+gaps:
+  - No API-scoped changelog.
+  - No RSS/Atom/JSON feed on the What's New page.
+  - No breaking-change notices tied to Web API builds.

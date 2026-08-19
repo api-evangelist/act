@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — DocumentTypes",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DocumentTypes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all document history types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/documents/history-types"
+          },
+          "docs": "Gets all document history types."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use '/api/documents/history-types' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/documents/historytypes"
+          },
+          "docs": "Deprecated (Please use '/api/documents/history-types' instead)."
+        },
+        {
+          "info": {
+            "name": "Get a specific history document type by name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/documents/history-types/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the history document type."
+              }
+            ]
+          },
+          "docs": "Get a specific history document type by name."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use '/api/documents/history-types/{name}' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/documents/historytypes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the history document type."
+              }
+            ]
+          },
+          "docs": "Deprecated (Please use '/api/documents/history-types/{name}' instead)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

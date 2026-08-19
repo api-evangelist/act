@@ -1,0 +1,552 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Configurations
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Configurations
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/analytics/definitions/insight-views:
+    get:
+      tags:
+      - Configurations
+      summary: Get current user's insight analytic view definition data
+      operationId: Configurations_GetAnalyticConfigurationInsightViewDefinitions_393BFEDD
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Configurations
+      summary: Create/Update current user's insight analytic view definition data.
+      operationId: Configurations_PutAnalyticConfigurationInsightViewDefinitions_D6450485
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+        description: The user's profile.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Configurations
+      summary: Delete current user's insight's analytic view definition data.
+      operationId: Configurations_DeleteAnalyticConfigurationInsightViewDefinitions_49FEF34F
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/analytics/definitions/myact-views:
+    get:
+      tags:
+      - Configurations
+      summary: Get current user's insight analytic view definition data
+      operationId: Configurations_GetAnalyticConfigurationMyActViewDefinitions_64469CB9
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Configurations
+      summary: Create/Update current user's 'MyAct' analytic view definition data.
+      operationId: Configurations_PutAnalyticConfigurationMyActViewDefinitions_63CD19DC
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+        description: The user's profile.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Configurations
+      summary: Delete current user's insight's analytic view definition data.
+      operationId: Configurations_DeleteAnalyticConfigurationMyActViewDefinitions_09B0834E
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/analytics/definitions/kpi-views/{name}:
+    get:
+      tags:
+      - Configurations
+      summary: Get current user's KPI analytic view definition data
+      operationId: Configurations_GetAnalyticConfigurationKpiViewDefinitions_8C0032C7
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The kpi view container name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Configurations
+      summary: Create/Update current user's KPI analytic view definition data.
+      operationId: Configurations_PutAnalyticConfigurationKpiViewDefinitions_7F2F92D8
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The kpi container name
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationDefinition'
+        description: The group definition.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/analytics/settings/opportunity-pipeline:
+    get:
+      tags:
+      - Configurations
+      summary: Get current user's opportunity pipeline analytic view settings data.
+      operationId: Configurations_GetAnalyticConfigurationOpportunityPipelineViewSettings_6AEEAAA0
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.OpportunityPipelineViewSettings'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.OpportunityPipelineViewSettings'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Users.OpportunityPipelineViewSettings'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Configurations
+      summary: Create/Update current user's opportunity pipeline analytic view settings data.
+      operationId: Configurations_PutAnalyticConfigurationOpportunityPipelineViewSettings_6B0FE79A
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationSettings'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationSettings'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationSettings'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Configuration.ConfigurationSettings'
+        description: The user's pipeline settings.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Configuration.ConfigurationDefinition:
+      description: This class defines a generic view definitions.
+      type: object
+      properties:
+        userId:
+          description: The unique identifier (id) for the user.
+          type: string
+        definition:
+          description: The configuration schema definitions file (XML|Json)
+          type: string
+    act.web.api.models.Configuration.ConfigurationSettings:
+      description: This class defines a generic view settings.
+      type: object
+      properties:
+        userId:
+          description: The unique identifier (id) the user.
+          type: string
+        settingsDefinition:
+          description: The configuration schema definitions file (XML|Json)
+          type: string
+    act.web.api.models.Users.CurrencySettings:
+      description: ''
+      type: object
+      properties:
+        symbol:
+          description: ''
+          type: string
+        decimalSeparator:
+          description: ''
+          type: string
+        groupSeparator:
+          description: ''
+          type: string
+        symbolPosition:
+          description: ''
+          type: string
+    act.web.api.models.Users.OpportunityPipelineViewSettings:
+      description: ''
+      type: object
+      properties:
+        userId:
+          description: ''
+          type: string
+        fiscalYearStartMonth:
+          format: int32
+          description: ''
+          type: integer
+        currencySettings:
+          $ref: '#/components/schemas/act.web.api.models.Users.CurrencySettings'
+          description: ''
+        filterPreferences:
+          description: ''
+          type: string

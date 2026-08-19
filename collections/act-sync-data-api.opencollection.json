@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — SyncData",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SyncData",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get contacts identifiers by business emails.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/sync-data/search-contacts-by-business-email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get contacts identifiers by business emails."
+        },
+        {
+          "info": {
+            "name": "Find existed identifiers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/sync-data/search-synced-external-ids",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Find existed identifiers."
+        },
+        {
+          "info": {
+            "name": "Find existed calendar identifiers with related external ids.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/sync-data/search-synced-calendar-uids",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Find existed calendar identifiers with related external ids."
+        },
+        {
+          "info": {
+            "name": "Refresh email integration cache for current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/email-integration-cache-refresh"
+          },
+          "docs": "Refresh email integration cache for current user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

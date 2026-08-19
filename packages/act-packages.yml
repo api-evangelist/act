@@ -1,0 +1,149 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://www.act.com/developer/ and https://www.act.com/dps/sdk/download/
+  (Act!'s own SDK distribution page), the Swiftpage GitHub organization
+  (https://github.com/Swiftpage), and registry searches against
+  registry.npmjs.org, pypi.org, azuresearch-usnc.nuget.org (NuGet) and
+  rubygems.org on 2026-08-13.
+description: >-
+  Act! publishes NO client library for the Act! Web API in any public package
+  registry. There is no first-party SDK on npm, PyPI, NuGet, RubyGems,
+  Packagist, Maven Central, crates.io or pkg.go.dev. What Act! does ship is a
+  Windows .NET "Native SDK" — a versioned zip download behind a partner-program
+  page, not a package — and one sample application on GitHub. Every registry
+  package that mentions Act! CRM is third-party (CData's ADO.NET/EF Core
+  connectors, a community NuGet client). Consumers of the Web API are expected
+  to generate a client from the Swagger document or hand-roll HTTP.
+official_sdk_in_registry: false
+package_count: 0
+packages: []
+
+first_party_distributions:
+  - name: Act! Native SDK (.NET)
+    kind: sdk-download
+    registry: none
+    url: https://www.act.com/dps/sdk/download/
+    official: true
+    platform: Windows (.NET, Act! desktop/on-premises object model)
+    version: v23
+    published: null
+    published_note: >-
+      Act! publishes no release date on the download page, and the SDK is a
+      gated zip rather than a registry artifact, so no metadata endpoint exists
+      to read a date from. version is the highest release offered on the page.
+    versions_offered:
+      - v23
+      - v22.1
+      - v22
+      - v21
+      - v20.1
+      - v20
+      - v19
+      - v18
+      - v17
+      - v16
+      - Sage ACT! 2013
+      - Sage ACT! 2012
+      - Sage ACT! 2011
+      - ACT! 2010
+      - ACT! 2009 (11.1)
+      - ACT! 2008 (10.0)
+      - ACT! 2007 (9.0.x)
+      - ACT! Premium for Web 2007 (9.0.x)
+      - ACT! 2006 (8.0.x)
+      - ACT! 2005 (7.0.x)
+    decay_signal: >-
+      The newest SDK offered is v23. Act!'s own obsolescence policy retired v23
+      on 2026-07-31 (cloud customers 2023-12-31), and the current supported
+      release is v26 — so the published SDK trails the supported product by
+      three major versions. This is the strongest abandonment signal available
+      for Act!'s developer surface, and it is provider-published.
+    gate: >-
+      Framed as an Act! Add-on Partner Program resource; the download page is
+      public but the SDK targets the desktop object model, not the Web API.
+
+  - name: SampleWebAPILeadGen
+    kind: sample-application
+    registry: none
+    url: https://github.com/Swiftpage/SampleWebAPILeadGen
+    official: true
+    language: C#
+    version: null
+    published: '2015-11-05'
+    published_note: Last push date from the GitHub API; no releases or tags published.
+    description: Sample lead-generation form consuming the Act! Web API.
+    decay_signal: Last commit 2015 — eleven years stale against a 2026 API build.
+
+  - name: odata-v4-sql
+    kind: library
+    registry: none
+    url: https://github.com/Swiftpage/odata-v4-sql
+    official: true
+    version: null
+    published: '2019-11-12'
+    published_note: Last push date from the GitHub API; not published to npm under a Swiftpage scope.
+    description: >-
+      OData V4 SQL. An internal building block of the Web API's OData layer
+      rather than a consumer SDK.
+
+third_party_packages:
+  - language: dotnet
+    registry: nuget
+    name: CData.ActCRM
+    url: https://www.nuget.org/packages/CData.ActCRM
+    version: 26.0.9655
+    published: null
+    published_note: >-
+      Version read from the NuGet search index on 2026-08-13; the search
+      response does not carry a publish date and no date is asserted here.
+    official: false
+    vendor: CData Software, Inc.
+    description: Commercial ADO.NET provider — SQL access to Act! CRM contacts, activities and opportunities.
+  - language: dotnet
+    registry: nuget
+    name: CData.ActCRM.EntityFrameworkCore10
+    url: https://www.nuget.org/packages/CData.ActCRM.EntityFrameworkCore10
+    version: 26.0.9655
+    published: null
+    published_note: Version read from the NuGet search index on 2026-08-13; no publish date returned.
+    official: false
+    vendor: CData Software, Inc.
+  - language: dotnet
+    registry: nuget
+    name: act.webapi.client
+    url: https://www.nuget.org/packages/act.webapi.client
+    version: 0.1.3
+    published: null
+    published_note: Version read from the NuGet search index on 2026-08-13; no publish date returned.
+    official: false
+    vendor: community (ryan@duckduckdev.com)
+    description: Community client for the Act! Web API. 0.1.x, description left as "Package Description".
+
+registries_checked:
+  - registry: npm
+    endpoint: https://registry.npmjs.org/-/v1/search
+    queries: [act-crm, "act crm", actcrm, act-web-api]
+    result: no first-party package
+  - registry: pypi
+    endpoint: https://pypi.org/pypi/act-crm/json
+    http_status: 404
+    result: no first-party package
+  - registry: nuget
+    endpoint: https://azuresearch-usnc.nuget.org/query
+    queries: ["Act.Web.API", "Act! CRM"]
+    result: third-party only
+  - registry: github
+    endpoint: https://api.github.com/orgs/Swiftpage/repos
+    result: 2 repos, newest push 2019-11-12
+  - registry: github
+    endpoint: https://api.github.com/orgs/act-crm
+    http_status: 404
+  - registry: github
+    endpoint: https://api.github.com/orgs/actcrm
+    http_status: 404
+
+gaps:
+  - No first-party SDK in any public package registry.
+  - The only shipped SDK targets the desktop object model, not the Web API, and stops at v23 while the supported product is v26.
+  - No code generation guidance published alongside the Swagger document.

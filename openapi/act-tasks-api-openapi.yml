@@ -1,0 +1,2587 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Tasks
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Tasks
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/contacts/{contactId}/associated-tasks/{taskId}:
+    put:
+      tags:
+      - Tasks
+      summary: Associate the contact (if it is not already present) to an task.
+      operationId: Tasks_PutAssociatedTasksFromContact_70092312
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given task.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Tasks
+      summary: Disassociate a task from a contact.
+      operationId: Tasks_DeleteAssociatedTasksFromContact_B922C336
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given task.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/tasks/{taskId}/clear:
+    put:
+      tags:
+      - Tasks
+      summary: History a task.
+      operationId: Tasks_PutClearTask_4BC27298
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given tasks.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskClearRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskClearRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskClearRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskClearRequest'
+        description: The history that will be be recorded for this action.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Tasks
+      summary: UnclearTasks an activity.
+      operationId: Tasks_DeleteClearTask_3DC85A04
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given tasks.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/tasks/clear:
+    put:
+      tags:
+      - Tasks
+      summary: History a list of task.
+      operationId: Tasks_PutClearTask_0212212A
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListClearRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListClearRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListClearRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListClearRequest'
+        description: The clear task or history model in the request body
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Tasks
+      summary: UnclearTasks a cleared task.
+      operationId: Tasks_DeleteClearTask_E382B558
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+        description: List of unique identifier (id) for a given tasks.
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/recurring-tasks/{recurringId}:
+    get:
+      tags:
+      - Tasks
+      summary: Get a specific recurring tasks.
+      operationId: Tasks_GetRecurringTasks_6D8FB44E
+      parameters:
+      - name: recurringId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given recurring tasks.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Tasks
+      summary: Update an already existing recurring tasks
+      operationId: Tasks_PutRecurringTask_0777AA11
+      parameters:
+      - name: recurringId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given recurring tasks.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        description: The recurring task definition
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Tasks
+      summary: Delete an existing recurring tasks.
+      description: This will not remove activities that were part of the series and were rescheduled.
+      operationId: Tasks_DeleteRecurringTasks_82DEAE6F
+      parameters:
+      - name: recurringId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given recurring tasks.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Tasks
+      summary: Partially update an already existing recurring tasks
+      operationId: Tasks_PatchRecurringTasks_AE95DD6C
+      parameters:
+      - name: recurringId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given recurring tasks.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        description: The recurring tasks definition
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/tasks/{taskId}:
+    get:
+      tags:
+      - Tasks
+      summary: Get a specific tasks.
+      operationId: Tasks_GetTasks_A7AE9362
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given tasks.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Tasks
+      summary: Update an already existing task  (Recur Spec will be ignored)
+      operationId: Tasks_PutTasks_F1B2C288
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given task.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        description: The task definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Tasks
+      summary: Delete an existing task.
+      operationId: Tasks_DeleteTask_79C0B39F
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: A unique identifier (id) for a given task.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Tasks
+      summary: Partially update an existing tasks  (Recur Spec will be ignored)
+      operationId: Tasks_PatchTasks_419ECA90
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given tasks.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        description: The tasks definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get all task matching an (optional) OData query.
+      operationId: Tasks_GetTasks_82532732
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Tasks
+      summary: Create a new tasks (Recur Spec will be ignored).
+      operationId: Tasks_PostTasks_87E31868
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        description: The task definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Tasks
+      summary: Delete an existing task.
+      operationId: Tasks_DeleteTasks_1FEF77B8
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+        description: A list of unique identifier (id) for a given task.
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/companies/{companyId}/associated-tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get tasks associations with a given company (?showAll=All|Company|CompanyContacts) and
+        matching an (optional) OData query.
+      operationId: Tasks_GetAssociatedTasksFromCompany_EB48D54F
+      parameters:
+      - name: companyId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given company that is associated with a task.
+        schema:
+          type: string
+      - name: showFor
+        in: query
+        required: false
+        description: 'Filtering based on associations: 0 = All associations, 1 = Company associations,
+          2 = Company contact associations.'
+        schema:
+          type: string
+          enum:
+          - All
+          - Company
+          - CompanyContact
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{contactId}/associated-tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get all tasks that are associated with a given contact and matching an (optional) OData
+        query.
+      operationId: Tasks_GetAssociatedTasksFromContact_416BB7A5
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact that is associated with a tasks.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/groups/{groupId}/associated-tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get all tasks that are associated with a given contact and matching an (optional) OData
+        query.
+      operationId: Tasks_GetAssociatedTasksFromGroup_DCEDDE6D
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group that is associated with a tasks.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/{opportunityId}/associated-tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get all tasks that are associated with a given opportunity and matching an (optional) OData
+        query.
+      operationId: Tasks_GetAssociatedTasksFromOpportunity_A2697D87
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity that is associated with a task.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/recurring-tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get all recurring tasks matching an (optional) OData query.
+      operationId: Tasks_GetRecurringTasks_662BB41B
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      - name: restriction
+        in: query
+        required: false
+        description: 'Controls how each recurring series is represented: All (every occurrence), FirstOccurrence
+          (the first occurrence of each series - the default), or FirstUnclearedOccurrence (the first
+          uncleared occurrence). Defaults to FirstOccurrence.'
+        schema:
+          type: string
+          enum:
+          - All
+          - FirstOccurrence
+          - FirstUnclearedOccurrence
+      - name: filterBy
+        in: query
+        required: false
+        description: 'Controls how a startTime filter is interpreted: InRange (the default - the filter
+          selects occurrences in the range, so a series spanning several ranges is returned once per range)
+          or InSeries (the filter is applied to the first occurrence of the whole series, so each series
+          is returned only from the range containing its first occurrence). InSeries requires a startTime
+          filter and cannot be combined with restriction=FirstUnclearedOccurrence.'
+        schema:
+          type: string
+          enum:
+          - InRange
+          - InSeries
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Tasks
+      summary: Create a new recurring tasks.
+      operationId: Tasks_PostRecurringTask_6D08C5A4
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        description: The recurring tasks definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/tasks-lists:
+    get:
+      tags:
+      - Tasks
+      summary: Get a a list of task matching an (optional) OData query.
+      operationId: Tasks_GetTasks_95690A14
+      parameters:
+      - name: taskIds
+        in: query
+        required: true
+        description: An array of unique identifier (id) for a given tasks.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/tasks/priorities:
+    get:
+      tags:
+      - Tasks
+      summary: Get all activity priorities.
+      operationId: Tasks_GetTaskPriorities_7082F9FF
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityPriority'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityPriority'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityPriority'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/organizers/{userId}/tasks:
+    post:
+      tags:
+      - Tasks
+      summary: Create a new task on behalf of (ScheduleFor).
+      operationId: Tasks_PostScheduledForActivity_8C8B84E3
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The unique identifier (id) for the user that is organizing the task (ScheduledFor).
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default),
+          PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        description: The task definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/tasks/alarms:
+    get:
+      tags:
+      - Tasks
+      summary: Gets all currently alarmed activities for the logged-in user.
+      operationId: Tasks_GetTaskAlarms_E7125A25
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivity'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/tasks/alarms/updates:
+    get:
+      tags:
+      - Tasks
+      summary: "Gets the current alarm state for a set of activities the client is tracking,\r\n     \
+        \       and indicates which are no longer alarmed."
+      operationId: Tasks_GetTaskAlarmUpdates_31784C81
+      parameters:
+      - name: activityIds
+        in: query
+        required: true
+        description: The activity IDs to check.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivityChanges'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivityChanges'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivityChanges'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/tasks/alarms/snooze:
+    put:
+      tags:
+      - Tasks
+      summary: Snoozes the alarms for the specified activities.
+      operationId: Tasks_PutSnoozeTaskAlarms_0BADF053
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.SnoozeAlarmsRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.SnoozeAlarmsRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.SnoozeAlarmsRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.SnoozeAlarmsRequest'
+        description: Activity IDs and snooze duration in minutes.
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/tasks/alarms/mark-snooze-read:
+    put:
+      tags:
+      - Tasks
+      summary: Marks active snoozes as read for the specified activities.
+      operationId: Tasks_PutMarkTaskSnoozeAlarmsRead_3A2BCC86
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.AlarmRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.AlarmRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.AlarmRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.AlarmRequest'
+        description: Activity IDs whose snoozes should be marked as read.
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/tasks/alarms/mark-all-snooze-read:
+    put:
+      tags:
+      - Tasks
+      summary: Marks all active snoozes as read for the current user.
+      operationId: Tasks_PutMarkAllTaskSnoozeAlarmsRead_25DB106B
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/tasks/clear-alarms:
+    put:
+      tags:
+      - Tasks
+      summary: Clears alarms for the specified activities.
+      operationId: Tasks_PutClearTaskAlarmsMulti_6D1600DD
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.ClearAlarmsRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.ClearAlarmsRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.ClearAlarmsRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.ClearAlarmsRequest'
+        description: Activity IDs to clear — either the 44-character composite ID (activityId+MMddyyyy,
+          as returned by the alarms endpoint) or a plain 36-character GUID (clears all occurrences of
+          that activity).
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/tasks/clear-all-alarms:
+    put:
+      tags:
+      - Tasks
+      summary: Clears all alarms for the current user.
+      operationId: Tasks_PutClearAllTaskAlarms_BFAB9D20
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/tasks/{id}/clear-alarms:
+    put:
+      tags:
+      - Tasks
+      summary: "Clears the alarm for a single task. Accepts either a 44-character composite ID (activityId\
+        \ + MMddyyyy,\r\n            as returned by the alarms endpoint) or a plain 36-character GUID\
+        \ (clears all occurrences of that activity)."
+      operationId: Tasks_PutClearTaskAlarms_A1BC070F
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The alarm identifier — either the 44-character composite format (activityId+MMddyyyy)
+          or a plain 36-character activity GUID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ClearActivity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/tasks/{taskId}/duplicate:
+    put:
+      tags:
+      - Tasks
+      summary: Duplicate task.
+      operationId: Tasks_PutDuplicateTasks_315F2FB1
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given tasks.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/tasks/duplicate:
+    put:
+      tags:
+      - Tasks
+      summary: Duplicate a list of task.
+      operationId: Tasks_PutDuplicateTasks_207483BE
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Tasks.TaskListRequest'
+        description: The list of unique identifier(s) (id) for a given tasks.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivityOccurrence'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/organizers/{userId}/tasks/{taskId}:
+    put:
+      tags:
+      - Tasks
+      summary: Modify an existing task on behalf of (ScheduleFor).
+      operationId: Tasks_PutScheduledForActivity_625FBBDC
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given task.
+        schema:
+          type: string
+      - name: userId
+        in: path
+        required: true
+        description: The unique identifier (id) for the user that is organizing the task (ScheduledFor).
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Activities.ActivityOccurrence:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents the activity.
+          type: string
+        isCleared:
+          description: Indicates that the activity has been cleared.
+          type: boolean
+        isAlarmCleared:
+          description: ''
+          type: boolean
+        isAlarmed:
+          description: Turns on/off an alarm for this activity.
+          type: boolean
+        leadMinutes:
+          format: int32
+          description: Indicates the number of minutes the alarm will sounds before an activity is scheduled
+            to start.
+          type: integer
+        alarmDue:
+          description: ''
+          type: string
+        seriesID:
+          description: "A unique identifier that represents the activity.  The id that is returned is\
+            \ based on if it is a recurring or not.\r\n            Recurrent activity: RecurSourceActivityId\
+            \ or Single Occurence activity: ActivityID"
+          type: string
+          readOnly: true
+        originalTime:
+          format: date-time
+          description: Gets the date and time for which this activity was originally scheduled.
+          type: string
+        startTime:
+          format: date-time
+          description: The time the activity is to begin
+          type: string
+        endTime:
+          format: date-time
+          description: The time the activity is to end
+          type: string
+        duration:
+          description: The difference between the start time and end time of the {act.web.api.models.Activities.ActivityOccurrence}.
+          type: string
+        externalId:
+          description: Provides a unique identifier to an external system.
+          type: string
+        calendarUid:
+          description: Provides a unique calendar uid, common for all invited users.
+          type: string
+        accessorId:
+          description: The unique id of the activity accessor who's view of the this.
+          type: string
+        location:
+          description: Describes the physical location that the activity is to take place.
+          type: string
+        isTimeless:
+          description: Indicates whether a specifies action is to be completed at a specific time-of-day.
+          type: boolean
+        isAllDay:
+          description: Indicates whether a specified activity takes up entire day.
+          type: boolean
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this activity.
+          type: boolean
+        isRecurring:
+          description: 'True: if activity is recurring, otherwise false.'
+          type: boolean
+          readOnly: true
+        activityPriorityId:
+          format: int32
+          description: Displays the type of the activity.
+          type: integer
+        activityPriorityName:
+          description: Displays the priority of the activity.
+          type: string
+        activityTypeId:
+          format: int32
+          description: Displays the type of the activity.
+          type: integer
+        activityTypeName:
+          description: Displays the type of the activity.
+          type: string
+        attachment:
+          $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+          description: Gets the attachment referenced by this note.
+        bannerColor:
+          description: The banner color.
+          type: string
+        details:
+          description: Additional detailed information about the activity.
+          type: string
+        subject:
+          description: A description of the action to be completed.
+          type: string
+        recurSpec:
+          $ref: '#/components/schemas/act.web.api.models.Activities.RecurSpec'
+          description: The recurrence pattern for the activity.
+        created:
+          format: date-time
+          description: The date and time the activity was created.
+          type: string
+        edited:
+          format: date-time
+          description: The date and time the activity was last updated.
+          type: string
+        scheduledById:
+          description: The id of the activity's organizer.
+          type: string
+        scheduledBy:
+          description: The contact who created this activity.
+          type: string
+        scheduledForId:
+          description: The id of the activity's organizer.
+          type: string
+        scheduledFor:
+          description: The name of the activity's organizer.
+          type: string
+        scheduledWithCompany:
+          description: Company name of the contact with whom this activity was scheduled. If more than
+            one contact, first encountered
+          type: string
+        scheduledWithEmail:
+          description: Business Email address of the contact with whom this activity was scheduled. If
+            more than one contact, first encountered is used
+          type: string
+        scheduledWithPhone:
+          description: Phone number of the contact with whom this activity was scheduled. If more than
+            one contact, first encountered is used
+          type: string
+        scheduledWithPhoneExt:
+          description: Phone number extension of the contact with whom this activity was scheduled. If
+            more than one contact, first encountered is used
+          type: string
+        companies:
+          description: List of companies that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
+        contacts:
+          description: 'The attendees scheduled for the activity.  Note: at least one contact is required.'
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Activities.EmbededActivityContact'
+        groups:
+          description: List a groups that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
+        opportunities:
+          description: List a opportunities that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
+    act.web.api.models.Activities.ActivityPriority:
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Gets the unique identifier
+          type: integer
+        name:
+          description: Gets the textual name.
+          type: string
+        description:
+          description: Gets brief description of this activity priority.
+          type: string
+        isActive:
+          description: Indicates that the priority is active.
+          type: boolean
+    act.web.api.models.Activities.ActivitySeries:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents the activity.
+          type: string
+        isCleared:
+          description: Indicates that the activity has been cleared.
+          type: boolean
+        isAlarmCleared:
+          description: ''
+          type: boolean
+        isAlarmed:
+          description: ''
+          type: boolean
+        leadMinutes:
+          format: int32
+          description: ''
+          type: integer
+        alarmDue:
+          description: ''
+          type: string
+        originalTime:
+          format: date-time
+          description: Gets the date and time for which this activity was originally scheduled.
+          type: string
+        startTime:
+          format: date-time
+          description: The time the activity is to begin
+          type: string
+        endTime:
+          format: date-time
+          description: The time the activity is to end
+          type: string
+        externalId:
+          description: Provides a unique identifier to an external system.
+          type: string
+        calendarUid:
+          description: Provides a unique calendar uid, common for all invited users.
+          type: string
+        duration:
+          description: Representing the difference between the start time and end time of the activity.
+          type: string
+        durationDisplay:
+          description: "Human-readable representation of the activity's duration (e.g. \"1 hour\"),\r\n\
+            \            formatted identically to the Duration string on ActivityOccurrence."
+          type: string
+        location:
+          description: Describes the physical location that the activity is to take place.
+          type: string
+        isTimeless:
+          description: Indicates whether a specifies action is to be completed at a specific time-of-day.
+          type: boolean
+        isAllDay:
+          description: Indicates whether a specified activity takes up entire day.
+          type: boolean
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this activity.
+          type: boolean
+        isRecurring:
+          description: 'True: if activity is recurring, otherwise false.'
+          type: boolean
+          readOnly: true
+        activityPriorityId:
+          format: int32
+          description: Displays the type of the activity.
+          type: integer
+        activityPriorityName:
+          description: Displays the priority of the activity.
+          type: string
+        activityTypeId:
+          format: int32
+          description: Displays the type of the activity.
+          type: integer
+        activityTypeName:
+          description: Displays the type of the activity.
+          type: string
+        attachment:
+          $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+          description: Gets the attachment referenced by this note.
+        bannerColor:
+          description: The banner color.
+          type: string
+        details:
+          description: Additional detailed information about the activity.
+          type: string
+        subject:
+          description: A description of the action to be completed.
+          type: string
+        recurSpec:
+          $ref: '#/components/schemas/act.web.api.models.Activities.RecurSpec'
+          description: The recurrence pattern for the activity.
+        created:
+          format: date-time
+          description: The date and time the activity was created.
+          type: string
+        edited:
+          format: date-time
+          description: The date and time the activity was last updated.
+          type: string
+        scheduledById:
+          description: The id of the activity's organizer.
+          type: string
+        scheduledBy:
+          description: The contact who created this activity.
+          type: string
+        scheduledForId:
+          description: The id of the activity's organizer.
+          type: string
+        scheduledFor:
+          description: The name of the activity's organizer.
+          type: string
+        scheduledWithCompany:
+          description: Company name of the contact with whom this activity was scheduled. If more than
+            one contact, first encountered
+          type: string
+        scheduledWithEmail:
+          description: Business Email address of the contact with whom this activity was scheduled. If
+            more than one contact, first encountered is used
+          type: string
+        scheduledWithPhone:
+          description: Phone number of the contact with whom this activity was scheduled. If more than
+            one contact, first encountered is used
+          type: string
+        scheduledWithPhoneExt:
+          description: Phone number extension of the contact with whom this activity was scheduled. If
+            more than one contact, first encountered is used
+          type: string
+        companies:
+          description: List of companies that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
+        contacts:
+          description: 'The attendees scheduled for the activity.  Note: at least one contact is required.'
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Activities.EmbededActivityContact'
+        groups:
+          description: List a groups that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
+        opportunities:
+          description: List a opportunities that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
+    act.web.api.models.Activities.AlarmedActivity:
+      description: Represents an activity with an active alarm.
+      type: object
+      properties:
+        id:
+          description: A composite identifier combining the activity ID and occurrence date (activityId
+            + MMddyyyy).
+          type: string
+        activityID:
+          description: The unique identifier of the underlying activity.
+          type: string
+        accessorId:
+          description: The unique identifier of the accessor-specific activity instance.
+          type: string
+        subject:
+          description: A description of the action to be completed.
+          type: string
+        activityTypeId:
+          format: int32
+          description: The activity type identifier.
+          type: integer
+        activityTypeName:
+          description: The activity type name (e.g. Call, Meeting, To-do).
+          type: string
+        bannerColor:
+          description: The banner color associated with the activity type.
+          type: string
+        startTime:
+          format: date-time
+          description: The activity occurrence time in the server's local timezone.
+          type: string
+        alarmTime:
+          format: date-time
+          description: The local time at which the alarm is due to fire.
+          type: string
+        edited:
+          format: date-time
+          description: The last time the activity was updated.
+          type: string
+        isRecurring:
+          description: True if activity is recurring, otherwise false.
+          type: boolean
+        activityPriorityId:
+          format: int32
+          description: The activity priority identifier.
+          type: integer
+        isTimeless:
+          description: Indicates whether this activity has no specific time (all-day).
+          type: boolean
+        isUnreadSnooze:
+          description: Indicates whether there is an active snooze that has not yet been acknowledged.
+          type: boolean
+        canEdit:
+          description: Indicates whether the current user can edit this activity.
+          type: boolean
+        canGoTo:
+          description: Indicates whether the current user can navigate to the activity's associated contacts.
+          type: boolean
+        companies:
+          description: Display names of companies associated with this activity.
+          type: array
+          items:
+            type: string
+        contacts:
+          description: Display names of relevant contacts associated with this activity.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Activities.AlarmedActivityChanges:
+      description: "Represents the result of a poll for alarm updates: activities whose alarm state\r\n\
+        \            has changed since the client last checked."
+      type: object
+      properties:
+        deletedIds:
+          description: "Activity IDs from the client's tracked set that are no longer alarmed\r\n    \
+            \        (cleared, snoozed past expiry, or deleted)."
+          type: array
+          items:
+            type: string
+        alarms:
+          description: The current state of alarmed activities matching the requested IDs.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivity'
+    act.web.api.models.Activities.ClearActivity:
+      description: Creates a history when clearing an activity
+      required:
+      - startTime
+      - endTime
+      type: object
+      properties:
+        historyType:
+          $ref: '#/components/schemas/act.web.api.models.Histories.HistoryType'
+          description: Provides information about the history event.
+        startTime:
+          format: date-time
+          description: The time the activity is to begin.
+          type: string
+        endTime:
+          format: date-time
+          description: The time the activity is to end.
+          type: string
+        includeDetailsToHistory:
+          description: Indicates that shared history includes details.
+          type: boolean
+        details:
+          description: Additional detailed information about the activity.
+          type: string
+        subject:
+          description: A description of the action to be completed.
+          type: string
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this activity.
+          type: boolean
+        attachment:
+          $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+          description: Gets the attachment referenced by this note.
+    act.web.api.models.Activities.EmbededActivityContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents the attendee.
+          type: string
+        displayName:
+          description: The name of the attendee.
+          type: string
+        emailAddress:
+          description: The name of the attendee.
+          type: string
+        isInvited:
+          description: The name of the attendee.
+          type: boolean
+    act.web.api.models.Activities.RecurDay:
+      description: Specifying the day of a recurrence.
+      type: object
+      properties:
+        dayAsInt:
+          format: int32
+          description: An integer representation of the day of the week portion of a recurrence pattern.
+          type: integer
+        daysOfWeek:
+          description: Representation of the day of the week portion of a recurrence pattern.
+          type: array
+          items:
+            enum:
+            - Sunday
+            - Monday
+            - Tuesday
+            - Wednesday
+            - Thursday
+            - Friday
+            - Saturday
+            type: string
+        typedDay:
+          description: Describing the TypedDay (Day, WeekDay or Weekend Day) for the recurrence pattern
+            when DayType is "Typed".
+          enum:
+          - None
+          - Day
+          - Weekday
+          - WeekendDay
+          type: string
+        dayType:
+          description: Describing the day-portion of the recurrence pattern.
+          enum:
+          - None
+          - Numbered
+          - Named
+          - Typed
+          type: string
+        ordinal:
+          description: Describes recurrence in relative terms for certain recurrence patterns (i.e. First,
+            Third, Last) .
+          enum:
+          - None
+          - First
+          - Second
+          - Third
+          - Fourth
+          - Last
+          type: string
+    act.web.api.models.Activities.RecurSpec:
+      description: ''
+      type: object
+      properties:
+        seriesStart:
+          format: date-time
+          description: Specifying the starting time for a given day.
+          type: string
+        day:
+          $ref: '#/components/schemas/act.web.api.models.Activities.RecurDay'
+          description: Specifying the day of a recurrence.
+        seriesEnd:
+          format: date-time
+          description: Specifying the ending time for a given day.
+          type: string
+        isEndless:
+          description: 'Flag denoting whether an end date has been specified for the pattern. Note: If
+            false, the following defaults are used: For Daily and Weekly: 2 years beyond the start date
+            For Monthly and Yearly: June 6, 2073.'
+          type: boolean
+        month:
+          format: int32
+          description: Represents the specific month for certain recurrence patterns
+          type: integer
+        frequency:
+          format: int32
+          description: Represents how often for the recurrence patterns
+          type: integer
+        recurType:
+          description: Represents a unit of time used to separate recurences (i.e. Daily, Weekly, Monthly,
+            Yearly).
+          enum:
+          - None
+          - Daily
+          - Weekly
+          - Monthly
+          - Yearly
+          type: string
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files
+            or the workgroup supplemental files.
+          type: boolean
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
+    act.web.api.models.Histories.HistoryType:
+      description: This class provides information about the history event.
+      type: object
+      properties:
+        id:
+          format: int32
+          description: This unique identifier (HistoryTypeId) for a given history type.
+          type: integer
+        name:
+          description: This defines the type of history event at which it will be known.
+          type: string
+        activityTypeId:
+          format: int32
+          description: This defines the type of activity event at which it will be known.
+          type: integer
+        activityTypeName:
+          description: This defines the type of activity event at which it will be known.
+          type: string
+        description:
+          description: A written representation or account of a history event.
+          type: string
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
+          type: string
+    act.web.api.models.Tasks.AlarmRequest:
+      description: Request model for alarm operations that act on one or more activities.
+      type: object
+      properties:
+        activityIds:
+          description: "The ActivityID values of the activities to act on.\r\n            Corresponds\
+            \ to the ActivityID field returned by the alarm endpoints."
+          type: array
+          items:
+            type: string
+    act.web.api.models.Tasks.ClearAlarmsRequest:
+      description: Request model for the bulk clear-alarms operation.
+      type: object
+      properties:
+        ids:
+          description: "IDs of the alarms to clear. Accepts either the 44-character composite format\r\
+            \n            (activityId + MMddyyyy, as returned by the alarms endpoint) or a plain 36-character\r\
+            \n            GUID (activityId only). When a GUID-only ID is provided, all occurrences of\
+            \ that\r\n            activity within the configured search range are cleared."
+          type: array
+          items:
+            type: string
+    act.web.api.models.Tasks.ClearResultType:
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          description: This unique identifier (HistoryTypeId) for a given history type.
+          type: integer
+        name:
+          description: This defines the type of history event at which it will be known.
+          type: string
+    act.web.api.models.Tasks.ClearTaskHistory:
+      description: Creates a history when clearing an activity
+      type: object
+      properties:
+        startTime:
+          format: date-time
+          description: The time the activity is to begin.
+          type: string
+        endTime:
+          format: date-time
+          description: The time the activity is to end.
+          type: string
+        includeDetailsToHistory:
+          description: Indicates that shared history includes details.
+          type: boolean
+        details:
+          description: Additional detailed information about the activity.
+          type: string
+        subject:
+          description: A description of the action to be completed.
+          type: string
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this activity.
+          type: boolean
+    act.web.api.models.Tasks.SnoozeAlarmsRequest:
+      description: Request model for snoozing one or more activity alarms.
+      type: object
+      properties:
+        activityIds:
+          description: "The ActivityID values of the activities whose alarms should be snoozed.\r\n  \
+            \          Corresponds to the ActivityID field returned by the alarm endpoints."
+          type: array
+          items:
+            type: string
+        snoozeMinutes:
+          format: int32
+          description: The number of minutes to snooze the alarms for.
+          type: integer
+    act.web.api.models.Tasks.TaskClearRequest:
+      description: Creates a history when clearing an activity
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearResultType'
+          description: ''
+        history:
+          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearTaskHistory'
+          description: ''
+    act.web.api.models.Tasks.TaskListClearRequest:
+      description: Creates a history when clearing an activity
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearResultType'
+          description: ''
+        history:
+          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearTaskHistory'
+          description: ''
+        tasks:
+          description: List of tasks identifiers.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Tasks.TaskListRequest:
+      description: Creates a history when clearing an activity
+      type: object
+      properties:
+        tasks:
+          description: List of tasks identifiers.
+          type: array
+          items:
+            type: string

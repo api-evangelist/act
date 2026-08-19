@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Database",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Database",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a specific database backup file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/database/backups/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (filename) for a given database backupUser file."
+              }
+            ]
+          },
+          "docs": "Get a specific database backup file."
+        },
+        {
+          "info": {
+            "name": "Delete an existing database backup file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/database/backups/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (filename) for a given database backupUser file."
+              }
+            ]
+          },
+          "docs": "Delete an existing database backup file."
+        },
+        {
+          "info": {
+            "name": "Create demo data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/database/demo-data"
+          },
+          "docs": "Create demo data."
+        },
+        {
+          "info": {
+            "name": "Delete demo data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/database/demo-data"
+          },
+          "docs": "Delete demo data."
+        },
+        {
+          "info": {
+            "name": "Database_GetDemoDataStatus_D1CD9D1F",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/database/demo-data-status"
+          }
+        },
+        {
+          "info": {
+            "name": "Get all database backup file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/database/backups"
+          },
+          "docs": "Get all database backup file."
+        },
+        {
+          "info": {
+            "name": "Create a new database backup file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/database/backups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new database backup file."
+        },
+        {
+          "info": {
+            "name": "Upload a database backup file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/database/backups"
+          },
+          "docs": "Upload a database backup file."
+        },
+        {
+          "info": {
+            "name": "Get the database's lock state.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/database/maintenance/lock"
+          },
+          "docs": "Get the database's lock state."
+        },
+        {
+          "info": {
+            "name": "Lock or apply pending lock to the database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/database/maintenance/lock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lock or apply pending lock to the database."
+        },
+        {
+          "info": {
+            "name": "Create a new database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/database",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new database."
+        },
+        {
+          "info": {
+            "name": "Unlock the database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/database/maintenance/unlock"
+          },
+          "docs": "Unlock the database."
+        },
+        {
+          "info": {
+            "name": "Get all open connections to the database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opened/sessions"
+          },
+          "docs": "Get all open connections to the database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

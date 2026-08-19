@@ -1,0 +1,251 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Documents",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all history documents for a given company matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:id/documents",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              },
+              {
+                "name": "showFor",
+                "value": "",
+                "type": "query",
+                "description": "Filtering based on associations: 0 = All associations, 1 = Company associations, 2 = Company contact associations."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history documents for a given company matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all history documents for a given contact matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:id/documents",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history documents for a given contact matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all history documents for a given group matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/groups/:id/documents",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given group."
+              },
+              {
+                "name": "showFor",
+                "value": "",
+                "type": "query",
+                "description": "Filtering based on associations: 0 = All associations, 1 = Company associations, 2 = Company contact associations."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history documents for a given group matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get all history documents for a given opportunity matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:id/documents",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history documents for a given opportunity matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get a specific history document.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/Documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history document."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get a specific history document."
+        },
+        {
+          "info": {
+            "name": "Update an already existing history",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/Documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing history"
+        },
+        {
+          "info": {
+            "name": "Delete an existing history document.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/Documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history document."
+              }
+            ]
+          },
+          "docs": "Delete an existing history document."
+        },
+        {
+          "info": {
+            "name": "Get all history documents matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/Documents",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ]
+          },
+          "docs": "Get all history documents matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new history document.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/Documents",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new history document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,322 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Users",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a specific user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given user."
+              }
+            ]
+          },
+          "docs": "Get a specific user"
+        },
+        {
+          "info": {
+            "name": "Delete an existing user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given user."
+              },
+              {
+                "name": "reassignTo",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier (id) for the user to reassign records to.  If null, all records for this user will be deleted."
+              },
+              {
+                "name": "removeContact",
+                "value": "",
+                "type": "query",
+                "description": "If true, the contact for this user will also be removed."
+              }
+            ]
+          },
+          "docs": "Delete an existing user."
+        },
+        {
+          "info": {
+            "name": "Deprecated: Delete an existing user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/users/:id/contact-info",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given user."
+              }
+            ]
+          },
+          "docs": "Deprecated: Delete an existing user."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use Configurations: '/api/analytics/definitions/insight-views' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/users/analytics/configurations/view-definitions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for the current logged in user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deprecated (Please use Configurations: '/api/analytics/definitions/insight-views' instead)."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use Configurations: '/api/analytics/definitions/insight-views' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/users/analytics/configurations/view-definitions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for the current logged in user."
+              }
+            ]
+          },
+          "docs": "Deprecated (Please use Configurations: '/api/analytics/definitions/insight-views' instead)."
+        },
+        {
+          "info": {
+            "name": "Get all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/users"
+          },
+          "docs": "Get all users"
+        },
+        {
+          "info": {
+            "name": "Create a new user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user."
+        },
+        {
+          "info": {
+            "name": "Get all accessors matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/accessors"
+          },
+          "docs": "Get all accessors matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use Configurations: '/api/analytics/definitions/insight-views' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/users/analytics/configurations/view-definitions"
+          },
+          "docs": "Deprecated (Please use Configurations: '/api/analytics/definitions/insight-views' instead)."
+        },
+        {
+          "info": {
+            "name": "Get a specific permission.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/users/permissions"
+          },
+          "docs": "Get a specific permission."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use Configurations: '/api/analytics/settings/opportunity-pipeline' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/users/analytics/configurations/opportunity-pipeline"
+          },
+          "docs": "Deprecated (Please use Configurations: '/api/analytics/settings/opportunity-pipeline' instead)."
+        },
+        {
+          "info": {
+            "name": "Get a specific permission.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/permissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the user's permission."
+              }
+            ]
+          },
+          "docs": "Get a specific permission."
+        },
+        {
+          "info": {
+            "name": "Get a specific user permission.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/users/:userId/permissions/:id",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a specific user permission."
+        },
+        {
+          "info": {
+            "name": "Gets all user's permissions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/users/:userId/permissions",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets all user's permissions."
+        },
+        {
+          "info": {
+            "name": "Get all permissions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/permissions"
+          },
+          "docs": "Get all permissions."
+        },
+        {
+          "info": {
+            "name": "Convert an existing contact to a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:id/users",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for the contact."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert an existing contact to a user."
+        },
+        {
+          "info": {
+            "name": "Deprecated (Please use Configurations: '/api/analytics/settings/opportunity-pipeline' instead).",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/users/analytics/configurations/opportunity-pipeline/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for the current logged in user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deprecated (Please use Configurations: '/api/analytics/settings/opportunity-pipeline' instead)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

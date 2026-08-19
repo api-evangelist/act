@@ -1,0 +1,4149 @@
+{
+  "item": [
+    {
+      "id": "73291a39-3bd7-45c3-aa74-9debb5e8279d",
+      "name": "TaskTypes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11ec361f-4a51-4c5e-be13-c915d19a9c87",
+          "name": "Gets the regarding dropdown list by task type id.",
+          "request": {
+            "name": "Gets the regarding dropdown list by task type id.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "task-types",
+                ":taskTypeId",
+                "regarding-dropdown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "taskTypeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9d2e410-9351-4149-b059-88cca743efd3",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":taskTypeId",
+                    "regarding-dropdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "taskTypeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"value\": \"string\",\n    \"description\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"value\": \"string\",\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0933ae8-e8fb-4062-8296-e8d5582bf479",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":taskTypeId",
+                    "regarding-dropdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "taskTypeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "099f00f1-484e-45a5-ba6c-02912b45f179",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":taskTypeId",
+                    "regarding-dropdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "taskTypeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ee97303-6e1e-4a46-b052-4ad31a669750",
+          "name": "Gets all task types.",
+          "request": {
+            "name": "Gets all task types.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "task-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa870ad5-4c95-487a-a415-b180f62c66ce",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9826,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isActive\": false,\n    \"isCustom\": true,\n    \"isDeletable\": false,\n    \"taskTypeGuid\": \"string\",\n    \"historyTypes\": [\n      {\n        \"id\": 2597,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"clearType\": \"NOTCOMPLETED\",\n        \"isDefault\": true\n      },\n      {\n        \"id\": 2847,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"clearType\": \"COMPLETED\",\n        \"isDefault\": false\n      }\n    ],\n    \"defaultPreferences\": {\n      \"priority\": 4235,\n      \"reminder\": 2256,\n      \"duration\": 9732,\n      \"isAllDayEvent\": false,\n      \"autoRollover\": true,\n      \"color\": \"string\",\n      \"taskDropDownFields\": [\n        {\n          \"code\": \"string\",\n          \"value\": true\n        },\n        {\n          \"code\": \"string\",\n          \"value\": true\n        }\n      ]\n    }\n  },\n  {\n    \"id\": 6686,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isActive\": true,\n    \"isCustom\": true,\n    \"isDeletable\": true,\n    \"taskTypeGuid\": \"string\",\n    \"historyTypes\": [\n      {\n        \"id\": 6065,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"clearType\": \"OTHER\",\n        \"isDefault\": true\n      },\n      {\n        \"id\": 5298,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"clearType\": \"COMPLETED\",\n        \"isDefault\": true\n      }\n    ],\n    \"defaultPreferences\": {\n      \"priority\": 6245,\n      \"reminder\": 2712,\n      \"duration\": 2796,\n      \"isAllDayEvent\": true,\n      \"autoRollover\": true,\n      \"color\": \"string\",\n      \"taskDropDownFields\": [\n        {\n          \"code\": \"string\",\n          \"value\": false\n        },\n        {\n          \"code\": \"string\",\n          \"value\": false\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0853f09-03c7-4fa8-be05-6a12756210c9",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0bbd382-bf44-45f0-a1bb-fefd7a6bcbfd",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8aea164f-9117-43ea-a26b-f78c6c6cb8a0",
+          "name": "Create a new custom task types.",
+          "request": {
+            "name": "Create a new custom task types.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "task-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isActive",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isCustom",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isDeletable",
+                  "value": "<boolean>",
+                  "description": "Indicate that the task type can be deleted."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskTypeGuid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "historyTypes",
+                  "value": "{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "historyTypes",
+                  "value": "{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "priority",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reminder",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "duration",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isAllDayEvent",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoRollover",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "color",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskDropDownFields",
+                  "value": "[{\"code\":\"<string>\",\"value\":\"<boolean>\"},{\"code\":\"<string>\",\"value\":\"<boolean>\"}]"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e4a4cec-4d48-41bb-94d3-3ad563642bcd",
+              "name": "Created indicates that the request resulted in a new resource created before the response was sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8902,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"isActive\": false,\n  \"isCustom\": true,\n  \"isDeletable\": true,\n  \"taskTypeGuid\": \"string\",\n  \"historyTypes\": [\n    {\n      \"id\": 3114,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"clearType\": \"ERASED\",\n      \"isDefault\": false\n    },\n    {\n      \"id\": 8078,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"clearType\": \"OTHER\",\n      \"isDefault\": false\n    }\n  ],\n  \"defaultPreferences\": {\n    \"priority\": 2845,\n    \"reminder\": 4394,\n    \"duration\": 9054,\n    \"isAllDayEvent\": false,\n    \"autoRollover\": true,\n    \"color\": \"string\",\n    \"taskDropDownFields\": [\n      {\n        \"code\": \"string\",\n        \"value\": false\n      },\n      {\n        \"code\": \"string\",\n        \"value\": false\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a7053b1-cf8e-4e8a-80eb-e1abe21cb940",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e78b32ad-e030-4b14-97b4-412e4a4bc4f5",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "448bcf50-ffc4-4541-a7cb-c03f2b675dba",
+              "name": "NotFound indicates that the requested resource does not exist on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "426f2125-9a2c-4724-9864-48bcaa488135",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14842baf-12c9-4e53-8d9e-28e3661dcbef",
+          "name": "Get task type by identifier.",
+          "request": {
+            "name": "Get task type by identifier.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "task-types",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (id) for a given task type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7aa6229-a810-47f4-8a7e-f6132e77eb81",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8902,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"isActive\": false,\n  \"isCustom\": true,\n  \"isDeletable\": true,\n  \"taskTypeGuid\": \"string\",\n  \"historyTypes\": [\n    {\n      \"id\": 3114,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"clearType\": \"ERASED\",\n      \"isDefault\": false\n    },\n    {\n      \"id\": 8078,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"clearType\": \"OTHER\",\n      \"isDefault\": false\n    }\n  ],\n  \"defaultPreferences\": {\n    \"priority\": 2845,\n    \"reminder\": 4394,\n    \"duration\": 9054,\n    \"isAllDayEvent\": false,\n    \"autoRollover\": true,\n    \"color\": \"string\",\n    \"taskDropDownFields\": [\n      {\n        \"code\": \"string\",\n        \"value\": false\n      },\n      {\n        \"code\": \"string\",\n        \"value\": false\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4defb191-cf67-46fc-ae05-6eba06b32b71",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fd9f6e7-70d1-47a1-b452-d5c81a41b7f8",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62f6299a-0811-4c30-ba21-48b7a7ea91d0",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ad9b9f9-7fa7-4907-8b2a-9f9291cfbd76",
+          "name": "Update an already existing custom task type.",
+          "request": {
+            "name": "Update an already existing custom task type.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "task-types",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (id) for a given custom task type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isActive",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isCustom",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isDeletable",
+                  "value": "<boolean>",
+                  "description": "Indicate that the task type can be deleted."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskTypeGuid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "historyTypes",
+                  "value": "{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "historyTypes",
+                  "value": "{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "priority",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reminder",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "duration",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isAllDayEvent",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoRollover",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "color",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskDropDownFields",
+                  "value": "[{\"code\":\"<string>\",\"value\":\"<boolean>\"},{\"code\":\"<string>\",\"value\":\"<boolean>\"}]"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e7a0860-5ccb-4e52-97f9-1e52b937dbfc",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8902,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"isActive\": false,\n  \"isCustom\": true,\n  \"isDeletable\": true,\n  \"taskTypeGuid\": \"string\",\n  \"historyTypes\": [\n    {\n      \"id\": 3114,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"clearType\": \"ERASED\",\n      \"isDefault\": false\n    },\n    {\n      \"id\": 8078,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"clearType\": \"OTHER\",\n      \"isDefault\": false\n    }\n  ],\n  \"defaultPreferences\": {\n    \"priority\": 2845,\n    \"reminder\": 4394,\n    \"duration\": 9054,\n    \"isAllDayEvent\": false,\n    \"autoRollover\": true,\n    \"color\": \"string\",\n    \"taskDropDownFields\": [\n      {\n        \"code\": \"string\",\n        \"value\": false\n      },\n      {\n        \"code\": \"string\",\n        \"value\": false\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e290b615-db97-40c9-8a8b-5573d6af6246",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02626dc9-1af0-4437-b87d-d04a3d93b511",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29e7556c-0e99-423c-b80a-0731d277b16b",
+              "name": "NotFound indicates that the requested resource does not exist on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59abebc5-690b-4ecd-8810-53a24bf9bfd6",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30580cf6-fafd-40c1-a4e9-28e1946cb4ec",
+          "name": "Delete an existing custom task type.",
+          "request": {
+            "name": "Delete an existing custom task type.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "task-types",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (id) for a given custom task type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15682b2d-77ce-4ace-af94-a2c21cffdf8a",
+              "name": "NoContent indicates that the request has been successfully processed and that the response is intentionally blank.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1fdc806-5c9a-4c12-96c1-10877f2b456d",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "04f60f98-60c7-4150-9e59-2fc5c19a56c1",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dbad3183-8f4a-4e71-98fe-d0ff37916e95",
+              "name": "NotFound indicates that the requested resource does not exist on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c26024d-9d26-4c33-a1fc-01d99dc19adb",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c9f59d2-4823-48b8-8bc4-987094282c83",
+          "name": "Partially update an already existing custom task type.",
+          "request": {
+            "name": "Partially update an already existing custom task type.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "task-types",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (id) for a given custom task type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isActive",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isCustom",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isDeletable",
+                  "value": "<boolean>",
+                  "description": "Indicate that the task type can be deleted."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskTypeGuid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "historyTypes",
+                  "value": "{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "historyTypes",
+                  "value": "{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "priority",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reminder",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "duration",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isAllDayEvent",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoRollover",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "color",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskDropDownFields",
+                  "value": "[{\"code\":\"<string>\",\"value\":\"<boolean>\"},{\"code\":\"<string>\",\"value\":\"<boolean>\"}]"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "05a3ce49-23b5-4c7d-af06-219630c28117",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8902,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"isActive\": false,\n  \"isCustom\": true,\n  \"isDeletable\": true,\n  \"taskTypeGuid\": \"string\",\n  \"historyTypes\": [\n    {\n      \"id\": 3114,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"clearType\": \"ERASED\",\n      \"isDefault\": false\n    },\n    {\n      \"id\": 8078,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"clearType\": \"OTHER\",\n      \"isDefault\": false\n    }\n  ],\n  \"defaultPreferences\": {\n    \"priority\": 2845,\n    \"reminder\": 4394,\n    \"duration\": 9054,\n    \"isAllDayEvent\": false,\n    \"autoRollover\": true,\n    \"color\": \"string\",\n    \"taskDropDownFields\": [\n      {\n        \"code\": \"string\",\n        \"value\": false\n      },\n      {\n        \"code\": \"string\",\n        \"value\": false\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "240d4f88-6115-4c3a-92a4-e94daf369ebf",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "32da6d5b-87d5-44f0-b5bb-bc173793adfc",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e224843a-da20-44da-8699-40e2cbfa8b33",
+              "name": "NotFound indicates that the requested resource does not exist on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1133a02-9ecc-4167-bd0b-2b5c39edf68c",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (id) for a given custom task type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicate that the task type can be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "isDeletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":1716,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "{\"id\":5763,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "priority",
+                      "value": "6219"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reminder",
+                      "value": "7246"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "duration",
+                      "value": "1323"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isAllDayEvent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "autoRollover",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "color",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskDropDownFields",
+                      "value": "[{\"code\":\"string\",\"value\":true},{\"code\":\"string\",\"value\":true}]"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39daefa8-546d-4452-b7a6-7cdc12be8b49",
+          "name": "Partially update for list of already created task types.",
+          "request": {
+            "name": "Partially update for list of already created task types.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "task-types",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isActive",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isCustom",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isDeletable",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskTypeGuid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "historyTypes",
+                  "value": "[{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"},{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"}]"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultPreferences",
+                  "value": "{\"priority\":\"<integer>\",\"reminder\":\"<integer>\",\"duration\":\"<integer>\",\"isAllDayEvent\":\"<boolean>\",\"autoRollover\":\"<boolean>\",\"color\":\"<string>\",\"taskDropDownFields\":[{\"code\":\"<string>\",\"value\":\"<boolean>\"},{\"code\":\"<string>\",\"value\":\"<boolean>\"}]}"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isActive",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isCustom",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isDeletable",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "taskTypeGuid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "historyTypes",
+                  "value": "[{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"},{\"id\":\"<integer>\",\"name\":\"<string>\",\"description\":\"<string>\",\"clearType\":\"<string>\",\"isDefault\":\"<boolean>\"}]"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultPreferences",
+                  "value": "{\"priority\":\"<integer>\",\"reminder\":\"<integer>\",\"duration\":\"<integer>\",\"isAllDayEvent\":\"<boolean>\",\"autoRollover\":\"<boolean>\",\"color\":\"<string>\",\"taskDropDownFields\":[{\"code\":\"<string>\",\"value\":\"<boolean>\"},{\"code\":\"<string>\",\"value\":\"<boolean>\"}]}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44eeaff4-2e20-4000-9dde-958f681aac78",
+              "name": "OK indicates that the request succeeded and that the requested information is in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "7174"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8267,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"ERASED\",\"isDefault\":true},{\"id\":672,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":false}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":1082,\"reminder\":4720,\"duration\":4864,\"isAllDayEvent\":false,\"autoRollover\":false,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "8554"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8402,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"NOTCOMPLETED\",\"isDefault\":false},{\"id\":2749,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":2145,\"reminder\":9751,\"duration\":5576,\"isAllDayEvent\":false,\"autoRollover\":true,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9826,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isActive\": false,\n    \"isCustom\": true,\n    \"isDeletable\": false,\n    \"taskTypeGuid\": \"string\",\n    \"historyTypes\": [\n      {\n        \"id\": 2597,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"clearType\": \"NOTCOMPLETED\",\n        \"isDefault\": true\n      },\n      {\n        \"id\": 2847,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"clearType\": \"COMPLETED\",\n        \"isDefault\": false\n      }\n    ],\n    \"defaultPreferences\": {\n      \"priority\": 4235,\n      \"reminder\": 2256,\n      \"duration\": 9732,\n      \"isAllDayEvent\": false,\n      \"autoRollover\": true,\n      \"color\": \"string\",\n      \"taskDropDownFields\": [\n        {\n          \"code\": \"string\",\n          \"value\": true\n        },\n        {\n          \"code\": \"string\",\n          \"value\": true\n        }\n      ]\n    }\n  },\n  {\n    \"id\": 6686,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isActive\": true,\n    \"isCustom\": true,\n    \"isDeletable\": true,\n    \"taskTypeGuid\": \"string\",\n    \"historyTypes\": [\n      {\n        \"id\": 6065,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"clearType\": \"OTHER\",\n        \"isDefault\": true\n      },\n      {\n        \"id\": 5298,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"clearType\": \"COMPLETED\",\n        \"isDefault\": true\n      }\n    ],\n    \"defaultPreferences\": {\n      \"priority\": 6245,\n      \"reminder\": 2712,\n      \"duration\": 2796,\n      \"isAllDayEvent\": true,\n      \"autoRollover\": true,\n      \"color\": \"string\",\n      \"taskDropDownFields\": [\n        {\n          \"code\": \"string\",\n          \"value\": false\n        },\n        {\n          \"code\": \"string\",\n          \"value\": false\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7785b63-6dcf-4d31-8dae-5e40db477197",
+              "name": "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "7174"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8267,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"ERASED\",\"isDefault\":true},{\"id\":672,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":false}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":1082,\"reminder\":4720,\"duration\":4864,\"isAllDayEvent\":false,\"autoRollover\":false,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "8554"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8402,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"NOTCOMPLETED\",\"isDefault\":false},{\"id\":2749,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":2145,\"reminder\":9751,\"duration\":5576,\"isAllDayEvent\":false,\"autoRollover\":true,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "756ee1fd-9fb0-4725-b7a1-309184576a49",
+              "name": "Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "7174"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8267,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"ERASED\",\"isDefault\":true},{\"id\":672,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":false}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":1082,\"reminder\":4720,\"duration\":4864,\"isAllDayEvent\":false,\"autoRollover\":false,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "8554"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8402,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"NOTCOMPLETED\",\"isDefault\":false},{\"id\":2749,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":2145,\"reminder\":9751,\"duration\":5576,\"isAllDayEvent\":false,\"autoRollover\":true,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15f04e55-0fbf-4c60-8bd8-fbd423d266dc",
+              "name": "NotFound indicates that the requested resource does not exist on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "7174"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8267,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"ERASED\",\"isDefault\":true},{\"id\":672,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":false}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":1082,\"reminder\":4720,\"duration\":4864,\"isAllDayEvent\":false,\"autoRollover\":false,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "8554"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8402,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"NOTCOMPLETED\",\"isDefault\":false},{\"id\":2749,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":2145,\"reminder\":9751,\"duration\":5576,\"isAllDayEvent\":false,\"autoRollover\":true,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4a0264c-cb57-4323-aee9-fad79b23571c",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "task-types",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "7174"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8267,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"ERASED\",\"isDefault\":true},{\"id\":672,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":false}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":1082,\"reminder\":4720,\"duration\":4864,\"isAllDayEvent\":false,\"autoRollover\":false,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "8554"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isActive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isCustom",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isDeletable",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "taskTypeGuid",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "historyTypes",
+                      "value": "[{\"id\":8402,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"NOTCOMPLETED\",\"isDefault\":false},{\"id\":2749,\"name\":\"string\",\"description\":\"string\",\"clearType\":\"COMPLETED\",\"isDefault\":true}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultPreferences",
+                      "value": "{\"priority\":2145,\"reminder\":9751,\"duration\":5576,\"isAllDayEvent\":false,\"autoRollover\":true,\"color\":\"string\",\"taskDropDownFields\":[{\"code\":\"string\",\"value\":false},{\"code\":\"string\",\"value\":false}]}"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimta.act.com/act.web.api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef527d02-b907-46cc-a44c-e456dd999551",
+    "name": "Act! Web API — TaskTypes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.\n\nContact Support:\n Name: Act! Developers",
+      "type": "text/plain"
+    }
+  }
+}

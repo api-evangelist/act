@@ -1,0 +1,134 @@
+generated: '2026-08-13'
+method: derived
+status: candidate
+source: >-
+  Derived from openapi/*.yml (the provider Swagger 2.0 document at
+  https://apimta.act.com/act.web.api/swagger/docs/v1). Searched first for an
+  official Act! MCP server: no mcp/ or /mcp endpoint on apimta.act.com,
+  developer.act.com or www.act.com; nothing on https://www.act.com/developer/;
+  no MCP repo in the Swiftpage GitHub organization; no package on npm or PyPI;
+  no /.well-known/ai-plugin.json, oauth-protected-resource or
+  oauth-authorization-server on any Act! host (all 404 — see
+  well-known/act-well-known.yml).
+description: >-
+  Act! operates no MCP server. This file is a CANDIDATE tool surface derived
+  from the Act! Web API's own operations so the shape of an Act! MCP server can
+  be reasoned about — it is not something Act! ships and no client can call it.
+  The only MCP server that reaches Act! CRM today is third-party and read-only:
+  CData's act-crm-mcp-server-by-cdata, which speaks to Act! over CData's own
+  connector rather than the Web API.
+
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+  checked: '2026-08-13'
+  note: >-
+    Nobody ships an Act! MCP server, first-party or otherwise, that an agent can
+    reach as a hosted endpoint. Recorded as mode:none deliberately — see
+    third_party below for what does exist.
+
+third_party:
+  - name: act-crm-mcp-server-by-cdata
+    vendor: CData Software
+    repo: https://github.com/CDataSoftware/act-crm-mcp-server-by-cdata
+    mode: local-stdio
+    read_only: true
+    official: false
+    note: >-
+      Community/vendor server, not Act!'s. Requires a CData driver and local
+      installation before any agent sees it, and exposes CData's SQL projection
+      of Act! rather than the Web API's operations.
+
+candidate_tools_note: >-
+  Grounded one-for-one in real operationIds from openapi/. Every rest[] value
+  below can be grepped in this repo. Parameters are whatever the named operation
+  declares — no inputSchema is invented here.
+candidate_tools:
+  - name: act_search_contacts
+    description: Search Act! contacts using an OData $filter, $orderby, $top and $skip.
+    rest: [Contacts_GetContacts_70C5959A]
+    spec: openapi/act-contacts-api-openapi.yml
+  - name: act_create_contact
+    description: Create a new Act! contact.
+    rest: [Contacts_PostContact_03914590]
+    spec: openapi/act-contacts-api-openapi.yml
+  - name: act_search_companies
+    description: List Act! companies matching an optional OData query.
+    rest: [Companies_GetCompanies_BF3259E6]
+    spec: openapi/act-companies-api-openapi.yml
+  - name: act_create_company
+    description: Create a new Act! company.
+    rest: [Companies_PostCompany_6941ACD1]
+    spec: openapi/act-companies-api-openapi.yml
+  - name: act_search_opportunities
+    description: List Act! opportunities matching an optional OData query.
+    rest: [Opportunities_GetOpportunities_DC941A41]
+    spec: openapi/act-opportunities-api-openapi.yml
+  - name: act_create_opportunity
+    description: Create a new Act! opportunity.
+    rest: [Opportunities_PostOpportunity_A5EFCD6E]
+    spec: openapi/act-opportunities-api-openapi.yml
+  - name: act_list_groups
+    description: List Act! groups matching an optional OData query.
+    rest: [Groups_GetGroups_DD9B20F4]
+    spec: openapi/act-groups-api-openapi.yml
+  - name: act_list_history
+    description: Read Act! history records, all or scoped to a contact.
+    rest: [History_Get_F9FA0741, History_GetByContact_6664D670]
+    spec: openapi/act-history-api-openapi.yml
+  - name: act_log_history
+    description: Log a history record (a completed interaction) against Act! records.
+    rest: [History_Post_E2B6CABD]
+    spec: openapi/act-history-api-openapi.yml
+  - name: act_list_tasks
+    description: List Act! tasks/activities matching an optional OData query.
+    rest: [Tasks_GetTasks_82532732]
+    spec: openapi/act-tasks-api-openapi.yml
+  - name: act_create_task
+    description: Schedule a new Act! task/activity.
+    rest: [Tasks_PostTasks_87E31868]
+    spec: openapi/act-tasks-api-openapi.yml
+  - name: act_add_note
+    description: Attach a note to Act! records.
+    rest: [Notes_Post_DE6D7616]
+    spec: openapi/act-notes-api-openapi.yml
+  - name: act_describe_schema
+    description: >-
+      Read the tenant's field and entity metadata so an agent can discover the
+      custom fields and custom entities present in THIS Act! database before
+      composing a query.
+    rest: [MetadataInfo_GetField_76332063, MetadataInfo_GetEntities_76EDEF77]
+    spec: openapi/act-metadata-info-api-openapi.yml
+  - name: act_get_system_info
+    description: Read the deployed Web API build (anonymous route) to confirm which operations exist.
+    rest: [System_GetVersion_2833248C]
+    spec: openapi/act-system-api-openapi.yml
+  - name: act_register_webhook
+    description: Register a webhook on an Act! entity/trigger pair.
+    rest: [Webhooks_Post_EE3CCFA8]
+    spec: openapi/act-webhooks-api-openapi.yml
+candidate_tools_verification:
+  method: >-
+    Every operationId above was read out of
+    openapi/_original/act-web-api-swagger.json and is present in the matching
+    refined spec named on the same row. None were composed by hand.
+  verified: '2026-08-13'
+  verified_against: openapi/
+
+blockers_for_a_real_mcp_server:
+  - >-
+    Act! Web API is deployed per-database on per-customer hosts
+    (https://{server}/{customer}-api/act.web.api or a self-hosted IIS box), so a
+    single hosted MCP endpoint cannot exist without a tenant-routing layer.
+  - >-
+    Authentication is HTTP Basic credentials exchanged for a JWT, with the
+    target database named in a header. There is no OAuth authorization server,
+    so there is no standard consent flow for an agent to obtain access.
+  - >-
+    The per-tenant schema is mutable (custom fields, custom entities), which
+    means a fixed inputSchema would be wrong for most tenants; any real server
+    would have to build tools from GET /api/metadata at connect time.

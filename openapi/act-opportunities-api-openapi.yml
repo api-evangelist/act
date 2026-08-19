@@ -1,0 +1,2529 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Opportunities
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Opportunities
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/companies/{companyId}/associated-opportunities/{opportunityId}:
+    put:
+      tags:
+      - Opportunities
+      summary: Associate an opportunity to a specific company.
+      operationId: Opportunities_PutAssociatedOpportunitiesToCompany_B42852B2
+      parameters:
+      - name: companyId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given company.
+        schema:
+          type: string
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Dissociate an opportunity from a specific company.
+      operationId: Opportunities_DeleteAssociatedOpportunitiesFromCompany_DBEAE28F
+      parameters:
+      - name: companyId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given company.
+        schema:
+          type: string
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/companies/{companyId}/associated-opportunities:
+    get:
+      tags:
+      - Opportunities
+      summary: List of opportunities from a specific company and matching an (optional) OData query.
+      operationId: Opportunities_GetAssociatedOpportunitiesFromCompany_D898E4CF
+      parameters:
+      - name: companyId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given company.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Opportunities
+      summary: Associate a list of opportunities to a specific company.
+      operationId: Opportunities_PutAssociatedOpportunitiesToCompany_9E6C3979
+      parameters:
+      - name: companyId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given company.
+        schema:
+          type: string
+      - name: phoneFormat
+        in: query
+        required: false
+        description: 'Phone formats: None: APC Local Format, E164: Internation Format'
+        schema:
+          type: string
+          enum:
+          - None
+          - E164
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+        description: A list of opportunities.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Dissociate a list of opportunities from a specific company.
+      operationId: Opportunities_DeleteAssociatedOpportunitiesFromCompany_041429A2
+      parameters:
+      - name: companyId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given company.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+        description: A list of opportunity identifiers.
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{contactId}/associated-opportunities/{opportunityId}:
+    put:
+      tags:
+      - Opportunities
+      summary: Associate an opportunity to a specific contact.
+      operationId: Opportunities_PutAssociatedOpportunitiesToContact_11F1253C
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Dissociate an opportunity from a specific contact.
+      operationId: Opportunities_DeleteAssociatedOpportunitiesFromContact_5C2F219C
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{contactId}/associated-opportunities:
+    get:
+      tags:
+      - Opportunities
+      summary: List of opportunities from a specific contact and matching an (optional) OData query.
+      operationId: Opportunities_GetAssociatedOpportunitiesFromContact_DFC33EAE
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Opportunities
+      summary: Associate a list of opportunities to a specific contact.
+      operationId: Opportunities_PutAssociatedOpportunitiesToContact_A692E128
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+        description: A list of opportunities.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Dissociate a list of opportunities from a specific contact.
+      operationId: Opportunities_DeleteAssociatedOpportunitiesFromContact_73BCA205
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+        description: A list of opportunities.
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/groups/{groupId}/associated-opportunities/{opportunityId}:
+    put:
+      tags:
+      - Opportunities
+      summary: Associate an opportunity to a specific group.
+      operationId: Opportunities_PutAssociatedOpportunitiesToGroup_5BC8251D
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group.
+        schema:
+          type: string
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Dissociate an opportunity from a specific group.
+      operationId: Opportunities_DeleteAssociatedOpportunitiesFromGroup_FDC315EA
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group.
+        schema:
+          type: string
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/groups/{groupId}/associated-opportunities:
+    get:
+      tags:
+      - Opportunities
+      summary: List of opportunities from a specific group and matching an (optional) OData query.
+      operationId: Opportunities_GetAssociatedOpportunitiesFromGroup_FDD26AB8
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Opportunities
+      summary: Associate a list of opportunities to a specific group.
+      operationId: Opportunities_PutAssociatedOpportunitiesToGroup_1AF6F015
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group.
+        schema:
+          type: string
+      - name: phoneFormat
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - None
+          - E164
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+        description: A list of opportunities.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Dissociate a list of opportunities from a specific group.
+      operationId: Opportunities_DeleteAssociatedOpportunitiesFromGroup_83F48409
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given group.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityListRequest'
+        description: A list of opportunities.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/{opportunityId}:
+    get:
+      tags:
+      - Opportunities
+      summary: Get a specific opportunity.
+      operationId: Opportunities_GetOpportunity_E0756909
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Opportunities
+      summary: Update an already existing opportunity.
+      operationId: Opportunities_PutOpportunity_A7A0EC30
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        description: The opportunity definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Delete a specific opportunity.
+      operationId: Opportunities_DeleteOpportunity_C205C3A0
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Opportunities
+      summary: Partially update an already existing opportunity.
+      operationId: Opportunities_PatchOpportunity_254E3997
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        description: The opportunity definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/processes/{processId}:
+    get:
+      tags:
+      - Opportunities
+      summary: Get a opportunity process.
+      operationId: Opportunities_GetOpportunityProcess_D2CAF9EE
+      parameters:
+      - name: processId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given process.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Opportunities
+      summary: Update an already existing process.
+      operationId: Opportunities_PutOpportunityProcess_2391CBFF
+      parameters:
+      - name: processId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given process.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+        description: The opportunity process.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Delete a specific opportunity process.
+      operationId: Opportunities_DeleteOpportunityProcess_97684F2C
+      parameters:
+      - name: processId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given process.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Opportunities
+      summary: Partially update an already existing process.
+      operationId: Opportunities_PatchOpportunityProcess_06A5EC19
+      parameters:
+      - name: processId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given process.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+        description: The opportunity process.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/{opportunityId}/products/{productId}:
+    get:
+      tags:
+      - Opportunities
+      summary: Get all product(s) that are associated with a given opportunity and matching an (optional)
+        OData query.
+      operationId: Opportunities_GetOpportunityProduct_B07EB976
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      - name: productId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity product.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Opportunities
+      summary: Update an already existing opportunity.
+      operationId: Opportunities_PutOpportunityProduct_9E7EA7C6
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      - name: productId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity product.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+        description: The opportunity product definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Delete a specific opportunity product.
+      operationId: Opportunities_DeleteOpportunityProduct_82B0765D
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      - name: productId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given product that is associated with a opportunity.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Opportunities
+      summary: Partially update an already existing opportunity product.
+      operationId: Opportunities_PatchOpportunityProduct_647E55BB
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      - name: productId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity product.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+        description: The opportunity product definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/stages/{stageId}:
+    get:
+      tags:
+      - Opportunities
+      summary: Gets a stage.
+      operationId: Opportunities_GetOpportunityStage_ACC53B3A
+      parameters:
+      - name: stageId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given stage.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Opportunities
+      summary: Update an already existing stage.
+      operationId: Opportunities_PutOpportunityStage_C1A3196D
+      parameters:
+      - name: stageId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given process.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+        description: The opportunity stage.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Opportunities
+      summary: Delete a specific opportunity stage.
+      operationId: Opportunities_DeleteOpportunityStage_FBC359AE
+      parameters:
+      - name: stageId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given stage.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Opportunities
+      summary: Partially update an already existing stage.
+      operationId: Opportunities_PatchOpportunityStage_33FD1F55
+      parameters:
+      - name: stageId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given stage.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+        description: The opportunity stage.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/lookup:
+    get:
+      tags:
+      - Opportunities
+      summary: Converts an OData filter query into criteria JSON for use with dynamic list preview endpoints
+      operationId: Opportunities_GetLookup_BEE648B9
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+  /api/opportunities:
+    get:
+      tags:
+      - Opportunities
+      summary: Get all opportunity matching an (optional) OData query.
+      operationId: Opportunities_GetOpportunities_DC941A41
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Opportunities
+      summary: Create a new Opportunity.
+      operationId: Opportunities_PostOpportunity_A5EFCD6E
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        description: The opportunity definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunity-lists:
+    get:
+      tags:
+      - Opportunities
+      summary: Get a list of opportunities matching an (optional) OData query.
+      operationId: Opportunities_GetOpportunityList_CDA0CD53
+      parameters:
+      - name: ids
+        in: query
+        required: true
+        description: An array of unique identifier (id) for a given tasks.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/{entityName}/{id}/associated-opportunities:
+    get:
+      tags:
+      - Opportunities
+      summary: List of opportunities from a specific custom entity and matching an (optional) OData query.
+      operationId: Opportunities_GetAssociatedOpportunitiesFromCustomEntity_CAF7B8D5
+      parameters:
+      - name: entityName
+        in: path
+        required: true
+        description: The name of the custom entity.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given entity row
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/{opportunityId}/access:
+    get:
+      tags:
+      - Opportunities
+      summary: Get all opportunity access levels matching an (optional) OData query.
+      operationId: Opportunities_GetOpportunityAccessLevel_8D67555D
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier for the opportunity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Opportunities
+      summary: Update an already existing opportunity access levels accessors.
+      operationId: Opportunities_PutOpportunityAccessors_9206D7E6
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+        description: The unique identifier (id) for a given accessor.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/processes:
+    get:
+      tags:
+      - Opportunities
+      summary: Get all processes matching an (optional) OData query.
+      operationId: Opportunities_GetOpportunityProcesses_5865E751
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Opportunities
+      summary: Create a new process.
+      operationId: Opportunities_PostOpportunityProcess_4F592A0C
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.ProcessRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.ProcessRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.ProcessRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.ProcessRequest'
+        description: The process to be added.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.ProcessRequest'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.ProcessRequest'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.ProcessRequest'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/{opportunityId}/products:
+    get:
+      tags:
+      - Opportunities
+      summary: Get all product(s) that are associated with a given opportunity and matching an (optional)
+        OData query.
+      operationId: Opportunities_GetOpportunityProducts_8E133CEE
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Opportunities
+      summary: Create a new Opportunity Product.
+      operationId: Opportunities_PostOpportunityProduct_128DC173
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given opportunity.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+        description: The opportunity product definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.OpportunityProduct'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/stages:
+    get:
+      tags:
+      - Opportunities
+      summary: Get all stages matching an (optional) OData query.
+      operationId: Opportunities_GetOpportunityStages_6D9C2133
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/opportunities/processes/{processId}/stages:
+    get:
+      tags:
+      - Opportunities
+      summary: Get all stages for a given process and matching an (optional) OData query.
+      operationId: Opportunities_GetOpportunityStagesByProcess_B86A73FE
+      parameters:
+      - name: processId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given process.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Opportunities
+      summary: Create a new Stage.
+      operationId: Opportunities_PostOpportunityStage_B14F6438
+      parameters:
+      - name: processId
+        in: path
+        required: true
+        description: The unique identifier (id) for a given process.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.StageInfo'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.StageInfo'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.StageInfo'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Opportunities.StageInfo'
+        description: The process stage to be added.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
+    act.web.api.models.Contacts.AccessLevel:
+      description: ''
+      type: object
+      properties:
+        type:
+          description: Defines the entity's access level.
+          enum:
+          - Public
+          - Private
+          - LimitedAccess
+          type: string
+        accessors:
+          description: The accessors that have been selected for limited access.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+    act.web.api.models.Contacts.EmbeddedContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+          readOnly: true
+        company:
+          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+          type: string
+        isInvited:
+          description: Invited contact flag
+          type: boolean
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
+    act.web.api.models.Opportunities.Opportunity:
+      description: A contact or company which has been qualified.
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents a potential piece of business.
+          type: string
+        name:
+          description: The name of an opportunity.
+          type: string
+        actualCloseDate:
+          format: date-time
+          description: The date that the opportunity as closed.
+          type: string
+        companies:
+          description: List of companies that are associated to this opportunity entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
+        competitor:
+          description: Gets the name of the competitor for this opportunity.
+          type: string
+        contactNames:
+          description: The names of the contacts associated with this opportunity.
+          type: string
+        contacts:
+          description: List of contacts that are associated to this opportunity entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Contacts.EmbeddedContact'
+        creator:
+          description: The name of the creator of this opportunity.
+          type: string
+        daysOpen:
+          format: int32
+          description: The number of days this opportunity has been opened.
+          type: integer
+        daysInStage:
+          format: int32
+          description: the number of days this opportunity has been in a given stage.
+          type: integer
+        estimatedCloseDate:
+          format: date-time
+          description: The date the opportunity is expected to be closed.
+          type: string
+        stageStartDate:
+          format: date-time
+          description: The date the opportunity stage started.
+          type: string
+        grossMargin:
+          format: double
+          description: Represents the net sales less the cost of goods and services sold.
+          type: number
+        groups:
+          description: List of groups that are associated to this opportunity entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
+        isPrivate:
+          description: Indicates whether this opportunity is private
+          type: boolean
+        acl:
+          description: Access Levels
+          type: string
+        openDate:
+          format: date-time
+          description: The date the opportunity was opened.
+          type: string
+        probability:
+          format: int32
+          description: The likelihood this opportunity will will be won by the close date.
+          type: integer
+        productTotal:
+          format: double
+          description: The total cost of the product or services.
+          type: number
+        product:
+          description: Comma-delimited list of product names.
+          type: string
+        reason:
+          description: Describes why the opportunity status changed.
+          type: string
+        source:
+          description: Describes the source of the opportunity.
+          type: string
+        sourceId:
+          description: The external source id for the opportunity
+          type: string
+        stage:
+          $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+          description: The stage of the opportunity.
+        status:
+          description: This gets/sets the opportunity status (0 = Open, 1 = Won, 2 = Lost, or 3 = inactive).
+          enum:
+          - Open
+          - Won
+          - Lost
+          - Inactive
+          type: string
+        statusName:
+          description: This displays the opportunity status name (Open, Won, Lost, or inactive).
+          type: string
+          readOnly: true
+        importDate:
+          format: date-time
+          description: This readonly property displays the date that the opportunity was imported into
+            the system.
+          type: string
+        totalPerCompany:
+          format: double
+          description: The average total per associated company.
+          type: number
+        totalPerContact:
+          format: double
+          description: The average total per associated contact.
+          type: number
+        totalPerGroup:
+          format: double
+          description: The average total per associated group.
+          type: number
+        weightedTotal:
+          format: double
+          description: The weight of the product.
+          type: number
+        quickbooksInvoiceId:
+          description: Quickbooks external Id to match record with quickbooks contact
+          type: string
+        relatedEntitiesResolver:
+          description: 'If true: prevents related entities from serializing.'
+          type: boolean
+        recordManagerID:
+          description: The record manager.
+          type: string
+        customFields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+        created:
+          format: date-time
+          type: string
+        edited:
+          format: date-time
+          type: string
+        editedBy:
+          type: string
+        recordManager:
+          type: string
+    act.web.api.models.Opportunities.OpportunityListRequest:
+      description: Assign opportunities request model.
+      type: object
+      properties:
+        opportunities:
+          description: List of opportunity identifiers.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Opportunities.OpportunityProduct:
+      description: This class describes a particular product that is associated with an opportunity.
+      type: object
+      properties:
+        id:
+          description: A unique identifier (id) for a given opportunity product.
+          type: string
+        name:
+          description: The name of the opportunity product.
+          type: string
+        cost:
+          format: double
+          description: The cost of the opportunity product.
+          type: number
+        createDate:
+          format: date-time
+          description: The date that the opportunity product was created.
+          type: string
+        discount:
+          format: double
+          description: The opportunity product's discounted percentage (ignore on updates).
+          type: number
+        discountPrice:
+          format: double
+          description: The discounted price of the opportunity product.
+          type: number
+        editDate:
+          format: date-time
+          description: The date that the opportunity product was lasted modified.
+          type: string
+        itemNumber:
+          description: A item number assigned to this opportunity product.
+          type: string
+        opportunityID:
+          description: A unique identifier (id) for a given opportunity.
+          type: string
+        price:
+          format: double
+          description: The price of the opportunity product.
+          type: number
+        productID:
+          description: A unique identifier (id) for a given product.
+          type: string
+        quantity:
+          format: double
+          description: The quantity of opportunity products.
+          type: number
+        type:
+          description: The quantity of opportunity products.
+          type: string
+        total:
+          format: double
+          description: The total pricie of the opportunity product (adjusted price * quantity).
+          type: number
+        isQuickbooksProduct:
+          description: Define is product linked with Quickbooks Product
+          type: boolean
+        customFields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+        created:
+          format: date-time
+          type: string
+        edited:
+          format: date-time
+          type: string
+        editedBy:
+          type: string
+        recordManager:
+          type: string
+    act.web.api.models.Opportunities.Process:
+      description: The current process for a given opportunity.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the process.
+          type: string
+        name:
+          description: The name of the process.
+          type: string
+        description:
+          description: The description of the process.
+          type: string
+        status:
+          description: The description of the process.
+          enum:
+          - None
+          - Active
+          - Inactive
+          type: string
+        stagesCount:
+          format: int32
+          description: Count of stages of current process
+          type: integer
+        stages:
+          description: Customized stages for the new process
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+    act.web.api.models.Opportunities.ProcessRequest:
+      description: The current process for a given opportunity.
+      type: object
+      properties:
+        name:
+          description: The name of the process.
+          type: string
+        status:
+          description: ''
+          enum:
+          - None
+          - Active
+          - Inactive
+          type: string
+        description:
+          description: The description of the process.
+          type: string
+        stages:
+          description: Customized stages for the new process.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.StageInfo'
+    act.web.api.models.Opportunities.Stage:
+      description: A class describes the stage state of a particular {act.web.api.models.Opportunities.Opportunity}
+        object.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the stage.
+          type: string
+        name:
+          description: Gets/Sets the name of the stage.
+          type: string
+        description:
+          description: Gets/Sets the description of the stage.
+          type: string
+        probability:
+          format: int32
+          description: Gets/Sets the probability of the stage.
+          type: integer
+        number:
+          format: int32
+          description: The order of the stage progresses throw the process lifecycle.
+          type: integer
+        process:
+          $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+          description: Represents the current process for a given opportunity
+    act.web.api.models.Opportunities.StageInfo:
+      description: A class describes the stage of a particular {act.web.api.models.Opportunities.Opportunity}
+        object.
+      type: object
+      properties:
+        name:
+          description: The name of the stage.
+          type: string
+        description:
+          description: The description of the stage.
+          type: string
+        probability:
+          format: int32
+          description: The probability of the stage.
+          type: integer
+        number:
+          format: int32
+          description: The order of the stage progresses throw the process lifecycle.
+          type: integer
+    act.web.api.models.Users.Accessor:
+      description: The user/team that is granted access.
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the accessor/user id
+          type: string
+        type:
+          description: The type of accessor (User = 1 or Team = 2)
+          enum:
+          - Unknown
+          - User
+          - Team
+          - Resource
+          type: string
+        name:
+          description: The name of the accessor
+          type: string

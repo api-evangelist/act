@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live probes of the /.well-known/ discovery surface on every host named in
+  apis.yml (baseURL, humanURL, Website) and in the refined OpenAPI servers[]
+  (https://apimta.act.com/act.web.api). Status is the HTTP code observed at
+  fetch time on 2026-08-13.
+description: >-
+  Act! serves no /.well-known/ discovery documents on any of its hosts. Every
+  path probed returned 404. www.act.com and developer.act.com are one WordPress
+  site that renders a themed HTML 404 body with the 404 status code — the status
+  is honest, the body is just the site's 404 page. apimta.act.com is an IIS
+  application that returns the stock ASP.NET 404. No WellKnown or SecurityTxt
+  pointer is emitted in apis.yml, because nothing was served.
+hosts:
+  - host: https://www.act.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://developer.act.com
+    note: >-
+      developer.act.com resolves to the same WordPress site as www.act.com and
+      renders the /developer/ page.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+  - host: https://apimta.act.com
+    note: >-
+      Act! Premium Cloud API host (Microsoft-IIS/10.0). The API itself lives
+      under /act.web.api.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+saved_documents: []
+findings:
+  - >-
+    No security.txt is served, even though Act! publishes a full Vulnerability
+    Disclosure Policy at
+    https://www.act.com/act-and-security/vulnerability-disclosure-policy/ with a
+    reporting address of vulnerabilityreport@act.com. Publishing
+    /.well-known/security.txt (RFC 9116) pointing at that policy would be a
+    single-file fix — see security/act-vulnerability-disclosure.yml.
+  - >-
+    No OAuth/OIDC discovery documents. Act! Web API does not use OAuth 2.0; it
+    mints a JWT from HTTP Basic credentials at GET /authorize — see
+    authentication/act-authentication.yml.

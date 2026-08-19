@@ -1,0 +1,109 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://www.act.com/developer/ ("Get access to the API by signing up for a
+  free Act! Premium trial"), https://apimta.act.com/act.web.api/ (the public
+  reference instance and its ACT2018Demo/ACT2016Demo examples),
+  https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf (section 5, Test
+  Your Connection), and the Database demo-data operations in
+  openapi/act-database-api-openapi.yml.
+description: >-
+  Act! publishes no sandbox in the modern sense — there is no test mode, no
+  test-vs-live key prefix, no hosted test tenant, no fixture generator behind a
+  test key, and no time simulation. What exists instead is Act!'s own shape of
+  the same idea: a free trial that provisions a real database, an API-driven
+  demo-data seeder, and a built-in connection test page. All of it operates on
+  REAL data in a REAL database — there is no isolation boundary between "test"
+  and "production" beyond using a separate Act! database.
+sandbox_published: false
+test_mode: false
+key_prefixes: null
+key_prefix_note: >-
+  Act! has no API keys at all, so there is no test/live key distinction to make.
+  Credentials are the end user's Act! username and password (see
+  authentication/act-authentication.yml).
+
+routes_to_a_test_environment:
+  - name: Free Act! Premium trial
+    url: https://www.act.com/free-trial/
+    documented_at: https://www.act.com/developer/
+    quote: Get access to the API by signing up for a free Act! Premium trial.
+    note: >-
+      The documented on-ramp for developers. Provisions a real Act! Premium
+      Cloud tenant; the API is reached at that tenant's own host.
+  - name: Separate Act! database
+    note: >-
+      Because the Web API is scoped by the Act-Database-Name header, the
+      practical isolation mechanism is pointing at a different database. This is
+      the provider's model of separation — a header value, not a mode flag.
+  - name: Public reference instance
+    url: https://apimta.act.com/act.web.api/
+    note: >-
+      Act! keeps a live documentation instance whose Swagger UI, OData reference
+      and Webhooks reference are all publicly readable, and whose GET
+      /api/system route answers anonymously. It is not a writable sandbox — a
+      request without credentials fails.
+
+fixtures:
+  demo_data:
+    supported: true
+    create:
+      operationId: Database_PostDemoData_8BC3A811
+      method: POST
+      path: /api/database/demo-data
+      summary: Create demo data.
+    delete:
+      operationId: Database_DeleteDemoData_E0546CC6
+      method: DELETE
+      path: /api/database/demo-data
+      summary: Delete demo data.
+    status:
+      method: GET
+      path: /api/database/demo-data-status
+    note: >-
+      A real fixture facility, and an unusual one to expose over the API:
+      demo records can be seeded and torn down programmatically. The contents of
+      the demo set are not published, so what gets created is only discoverable
+      by calling it.
+  demo_database_names_referenced:
+    names:
+      - ACT2018Demo
+      - ACT2016Demo
+    note: >-
+      These appear in the provider's own Act-Database-Name examples. They are
+      example values from the docs, not databases anyone can connect to.
+
+connection_test:
+  url_pattern: https://{server}/Act.Web.API
+  description: >-
+    The Web API root serves a page where an administrator enters a user name,
+    password and database name and presses Test; a successful install returns a
+    generated token.
+  source: https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf (section 5)
+
+time_simulation:
+  supported: false
+  note: No test clocks or date simulation.
+
+test_values_published: false
+test_values_note: >-
+  No test card numbers, test bank accounts or hosted test tokens are published
+  for Act! Payments in any developer document located. Nothing is invented here.
+
+safety_rails:
+  maintenance_lock:
+    note: >-
+      /api/database/maintenance/lock and /unlock let an integration take the
+      database out of service. There is no test-mode guard on these — the same
+      credential that reads a contact can lock the production database.
+    operations: [GET /api/database/maintenance/lock, POST /api/database/maintenance/lock, POST /api/database/maintenance/unlock]
+  open_sessions:
+    operationId: Database_GetOpenSessions_E10D6976
+    path: /api/opened/sessions
+    note: Lists open connections to the database — useful before a destructive operation.
+
+gaps:
+  - No test mode and no test credentials; every call runs against live CRM data.
+  - No published contents for the demo-data fixture set.
+  - No test values for the payments surface.
+  - Destructive database operations (demo-data delete, maintenance lock) share the same credential as ordinary reads.

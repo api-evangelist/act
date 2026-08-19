@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — TaskTypes",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TaskTypes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the regarding dropdown list by task type id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/task-types/:taskTypeId/regarding-dropdown",
+            "params": [
+              {
+                "name": "taskTypeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the regarding dropdown list by task type id."
+        },
+        {
+          "info": {
+            "name": "Gets all task types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/task-types"
+          },
+          "docs": "Gets all task types."
+        },
+        {
+          "info": {
+            "name": "Create a new custom task types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/task-types",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom task types."
+        },
+        {
+          "info": {
+            "name": "Get task type by identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/task-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given task type."
+              }
+            ]
+          },
+          "docs": "Get task type by identifier."
+        },
+        {
+          "info": {
+            "name": "Update an already existing custom task type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/task-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given custom task type."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing custom task type."
+        },
+        {
+          "info": {
+            "name": "Partially update an already existing custom task type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/task-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given custom task type."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update an already existing custom task type."
+        },
+        {
+          "info": {
+            "name": "Delete an existing custom task type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/task-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given custom task type."
+              }
+            ]
+          },
+          "docs": "Delete an existing custom task type."
+        },
+        {
+          "info": {
+            "name": "Partially update for list of already created task types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/task-types/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update for list of already created task types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

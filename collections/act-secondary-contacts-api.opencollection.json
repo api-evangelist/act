@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — SecondaryContacts",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SecondaryContacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a specific secondary contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/secondary-contacts/:id",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the primary contact."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a specific secondary contact."
+        },
+        {
+          "info": {
+            "name": "Update an already existing secondary contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/secondary-contacts/:id",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the primary contact."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given secondary contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing secondary contact."
+        },
+        {
+          "info": {
+            "name": "Update (partially) an already existing secondary contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/secondary-contacts/:id",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the primary contact."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given secondary contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update (partially) an already existing secondary contact."
+        },
+        {
+          "info": {
+            "name": "Delete an existing secondary contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/secondary-contacts/:id",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the primary contact."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given secondary contact."
+              }
+            ]
+          },
+          "docs": "Delete an existing secondary contact."
+        },
+        {
+          "info": {
+            "name": "Get all secondary contacts matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/secondary-contacts",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the primary contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all secondary contacts matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new secondary contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/secondary-contacts",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the primary contact."
+              },
+              {
+                "name": "phoneFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new secondary contact."
+        },
+        {
+          "info": {
+            "name": "Promote secondary contact to primary",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/secondary-contacts/:id/promote",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the primary contact."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given secondary contact."
+              }
+            ]
+          },
+          "docs": "Promote secondary contact to primary"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

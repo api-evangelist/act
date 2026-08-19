@@ -1,0 +1,312 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — SupplementalFiles",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SupplementalFiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a specific activity attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/activities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the activity."
+              }
+            ]
+          },
+          "docs": "Get a specific activity attachment."
+        },
+        {
+          "info": {
+            "name": "Create a new activity attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/activities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given activity."
+              }
+            ]
+          },
+          "docs": "Create a new activity attachment."
+        },
+        {
+          "info": {
+            "name": "Delete an existing activity attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/activities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given activity."
+              }
+            ]
+          },
+          "docs": "Delete an existing activity attachment."
+        },
+        {
+          "info": {
+            "name": "Get a specific document attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the history item."
+              }
+            ]
+          },
+          "docs": "Get a specific document attachment."
+        },
+        {
+          "info": {
+            "name": "Create a new document attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              }
+            ]
+          },
+          "docs": "Create a new document attachment."
+        },
+        {
+          "info": {
+            "name": "Delete an existing document attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              }
+            ]
+          },
+          "docs": "Delete an existing document attachment."
+        },
+        {
+          "info": {
+            "name": "Get a specific history attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/history/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the history item."
+              }
+            ]
+          },
+          "docs": "Get a specific history attachment."
+        },
+        {
+          "info": {
+            "name": "Create a new history attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/history/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              }
+            ]
+          },
+          "docs": "Create a new history attachment."
+        },
+        {
+          "info": {
+            "name": "Delete an existing history attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/history/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given history item."
+              }
+            ]
+          },
+          "docs": "Delete an existing history attachment."
+        },
+        {
+          "info": {
+            "name": "Get a specific note attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the note."
+              }
+            ]
+          },
+          "docs": "Get a specific note attachment."
+        },
+        {
+          "info": {
+            "name": "Create a new note attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              }
+            ]
+          },
+          "docs": "Create a new note attachment."
+        },
+        {
+          "info": {
+            "name": "Delete an existing note attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given note."
+              }
+            ]
+          },
+          "docs": "Delete an existing note attachment."
+        },
+        {
+          "info": {
+            "name": "Returns the upload status for the given entity, allowing clients to disable\r\n            delete/edit controls while a chunked upload is in progress.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/attachments/:id/upload-status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the entity being uploaded to."
+              }
+            ]
+          },
+          "docs": "Returns the upload status for the given entity, allowing clients to disable\r\n            delete/edit controls while a chunked upload is in progress."
+        },
+        {
+          "info": {
+            "name": "Get a layout definitions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/layouts/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path",
+                "description": "The filename for the layout definition."
+              }
+            ]
+          },
+          "docs": "Get a layout definitions."
+        },
+        {
+          "info": {
+            "name": "Get a list of layout definitions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/layouts"
+          },
+          "docs": "Get a list of layout definitions."
+        },
+        {
+          "info": {
+            "name": "Upload a template.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/templates"
+          },
+          "docs": "Upload a template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

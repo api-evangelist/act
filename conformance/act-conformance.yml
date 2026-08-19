@@ -1,0 +1,180 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Derived from openapi/*.yml (410 operations, response shapes, security schemes)
+  and searched against https://apimta.act.com/act.web.api/,
+  https://apimta.act.com/act.web.api/OData/Index,
+  https://apimta.act.com/act.web.api/ActHooks/Index,
+  https://www.act.com/uploads/act_security_privacy_whitepaper.pdf and
+  https://www.act.com/act-and-security/vulnerability-disclosure-policy/.
+description: >-
+  What Act! Web API does and does not conform to. The headline is OData: Act! is
+  one of the few CRM APIs that adopted an actual query standard rather than
+  inventing one, and it says so on its own documentation. Almost everything
+  else — errors, idempotency, discovery, OAuth — is absent.
+standards:
+  - id: openapi
+    conforms: true
+    version: Swagger 2.0
+    evidence: >-
+      The provider publishes a machine-readable Swagger 2.0 document at
+      https://apimta.act.com/act.web.api/swagger/docs/v1 (254 paths, 410
+      operations, 244 definitions) and renders it in Swagger UI at
+      /act.web.api/swagger/index.html. It has not been migrated to OpenAPI 3.x;
+      openapi/ in this repo holds an OpenAPI 3.1.0 conversion split per tag.
+
+  - id: odata
+    conforms: true
+    version: OData v4 (partial)
+    evidence: >-
+      Act! documents OData support explicitly and enumerates exactly which
+      collections accept which options ($filter with eq/ne/lt/le/gt/ge, and/or,
+      contains/startswith/endswith; $orderby; $top/$skip; $select; $expand,
+      nestable). Partial by the provider's own statement: "Currently only OData
+      queries on Get statements are supported... anything not listed here can be
+      assumed to be unsupported." No $count, no $search, no OData metadata
+      document ($metadata) is published.
+    docs: https://apimta.act.com/act.web.api/OData/Index
+
+  - id: odata-batch
+    conforms: true
+    evidence: >-
+      POST /api/$batch accepts multipart/mixed with application/http;
+      msgtype=request parts, returning one response per part.
+
+  - id: http-basic-auth
+    conforms: true
+    evidence: >-
+      RFC 7617 Basic credentials on GET /authorize, cited by RFC number on the
+      provider's own Web API home page.
+
+  - id: bearer-token
+    conforms: true
+    evidence: >-
+      RFC 6750 bearer tokens (JWT) on every API request, cited by RFC number by
+      the provider.
+
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No OAuth 2.0 flow of any kind. No authorization endpoint, no client
+      registration, no consent screen. An integration must hold the end user's
+      Act! username and password to mint a token, which makes delegated
+      third-party access impossible to do safely.
+
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404 on every Act! host (probed 2026-08-13).
+
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use the ASP.NET Web API object {message, exceptionMessage,
+      exceptionType, stackTrace} with Content-Type application/json, not
+      application/problem+json. See errors/act-problem-types.yml.
+
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No idempotency key header is documented anywhere in the Swagger document,
+      the Web API home page, the OData reference or the Administrator's Guide. A
+      retried POST creates a duplicate record.
+
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Offset pagination via the OData $top/$skip options. Note there is no
+      response envelope, no total count and no next-page link — collections are
+      bare arrays, so a client cannot tell a last page from a full page without
+      an extra request.
+
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: >-
+      No /.well-known/security.txt on www.act.com, developer.act.com or
+      apimta.act.com (all 404, probed 2026-08-13) despite a published
+      vulnerability disclosure policy.
+
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: >-
+      No Sunset or Deprecation headers. Deprecation is communicated by product
+      release date on https://www.act.com/obsolescence-policy/ and, for eleven
+      operations, only by the word "Deprecated" inside a generated operationId.
+
+  - id: webhook-signing
+    conforms: false
+    evidence: >-
+      Webhook callbacks carry the registered symmetric callbackToken in the
+      Authorization header. There is no HMAC signature, no timestamp and no
+      replay defence, and the provider documents plaintext http callback URLs as
+      a supported path. See asyncapi/act-webhooks.yml.
+
+  - id: cloudevents
+    conforms: false
+    evidence: Webhook payloads are Act! entity properties shaped by an OData queryOption, not CloudEvents envelopes.
+
+  - id: asyncapi
+    conforms: false
+    evidence: No AsyncAPI document published for the webhook surface.
+
+  - id: rate-limit-headers
+    conforms: partial
+    evidence: >-
+      Act! documents X-RateLimit-Limit / -Remaining / -Reset for Act! Premium
+      Cloud — the legacy de-facto header set, not the IETF RateLimit /
+      RateLimit-Policy draft — and publishes no throttled status code or
+      Retry-After.
+
+  - id: cors
+    conforms: true
+    evidence: >-
+      The Swagger document declares a dedicated Cors tag with four operations,
+      so cross-origin configuration is part of the API surface.
+
+  - id: soc2
+    conforms: claimed
+    evidence: >-
+      Act! Premium Cloud processes are described as SOC 2-validated in the
+      Security and Privacy whitepaper; the report itself requires an NDA. See
+      security/act-trust-center.yml.
+
+  - id: soc3
+    conforms: claimed
+    evidence: SOC 3 audit report described as available on request.
+
+  - id: iso27001
+    conforms: false
+    evidence: Not claimed in any published Act! document located.
+
+  - id: pci-dss
+    conforms: false
+    evidence: >-
+      Not claimed, despite Act! Payments accepting card payments. No attestation
+      published.
+
+  - id: hipaa
+    conforms: false
+    evidence: Not claimed.
+
+  - id: gdpr
+    conforms: partial
+    evidence: >-
+      Act! publishes a Global Privacy Policy
+      (https://www.act.com/legal/privacy-policy/) and operates regional data
+      centers (US, UK) with region assignment by billing postal code, but
+      publishes no DPA or SCC documentation on the public site.
+
+  - id: scim
+    conforms: false
+    evidence: >-
+      No SCIM 2.0 provisioning surface. User management exists (Users tag, 17
+      operations) but is Act!-proprietary.
+
+  - id: fhir
+    conforms: false
+    evidence: Not a healthcare API.
+
+  - id: json-api
+    conforms: false
+    evidence: Plain JSON, not the JSON:API media type.

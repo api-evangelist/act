@@ -1,0 +1,507 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Companies",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of companies from a specific contact and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-companies",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "List of companies from a specific contact and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Associate a list of companies to a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-companies",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate a list of companies to a specific contact."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of companies from a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-companies",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dissociate a list of companies from a specific contact."
+        },
+        {
+          "info": {
+            "name": "Associate a company to a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-companies/:companyId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "Associate a company to a specific contact."
+        },
+        {
+          "info": {
+            "name": "Dissociate a company from a specific contact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/contacts/:contactId/associated-companies/:companyId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ]
+          },
+          "docs": "Dissociate a company from a specific contact."
+        },
+        {
+          "info": {
+            "name": "List of companies from a specific opportunity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-companies",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              }
+            ]
+          },
+          "docs": "List of companies from a specific opportunity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Associate a list of companies to a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-companies",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate a list of companies to a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Dissociate a list of companies from a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-companies",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dissociate a list of companies from a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Associate a company to a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-companies/:companyId",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ]
+          },
+          "docs": "Associate a company to a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Dissociate a company from a specific opportunity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/opportunities/:opportunityId/associated-companies/:companyId",
+            "params": [
+              {
+                "name": "opportunityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given opportunity."
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ]
+          },
+          "docs": "Dissociate a company from a specific opportunity."
+        },
+        {
+          "info": {
+            "name": "Get a specific company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ]
+          },
+          "docs": "Get a specific company."
+        },
+        {
+          "info": {
+            "name": "Update an already existing company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing company."
+        },
+        {
+          "info": {
+            "name": "Update (partially) an already existing company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update (partially) an already existing company."
+        },
+        {
+          "info": {
+            "name": "Delete an existing company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ]
+          },
+          "docs": "Delete an existing company."
+        },
+        {
+          "info": {
+            "name": "Get all companies matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies"
+          },
+          "docs": "Get all companies matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Create a new company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apimta.act.com/act.web.api/api/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new company."
+        },
+        {
+          "info": {
+            "name": "List of companies from a specific activity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/activities/:activityId/associated-companies",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given contact."
+              }
+            ]
+          },
+          "docs": "List of companies from a specific activity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "List of companies from a specific custom entity and matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/:entityName/:id/associated-companies",
+            "params": [
+              {
+                "name": "entityName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom entity."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given entity row"
+              }
+            ]
+          },
+          "docs": "List of companies from a specific custom entity and matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Get a company access levels.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/access",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the company."
+              }
+            ]
+          },
+          "docs": "Get a company access levels."
+        },
+        {
+          "info": {
+            "name": "Update an already existing company access levels accessors.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/access",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given company."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an already existing company access levels accessors."
+        },
+        {
+          "info": {
+            "name": "Companies_GetCompanyDivisions_E369E41D",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/:companyId/divisions",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for the company."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Get company web information hyperlinks matching an (optional) OData query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/companies/webinfo"
+          },
+          "docs": "Get company web information hyperlinks matching an (optional) OData query."
+        },
+        {
+          "info": {
+            "name": "Companies_PutCompanyWebInfo_3631ACF6",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/companies/webinfo/:id/HyperLink/:linkId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a given WebInfo Group."
+              },
+              {
+                "name": "linkId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (id) for a WebInfo Group HyperLink."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

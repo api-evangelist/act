@@ -1,0 +1,556 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — Webhooks
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: Webhooks
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/webhooks/{id}/continue:
+    put:
+      tags:
+      - Webhooks
+      summary: Continue a suspended webhook.
+      operationId: Webhooks_Continue_511537A0
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given webhook.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/webhooks/{id}:
+    get:
+      tags:
+      - Webhooks
+      summary: Get a specific webhook.
+      operationId: Webhooks_Get_8857FC56
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given webhook.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - Webhooks
+      summary: Update a webhook.
+      operationId: Webhooks_Put_20B03A3C
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given webhook.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+        description: Webhook callback registration.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete an existing webhook.
+      operationId: Webhooks_Delete_649F8293
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given webhook.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - Webhooks
+      summary: Update (Partial) an already existing webhook.
+      operationId: Webhooks_Patch_B8C243E8
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given webhook.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+        description: Webhook callback registration.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/webhooks:
+    get:
+      tags:
+      - Webhooks
+      summary: Get all webhooks matching an (optional) OData query.
+      operationId: Webhooks_Get_3F017BC6
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - Webhooks
+      summary: Create a webhook.
+      operationId: Webhooks_Post_EE3CCFA8
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.WebHooks.WebhookRequest'
+        description: Webhook callback registration.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/webhooks/reset-token:
+    put:
+      tags:
+      - Webhooks
+      summary: Update the current user's registrations with a new token.
+      operationId: Webhooks_PutTokenReset_C1A718D3
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.WebHooks.RegistrationViewModel'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/webhooks/{id}/suspend:
+    put:
+      tags:
+      - Webhooks
+      summary: Suspend webhook.
+      operationId: Webhooks_Suspend_A12B132D
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given webhook.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the
+            response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.WebHooks.RegistrationViewModel:
+      description: Provides information about the registered webhook.
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this webhook.
+          type: string
+        name:
+          description: Gets the name of the webhook.
+          type: string
+          readOnly: true
+        monitor:
+          description: The entity that the webhook will monitor and raise events for.
+          enum:
+          - Activities
+          - Companies
+          - Contacts
+          - Fields
+          - Groups
+          - History
+          - Opportunities
+          - Products
+          - Custom
+          type: string
+        triggerEvent:
+          description: The action that will trigger the webhook.
+          enum:
+          - Alarms
+          - Created
+          - Updated
+          type: string
+        monitorName:
+          description: The entity name that the webhook will monitor and raise events for.
+          type: string
+        queryOption:
+          description: This defines a composite OData query options that can be used to perform query
+            composition. Currently this only supports $filter, $orderby, $top, $skip, and $count
+          type: string
+        userId:
+          description: The unique identifier (id) for the user that this webhooks is registered.
+          type: string
+        username:
+          description: The username that this webhook will broadcast triggered events.
+          type: string
+        database:
+          description: The database name where the webhook is monitoring for activity.
+          type: string
+        server:
+          description: The database server name where the webhook is monitoring for activity.
+          type: string
+        authority:
+          description: The address of the authentication server issuing the token.
+          type: string
+        resourceUrl:
+          description: The resource URL that the webhook will monitor.
+          type: string
+        callbackUrl:
+          description: The callback url that the webhook will send the response.
+          type: string
+        callbackId:
+          description: Client defined unique identifier (id) for this webhook.
+          type: string
+        created:
+          format: date-time
+          description: The date that the webhook was created.
+          type: string
+        edited:
+          format: date-time
+          description: The date that the webhook was modified.
+          type: string
+        suspended:
+          format: date-time
+          description: The date that the webhook was suspended.
+          type: string
+        failedAttempts:
+          format: int32
+          description: The number of failed attempts that has occured.
+          type: integer
+        failedRestarts:
+          format: int32
+          description: The number of failed restarts that have occured after registration has been suspended.
+          type: integer
+        lastNotificationSent:
+          format: date-time
+          description: The date of the last notification sent.
+          type: string
+        description:
+          description: A brief description of why this webhook is being created.
+          type: string
+    act.web.api.models.WebHooks.WebhookRequest:
+      description: WebhookRequest URL parameters
+      type: object
+      properties:
+        monitor:
+          description: The entity the webhook will monitor.
+          enum:
+          - Activities
+          - Companies
+          - Contacts
+          - Fields
+          - Groups
+          - History
+          - Opportunities
+          - Products
+          - Custom
+          type: string
+        triggerEvent:
+          description: WebhookRequest action on the monitored table.
+          enum:
+          - Alarms
+          - Created
+          - Updated
+          type: string
+        monitorName:
+          description: The entity name the webhook will monitor (only need to set for custom tables.
+          type: string
+        queryOption:
+          description: This defines a composite OData query options that can be used to perform query
+            composition. Currently this only supports $filter, $orderby, $top, $skip, and $count
+          type: string
+        callbackUrl:
+          description: The callback url that the webhook will send the response.
+          type: string
+        callbackId:
+          description: Client defined unique identifier (id) for this webhook.
+          type: string
+        callbackToken:
+          description: The callback client secret.
+          type: string
+        certHashString:
+          description: The SHA1 hash value for the X.509v3 certificate as a hexadecimal string to verify
+            https calls to callback URL.
+          type: string
+        description:
+          description: A brief description of why this webhook is being created.
+          type: string

@@ -1,0 +1,171 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://www.act.com/obsolescence-policy/ (Support Obsolescence Policy),
+  https://status.act.com/ and https://status.act.com/api/v2/summary.json
+  (Statuspage), https://www.act.com/products/whats-new/ (dated release notes),
+  https://apimta.act.com/act.web.api/api/system (anonymous version route, probed
+  2026-08-13), https://apimta.act.com/act.web.api/ and
+  https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf.
+description: >-
+  Act! versions the PRODUCT, not the API. There is no version segment in the
+  Web API URL, no version request header, and no per-version API deprecation
+  notice. What Act! does publish is a Support Obsolescence Policy that dates the
+  end of support for each Act! release, and because the Web API ships inside
+  Act! Premium for Web, that policy is the effective API deprecation calendar.
+
+versioning:
+  scheme: build-number (product release)
+  mechanism: >-
+    None in the request. The deployed build is discovered at runtime via the
+    anonymous route GET /api/system, which returns apiVersion (the Web API
+    build) and sdkVersion (the Act! SDK build).
+  url_version_segment: false
+  version_header: false
+  observed:
+    url: https://apimta.act.com/act.web.api/api/system
+    http_status: 200
+    fetched: '2026-08-13'
+    apiVersion: 1.1.1324.1
+    sdkVersion: 25.101.0.0
+  note: >-
+    Because most Act! Web API installs are self-hosted on the customer's own IIS
+    server, two Act! customers can expose materially different builds of "the
+    same" API. An integration should call GET /api/system before assuming an
+    operation exists rather than assuming a single global version.
+
+deprecation:
+  policy_url: https://www.act.com/obsolescence-policy/
+  policy_name: Act! Support Obsolescence Policy
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  scope: >-
+    Product releases, applied to North America, South America and Australia /
+    New Zealand, with separate regional policies published for France and
+    Belgium; the UK, Ireland, South Africa and all other regions; and Germany,
+    Austria and Switzerland.
+  terms: >-
+    The current version receives all feature enhancements, service packs,
+    hotfixes, security improvements and compatibility updates. Other supported
+    versions receive these only to address issues potentially resulting in data
+    loss or data corruption due to product defect. Unsupported versions receive
+    no updates, no security improvements and are not eligible for technical
+    support. An active subscription is required for technical support on a
+    supported version.
+  schedule:
+    - release: Act! Premium v26
+      supported_through: '2026-11-30'
+    - release: Act! Premium v25, Act! Growth Suite v25
+      supported_through: '2025-11-30'
+    - release: Act! Premium v24, Act! Growth Suite v24
+      supported_through: '2024-08-31'
+    - release: Act! Pro v24 (North America only)
+      supported_through: '2024-08-31'
+    - release: Act! Premium v23, Act! Growth Suite v23
+      supported_through: '2023-07-31'
+      note: Act! Premium Cloud customers hosted by Act! on v23 were supported through 2023-12-31.
+    - release: Act! Premium v22, Act! Growth Suite v22
+      supported_through: '2022-03-31'
+    - release: Act! Premium v21, Act! Growth Suite v21
+      supported_through: '2021-11-30'
+    - release: Act! Pro v21 and Act! Pro v22
+      supported_through: '2021-11-30'
+  api_compatibility_floor: >-
+    Act! Web API is compatible with Act! Premium for Web v18 or greater
+    (Web API Administrator's Guide, section 2).
+  note: >-
+    Act! does not emit RFC 8594 Sunset or Deprecation headers, and no operation
+    in the 410-operation Swagger document is flagged deprecated:true. Retirement
+    is announced by product release date on the obsolescence policy page, not in
+    the API surface.
+
+deprecated_operations_flagged: []
+deprecated_operations_note: >-
+  Checked all 31 refined specs (410 operations) for deprecated:true — none
+  found. The provider Swagger document emits "deprecated": false on every
+  operation. Act! does, however, encode deprecation in the operationId string
+  itself, which no tool reads: eleven operations carry "Deprecated"/"Dep" in
+  their generated operationId while still advertising deprecated:false. Those
+  are listed below as a finding. Setting deprecated:true on them would be a
+  one-line change in the source annotations and would make the signal
+  machine-readable.
+deprecated_by_naming_only:
+  - path: /api/ActivitySeries
+    method: GET
+    operationId: ActivitySeries_GetDeprecated_FE2F02D8
+  - path: /api/ActivitySeries
+    method: POST
+    operationId: ActivitySeries_PostDeprecated_3028AEF2
+  - path: /api/ActivitySeries/{id}
+    method: GET
+    operationId: ActivitySeries_GetDeprecated_1026BB09
+  - path: /api/ActivitySeries/{id}
+    method: PUT
+    operationId: ActivitySeries_PutDeprecated_CDA0E3CC
+  - path: /api/ActivitySeries/{id}
+    method: DELETE
+    operationId: ActivitySeries_DeleteDeprecated_FBE2FFCB
+  - path: /api/ActivitySeries/{id}
+    method: PATCH
+    operationId: ActivitySeries_PatchDeprecated_70F1EE46
+  - path: /api/group/{id}/notes
+    method: GET
+    operationId: Notes_GetByGroupDep_998BE8AB
+    superseded_by: /api/groups/{id}/notes (Notes_GetByGroup_032215FF)
+  - path: /api/historytypes
+    method: GET
+    operationId: HistoryTypes_GetDeprecatedHistoryTypes_76F493AB
+    superseded_by: /api/history-types (HistoryTypes_GetHistoryTypes_2691B741)
+  - path: /api/historytypes/{name}
+    method: GET
+    operationId: HistoryTypes_GetDeprecatedHistoryTypeByName_3232927F
+    superseded_by: /api/history-types/{id} (HistoryTypes_GetHistoryTypeById_4E0AF16E)
+  - path: /api/multilanguage/currency
+    method: GET
+    operationId: System_GetMultilanguageCurrencyDeprecated_F1F71F04
+  - path: /api/opportunity/{id}/notes
+    method: GET
+    operationId: Notes_GetByOpportunityDeprecated_8998BFA6
+    superseded_by: /api/opportunities/{id}/notes
+
+status_page:
+  url: https://status.act.com/
+  platform: Atlassian Statuspage
+  machine_readable:
+    summary: https://status.act.com/api/v2/summary.json
+    history_rss: https://status.act.com/history.rss
+    probed: '2026-08-13'
+    http_status: 200
+  api_component_tracked: true
+  components_named:
+    - Act! Premium Cloud API — US Region
+    - Act! Premium Cloud — US Region
+    - Act! Premium Cloud — UK Region
+    - Act! Marketing Automation — US Region
+    - Act! Marketing Automation — UK Region
+  note: >-
+    The API is tracked as its own status component per region, not folded into
+    the application component — which is the right shape and is worth crediting.
+
+changelog:
+  url: https://www.act.com/products/whats-new/
+  detail: changelog/act-changelog.yml
+  note: Product release notes grouped by month; not an API changelog.
+
+sla:
+  url: null
+  public_uptime_target: null
+  note: >-
+    Act! publishes no numeric uptime SLA for the Web API. The Terms of Service
+    (https://www.act.com/legal/terms-of-service/) are the only availability
+    commitment located, and they name no percentage.
+
+support:
+  url: https://www.act.com/resources/support-plans/
+  knowledgebase: https://support.act.com/
+  help_center: https://help.act.com/
+  note: >-
+    support.act.com and help.act.com are Salesforce Experience Cloud sites that
+    render entirely in JavaScript; article content is not machine-readable to an
+    unauthenticated fetch.

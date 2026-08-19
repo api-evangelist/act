@@ -1,0 +1,440 @@
+openapi: 3.1.0
+info:
+  title: Act! Web API — MarketingAutomations
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
+    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
+    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
+    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
+    an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
+    document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+tags:
+- name: MarketingAutomations
+security:
+- bearerAuth: []
+  actDatabaseName: []
+paths:
+  /api/contacts/{id}/campaign-results:
+    get:
+      tags:
+      - MarketingAutomations
+      summary: Get all Campaign Results matching an (optional) OData query.
+      operationId: MarketingAutomations_GetCampaignResults_2DD93C76
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.CampaignResult'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.CampaignResult'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.CampaignResult'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{id}/campaigns:
+    get:
+      tags:
+      - MarketingAutomations
+      summary: Get all Campaign matching an (optional) OData query.
+      operationId: MarketingAutomations_GetCampaign_29DE6BDC
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in
+            the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.Campaign'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.Campaign'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.Campaign'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/MarketingAutomations:
+    post:
+      tags:
+      - MarketingAutomations
+      summary: Create a new Marketing Automation Email
+      operationId: MarketingAutomations_PostEmail_60DBC5D7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.MarketingAutomationEmail'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.MarketingAutomationEmail'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.MarketingAutomationEmail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.MarketingAutomationEmail'
+        description: Chronicle AMA Email.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the
+            response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.MarketingAutomationEmail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.MarketingAutomationEmail'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MarketingAutomation.MarketingAutomationEmail'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest
+            is sent when no other error is applicable, or if the exact error is unknown or does not have
+            its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The
+            WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
+        together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
+        <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
+  schemas:
+    act.web.api.models.MarketingAutomation.Campaign:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: Unique identifier.
+          type: string
+        emailId:
+          description: The unique identifier (id) for this email.
+          type: string
+        campaignId:
+          description: The unique identifier (id) for this campaign.
+          type: string
+        campaignName:
+          description: The friendly name of the campaign.
+          type: string
+        contacts:
+          description: ''
+          type: array
+          items:
+            type: string
+        receiverEmail:
+          description: ''
+          type: string
+        senderEmail:
+          description: ''
+          type: string
+        sendDate:
+          format: date-time
+          description: ''
+          type: string
+        subject:
+          description: ''
+          type: string
+        url:
+          description: ''
+          type: string
+        jumpUrl:
+          description: ''
+          type: string
+        clicks:
+          description: ''
+          type: boolean
+        clickDate:
+          format: date-time
+          description: ''
+          type: string
+        opens:
+          description: ''
+          type: boolean
+        openDate:
+          format: date-time
+          description: ''
+          type: string
+        bounced:
+          description: When an email message cannot be delivered to an email address
+          type: boolean
+        unsubscribed:
+          description: Cancel from an electronic mailing list.
+          type: boolean
+        complained:
+          description: A statement that a situation is unsatisfactory or unacceptable
+          type: boolean
+        isPrivate:
+          description: ''
+          type: boolean
+        createDate:
+          format: date-time
+          description: ''
+          type: string
+        createUserId:
+          description: ''
+          type: string
+        creatorName:
+          description: ''
+          type: string
+        editDate:
+          format: date-time
+          description: ''
+          type: string
+        editUserId:
+          description: ''
+          type: string
+        editorName:
+          description: ''
+          type: string
+        manageUserId:
+          description: ''
+          type: string
+        managerName:
+          description: ''
+          type: string
+        recipientEmail:
+          description: ''
+          type: string
+        typeEnum:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.MarketingAutomation.CampaignResult:
+      description: ''
+      type: object
+      properties:
+        campaignId:
+          description: ''
+          type: string
+        campaignEmailId:
+          description: ''
+          type: string
+        campaignName:
+          description: ''
+          type: string
+        campaignResultsId:
+          description: ''
+          type: string
+        clicks:
+          format: int32
+          description: ''
+          type: integer
+        createDate:
+          format: date-time
+          description: ''
+          type: string
+        createUserId:
+          description: ''
+          type: string
+        creatorName:
+          description: ''
+          type: string
+        editDate:
+          format: date-time
+          description: ''
+          type: string
+        editorName:
+          description: ''
+          type: string
+        editUserId:
+          description: ''
+          type: string
+        hasComplained:
+          description: ''
+          type: boolean
+        isBounced:
+          description: ''
+          type: boolean
+        isPrivate:
+          description: ''
+          type: boolean
+        isUnsubscribed:
+          description: ''
+          type: boolean
+        jumpToURL:
+          description: ''
+          type: string
+        lastClickDate:
+          format: date-time
+          description: ''
+          type: string
+        managerName:
+          description: ''
+          type: string
+        manageUserId:
+          description: ''
+          type: string
+        openDate:
+          format: date-time
+          description: ''
+          type: string
+        opens:
+          format: int32
+          description: ''
+          type: integer
+        recipientEmail:
+          description: ''
+          type: string
+        sendDate:
+          format: date-time
+          description: ''
+          type: string
+        senderEmail:
+          description: ''
+          type: string
+        subjectLine:
+          description: ''
+          type: string
+        typeEnum:
+          format: int32
+          description: ''
+          type: integer
+        url:
+          description: ''
+          type: string
+    act.web.api.models.MarketingAutomation.MarketingAutomationEmail:
+      description: AMA Emails
+      required:
+      - emailId
+      - campaignId
+      - campaignName
+      type: object
+      properties:
+        id:
+          description: Unique identifier.
+          type: string
+        emailId:
+          description: The unique identifier (id) for this email.
+          type: string
+        campaignId:
+          description: The unique identifier (id) for this campaign.
+          type: string
+        campaignName:
+          description: The friendly name of the campaign.
+          type: string
+        contacts:
+          description: ''
+          type: array
+          items:
+            type: string
+        receiverEmail:
+          description: ''
+          type: string
+        senderEmail:
+          description: ''
+          type: string
+        sendDate:
+          format: date-time
+          description: ''
+          type: string
+        subject:
+          description: ''
+          type: string
+        url:
+          description: ''
+          type: string
+        jumpUrl:
+          description: ''
+          type: string
+        clicks:
+          description: ''
+          type: boolean
+        clickDate:
+          format: date-time
+          description: ''
+          type: string
+        opens:
+          description: ''
+          type: boolean
+        openDate:
+          format: date-time
+          description: ''
+          type: string
+        bounced:
+          description: When an email message cannot be delivered to an email address
+          type: boolean
+        unsubscribed:
+          description: Cancel from an electronic mailing list.
+          type: boolean
+        complained:
+          description: A statement that a situation is unsatisfactory or unacceptable
+          type: boolean
+        isPrivate:
+          description: ''
+          type: boolean

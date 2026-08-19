@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Act! Web API — Configurations",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user's insight analytic view definition data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/definitions/insight-views"
+          },
+          "docs": "Get current user's insight analytic view definition data"
+        },
+        {
+          "info": {
+            "name": "Create/Update current user's insight analytic view definition data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/definitions/insight-views",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create/Update current user's insight analytic view definition data."
+        },
+        {
+          "info": {
+            "name": "Delete current user's insight's analytic view definition data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/definitions/insight-views"
+          },
+          "docs": "Delete current user's insight's analytic view definition data."
+        },
+        {
+          "info": {
+            "name": "Get current user's insight analytic view definition data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/definitions/myact-views"
+          },
+          "docs": "Get current user's insight analytic view definition data"
+        },
+        {
+          "info": {
+            "name": "Create/Update current user's 'MyAct' analytic view definition data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/definitions/myact-views",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create/Update current user's 'MyAct' analytic view definition data."
+        },
+        {
+          "info": {
+            "name": "Delete current user's insight's analytic view definition data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/definitions/myact-views"
+          },
+          "docs": "Delete current user's insight's analytic view definition data."
+        },
+        {
+          "info": {
+            "name": "Get current user's KPI analytic view definition data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/definitions/kpi-views/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The kpi view container name."
+              }
+            ]
+          },
+          "docs": "Get current user's KPI analytic view definition data"
+        },
+        {
+          "info": {
+            "name": "Create/Update current user's KPI analytic view definition data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/definitions/kpi-views/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The kpi container name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create/Update current user's KPI analytic view definition data."
+        },
+        {
+          "info": {
+            "name": "Get current user's opportunity pipeline analytic view settings data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/settings/opportunity-pipeline"
+          },
+          "docs": "Get current user's opportunity pipeline analytic view settings data."
+        },
+        {
+          "info": {
+            "name": "Create/Update current user's opportunity pipeline analytic view settings data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apimta.act.com/act.web.api/api/analytics/settings/opportunity-pipeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create/Update current user's opportunity pipeline analytic view settings data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

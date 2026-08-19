@@ -1,0 +1,119 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.act.com/pricing/
+provider: Act! CRM
+providerId: act
+description: >-
+  Act! publishes per-user, per-month subscription pricing for the CRM product.
+  It does NOT publish an API plan: there is no developer tier, no per-call
+  pricing, no request quota on any tier, and no line item on the pricing page
+  that names the Act! Web API. API access is an entitlement of the subscription
+  — the Web API's own documented error codes make that explicit (4031
+  "Subscription required", 4032 "API access permission required"), and the Web
+  API Administrator's Guide describes Connections as "seamlessly connected with
+  Act! as part of a Premium Subscription". The plans below are therefore the
+  product plans a developer must buy to reach the API, not API plans.
+currency: USD
+billing_period: month
+billing_note: Prices are per user per month, billed annually.
+api_plan_published: false
+api_quota_published: false
+plan_count: 4
+plans:
+  - id: act-advantage-standard
+    name: Act! Advantage Standard
+    product_line: Act! Cloud
+    price: 30
+    currency: USD
+    unit: per user
+    period: month
+    billing: annual
+    included:
+      - Full-featured CRM and mobile app
+      - Basic Email Marketing (2,500 sends/mo)
+      - Office 365 and Gmail integration
+      - Standard Interactive Quotes and Payments, Online Appointment Scheduling
+      - Standard Forms, Surveys, Website Chat and Event Management
+      - Reports and Interactive Dashboards
+      - Standard Support with dedicated onboarding specialist
+      - 15 GB cloud storage, nightly backups, automatic updates
+    api_quota: null
+
+  - id: act-advantage-professional
+    name: Act! Advantage Professional
+    product_line: Act! Cloud
+    price: 45
+    currency: USD
+    unit: per user
+    period: month
+    billing: annual
+    marketed_as: Most Popular
+    included:
+      - Everything in Standard
+      - Email Marketing Plus (25,000 sends/mo), Turnkey Campaigns, Nurture Marketing
+      - AI History Summary, AI Writing Assistant
+      - Advanced Interactive Quotes and Payments, Online Appointment Scheduling
+      - Advanced Forms, Surveys, Website Chat and Event Management
+      - Accounting integration
+      - Project management
+      - 25 GB cloud storage
+    api_quota: null
+
+  - id: act-advantage-ultimate
+    name: Act! Advantage Ultimate
+    product_line: Act! Cloud
+    price: 60
+    currency: USD
+    unit: per user
+    period: month
+    billing: annual
+    included:
+      - Everything in Professional
+      - Marketing Automation (50,000 sends/mo)
+      - Lead scoring, prioritized activity scheduling, progressive profiling
+      - Additional email domain
+      - Custom industry tables
+      - Online customer portal
+      - Enhanced Support with dedicated onboarding specialist
+      - 35 GB cloud storage
+    api_quota: null
+
+  - id: act-premium-desktop
+    name: Act! Premium Desktop
+    product_line: Act! Desktop
+    price: 40
+    currency: USD
+    unit: per user
+    period: month
+    billing: annual
+    included:
+      - Networked and offline access
+      - Self-managed security
+      - Complete control of updates
+      - Expert technical support
+      - Dedicated onboarding specialist
+    api_quota: null
+    note: >-
+      On-premises deployment. Act! Web API is installed on the customer's own
+      IIS server alongside Act! Premium for Web; there is no Act!-operated API
+      endpoint for this line.
+
+add_ons:
+  - name: SMS Text Messaging
+    price_from: 19
+    currency: USD
+    period: month
+    note: Priced separately from the tier; "starting at $19/mo" on all three Advantage tiers.
+
+trial:
+  available: true
+  url: https://www.act.com/free-trial/
+  note: Free Act! Premium trial is the documented route to API access — "Get access to the API by signing up for a free Act! Premium trial" (https://www.act.com/developer/).
+
+sales_contact:
+  phone: 866-530-2718
+  demo: https://www.act.com/pricing/
+
+gaps:
+  - No API-specific plan, quota or overage published.
+  - Rate limits exist for Act! Premium Cloud but are not attached to any tier (see rate-limits/act-rate-limits.yml).
