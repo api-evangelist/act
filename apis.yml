@@ -40,6 +40,14 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/act.png
 tags:
   - CRM
+  - Marketing Automation
+  - Contact Management
+  - Sales
+  - Opportunity Management
+  - OData
+  - Small Business
+tags_raw:
+  - CRM
   - Customer Relationship Management
   - Marketing Automation
   - Contact Management
@@ -69,6 +77,13 @@ apis:
     humanURL: https://www.act.com/developer/
     baseURL: https://apimta.act.com/act.web.api
     tags:
+      - CRM
+      - REST API
+      - OData
+      - OpenAPI
+      - Webhook
+      - Contact Management
+    tags_raw:
       - CRM
       - REST API
       - OData
