@@ -61,122 +61,199 @@ created: '2026-05-11'
 modified: '2026-08-13'
 specificationVersion: '0.23'
 apis:
-  - aid: act:web-api
-    name: Act! Web API
-    description: >-
-      JSON-based REST API for the Act! CRM database exposing contacts,
-      companies, groups, opportunities, tasks, activity series, calendar, notes,
-      history, documents, attachments, users, teams, preferences, analytics and
-      tenant-defined custom entities — 410 operations across 31 resource areas.
-      Collection reads accept OData v4 query options; requests can be batched at
-      POST /api/$batch; webhooks are registered through the API itself. The
-      database schema is discoverable at runtime through the MetadataInfo
-      operations because Act! databases are user-extensible. Authentication is a
-      JWT bearer token obtained from GET /authorize with HTTP Basic credentials
-      and an Act-Database-Name header.
-    humanURL: https://www.act.com/developer/
-    baseURL: https://apimta.act.com/act.web.api
-    tags:
-      - CRM
-      - REST API
-      - OData
-      - OpenAPI
-      - Webhook
-      - Contact Management
-    tags_raw:
-      - CRM
-      - REST API
-      - OData
-      - OpenAPI
-      - Webhooks
-      - Contact Management
-    properties:
-      - type: Documentation
-        url: https://www.act.com/developer/
-      - type: APIReference
-        url: https://apimta.act.com/act.web.api/
-      - type: Swagger
-        url: https://apimta.act.com/act.web.api/swagger/docs/v1
-      - type: Admin Guide
-        url: https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf
-      - type: OpenAPI
-        url: openapi/act-activity-series-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-analytics-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-calendar-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-companies-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-configurations-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-contacts-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-cors-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-custom-entities-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-database-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-document-types-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-documents-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-geographics-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-groups-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-history-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-history-types-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-import-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-marketing-automations-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-metadata-info-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-notes-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-opportunities-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-preferences-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-products-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-secondary-contacts-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-supplemental-files-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-sync-data-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-system-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-task-types-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-tasks-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-teams-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-users-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/act-webhooks-api-openapi.yml
-      - type: Overlay
-        url: overlays/act-web-api-overlay.yaml
-      - type: Webhooks
-        url: asyncapi/act-webhooks.yml
-      - type: Conventions
-        url: conventions/act-conventions.yml
-      - type: ErrorCatalog
-        url: errors/act-problem-types.yml
-      - type: RateLimits
-        url: rate-limits/act-rate-limits.yml
-      - type: DataModel
-        url: data-model/act-data-model.yml
-      - type: Sandbox
-        url: sandbox/act-sandbox.yml
-      - type: MCPServer
-        url: mcp/act-mcp.yml
+- aid: act:web-api
+  name: Act! Web API
+  description: >-
+    JSON-based REST API for the Act! CRM database exposing contacts, companies, groups, opportunities,
+    tasks, activity series, calendar, notes, history, documents, attachments, users, teams, preferences,
+    analytics and tenant-defined custom entities — 410 operations across 31 resource areas. Collection
+    reads accept OData v4 query options; requests can be batched at POST /api/$batch; webhooks are registered
+    through the API itself. The database schema is discoverable at runtime through the MetadataInfo operations
+    because Act! databases are user-extensible. Authentication is a JWT bearer token obtained from GET
+    /authorize with HTTP Basic credentials and an Act-Database-Name header.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - CRM
+  - REST API
+  - OData
+  - OpenAPI
+  - Webhook
+  - Contact Management
+  tags_raw:
+  - CRM
+  - REST API
+  - OData
+  - OpenAPI
+  - Webhooks
+  - Contact Management
+  properties:
+  - type: Documentation
+    url: https://www.act.com/developer/
+  - type: APIReference
+    url: https://apimta.act.com/act.web.api/
+  - type: Swagger
+    url: https://apimta.act.com/act.web.api/swagger/docs/v1
+  - type: Admin Guide
+    url: https://www.act.com/uploads/docs/en/webapi_admin_guide.pdf
+  - type: OpenAPI
+    url: openapi/act-analytics-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-calendar-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-companies-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-configurations-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-contacts-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-cors-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-database-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-documents-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-geographics-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-groups-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-history-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-import-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-notes-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-opportunities-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-preferences-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-products-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-system-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-tasks-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-teams-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-users-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/act-webhooks-api-openapi.yml
+  - type: Overlay
+    url: overlays/act-web-api-overlay.yaml
+  - type: Webhooks
+    url: asyncapi/act-webhooks.yml
+  - type: Conventions
+    url: conventions/act-conventions.yml
+  - type: ErrorCatalog
+    url: errors/act-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/act-rate-limits.yml
+  - type: DataModel
+    url: data-model/act-data-model.yml
+  - type: Sandbox
+    url: sandbox/act-sandbox.yml
+  - type: MCPServer
+    url: mcp/act-mcp.yml
+- aid: act:act-activityseries-api
+  name: Act! CRM Activity Series API
+  description: The ActivitySeries API from Act! CRM — 2 operation(s) for activityseries.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - ActivitySeries
+  properties:
+  - type: OpenAPI
+    url: openapi/act-activityseries-api-openapi.yml
+- aid: act:act-customentities-api
+  name: Act! CRM Custom Entities API
+  description: The CustomEntities API from Act! CRM — 2 operation(s) for customentities.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - CustomEntities
+  properties:
+  - type: OpenAPI
+    url: openapi/act-customentities-api-openapi.yml
+- aid: act:act-documenttypes-api
+  name: Act! CRM Document Types API
+  description: The DocumentTypes API from Act! CRM — 4 operation(s) for documenttypes.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - DocumentTypes
+  properties:
+  - type: OpenAPI
+    url: openapi/act-documenttypes-api-openapi.yml
+- aid: act:act-historytypes-api
+  name: Act! CRM History Types API
+  description: The HistoryTypes API from Act! CRM — 5 operation(s) for historytypes.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - HistoryTypes
+  properties:
+  - type: OpenAPI
+    url: openapi/act-historytypes-api-openapi.yml
+- aid: act:act-marketingautomations-api
+  name: Act! CRM Marketing Automations API
+  description: The MarketingAutomations API from Act! CRM — 3 operation(s) for marketingautomations.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - MarketingAutomations
+  properties:
+  - type: OpenAPI
+    url: openapi/act-marketingautomations-api-openapi.yml
+- aid: act:act-metadatainfo-api
+  name: Act! CRM Metadata Info API
+  description: The MetadataInfo API from Act! CRM — 14 operation(s) for metadatainfo.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - MetadataInfo
+  properties:
+  - type: OpenAPI
+    url: openapi/act-metadatainfo-api-openapi.yml
+- aid: act:act-secondarycontacts-api
+  name: Act! CRM Secondary Contacts API
+  description: The SecondaryContacts API from Act! CRM — 3 operation(s) for secondarycontacts.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - SecondaryContacts
+  properties:
+  - type: OpenAPI
+    url: openapi/act-secondarycontacts-api-openapi.yml
+- aid: act:act-supplementalfiles-api
+  name: Act! CRM Supplemental Files API
+  description: The SupplementalFiles API from Act! CRM — 8 operation(s) for supplementalfiles.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - SupplementalFiles
+  properties:
+  - type: OpenAPI
+    url: openapi/act-supplementalfiles-api-openapi.yml
+- aid: act:act-syncdata-api
+  name: Act! CRM Sync Data API
+  description: The SyncData API from Act! CRM — 4 operation(s) for syncdata.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - SyncData
+  properties:
+  - type: OpenAPI
+    url: openapi/act-syncdata-api-openapi.yml
+- aid: act:act-tasktypes-api
+  name: Act! CRM Task Types API
+  description: The TaskTypes API from Act! CRM — 4 operation(s) for tasktypes.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - TaskTypes
+  properties:
+  - type: OpenAPI
+    url: openapi/act-tasktypes-api-openapi.yml
 common:
   - type: Authentication
     url: authentication/act-authentication.yml
