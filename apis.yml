@@ -52,6 +52,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/act.png
 tags:
   - CRM
+  - Customer Relationship Management
   - Marketing Automation
   - Contact Management
   - Sales
@@ -182,6 +183,8 @@ apis:
   humanURL: https://www.act.com/developer/
   baseURL: https://apimta.act.com/act.web.api
   tags:
+  - Custom Entities
+  tags_raw:
   - CustomEntities
   properties:
   - type: OpenAPI
@@ -192,6 +195,8 @@ apis:
   humanURL: https://www.act.com/developer/
   baseURL: https://apimta.act.com/act.web.api
   tags:
+  - Document Types
+  tags_raw:
   - DocumentTypes
   properties:
   - type: OpenAPI
@@ -252,6 +257,8 @@ apis:
   humanURL: https://www.act.com/developer/
   baseURL: https://apimta.act.com/act.web.api
   tags:
+  - Sync Data
+  tags_raw:
   - SyncData
   properties:
   - type: OpenAPI
@@ -262,6 +269,8 @@ apis:
   humanURL: https://www.act.com/developer/
   baseURL: https://apimta.act.com/act.web.api
   tags:
+  - Task Types
+  tags_raw:
   - TaskTypes
   properties:
   - type: OpenAPI
