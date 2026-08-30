@@ -1,0 +1,660 @@
+openapi: 3.2.0
+info:
+  title: Act! Web Activity Series API
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+security:
+- bearerAuth: []
+  actDatabaseName: []
+tags:
+- name: ActivitySeries
+paths:
+  /api/ActivitySeries/{id}:
+    get:
+      tags:
+      - ActivitySeries
+      summary: Get a specific series activity.
+      operationId: ActivitySeries_GetDeprecated_1026BB09
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given series activity.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - ActivitySeries
+      summary: Update an already existing series activity
+      operationId: ActivitySeries_PutDeprecated_CDA0E3CC
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given series activity.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        description: The series activity definition
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - ActivitySeries
+      summary: Delete an existing series activity.
+      description: This will not remove activities that were part of the series and were rescheduled.
+      operationId: ActivitySeries_DeleteDeprecated_FBE2FFCB
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given series activity.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - ActivitySeries
+      summary: Partially update an already existing series activity
+      operationId: ActivitySeries_PatchDeprecated_70F1EE46
+      deprecated: true
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given series activity.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        description: The series activity definition
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/ActivitySeries:
+    get:
+      tags:
+      - ActivitySeries
+      summary: Get all series activities matching an (optional) OData query.
+      operationId: ActivitySeries_GetDeprecated_FE2F02D8
+      deprecated: true
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      - name: filterBy
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - InRange
+          - InSeries
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - ActivitySeries
+      summary: Create a new series activity.
+      operationId: ActivitySeries_PostDeprecated_3028AEF2
+      deprecated: true
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Specifics different formats that the API can convert the details ((RichText (Default), PlainText, and HyperText).
+        schema:
+          type: string
+          enum:
+          - auto
+          - rtf
+          - text
+          - html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        description: The series activity definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Activities.ActivitySeries'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  schemas:
+    act.web.api.models.Activities.EmbededActivityContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents the attendee.
+          type: string
+        displayName:
+          description: The name of the attendee.
+          type: string
+        emailAddress:
+          description: The name of the attendee.
+          type: string
+        isInvited:
+          description: The name of the attendee.
+          type: boolean
+    act.web.api.models.Activities.ActivitySeries:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents the activity.
+          type: string
+        isCleared:
+          description: Indicates that the activity has been cleared.
+          type: boolean
+        isAlarmCleared:
+          description: ''
+          type: boolean
+        isAlarmed:
+          description: ''
+          type: boolean
+        leadMinutes:
+          format: int32
+          description: ''
+          type: integer
+        alarmDue:
+          description: ''
+          type: string
+        originalTime:
+          format: date-time
+          description: Gets the date and time for which this activity was originally scheduled.
+          type: string
+        startTime:
+          format: date-time
+          description: The time the activity is to begin
+          type: string
+        endTime:
+          format: date-time
+          description: The time the activity is to end
+          type: string
+        externalId:
+          description: Provides a unique identifier to an external system.
+          type: string
+        calendarUid:
+          description: Provides a unique calendar uid, common for all invited users.
+          type: string
+        duration:
+          description: Representing the difference between the start time and end time of the activity.
+          type: string
+        durationDisplay:
+          description: "Human-readable representation of the activity's duration (e.g. \"1 hour\"),\n            formatted identically to the Duration string on ActivityOccurrence."
+          type: string
+        location:
+          description: Describes the physical location that the activity is to take place.
+          type: string
+        isTimeless:
+          description: Indicates whether a specifies action is to be completed at a specific time-of-day.
+          type: boolean
+        isAllDay:
+          description: Indicates whether a specified activity takes up entire day.
+          type: boolean
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this activity.
+          type: boolean
+        isRecurring:
+          description: 'True: if activity is recurring, otherwise false.'
+          type: boolean
+          readOnly: true
+        activityPriorityId:
+          format: int32
+          description: Displays the type of the activity.
+          type: integer
+        activityPriorityName:
+          description: Displays the priority of the activity.
+          type: string
+        activityTypeId:
+          format: int32
+          description: Displays the type of the activity.
+          type: integer
+        activityTypeName:
+          description: Displays the type of the activity.
+          type: string
+        attachment:
+          $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+          description: Gets the attachment referenced by this note.
+        bannerColor:
+          description: The banner color.
+          type: string
+        details:
+          description: Additional detailed information about the activity.
+          type: string
+        subject:
+          description: A description of the action to be completed.
+          type: string
+        recurSpec:
+          $ref: '#/components/schemas/act.web.api.models.Activities.RecurSpec'
+          description: The recurrence pattern for the activity.
+        created:
+          format: date-time
+          description: The date and time the activity was created.
+          type: string
+        edited:
+          format: date-time
+          description: The date and time the activity was last updated.
+          type: string
+        scheduledById:
+          description: The id of the activity's organizer.
+          type: string
+        scheduledBy:
+          description: The contact who created this activity.
+          type: string
+        scheduledForId:
+          description: The id of the activity's organizer.
+          type: string
+        scheduledFor:
+          description: The name of the activity's organizer.
+          type: string
+        scheduledWithCompany:
+          description: Company name of the contact with whom this activity was scheduled. If more than one contact, first encountered
+          type: string
+        scheduledWithEmail:
+          description: Business Email address of the contact with whom this activity was scheduled. If more than one contact, first encountered is used
+          type: string
+        scheduledWithPhone:
+          description: Phone number of the contact with whom this activity was scheduled. If more than one contact, first encountered is used
+          type: string
+        scheduledWithPhoneExt:
+          description: Phone number extension of the contact with whom this activity was scheduled. If more than one contact, first encountered is used
+          type: string
+        companies:
+          description: List of companies that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
+        contacts:
+          description: 'The attendees scheduled for the activity.  Note: at least one contact is required.'
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Activities.EmbededActivityContact'
+        groups:
+          description: List a groups that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
+        opportunities:
+          description: List a opportunities that are associated to this activity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
+          type: string
+    act.web.api.models.Activities.RecurSpec:
+      description: ''
+      type: object
+      properties:
+        seriesStart:
+          format: date-time
+          description: Specifying the starting time for a given day.
+          type: string
+        day:
+          $ref: '#/components/schemas/act.web.api.models.Activities.RecurDay'
+          description: Specifying the day of a recurrence.
+        seriesEnd:
+          format: date-time
+          description: Specifying the ending time for a given day.
+          type: string
+        isEndless:
+          description: 'Flag denoting whether an end date has been specified for the pattern. Note: If false, the following defaults are used: For Daily and Weekly: 2 years beyond the start date For Monthly and Yearly: June 6, 2073.'
+          type: boolean
+        month:
+          format: int32
+          description: Represents the specific month for certain recurrence patterns
+          type: integer
+        frequency:
+          format: int32
+          description: Represents how often for the recurrence patterns
+          type: integer
+        recurType:
+          description: Represents a unit of time used to separate recurences (i.e. Daily, Weekly, Monthly, Yearly).
+          enum:
+          - None
+          - Daily
+          - Weekly
+          - Monthly
+          - Yearly
+          type: string
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Activities.RecurDay:
+      description: Specifying the day of a recurrence.
+      type: object
+      properties:
+        dayAsInt:
+          format: int32
+          description: An integer representation of the day of the week portion of a recurrence pattern.
+          type: integer
+        daysOfWeek:
+          description: Representation of the day of the week portion of a recurrence pattern.
+          type: array
+          items:
+            enum:
+            - Sunday
+            - Monday
+            - Tuesday
+            - Wednesday
+            - Thursday
+            - Friday
+            - Saturday
+            type: string
+        typedDay:
+          description: Describing the TypedDay (Day, WeekDay or Weekend Day) for the recurrence pattern when DayType is "Typed".
+          enum:
+          - None
+          - Day
+          - Weekday
+          - WeekendDay
+          type: string
+        dayType:
+          description: Describing the day-portion of the recurrence pattern.
+          enum:
+          - None
+          - Numbered
+          - Named
+          - Typed
+          type: string
+        ordinal:
+          description: Describes recurrence in relative terms for certain recurrence patterns (i.e. First, Third, Last) .
+          enum:
+          - None
+          - First
+          - Second
+          - Third
+          - Fourth
+          - Last
+          type: string
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
+          type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.

@@ -1,0 +1,664 @@
+openapi: 3.2.0
+info:
+  title: Act! Web Secondary Contacts API
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+security:
+- bearerAuth: []
+  actDatabaseName: []
+tags:
+- name: SecondaryContacts
+paths:
+  /api/contacts/{contactId}/secondary-contacts/{id}:
+    get:
+      tags:
+      - SecondaryContacts
+      summary: Get a specific secondary contact.
+      operationId: SecondaryContacts_Get_5AE7C09D
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier for the primary contact.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given contact.
+        schema:
+          type: string
+      - name: phoneFormat
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - None
+          - E164
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - SecondaryContacts
+      summary: Update an already existing secondary contact.
+      operationId: SecondaryContacts_Put_5975AAF3
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier for the primary contact.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given secondary contact.
+        schema:
+          type: string
+      - name: phoneFormat
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - None
+          - E164
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        description: The contact definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - SecondaryContacts
+      summary: Delete an existing secondary contact.
+      operationId: SecondaryContacts_Delete_33369209
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier for the primary contact.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given secondary contact.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    patch:
+      tags:
+      - SecondaryContacts
+      summary: Update (partially) an already existing secondary contact.
+      operationId: SecondaryContacts_Patch_29CC2E85
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier for the primary contact.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given secondary contact.
+        schema:
+          type: string
+      - name: phoneFormat
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - None
+          - E164
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        description: The contact definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{contactId}/secondary-contacts:
+    get:
+      tags:
+      - SecondaryContacts
+      summary: Get all secondary contacts matching an (optional) OData query.
+      operationId: SecondaryContacts_Get_CD9BB980
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier for the primary contact.
+        schema:
+          type: string
+      - name: phoneFormat
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - None
+          - E164
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - SecondaryContacts
+      summary: Create a new secondary contact.
+      operationId: SecondaryContacts_Post_C7CBE102
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier for the primary contact.
+        schema:
+          type: string
+      - name: phoneFormat
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - None
+          - E164
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        description: The contact definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/contacts/{contactId}/secondary-contacts/{id}/promote:
+    put:
+      tags:
+      - SecondaryContacts
+      summary: Promote secondary contact to primary
+      operationId: SecondaryContacts_PutPromote_BAF24408
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: The unique identifier for the primary contact.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given secondary contact.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  schemas:
+    act.web.api.models.Address:
+      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
+      type: object
+      properties:
+        line1:
+          description: Primary street address
+          type: string
+        line2:
+          description: Secondary street address
+          type: string
+        line3:
+          description: Miscellaneous street address
+          type: string
+        city:
+          description: An inhabited place of greater size, population, or importance than a town or village.
+          type: string
+        state:
+          description: A nation or territory considered as an organized political community under one government.
+          type: string
+        postalCode:
+          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
+          type: string
+        country:
+          description: A nation with its own government, occupying a particular territory.
+          type: string
+        latitude:
+          format: double
+          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
+          type: number
+        longitude:
+          format: double
+          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
+          type: number
+    act.web.api.models.Contacts.Contact:
+      description: The person who is designated for giving information or being a representative for an organization.
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this contact.
+          type: string
+        idStatus:
+          description: The relative social or professional position of an individual within a group or organization.
+          type: string
+        isUser:
+          description: An indicator if this contact is also a user within the system.
+          type: boolean
+        company:
+          description: The organization that this contact is associated with.
+          type: string
+        department:
+          description: An area of special expertise or responsibility.
+          type: string
+        companyID:
+          description: The unique identifier (companyID) for a given companies.
+          type: string
+        contactType:
+          description: 'The type of contact: Contact, Secondary, or User.'
+          type: string
+        namePrefix:
+          description: A patronymic prefix.
+          type: string
+        firstName:
+          description: A personal given name.
+          type: string
+        middleName:
+          description: A name between one's first name and surname.
+          type: string
+        lastName:
+          description: The family name or surname.
+          type: string
+        nameSuffix:
+          description: Provides additional information about the person that identifies an individual position, educational degree, accreditation, orffice, or honors.
+          type: string
+        fullName:
+          description: The first name, any middle names, and surname of a contact.  This may also include name prefixes and sufixes that are defined within Act!
+          type: string
+        isFavorite:
+          description: Assign this contact as a favorite.
+          type: boolean
+        isImported:
+          description: Identifies last communication or action with a contact.
+          type: boolean
+        importDate:
+          format: date-time
+          description: This readonly property displays the date that the opportunity was imported into the system.
+          type: string
+        isPrivate:
+          description: Identifies last communication or action with a contact.
+          type: boolean
+        acl:
+          description: Access Levels
+          type: string
+        lastResults:
+          description: Identifies last communication or action with a contact.
+          type: string
+        lastEmail:
+          format: date-time
+          description: ''
+          type: string
+        lastAttempt:
+          format: date-time
+          description: ''
+          type: string
+        lastReach:
+          format: date-time
+          description: ''
+          type: string
+        lastMeeting:
+          format: date-time
+          description: ''
+          type: string
+        lastLetterSent:
+          format: date-time
+          description: ''
+          type: string
+        messengerID:
+          description: An online identifier alias.
+          type: string
+        referredBy:
+          description: Indicates how this contact came about.
+          type: string
+        salutation:
+          description: A gesture or utterance made as a greeting or acknowledgment.
+          type: string
+        jobTitle:
+          description: The title or position this contact holds.
+          type: string
+        amaScore:
+          format: int32
+          description: The contact's
+          type: integer
+        emailAddress:
+          description: A unique electronic address that an individual can be contacted.
+          type: string
+        altEmailAddress:
+          description: A unique electronic address that an individual can be contacted.
+          type: string
+        personalEmailAddress:
+          description: A unique electronic address that an individual can be contacted.
+          type: string
+        website:
+          description: The contact's web site.
+          type: string
+        birthday:
+          format: date-time
+          description: The anniversary of the day on which a person was born.
+          type: string
+        businessAddress:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The contact's business address.
+        businessPhone:
+          description: The contact's business phone number.
+          type: string
+        businessExtension:
+          description: The contact's business phone number extension.
+          type: string
+        businessCountryCode:
+          format: int32
+          description: The contact's business phone country code.
+          type: integer
+        businessMaskFormat:
+          description: The contact's business phone mask format.
+          type: string
+        mobilePhone:
+          description: The contact's mobile phone number.
+          type: string
+        mobileExtension:
+          description: The contact's mobile phone extension.
+          type: string
+        mobileCountryCode:
+          format: int32
+          description: The contact's mobile phone country code.
+          type: integer
+        mobileMaskFormat:
+          description: The contact's mobile phone mask format.
+          type: string
+        faxPhone:
+          description: The contact's fax phone number.
+          type: string
+        faxExtension:
+          description: The contact's fax phone number extension.
+          type: string
+        faxCountryCode:
+          format: int32
+          description: The contact's fax phone country code.
+          type: integer
+        faxMaskFormat:
+          description: The contact's fax phone mask format.
+          type: string
+        homeAddress:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The contact's home address.
+        homePhone:
+          description: The contact's home phone number.
+          type: string
+        homeExtension:
+          description: The contact's home phone extension.
+          type: string
+        homeCountryCode:
+          format: int32
+          description: The contact's home phone country code.
+          type: integer
+        homeMaskFormat:
+          description: The contact's home phone mask format.
+          type: string
+        alternatePhone:
+          description: The contact's alternate phone number.
+          type: string
+        alternateExtension:
+          description: The contact's alternate phone number extension.
+          type: string
+        alternateCountryCode:
+          format: int32
+          description: The contact's alternate phone country code.
+          type: integer
+        alternateMaskFormat:
+          description: The contact's alternate phone mask.
+          type: string
+        pagerPhone:
+          description: The contact's pager phone number.
+          type: string
+        pagerExtension:
+          description: The contact's pager phone number extension
+          type: string
+        pagerCountryCode:
+          format: int32
+          description: The contact's pager phone country code.
+          type: integer
+        pagerMaskFormat:
+          description: The contact's pager phone mask.
+          type: string
+        aemOptOut:
+          description: ''
+          type: boolean
+        aemBounceBack:
+          description: ''
+          type: boolean
+        recordManagerID:
+          description: The record manager.
+          type: string
+        quickbooksId:
+          description: Quickbooks external Id to match record with quickbooks contact
+          type: string
+        nylasContactId:
+          description: Nylas contact Id to match record with a contact
+          type: string
+        customFields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+        created:
+          format: date-time
+          type: string
+        edited:
+          format: date-time
+          type: string
+        editedBy:
+          type: string
+        recordManager:
+          type: string
+    System.Object:
+      type: object
+      properties: {}
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.

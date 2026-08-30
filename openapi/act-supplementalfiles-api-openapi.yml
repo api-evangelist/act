@@ -1,0 +1,649 @@
+openapi: 3.2.0
+info:
+  title: Act! Web Supplemental Files API
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+security:
+- bearerAuth: []
+  actDatabaseName: []
+tags:
+- name: SupplementalFiles
+paths:
+  /api/attachments/activities/{id}:
+    get:
+      tags:
+      - SupplementalFiles
+      summary: Get a specific activity attachment.
+      operationId: SupplementalFiles_GetByActivity_CF24B225
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier for the activity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - SupplementalFiles
+      summary: Create a new activity attachment.
+      operationId: SupplementalFiles_PostActivityAttachment_1E201089
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given activity.
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Accepted indicates that the request has been accepted for processing, but the processing may or may not been completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+        '206':
+          description: Indicates intermediate chunk accepted during chunked upload.
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '409':
+          description: Conflict indicates that the request could not be completed due to a conflict with the current state of the resource.
+        '415':
+          description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - SupplementalFiles
+      summary: Delete an existing activity attachment.
+      operationId: SupplementalFiles_DeleteByActivity_6E842025
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given activity.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '423':
+          description: Locked indicates that an upload is currently in progress for this resource.
+        '500':
+          description: Unexpected error.
+  /api/attachments/documents/{id}:
+    get:
+      tags:
+      - SupplementalFiles
+      summary: Get a specific document attachment.
+      operationId: SupplementalFiles_GetByDocument_969374C4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier for the history item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - SupplementalFiles
+      summary: Create a new document attachment.
+      operationId: SupplementalFiles_PostDocumentAttachments_32FDFB20
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given history item.
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Accepted indicates that the request has been accepted for processing, but the processing may or may not been completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+        '206':
+          description: Indicates intermediate chunk accepted during chunked upload.
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '409':
+          description: Conflict indicates that the request could not be completed due to a conflict with the current state of the resource.
+        '415':
+          description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - SupplementalFiles
+      summary: Delete an existing document attachment.
+      operationId: SupplementalFiles_DeleteByDocument_D3D6EC90
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given history item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '423':
+          description: Locked indicates that an upload is currently in progress for this resource.
+        '500':
+          description: Unexpected error.
+  /api/attachments/history/{id}:
+    get:
+      tags:
+      - SupplementalFiles
+      summary: Get a specific history attachment.
+      operationId: SupplementalFiles_GetByHistory_C6FD6D97
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier for the history item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - SupplementalFiles
+      summary: Create a new history attachment.
+      operationId: SupplementalFiles_PostHistoryAttachments_B509AF9D
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given history item.
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Accepted indicates that the request has been accepted for processing, but the processing may or may not been completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '409':
+          description: Conflict indicates that the request could not be completed due to a conflict with the current state of the resource.
+        '415':
+          description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - SupplementalFiles
+      summary: Delete an existing history attachment.
+      operationId: SupplementalFiles_DeleteByHistory_A660565D
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given history item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/attachments/notes/{id}:
+    get:
+      tags:
+      - SupplementalFiles
+      summary: Get a specific note attachment.
+      operationId: SupplementalFiles_GetByNote_E6495E1B
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier for the note.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - SupplementalFiles
+      summary: Create a new note attachment.
+      operationId: SupplementalFiles_PostNoteAttachments_ACC89468
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Accepted indicates that the request has been accepted for processing, but the processing may or may not been completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+        '206':
+          description: Indicates intermediate chunk accepted during chunked upload.
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '409':
+          description: Conflict indicates that the request could not be completed due to a conflict with the current state of the resource.
+        '415':
+          description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - SupplementalFiles
+      summary: Delete an existing note attachment.
+      operationId: SupplementalFiles_DeleteByNote_6C96060F
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given note.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '423':
+          description: Locked indicates that an upload is currently in progress for this resource.
+        '500':
+          description: Unexpected error.
+  /api/attachments/{id}/upload-status:
+    get:
+      tags:
+      - SupplementalFiles
+      summary: "Returns the upload status for the given entity, allowing clients to disable\n            delete/edit controls while a chunked upload is in progress."
+      operationId: SupplementalFiles_GetUploadStatus_A24AF9D4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the entity being uploaded to.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+  /api/layouts/{filename}:
+    get:
+      tags:
+      - SupplementalFiles
+      summary: Get a layout definitions.
+      operationId: SupplementalFiles_GetLayoutDefinition_B202BFC9
+      parameters:
+      - name: filename
+        in: path
+        required: true
+        description: The filename for the layout definition.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/layouts:
+    get:
+      tags:
+      - SupplementalFiles
+      summary: Get a list of layout definitions.
+      operationId: SupplementalFiles_GetLayoutDefinitions_A76A2FAC
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.SupplementalFiles.Layout'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.SupplementalFiles.Layout'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.SupplementalFiles.Layout'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/templates:
+    post:
+      tags:
+      - SupplementalFiles
+      summary: Upload a template.
+      operationId: SupplementalFiles_PostTemplates_E92AB914
+      responses:
+        '202':
+          description: Accepted indicates that the request has been accepted for processing, but the processing may or may not been completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '409':
+          description: Conflict indicates that the request could not be completed due to a conflict with the current state of the resource.
+        '415':
+          description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
+        '500':
+          description: Unexpected error.
+components:
+  schemas:
+    act.web.api.models.SupplementalFiles.Layout:
+      description: ''
+      type: object
+      properties:
+        entity:
+          description: The record type is the entity (Company, Contact, Group, Opportunity) that the layout definition represents.
+          enum:
+          - Contact
+          - Company
+          - Group
+          - Opportunity
+          - Product
+          type: string
+        fileName:
+          description: The name of the layout file.
+          type: string
+        isDefault:
+          description: The default layout.
+          type: boolean
+        lastEdit:
+          format: date-time
+          description: The date and time of the last modification.
+          type: string
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
+          type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.

@@ -1,0 +1,1323 @@
+openapi: 3.2.0
+info:
+  title: Act! Web Metadata Info API
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+security:
+- bearerAuth: []
+  actDatabaseName: []
+tags:
+- name: MetadataInfo
+paths:
+  /api/metadata/drop-down/lists/{id}:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get specific drop-down list
+      operationId: MetadataInfo_GetDropDownList_E02B587D
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique identifier for a field.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - MetadataInfo
+      summary: Update an already existing drop-down list
+      operationId: MetadataInfo_PutDropDownList_235230B0
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given drop-down list.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+        description: The drop-down list definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - MetadataInfo
+      summary: Delete an existing drop-down list
+      operationId: MetadataInfo_DeleteDropDownList_796D9B2D
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given drop-down list.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/metadata/{recordType}/fields/{id}:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get a specific field
+      operationId: MetadataInfo_GetField_43A47EF1
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name).
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique identifier for a field.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - MetadataInfo
+      summary: Update an already existing field.
+      operationId: MetadataInfo_PutField_E8FC57AB
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given field.
+        schema:
+          type: string
+      - name: recordType
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+        description: The field to be modified.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - MetadataInfo
+      summary: Delete an existing field
+      operationId: MetadataInfo_DeleteField_96ACDBD0
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name).
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given drop-down list.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/metadata/datatypes:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get all available defined field data types for each Act! record type.
+      operationId: MetadataInfo_GetAllowedDataTypes_C0BD5F64
+      parameters:
+      - name: recordType
+        in: query
+        required: false
+        description: Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.TypeCodes.EnumTypes'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.TypeCodes.EnumTypes'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.TypeCodes.EnumTypes'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/metadata/drop-down/lists:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get all drop-down list matching an (optional) OData query
+      operationId: MetadataInfo_GetDropDownLists_1C3E17D1
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - MetadataInfo
+      summary: Create a new drop-down list
+      operationId: MetadataInfo_PostDropDownList_15B36751
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.CreateDropDownList'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.CreateDropDownList'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.CreateDropDownList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.CreateDropDownList'
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownList'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/metadata/drop-down/lists/{list}/items/{item}:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Gets a specific drop-down pick list item.
+      operationId: MetadataInfo_GetDropDownPickListItem_C1E8E2A4
+      parameters:
+      - name: list
+        in: path
+        required: true
+        description: The unique identifier (id) for a given PickList.
+        schema:
+          type: string
+      - name: item
+        in: path
+        required: true
+        description: The unique identifier (id) for a given item within a PickList.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/metadata/drop-down/lists/{list}/items:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Gets all drop-down pick list item(s).
+      operationId: MetadataInfo_GetDropDownPickListItems_452A074F
+      parameters:
+      - name: list
+        in: path
+        required: true
+        description: The unique identifier (id) for a given PickList.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/metadata/entities:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get all entity matching an (optional) OData query.
+      operationId: MetadataInfo_GetEntities_76EDEF77
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - MetadataInfo
+      summary: Create a new custom table (custom entity), optionally linked to parent entities.
+      operationId: MetadataInfo_PostTable_6ABDBD3A
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewCustomTable'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewCustomTable'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewCustomTable'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewCustomTable'
+        description: The custom table definition (technical name, display name, and optional parent entities).
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Entity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Entity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Entity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '409':
+          description: Conflict indicates that a custom entity with the requested name already exists.
+        '500':
+          description: Unexpected error.
+  /api/metadata/fields:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get all fields matching an (optional) OData query.
+      operationId: MetadataInfo_GetField_76332063
+      parameters:
+      - name: showAll
+        in: query
+        required: false
+        description: This defines if it only shows customizable (false) metadata or visible (true) metadata
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/metadata/fields/{id}:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get a specific field
+      operationId: MetadataInfo_GetField_92E2951A
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique identifier for a field.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/metadata/{recordType}/fields:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get all fields matching an (optional) OData query.
+      operationId: MetadataInfo_GetFields_387CA408
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name).
+        schema:
+          type: string
+      - name: showAll
+        in: query
+        required: false
+        description: This defines if it only shows customizable (false) metadata or visible (true) metadata
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.Column'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - MetadataInfo
+      summary: Create a new field.
+      operationId: MetadataInfo_PostField_AD1FA9C5
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: Specifies the core mutable record types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name).
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewColumn'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewColumn'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewColumn'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewColumn'
+        description: The field descriptor
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewColumn'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewColumn'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.NewColumn'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/metadata/{recordType}/picklists/{id}:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get specific pick list
+      operationId: MetadataInfo_GetPicklist_0EAAC225
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique identifier for a field.
+        schema:
+          type: string
+      - name: recordType
+        in: path
+        required: true
+        description: Specifies the core mutable types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name).
+        schema:
+          type: string
+      - name: showAll
+        in: query
+        required: false
+        description: This defines if it only shows customizable (false) metadata or visible (true) metadata
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.PickList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.PickList'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.PickList'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/metadata/{recordType}/picklists:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Get all pick list matching an (optional) OData query.
+      operationId: MetadataInfo_GetPicklists_8295BDC6
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: Specifies the core mutable types within the ACT! application (Company, Contact, Group, Opportunity, Product or any custom entity name).
+        schema:
+          type: string
+      - name: showAll
+        in: query
+        required: false
+        description: This defines if it only shows customizable (false) metadata or visible (true) metadata
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.PickList'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.PickList'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.PickList'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+  /api/metadata/entities/{recordType}:
+    delete:
+      tags:
+      - MetadataInfo
+      summary: Delete an existing custom table (custom entity), including any parent-link junction tables.
+      operationId: MetadataInfo_DeleteTable_98A5268E
+      parameters:
+      - name: recordType
+        in: path
+        required: true
+        description: The name of the custom entity to delete.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/cache-refresh:
+    get:
+      tags:
+      - MetadataInfo
+      summary: Refresh metadata cache.
+      operationId: MetadataInfo_GetCacheRefresh_2B36A257
+      responses:
+        '204':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - MetadataInfo
+      summary: Refresh metadata cache.
+      operationId: MetadataInfo_PostCacheRefresh_D813A0E2
+      responses:
+        '204':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  schemas:
+    act.web.api.models.MetaData.Picklists.DropDownList:
+      description: Represents a typed list of custom values in the application database.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the PickList object.
+          type: string
+        name:
+          description: Gets or sets the name of the PickList.
+          type: string
+        type:
+          description: Gets or sets the name of the PickList.
+          type: string
+        isEditable:
+          description: Indicates that the drop-down will allow editing.
+          type: boolean
+        isAutoInsert:
+          description: Indicates that the drop-down will allow multiple item selection.
+          type: boolean
+        description:
+          description: Gets or sets the description of the PickList.
+          type: string
+        created:
+          format: date-time
+          description: Gets the creation date of the PickList object.
+          type: string
+        edited:
+          format: date-time
+          description: Gets the edit date of the PickList object.
+          type: string
+        items:
+          description: List of drop-down list items that are associated to this drop-down list.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+    act.web.api.models.MetaData.Schema.AssignPicklist:
+      description: ''
+      required:
+      - isLimitToList
+      - isMultiSelect
+      - isTypeAhead
+      - showDescription
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        isLimitToList:
+          description: ''
+          type: boolean
+        isMultiSelect:
+          description: ''
+          type: boolean
+        isTypeAhead:
+          description: ''
+          type: boolean
+        showDescription:
+          description: ''
+          type: boolean
+    act.web.api.models.MetaData.Schema.Column:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        columnName:
+          description: ''
+          type: string
+        recordType:
+          description: ''
+          type: string
+        aliasName:
+          description: ''
+          type: string
+        columnType:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+        tableName:
+          description: ''
+          type: string
+        type:
+          description: ''
+          type: string
+        dataType:
+          description: ''
+          type: string
+        virtualId:
+          description: ''
+          type: string
+        virtualType:
+          description: ''
+          type: string
+        virtualObject:
+          description: ''
+          type: string
+        virtualField:
+          description: ''
+          type: string
+        length:
+          format: int32
+          description: ''
+          type: integer
+        minimumLength:
+          format: int32
+          description: ''
+          type: integer
+        precision:
+          format: int32
+          description: ''
+          type: integer
+        scale:
+          format: int32
+          description: ''
+          type: integer
+        minValue:
+          description: ''
+          type: string
+        maxValue:
+          description: ''
+          type: string
+        defaultValue:
+          description: ''
+          type: string
+        fieldFormat:
+          description: ''
+          type: string
+        formula:
+          description: Gets the database calculated field expression for the column.
+          type: string
+        calcDisplay:
+          description: Gets the database calculated field expression for the column.
+          type: string
+        isAllowBlank:
+          description: ''
+          type: boolean
+        isCustom:
+          description: ''
+          type: boolean
+        isDefinedField:
+          description: ''
+          type: boolean
+        isDisplayed:
+          description: ''
+          type: boolean
+        isNullable:
+          description: ''
+          type: boolean
+        isPrimary:
+          description: ''
+          type: boolean
+        isProtected:
+          description: ''
+          type: boolean
+        isReadOnly:
+          description: Indicates this field to be readonly
+          type: boolean
+        isTracked:
+          description: ''
+          type: boolean
+        isVirtual:
+          description: ''
+          type: boolean
+        createDate:
+          format: date-time
+          description: ''
+          type: string
+        editDate:
+          format: date-time
+          description: ''
+          type: string
+        changeEvent:
+          description: ''
+          type: string
+        enterEvent:
+          description: ''
+          type: string
+        leaveEvent:
+          description: ''
+          type: string
+        picklist:
+          $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.PickListInfo'
+          description: ''
+    act.web.api.models.MetaData.Picklists.DropDownPickListItem:
+      description: Represents a value item for a PickList object.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the PickListItem object.
+          type: string
+        value:
+          description: Gets or sets the value of the PickListItem object.
+          type: string
+        description:
+          description: Gets the description of the picklist item.
+          type: string
+    act.web.api.models.MetaData.Schema.PickListInfo:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        isLimitToList:
+          description: ''
+          type: boolean
+        isMultiSelect:
+          description: ''
+          type: boolean
+        isTypeAhead:
+          description: ''
+          type: boolean
+        showDescription:
+          description: ''
+          type: boolean
+    act.web.api.models.MetaData.Schema.NewColumn:
+      description: ''
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        name:
+          description: The database column alias or display name.
+          type: string
+        type:
+          description: The Act! field data type.
+          enum:
+          - YesNo
+          - Character
+          - InitialCaps
+          - Lowercase
+          - Uppercase
+          - Memo
+          - Url
+          - Number
+          - Currency
+          - Decimal
+          - Date
+          - Time
+          - DateTime
+          - AnnualEvent
+          - Picture
+          - Calculated
+          - Email
+          - Phone
+          - Address
+          type: string
+        length:
+          format: int32
+          description: The size of the data type
+          type: integer
+        precision:
+          format: int32
+          description: Precision is the number of digits in a number
+          type: integer
+        scale:
+          format: int32
+          description: Scale is the number of digits to the right of the decimal point in a number
+          type: integer
+        defaultValue:
+          description: The default value of the field if nothing is provided.
+          type: string
+        fieldFormat:
+          description: Defines a specific format for this field.
+          type: string
+        isPrimary:
+          description: Primary fields are copied when duplicating the record.
+          type: boolean
+        isAllowBlank:
+          description: Indicates that this field will be a required field or not
+          type: boolean
+        isTracked:
+          description: Indicates that this field will track changes
+          type: boolean
+        changeEvent:
+          description: Sets up a change event trigger.
+          type: string
+        enterEvent:
+          description: Sets up a change event trigger.
+          type: string
+        leaveEvent:
+          description: Sets up a change event trigger.
+          type: string
+        picklist:
+          $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.AssignPicklist'
+          description: Provides a drop-down list of the items avaiable for this column
+        calculated:
+          $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.FieldBehavior'
+          description: Calculated Field
+    act.web.api.models.MetaData.Picklists.ColumnBindings:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        isLimitToList:
+          description: ''
+          type: boolean
+        isMultiSelect:
+          description: ''
+          type: boolean
+        isTypeAhead:
+          description: ''
+          type: boolean
+        showDescription:
+          description: ''
+          type: boolean
+    act.web.api.models.MetaData.TypeCodes.EnumTypes:
+      description: ''
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        value:
+          format: int32
+          description: ''
+          type: integer
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.MetaData.Picklists.CreateDropDownList:
+      description: Represents a typed list of custom values in the application database.
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        name:
+          description: Gets or sets the name of the PickList.
+          type: string
+        type:
+          description: The picklist data type.
+          enum:
+          - Character
+          - Currency
+          - Number
+          - Decimal
+          type: string
+        description:
+          description: Gets or sets the description of the PickList.
+          type: string
+        isEditable:
+          description: Defines if the picklist is editable.
+          type: boolean
+        isAutoInsert:
+          description: Defines if the picklist can create new items.
+          type: boolean
+        items:
+          description: Picklist Items
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+    act.web.api.models.MetaData.Schema.FieldBehavior:
+      description: ''
+      type: object
+      properties:
+        fieldType:
+          description: The datatype of the fields being used in the calculated field (Currency, Decimal, Number).
+          enum:
+          - Number
+          - Currency
+          - Decimal
+          type: string
+        fields:
+          description: Comma delimited list of the entity column names being used in the  formula.
+          type: string
+        formula:
+          description: Specify formats or rules for entering data in the field.
+          type: string
+    act.web.api.models.MetaData.Picklists.PickList:
+      description: Represents a typed list of custom values in the application database.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the PickList object.
+          type: string
+        name:
+          description: Gets or sets the name of the PickList.
+          type: string
+        recordType:
+          description: ''
+          type: string
+        description:
+          description: Gets or sets the description of the PickList.
+          type: string
+        created:
+          format: date-time
+          description: Gets the creation date of the PickList object.
+          type: string
+        edited:
+          format: date-time
+          description: Gets the edit date of the PickList object.
+          type: string
+        fields:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.ColumnBindings'
+    act.web.api.models.MetaData.Schema.Entity:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+        isCustom:
+          description: ''
+          type: boolean
+        recordType:
+          description: ''
+          type: string
+        parents:
+          description: ''
+          type: string
+        createUserID:
+          description: ''
+          type: string
+        createDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.MetaData.Schema.NewCustomTable:
+      description: Definition for creating a new custom table (custom entity).
+      required:
+      - name
+      - displayName
+      type: object
+      properties:
+        name:
+          description: "The technical name of the custom table. Becomes the physical table CUST_&lt;NAME&gt; and primary key &lt;NAME&gt;ID\n            (normalized to upper case). Letters, digits, and underscores only; must begin with a letter or underscore.\n            Maximum 27 characters (the framework prepends a 5-character \"CUST_\" prefix)."
+          maxLength: 27
+          minLength: 0
+          pattern: ^[A-Za-z_][A-Za-z0-9_]*$
+          type: string
+        displayName:
+          description: The user-facing display name of the custom table (the APC tab label). Stored verbatim. Maximum 32 characters.
+          maxLength: 32
+          minLength: 0
+          pattern: ^.*\S.*$
+          type: string
+        description:
+          description: An optional description of the custom table. Maximum 128 characters.
+          maxLength: 128
+          minLength: 0
+          type: string
+        isDefineField:
+          description: Indicates whether the custom table is visible in the Define Fields UI.
+          type: boolean
+        parentEntities:
+          description: "Optional parent entities to link this custom table to: Contacts, Groups, Companies, Opportunities.\n            When empty, a standalone top-level custom table is created; otherwise a sub-entity is created with a\n            many-to-many junction table to each named parent."
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.

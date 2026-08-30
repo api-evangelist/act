@@ -1,0 +1,375 @@
+openapi: 3.2.0
+info:
+  title: Act! Web Custom Entities API
+  version: v1
+  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.
+  contact:
+    name: Act! Developers
+    url: https://www.act.com/developer/
+  termsOfService: https://www.act.com/legal/terms-of-service/
+servers:
+- url: https://apimta.act.com/act.web.api
+  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger document).
+- url: https://{server}/{customer}-api/act.web.api
+  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
+  variables:
+    server:
+      default: apimta.act.com
+    customer:
+      default: customer
+- url: https://{server}/act.web.api
+  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
+  variables:
+    server:
+      default: localhost
+security:
+- bearerAuth: []
+  actDatabaseName: []
+tags:
+- name: CustomEntities
+paths:
+  /api/custom/entities/{entityName}/{id}:
+    get:
+      tags:
+      - CustomEntities
+      summary: Get a specific custom entity.
+      operationId: CustomEntities_Get_E50407CC
+      parameters:
+      - name: entityName
+        in: path
+        required: true
+        description: The name of the custom entity.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given custom entity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    put:
+      tags:
+      - CustomEntities
+      summary: Create a new custom entity.
+      operationId: CustomEntities_Put_E2EE1D22
+      parameters:
+      - name: entityName
+        in: path
+        required: true
+        description: The name of the custom entity.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given custom entity.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Object'
+          application/xml:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Object'
+          text/xml:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Object'
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Object'
+        description: The company definition.
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+    delete:
+      tags:
+      - CustomEntities
+      summary: Delete an existing custom entity.
+      operationId: CustomEntities_Delete_B426AB4B
+      parameters:
+      - name: entityName
+        in: path
+        required: true
+        description: The name of the custom entity.
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier (id) for a given custom entity.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+  /api/custom/entities/{entityName}:
+    get:
+      tags:
+      - CustomEntities
+      summary: Get all custom entity data matching an (optional) OData query
+      operationId: CustomEntities_Get_534E3316
+      parameters:
+      - name: entityName
+        in: path
+        required: true
+        description: The name of the custom entity.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+    post:
+      tags:
+      - CustomEntities
+      summary: Create a new custom entity.
+      operationId: CustomEntities_Post_4BE499F1
+      parameters:
+      - name: entityName
+        in: path
+        required: true
+        description: The name of the custom entity.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Object'
+          application/xml:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Object'
+          text/xml:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Object'
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Object'
+        description: The company definition.
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.CustomEntity'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+components:
+  schemas:
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
+          type: string
+    act.web.api.models.Contacts.EmbeddedContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+          readOnly: true
+        company:
+          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+          type: string
+        isInvited:
+          description: Invited contact flag
+          type: boolean
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.CustomEntity:
+      description: Represents the base properties of a custom table.
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this custom entity.
+          type: string
+        companies:
+          description: List of companies that are associated to this custom entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
+        contacts:
+          description: List of contacts that are associated to this custom entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Contacts.EmbeddedContact'
+        groups:
+          description: List of groups that are associated to this custom entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
+        opportunity:
+          description: List of opportunity that are associated to this custom entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
+        created:
+          format: date-time
+          description: The date that this record was created.
+          type: string
+        edited:
+          format: date-time
+          description: The date that this record was edited.
+          type: string
+        editedBy:
+          description: The user's name that last editied this record.
+          type: string
+        recordOwner:
+          description: The user's name that owners this record.
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize together with the Act-Database-Name header to mint a JWT bearer token.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer <token> on every API request.'
+    actDatabaseName:
+      type: apiKey
+      in: header
+      name: Act-Database-Name
+      description: Name of the Act! database the request is scoped to.
