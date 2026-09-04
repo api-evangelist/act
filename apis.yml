@@ -164,8 +164,9 @@ apis:
     url: data-model/act-data-model.yml
   - type: Sandbox
     url: sandbox/act-sandbox.yml
-  - type: MCPServer
+  - type: X-MCPServerCandidate
     url: mcp/act-mcp.yml
+    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - aid: act:act-activityseries-api
   name: Act! CRM Activity Series API
   description: The ActivitySeries API from Act! CRM — 2 operation(s) for activityseries.
@@ -275,6 +276,9 @@ apis:
   - type: OpenAPI
     url: openapi/act-tasktypes-api-openapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/act-capability-edges.yml
+    name: Act! CRM Business Capability Map
   - type: Authentication
     url: authentication/act-authentication.yml
   - type: DomainSecurity
