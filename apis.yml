@@ -166,7 +166,11 @@ apis:
     url: sandbox/act-sandbox.yml
   - type: X-MCPServerCandidate
     url: mcp/act-mcp.yml
-    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+    note: >-
+      Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+      — a tool list derived from the published API contracts, not an existing server. The scorer already
+      read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+      surfaces with a server that does not exist.
 - aid: act:act-activityseries-api
   name: Act! CRM Activity Series API
   description: The ActivitySeries API from Act! CRM — 2 operation(s) for activityseries.
@@ -177,30 +181,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/act-activityseries-api-openapi.yml
-- aid: act:act-customentities-api
-  name: Act! CRM Custom Entities API
-  description: The CustomEntities API from Act! CRM — 2 operation(s) for customentities.
-  humanURL: https://www.act.com/developer/
-  baseURL: https://apimta.act.com/act.web.api
-  tags:
-  - Custom Entities
-  tags_raw:
-  - CustomEntities
-  properties:
-  - type: OpenAPI
-    url: openapi/act-customentities-api-openapi.yml
-- aid: act:act-documenttypes-api
-  name: Act! CRM Document Types API
-  description: The DocumentTypes API from Act! CRM — 4 operation(s) for documenttypes.
-  humanURL: https://www.act.com/developer/
-  baseURL: https://apimta.act.com/act.web.api
-  tags:
-  - Document Types
-  tags_raw:
-  - DocumentTypes
-  properties:
-  - type: OpenAPI
-    url: openapi/act-documenttypes-api-openapi.yml
 - aid: act:act-historytypes-api
   name: Act! CRM History Types API
   description: The HistoryTypes API from Act! CRM — 5 operation(s) for historytypes.
@@ -251,30 +231,46 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/act-supplementalfiles-api-openapi.yml
-- aid: act:act-syncdata-api
+- aid: act:act-custom-entities-api
+  name: Act! CRM Custom Entities API
+  description: The Custom Entities API from Act! CRM — 2 operation(s) for custom entities.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - Custom Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/act-custom-entities-api-openapi.yml
+- aid: act:act-document-types-api
+  name: Act! CRM Document Types API
+  description: The Document Types API from Act! CRM — 4 operation(s) for document types.
+  humanURL: https://www.act.com/developer/
+  baseURL: https://apimta.act.com/act.web.api
+  tags:
+  - Document Types
+  properties:
+  - type: OpenAPI
+    url: openapi/act-document-types-api-openapi.yml
+- aid: act:act-sync-data-api
   name: Act! CRM Sync Data API
-  description: The SyncData API from Act! CRM — 4 operation(s) for syncdata.
+  description: The Sync Data API from Act! CRM — 4 operation(s) for sync data.
   humanURL: https://www.act.com/developer/
   baseURL: https://apimta.act.com/act.web.api
   tags:
   - Sync Data
-  tags_raw:
-  - SyncData
   properties:
   - type: OpenAPI
-    url: openapi/act-syncdata-api-openapi.yml
-- aid: act:act-tasktypes-api
+    url: openapi/act-sync-data-api-openapi.yml
+- aid: act:act-task-types-api
   name: Act! CRM Task Types API
-  description: The TaskTypes API from Act! CRM — 4 operation(s) for tasktypes.
+  description: The Task Types API from Act! CRM — 4 operation(s) for task types.
   humanURL: https://www.act.com/developer/
   baseURL: https://apimta.act.com/act.web.api
   tags:
   - Task Types
-  tags_raw:
-  - TaskTypes
   properties:
   - type: OpenAPI
-    url: openapi/act-tasktypes-api-openapi.yml
+    url: openapi/act-task-types-api-openapi.yml
 common:
   - type: CapabilityMap
     url: capabilities/act-capability-edges.yml
