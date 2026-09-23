@@ -1,30 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Act! Web Supplemental Files API
   version: v1
-  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.
-  contact:
-    name: Act! Developers
-    url: https://www.act.com/developer/
-  termsOfService: https://www.act.com/legal/terms-of-service/
+  title: act.web.api Supplemental Files API
 servers:
 - url: https://apimta.act.com/act.web.api
-  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger document).
-- url: https://{server}/{customer}-api/act.web.api
-  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
-  variables:
-    server:
-      default: apimta.act.com
-    customer:
-      default: customer
-- url: https://{server}/act.web.api
-  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
-  variables:
-    server:
-      default: localhost
-security:
-- bearerAuth: []
-  actDatabaseName: []
 tags:
 - name: SupplementalFiles
 paths:
@@ -32,13 +11,13 @@ paths:
     get:
       tags:
       - SupplementalFiles
-      summary: Get a specific activity attachment.
+      summary: Get a specific activity attachment
       operationId: SupplementalFiles_GetByActivity_CF24B225
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier for the activity.
+        required: true
         schema:
           type: string
       responses:
@@ -62,16 +41,17 @@ paths:
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     post:
       tags:
       - SupplementalFiles
-      summary: Create a new activity attachment.
+      summary: Create a new activity attachment
       operationId: SupplementalFiles_PostActivityAttachment_1E201089
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given activity.
+        required: true
         schema:
           type: string
       responses:
@@ -101,16 +81,17 @@ paths:
           description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
         '500':
           description: Unexpected error.
+      deprecated: false
     delete:
       tags:
       - SupplementalFiles
-      summary: Delete an existing activity attachment.
+      summary: Delete an existing activity attachment
       operationId: SupplementalFiles_DeleteByActivity_6E842025
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given activity.
+        required: true
         schema:
           type: string
       responses:
@@ -136,17 +117,18 @@ paths:
           description: Locked indicates that an upload is currently in progress for this resource.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/attachments/documents/{id}:
     get:
       tags:
       - SupplementalFiles
-      summary: Get a specific document attachment.
+      summary: Get a specific document attachment
       operationId: SupplementalFiles_GetByDocument_969374C4
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier for the history item.
+        required: true
         schema:
           type: string
       responses:
@@ -168,16 +150,17 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
     post:
       tags:
       - SupplementalFiles
-      summary: Create a new document attachment.
+      summary: Create a new document attachment
       operationId: SupplementalFiles_PostDocumentAttachments_32FDFB20
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given history item.
+        required: true
         schema:
           type: string
       responses:
@@ -207,16 +190,17 @@ paths:
           description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
         '500':
           description: Unexpected error.
+      deprecated: false
     delete:
       tags:
       - SupplementalFiles
-      summary: Delete an existing document attachment.
+      summary: Delete an existing document attachment
       operationId: SupplementalFiles_DeleteByDocument_D3D6EC90
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given history item.
+        required: true
         schema:
           type: string
       responses:
@@ -242,17 +226,18 @@ paths:
           description: Locked indicates that an upload is currently in progress for this resource.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/attachments/history/{id}:
     get:
       tags:
       - SupplementalFiles
-      summary: Get a specific history attachment.
+      summary: Get a specific history attachment
       operationId: SupplementalFiles_GetByHistory_C6FD6D97
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier for the history item.
+        required: true
         schema:
           type: string
       responses:
@@ -274,16 +259,17 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
     post:
       tags:
       - SupplementalFiles
-      summary: Create a new history attachment.
+      summary: Create a new history attachment
       operationId: SupplementalFiles_PostHistoryAttachments_B509AF9D
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given history item.
+        required: true
         schema:
           type: string
       responses:
@@ -311,16 +297,17 @@ paths:
           description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
         '500':
           description: Unexpected error.
+      deprecated: false
     delete:
       tags:
       - SupplementalFiles
-      summary: Delete an existing history attachment.
+      summary: Delete an existing history attachment
       operationId: SupplementalFiles_DeleteByHistory_A660565D
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given history item.
+        required: true
         schema:
           type: string
       responses:
@@ -344,17 +331,18 @@ paths:
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/attachments/notes/{id}:
     get:
       tags:
       - SupplementalFiles
-      summary: Get a specific note attachment.
+      summary: Get a specific note attachment
       operationId: SupplementalFiles_GetByNote_E6495E1B
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier for the note.
+        required: true
         schema:
           type: string
       responses:
@@ -376,16 +364,17 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
     post:
       tags:
       - SupplementalFiles
-      summary: Create a new note attachment.
+      summary: Create a new note attachment
       operationId: SupplementalFiles_PostNoteAttachments_ACC89468
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given note.
+        required: true
         schema:
           type: string
       responses:
@@ -415,16 +404,17 @@ paths:
           description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
         '500':
           description: Unexpected error.
+      deprecated: false
     delete:
       tags:
       - SupplementalFiles
-      summary: Delete an existing note attachment.
+      summary: Delete an existing note attachment
       operationId: SupplementalFiles_DeleteByNote_6C96060F
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given note.
+        required: true
         schema:
           type: string
       responses:
@@ -450,17 +440,18 @@ paths:
           description: Locked indicates that an upload is currently in progress for this resource.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/attachments/{id}/upload-status:
     get:
       tags:
       - SupplementalFiles
-      summary: "Returns the upload status for the given entity, allowing clients to disable\n            delete/edit controls while a chunked upload is in progress."
+      summary: Returns the upload status for the given entity, allowing clients to disable…
       operationId: SupplementalFiles_GetUploadStatus_A24AF9D4
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier of the entity being uploaded to.
+        required: true
         schema:
           type: string
       responses:
@@ -480,17 +471,18 @@ paths:
           description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+      deprecated: false
   /api/layouts/{filename}:
     get:
       tags:
       - SupplementalFiles
-      summary: Get a layout definitions.
+      summary: Get a layout definitions
       operationId: SupplementalFiles_GetLayoutDefinition_B202BFC9
       parameters:
       - name: filename
         in: path
-        required: true
         description: The filename for the layout definition.
+        required: true
         schema:
           type: string
       responses:
@@ -514,11 +506,12 @@ paths:
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/layouts:
     get:
       tags:
       - SupplementalFiles
-      summary: Get a list of layout definitions.
+      summary: Get a list of layout definitions
       operationId: SupplementalFiles_GetLayoutDefinitions_A76A2FAC
       responses:
         '200':
@@ -543,11 +536,12 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/templates:
     post:
       tags:
       - SupplementalFiles
-      summary: Upload a template.
+      summary: Upload a template
       operationId: SupplementalFiles_PostTemplates_E92AB914
       responses:
         '202':
@@ -574,8 +568,12 @@ paths:
           description: UnsupportedMediaType indicates that the entity of the request is in a format not supported by the requested resource.
         '500':
           description: Unexpected error.
+      deprecated: false
 components:
   schemas:
+    System.Object:
+      type: object
+      properties: {}
     act.web.api.models.SupplementalFiles.Layout:
       description: ''
       type: object
@@ -599,9 +597,6 @@ components:
           format: date-time
           description: The date and time of the last modification.
           type: string
-    System.Object:
-      type: object
-      properties: {}
     act.web.api.models.Attachments.Attachment:
       description: Provides properties information about attachments.
       type: object
@@ -632,18 +627,3 @@ components:
         personal:
           description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
           type: boolean
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize together with the Act-Database-Name header to mint a JWT bearer token.
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer <token> on every API request.'
-    actDatabaseName:
-      type: apiKey
-      in: header
-      name: Act-Database-Name
-      description: Name of the Act! database the request is scoped to.

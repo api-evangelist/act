@@ -1,55 +1,28 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Act! Web API — Groups
   version: v1
-  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
-    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
-    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
-    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
-    an Act-Database-Name header.
-  contact:
-    name: Act! Developers
-    url: https://www.act.com/developer/
-  termsOfService: https://www.act.com/legal/terms-of-service/
+  title: act.web.api Groups API
 servers:
 - url: https://apimta.act.com/act.web.api
-  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
-    document).
-- url: https://{server}/{customer}-api/act.web.api
-  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
-  variables:
-    server:
-      default: apimta.act.com
-    customer:
-      default: customer
-- url: https://{server}/act.web.api
-  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
-  variables:
-    server:
-      default: localhost
 tags:
 - name: Groups
-security:
-- bearerAuth: []
-  actDatabaseName: []
 paths:
   /api/contacts/{contactId}/associated-groups:
     get:
       tags:
       - Groups
-      summary: List of groups from a specific contact and matching an (optional) OData query.
+      summary: List of groups from a specific contact and matching an (optional) OData query
       operationId: Groups_GetAssociatedGroupsFromContact_584D5498
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier (id) for a given contact.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -67,48 +40,29 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     put:
       tags:
       - Groups
-      summary: Associate a list of groups to a specific contact.
+      summary: Associate a list of groups to a specific contact
       operationId: Groups_PutAssociatedGroupsToContact_A219ADDD
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier (id) for a given contact.
+        required: true
         schema:
           type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
-          text/xml:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
-        description: List of group identifiers (id).
       responses:
         '200':
-          description: OK indicates that the request has been successfully processed and that the response
-            contain list of assigned contacts.
+          description: OK indicates that the request has been successfully processed and that the response contain list of assigned contacts.
           content:
             application/json:
               schema:
@@ -126,30 +80,65 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
+        description: List of group identifiers (id).
+        required: true
     delete:
       tags:
       - Groups
-      summary: Dissociate a list of groups from a specific contact.
+      summary: Dissociate a list of groups from a specific contact
       operationId: Groups_DeleteAssociatedGroupsFromContact_CFEF8EDF
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier (id) for a given contact.
+        required: true
         schema:
           type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -164,54 +153,29 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
         description: A list of groups.
-      responses:
-        '204':
-          description: NoContent indicates that the request has been successfully processed and that the
-            response is intentionally blank.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/System.Object'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/System.Object'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/System.Object'
-        '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '404':
-          description: NotFound indicates that the requested resource does not exist on the server.
-        '500':
-          description: Unexpected error.
+        required: true
   /api/contacts/{contactId}/associated-groups/{groupId}:
     put:
       tags:
       - Groups
-      summary: Associate a group to a specific contact.
+      summary: Associate a group to a specific contact
       operationId: Groups_PutAssociatedGroupsToContact_F74551DA
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier (id) for a given contact.
+        required: true
         schema:
           type: string
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request has been successfully processed and that the response
-            contain list of assigned contacts.
+          description: OK indicates that the request has been successfully processed and that the response contain list of assigned contacts.
           content:
             application/json:
               schema:
@@ -229,38 +193,35 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     delete:
       tags:
       - Groups
-      summary: Dissociate a group from a specific contact.
+      summary: Dissociate a group from a specific contact
       operationId: Groups_DeleteAssociatedGroupsFromContact_D64A54E1
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier (id) for a given contact.
+        required: true
         schema:
           type: string
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given contact.
+        required: true
         schema:
           type: string
       responses:
         '204':
-          description: NoContent indicates that the request has been successfully processed and that the
-            response is intentionally blank.
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
           content:
             application/json:
               schema:
@@ -272,33 +233,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/System.Object'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/opportunities/{opportunityId}/associated-groups:
     get:
       tags:
       - Groups
-      summary: List of groups from a specific opportunity and matching an (optional) OData query.
+      summary: List of groups from a specific opportunity and matching an (optional) OData…
       operationId: Groups_GetAssociatedGroupsFromOpportunity_B7851AE9
       parameters:
       - name: opportunityId
         in: path
-        required: true
         description: The unique identifier (id) for a given opportunity.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -316,28 +274,53 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
     put:
       tags:
       - Groups
-      summary: Associate a list of groups to a specific opportunity.
+      summary: Associate a list of groups to a specific opportunity
       operationId: Groups_PutAssociatedGroupsToOpportunity_7BCA2FDE
       parameters:
       - name: opportunityId
         in: path
-        required: true
         description: The unique identifier (id) for a given opportunity.
+        required: true
         schema:
           type: string
+      responses:
+        '200':
+          description: OK indicates that the request has been successfully processed and that the response contain list of assigned contacts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -352,51 +335,42 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
         description: List of group identifiers (id).
-      responses:
-        '200':
-          description: OK indicates that the request has been successfully processed and that the response
-            contain list of assigned contacts.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-            text/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-        '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '404':
-          description: NotFound indicates that the requested resource does not exist on the server.
-        '500':
-          description: Unexpected error.
+        required: true
     delete:
       tags:
       - Groups
-      summary: Dissociate a list of groups from a specific opportunity.
+      summary: Dissociate a list of groups from a specific opportunity
       operationId: Groups_DeleteAssociatedGroupsFromOpportunity_4A000B6E
       parameters:
       - name: opportunityId
         in: path
-        required: true
         description: The unique identifier (id) for a given opportunity.
+        required: true
         schema:
           type: string
+      responses:
+        '204':
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -411,54 +385,29 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Groups.GroupListRequest'
         description: A list of groups.
-      responses:
-        '204':
-          description: NoContent indicates that the request has been successfully processed and that the
-            response is intentionally blank.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/System.Object'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/System.Object'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/System.Object'
-        '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '404':
-          description: NotFound indicates that the requested resource does not exist on the server.
-        '500':
-          description: Unexpected error.
+        required: true
   /api/opportunities/{opportunityId}/associated-groups/{groupId}:
     put:
       tags:
       - Groups
-      summary: Associate a group to a specific opportunity.
+      summary: Associate a group to a specific opportunity
       operationId: Groups_PutAssociatedGroupsToOpportunity_4AD8AA6A
       parameters:
       - name: opportunityId
         in: path
-        required: true
         description: The unique identifier (id) for a given opportunity.
+        required: true
         schema:
           type: string
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request has been successfully processed and that the response
-            contain list of assigned contacts.
+          description: OK indicates that the request has been successfully processed and that the response contain list of assigned contacts.
           content:
             application/json:
               schema:
@@ -476,38 +425,35 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     delete:
       tags:
       - Groups
-      summary: Dissociate a list of groups from a specific opportunity.
+      summary: Dissociate a list of groups from a specific opportunity
       operationId: Groups_DeleteAssociatedGroupsFromOpportunity_678469A3
       parameters:
       - name: opportunityId
         in: path
-        required: true
         description: The unique identifier (id) for a given opportunity.
+        required: true
         schema:
           type: string
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
       responses:
         '204':
-          description: NoContent indicates that the request has been successfully processed and that the
-            response is intentionally blank.
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
           content:
             application/json:
               schema:
@@ -519,33 +465,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/System.Object'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/groups/{groupId}:
     get:
       tags:
       - Groups
-      summary: Get a specific Group.
+      summary: Get a specific Group
       operationId: Groups_GetGroups_99BF0A48
       parameters:
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -557,30 +500,49 @@ paths:
               schema:
                 $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     put:
       tags:
       - Groups
-      summary: Update an already existing group.
+      summary: Update an already existing group
       operationId: Groups_PutGroup_FEB23D37
       parameters:
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -595,47 +557,22 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         description: The group definition.
-      responses:
-        '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-        '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '404':
-          description: NotFound indicates that the requested resource does not exist on the server.
-        '500':
-          description: Unexpected error.
+        required: true
     delete:
       tags:
       - Groups
-      summary: Delete an existing group.
+      summary: Delete an existing group
       operationId: Groups_DeleteGroup_26D17601
       parameters:
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
       responses:
         '204':
-          description: NoContent indicates that the request has been successfully processed and that the
-            response is intentionally blank.
+          description: NoContent indicates that the request has been successfully processed and that the response is intentionally blank.
           content:
             application/json:
               schema:
@@ -647,30 +584,49 @@ paths:
               schema:
                 $ref: '#/components/schemas/System.Object'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     patch:
       tags:
       - Groups
-      summary: Update (partially) an already existing group.
+      summary: Update (partially) an already existing group
       operationId: Groups_PatchGroup_F19E7730
       parameters:
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -685,10 +641,45 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         description: The group definition.
+        required: true
+  /api/groups:
+    get:
+      tags:
+      - Groups
+      summary: Get all groups matching an (optional) OData query
+      operationId: Groups_GetGroups_DD9B20F4
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Groups.Group'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+      deprecated: false
+    post:
+      tags:
+      - Groups
+      summary: Create a new group
+      operationId: Groups_PostGroup_22C1BA27
+      responses:
+        '201':
+          description: Created indicates that the request resulted in a new resource created before the response was sent.
           content:
             application/json:
               schema:
@@ -700,54 +691,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
-  /api/groups:
-    get:
-      tags:
-      - Groups
-      summary: Get all groups matching an (optional) OData query.
-      operationId: Groups_GetGroups_DD9B20F4
-      responses:
-        '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-            text/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '500':
-          description: Unexpected error.
-    post:
-      tags:
-      - Groups
-      summary: Create a new group.
-      operationId: Groups_PostGroup_22C1BA27
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -762,54 +714,29 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         description: The Group definition.
-      responses:
-        '201':
-          description: Created indicates that the request resulted in a new resource created before the
-            response was sent.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Groups.Group'
-        '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '404':
-          description: NotFound indicates that the requested resource does not exist on the server.
-        '500':
-          description: Unexpected error.
+        required: true
   /api/{entityName}/{id}/associated-groups:
     get:
       tags:
       - Groups
-      summary: List of groups from a specific custom entity and matching an (optional) OData query.
+      summary: List of groups from a specific custom entity and matching an (optional) OData…
       operationId: Groups_GetAssociatedGroupsFromCustomEntity_2B27D8F3
       parameters:
       - name: entityName
         in: path
-        required: true
         description: The name of the custom entity.
+        required: true
         schema:
           type: string
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given entity row
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -827,33 +754,30 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/groups/{groupId}/associated-groups:
     get:
       tags:
       - Groups
-      summary: List of groups from a specific group and matching an (optional) OData query.
+      summary: List of groups from a specific group and matching an (optional) OData query
       operationId: Groups_GetAssociatedGroupsFromGroup_163D567E
       parameters:
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -871,33 +795,30 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/lists/{listId}/dynamic-criteria:
     get:
       tags:
       - Groups
-      summary: Get the criteria for a dynamic list matching an (optional) OData query.
+      summary: Get the criteria for a dynamic list matching an (optional) OData query
       operationId: Groups_GetDynamicListCriteria_02B7B98D
       parameters:
       - name: listId
         in: path
-        required: true
         description: The unique identifier (id) for a given list
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -915,31 +836,57 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Lists.Criteria'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
     put:
       tags:
       - Groups
-      summary: Edit the criteria for a dynamic list.
+      summary: Edit the criteria for a dynamic list
       operationId: Groups_PutDynamicListCriteria_1D93BFEB
       parameters:
       - name: listId
         in: path
-        required: true
         description: The unique identifier (id) for a given list.
+        required: true
         schema:
           type: string
       - name: dateFormat
         in: query
+        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy" or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         required: false
-        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy"
-          or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         schema:
           type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Lists.Criteria'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Lists.Criteria'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/act.web.api.models.Lists.Criteria'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -962,47 +909,16 @@ paths:
               items:
                 $ref: '#/components/schemas/act.web.api.models.Lists.Criteria'
         description: The criteria used to build the dynamic list.
-      responses:
-        '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Lists.Criteria'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Lists.Criteria'
-            text/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/act.web.api.models.Lists.Criteria'
-        '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '404':
-          description: NotFound indicates that the requested resource does not exist on the server.
-        '500':
-          description: Unexpected error.
+        required: true
   /api/dynamic-list/metadata:
     get:
       tags:
       - Groups
-      summary: Get the dynamic list metadata matching an (optional) OData query.
+      summary: Get the dynamic list metadata matching an (optional) OData query
       operationId: Groups_GetDynamicListCriteriaMetadata_5F31C879
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -1020,10 +936,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListMetadata'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/dynamic-list/operators:
     get:
       tags:
@@ -1032,8 +948,7 @@ paths:
       operationId: Groups_GetDynamicListCriteriaOperators_199DB107
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -1051,27 +966,26 @@ paths:
                 items:
                   $ref: '#/components/schemas/System.Object'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/groups/{groupId}/access:
     get:
       tags:
       - Groups
-      summary: Get all group access levels matching an (optional) OData query.
+      summary: Get all group access levels matching an (optional) OData query
       operationId: Groups_GetGroupAccessLevel_907B2362
       parameters:
       - name: groupId
         in: path
-        required: true
         description: The unique identifier for the group.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -1083,24 +997,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
     put:
       tags:
       - Groups
-      summary: Update an already existing group access levels accessors.
+      summary: Update an already existing group access levels accessors
       operationId: Groups_PutGroupAccessors_2D0DD7FE
       parameters:
       - name: groupId
         in: path
-        required: true
         description: The unique identifier (id) for a given group.
+        required: true
         schema:
           type: string
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1115,31 +1050,7 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
         description: The unique identifier (id) for a given accessor.
-      responses:
-        '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Contacts.AccessLevel'
-        '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest
-            is sent when no other error is applicable, or if the exact error is unknown or does not have
-            its own error code.
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '404':
-          description: NotFound indicates that the requested resource does not exist on the server.
-        '500':
-          description: Unexpected error.
+        required: true
   /api/dynamic-list/company-preview:
     post:
       tags:
@@ -1149,21 +1060,19 @@ paths:
       parameters:
       - name: includePrivate
         in: query
-        required: false
         description: Include entities that are marked as private
+        required: false
         schema:
           type: boolean
       - name: dateFormat
         in: query
+        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy" or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         required: false
-        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy"
-          or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -1181,10 +1090,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Companies.Company'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/dynamic-list/preview:
     post:
       tags:
@@ -1194,27 +1103,25 @@ paths:
       parameters:
       - name: includePrivate
         in: query
-        required: false
         description: Include entities that are marked as private
+        required: false
         schema:
           type: boolean
       - name: includeUsers
         in: query
-        required: false
         description: Include contacts and users
+        required: false
         schema:
           type: boolean
       - name: dateFormat
         in: query
+        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy" or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         required: false
-        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy"
-          or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -1232,10 +1139,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/dynamic-list/contact-preview:
     post:
       tags:
@@ -1245,27 +1152,25 @@ paths:
       parameters:
       - name: includePrivate
         in: query
-        required: false
         description: Include entities that are marked as private
+        required: false
         schema:
           type: boolean
       - name: includeUsers
         in: query
-        required: false
         description: Include contacts and users
+        required: false
         schema:
           type: boolean
       - name: dateFormat
         in: query
+        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy" or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         required: false
-        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy"
-          or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -1283,10 +1188,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/dynamic-list/group-preview:
     post:
       tags:
@@ -1296,21 +1201,19 @@ paths:
       parameters:
       - name: includePrivate
         in: query
-        required: false
         description: Include entities that are marked as private
+        required: false
         schema:
           type: boolean
       - name: dateFormat
         in: query
+        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy" or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         required: false
-        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy"
-          or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -1328,10 +1231,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Groups.Group'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/dynamic-list/opportunity-preview:
     post:
       tags:
@@ -1341,21 +1244,19 @@ paths:
       parameters:
       - name: includePrivate
         in: query
-        required: false
         description: Include entities that are marked as private
+        required: false
         schema:
           type: boolean
       - name: dateFormat
         in: query
+        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy" or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         required: false
-        description: Optional date format string for parsing date criteria values (e.g., "dd/MM/yyyy"
-          or "MM/dd/yyyy"). If not provided, defaults to dd/MM/yyyy.
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -1373,178 +1274,52 @@ paths:
                 items:
                   $ref: '#/components/schemas/act.web.api.models.Opportunities.Opportunity'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
-        together with the Act-Database-Name header to mint a JWT bearer token.
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
-        <token> on every API request.'
-    actDatabaseName:
-      type: apiKey
-      in: header
-      name: Act-Database-Name
-      description: Name of the Act! database the request is scoped to.
   schemas:
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Address:
-      description: A specific place where a person, business, or organization can be found and where physical
-        mail can be received.
-      type: object
-      properties:
-        line1:
-          description: Primary street address
-          type: string
-        line2:
-          description: Secondary street address
-          type: string
-        line3:
-          description: Miscellaneous street address
-          type: string
-        city:
-          description: An inhabited place of greater size, population, or importance than a town or village.
-          type: string
-        state:
-          description: A nation or territory considered as an organized political community under one
-            government.
-          type: string
-        postalCode:
-          description: A code of letters and digits added to a postal address to aid in the sorting of
-            mail.
-          type: string
-        country:
-          description: A nation with its own government, occupying a particular territory.
-          type: string
-        latitude:
-          format: double
-          description: The angular distance of a place north or south of the earth's equator, or of a
-            celestial object north or south of the celestial equator, usually expressed in degrees and
-            minutes.
-          type: number
-        longitude:
-          format: double
-          description: The angular distance of a place east or west of the meridian at Greenwich, England,
-            or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
-          type: number
-    act.web.api.models.Companies.Company:
-      description: A company is any entity that engages in business.
+    act.web.api.models.Groups.Group:
+      description: Represents a group of ACT! entities.
       type: object
       properties:
         id:
-          description: The unique identifier (id) for this company.
+          description: The unique identifier (id) for a group.
           type: string
         name:
-          description: The company's given name.
+          description: The name of the group.
           type: string
-        address:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's business address.
-        billingAddress:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's billing address.
         description:
-          description: A brief written representation or account of this company.
+          description: A brief written respresentation of a group.
           type: string
-        division:
-          description: The name of a smaller part of a parent company tasked with overseeing different
-            types of products or services than those offered by the parent company.
+        contacts:
+          format: int32
+          description: "Get the total number of contacts within the group.\n            Contacts is nullable and hide it if the value is null"
+          type: integer
+        parentID:
+          description: The group's parent entity.
           type: string
-        fax:
-          description: The company's fax phone number.
-          type: string
-        faxExtension:
-          description: The company's fax phone number extension.
-          type: string
-        hasDivisions:
-          description: This readonly property indicates that this company has divisions.
+        hasSubgroups:
+          description: This readonly property indicates that this group has sub groups.
           type: boolean
         hierarchyLevel:
           format: int32
-          description: The positional level of where this company lays within a company hierarchy.
+          description: The level this group appears in its hierarchy.
           type: integer
-        idStatus:
-          description: The relative social or professional position of an individual within a group or
-            organization.
-          type: string
-        importDate:
-          format: date-time
-          description: This readonly property displays the date that the opportunity was imported into
-            the system.
-          type: string
-        industry:
-          description: Economic activity concerned with the processing of raw materials and manufacture
-            of goods in factories.
-          type: string
         isPrivate:
           description: Indicates elevated security that only the creator/owner has access to this company.
           type: boolean
         acl:
           description: Access Levels
           type: string
-        numberOfEmployees:
-          format: int32
-          description: The total number of employees that this company operates with.
-          type: integer
-        rootParentID:
-          description: The unique identifier (id) of the parent company.
+        importDate:
+          format: date-time
+          description: This readonly property displays the date that the opportunity was imported into the system.
           type: string
-        parentID:
-          description: The unique identifier (id) of the parent company.
-          type: string
-        phone:
-          description: The company's phone number.
-          type: string
-        phoneExtension:
-          description: The company's phone number extension.
-          type: string
-        referredBy:
-          description: Mention or allude to.
-          type: string
-        region:
-          description: A part of a country, of the world, etc., that is different or separate from other
-            parts in some way.
-          type: string
-        revenue:
-          format: double
-          description: The amount of money that this company actually receives during a specific period,
-            including discounts and deductions for returned merchandise.
-          type: number
-        shippingAddress:
+        address:
           $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's shipping address.
-        sicCode:
-          description: Standard Industrial Classification (SIC) codes are four-digit numerical codes assigned
-            by the U.S. government to business establishments to identify the primary business of the
-            establishment.
-          type: string
-        territory:
-          description: Geographical area.
-          type: string
-        tickerSymbol:
-          description: An arrangement of characters (usually letters) representing a particular security
-            listed on an exchange or otherwise traded publicly.
-          type: string
-        tollFreePhone:
-          description: The company's toll free phone number.
-          type: string
-        tollFreeExtension:
-          description: The company's toll free phone number.
-          type: string
-        website:
-          description: The company's website.
-          type: string
+          description: The group address.
         recordManagerID:
           description: The record manager.
           type: string
@@ -1562,43 +1337,48 @@ components:
           type: string
         recordManager:
           type: string
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
+    act.web.api.models.Address:
+      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
       type: object
       properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
+        line1:
+          description: Primary street address
           type: string
-        name:
-          description: Gets the name of the company.
+        line2:
+          description: Secondary street address
           type: string
-    act.web.api.models.Contacts.AccessLevel:
-      description: ''
-      type: object
-      properties:
-        type:
-          description: Defines the entity's access level.
-          enum:
-          - Public
-          - Private
-          - LimitedAccess
+        line3:
+          description: Miscellaneous street address
           type: string
-        accessors:
-          description: The accessors that have been selected for limited access.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+        city:
+          description: An inhabited place of greater size, population, or importance than a town or village.
+          type: string
+        state:
+          description: A nation or territory considered as an organized political community under one government.
+          type: string
+        postalCode:
+          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
+          type: string
+        country:
+          description: A nation with its own government, occupying a particular territory.
+          type: string
+        latitude:
+          format: double
+          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
+          type: number
+        longitude:
+          format: double
+          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
+          type: number
     act.web.api.models.Contacts.Contact:
-      description: The person who is designated for giving information or being a representative for an
-        organization.
+      description: The person who is designated for giving information or being a representative for an organization.
       type: object
       properties:
         id:
           description: The unique identifier (id) for this contact.
           type: string
         idStatus:
-          description: The relative social or professional position of an individual within a group or
-            organization.
+          description: The relative social or professional position of an individual within a group or organization.
           type: string
         isUser:
           description: An indicator if this contact is also a user within the system.
@@ -1628,12 +1408,10 @@ components:
           description: The family name or surname.
           type: string
         nameSuffix:
-          description: Provides additional information about the person that identifies an individual
-            position, educational degree, accreditation, orffice, or honors.
+          description: Provides additional information about the person that identifies an individual position, educational degree, accreditation, orffice, or honors.
           type: string
         fullName:
-          description: The first name, any middle names, and surname of a contact.  This may also include
-            name prefixes and sufixes that are defined within Act!
+          description: The first name, any middle names, and surname of a contact.  This may also include name prefixes and sufixes that are defined within Act!
           type: string
         isFavorite:
           description: Assign this contact as a favorite.
@@ -1643,8 +1421,7 @@ components:
           type: boolean
         importDate:
           format: date-time
-          description: This readonly property displays the date that the opportunity was imported into
-            the system.
+          description: This readonly property displays the date that the opportunity was imported into the system.
           type: string
         isPrivate:
           description: Identifies last communication or action with a contact.
@@ -1820,6 +1597,32 @@ components:
           type: string
         recordManager:
           type: string
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Lists.DynamicListMetadata:
+      description: ''
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        fields:
+          description: The defines all the fields that can be used to build a dynamic list.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListMetadataFields'
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
     act.web.api.models.Contacts.EmbeddedContact:
       description: ''
       type: object
@@ -1837,230 +1640,6 @@ components:
         isInvited:
           description: Invited contact flag
           type: boolean
-    act.web.api.models.Groups.EmbeddedGroup:
-      description: An group entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given group.
-          type: string
-        name:
-          description: Gets the name of the group.
-          type: string
-    act.web.api.models.Groups.Group:
-      description: Represents a group of ACT! entities.
-      type: object
-      properties:
-        id:
-          description: The unique identifier (id) for a group.
-          type: string
-        name:
-          description: The name of the group.
-          type: string
-        description:
-          description: A brief written respresentation of a group.
-          type: string
-        contacts:
-          format: int32
-          description: "Get the total number of contacts within the group.\r\n            Contacts is\
-            \ nullable and hide it if the value is null"
-          type: integer
-        parentID:
-          description: The group's parent entity.
-          type: string
-        hasSubgroups:
-          description: This readonly property indicates that this group has sub groups.
-          type: boolean
-        hierarchyLevel:
-          format: int32
-          description: The level this group appears in its hierarchy.
-          type: integer
-        isPrivate:
-          description: Indicates elevated security that only the creator/owner has access to this company.
-          type: boolean
-        acl:
-          description: Access Levels
-          type: string
-        importDate:
-          format: date-time
-          description: This readonly property displays the date that the opportunity was imported into
-            the system.
-          type: string
-        address:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The group address.
-        recordManagerID:
-          description: The record manager.
-          type: string
-        customFields:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/System.Object'
-        created:
-          format: date-time
-          type: string
-        edited:
-          format: date-time
-          type: string
-        editedBy:
-          type: string
-        recordManager:
-          type: string
-    act.web.api.models.Groups.GroupListRequest:
-      description: Assign group request model.
-      type: object
-      properties:
-        groups:
-          description: List of group identifiers.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Lists.Criteria:
-      description: Represents a single criteria item for filtering opportunities
-      type: object
-      properties:
-        columnId:
-          type: string
-        tableName:
-          type: string
-        columnName:
-          type: string
-        tableDisplayName:
-          type: string
-        columnDisplayName:
-          type: string
-        domain:
-          enum:
-          - IDKey
-          - Boolean
-          - DateTime
-          - String
-          - Numeric
-          - Image
-          - Calculated
-          - Memo
-          - AnnualEvent
-          type: string
-        operator:
-          enum:
-          - Contains
-          - StartsWith
-          - EndsWith
-          - EqualTo
-          - NotEqualTo
-          - GreaterThan
-          - GreaterThanEqualTo
-          - LessThan
-          - LessThanEqualTo
-          - Between
-          - OnOrAfter
-          - OnOrBefore
-          - WithinLast
-          - WithinNext
-          - DoesNotContain
-          - OlderThan
-          - AfterNext
-          - MonthEquals
-          - DayEquals
-          - YearEquals
-          - MonthNotEquals
-          - DayNotEquals
-          - YearNotEquals
-          - MonthGreaterThan
-          - DayGreaterThan
-          - YearGreaterThan
-          - MonthGreaterThanEqualTo
-          - DayGreaterThanEqualTo
-          - YearGreaterThanEqualTo
-          - MonthLessThan
-          - DayLessThan
-          - YearLessThan
-          - MonthLessThanEqualTo
-          - DayLessThanEqualTo
-          - YearLessThanEqualTo
-          - ContainsData
-          - DoesNotContainData
-          type: string
-        leftParentheses:
-          format: int32
-          type: integer
-        rightParentheses:
-          format: int32
-          type: integer
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Lists.XmlValue'
-        logicalOperator:
-          enum:
-          - End
-          - And
-          - Or
-          type: string
-    act.web.api.models.Lists.DynamicListDropdown:
-      description: ''
-      type: object
-      properties:
-        name:
-          description: The name of the dropdown list.
-          type: string
-        isEditable:
-          description: If values can be added outside of what is defined in the list.
-          type: boolean
-        items:
-          description: The value items of the dropdown list.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Lists.DynamicListMetadata:
-      description: ''
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        fields:
-          description: The defines all the fields that can be used to build a dynamic list.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListMetadataFields'
-    act.web.api.models.Lists.DynamicListMetadataFields:
-      description: ''
-      type: object
-      properties:
-        name:
-          description: Readable name of the field.
-          type: string
-        table:
-          description: The table/view where the data was found.
-          type: string
-        column:
-          description: The name of the column
-          type: string
-        dataType:
-          description: The criteria value will be represented by this datatype.
-          enum:
-          - IDKey
-          - Boolean
-          - DateTime
-          - String
-          - Numeric
-          - Image
-          - Calculated
-          - Memo
-          - AnnualEvent
-          type: string
-        list:
-          $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListDropdown'
-          description: The dropdown list that is assigned to the column.
-    act.web.api.models.Lists.XmlValue:
-      type: object
-      properties:
-        type:
-          type: string
-        dataItem:
-          type: string
     act.web.api.models.Opportunities.Opportunity:
       description: A contact or company which has been qualified.
       type: object
@@ -2166,8 +1745,7 @@ components:
           readOnly: true
         importDate:
           format: date-time
-          description: This readonly property displays the date that the opportunity was imported into
-            the system.
+          description: This readonly property displays the date that the opportunity was imported into the system.
           type: string
         totalPerCompany:
           format: double
@@ -2208,6 +1786,88 @@ components:
           type: string
         recordManager:
           type: string
+    act.web.api.models.Lists.Criteria:
+      description: Represents a single criteria item for filtering opportunities
+      type: object
+      properties:
+        columnId:
+          type: string
+        tableName:
+          type: string
+        columnName:
+          type: string
+        tableDisplayName:
+          type: string
+        columnDisplayName:
+          type: string
+        domain:
+          enum:
+          - IDKey
+          - Boolean
+          - DateTime
+          - String
+          - Numeric
+          - Image
+          - Calculated
+          - Memo
+          - AnnualEvent
+          type: string
+        operator:
+          enum:
+          - Contains
+          - StartsWith
+          - EndsWith
+          - EqualTo
+          - NotEqualTo
+          - GreaterThan
+          - GreaterThanEqualTo
+          - LessThan
+          - LessThanEqualTo
+          - Between
+          - OnOrAfter
+          - OnOrBefore
+          - WithinLast
+          - WithinNext
+          - DoesNotContain
+          - OlderThan
+          - AfterNext
+          - MonthEquals
+          - DayEquals
+          - YearEquals
+          - MonthNotEquals
+          - DayNotEquals
+          - YearNotEquals
+          - MonthGreaterThan
+          - DayGreaterThan
+          - YearGreaterThan
+          - MonthGreaterThanEqualTo
+          - DayGreaterThanEqualTo
+          - YearGreaterThanEqualTo
+          - MonthLessThan
+          - DayLessThan
+          - YearLessThan
+          - MonthLessThanEqualTo
+          - DayLessThanEqualTo
+          - YearLessThanEqualTo
+          - ContainsData
+          - DoesNotContainData
+          type: string
+        leftParentheses:
+          format: int32
+          type: integer
+        rightParentheses:
+          format: int32
+          type: integer
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Lists.XmlValue'
+        logicalOperator:
+          enum:
+          - End
+          - And
+          - Or
+          type: string
     act.web.api.models.Opportunities.Process:
       description: The current process for a given opportunity.
       type: object
@@ -2237,9 +1897,227 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+    act.web.api.models.Contacts.AccessLevel:
+      description: ''
+      type: object
+      properties:
+        type:
+          description: Defines the entity's access level.
+          enum:
+          - Public
+          - Private
+          - LimitedAccess
+          type: string
+        accessors:
+          description: The accessors that have been selected for limited access.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+    act.web.api.models.Lists.DynamicListDropdown:
+      description: ''
+      type: object
+      properties:
+        name:
+          description: The name of the dropdown list.
+          type: string
+        isEditable:
+          description: If values can be added outside of what is defined in the list.
+          type: boolean
+        items:
+          description: The value items of the dropdown list.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Users.Accessor:
+      description: The user/team that is granted access.
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the accessor/user id
+          type: string
+        type:
+          description: The type of accessor (User = 1 or Team = 2)
+          enum:
+          - Unknown
+          - User
+          - Team
+          - Resource
+          type: string
+        name:
+          description: The name of the accessor
+          type: string
+    act.web.api.models.Lists.XmlValue:
+      type: object
+      properties:
+        type:
+          type: string
+        dataItem:
+          type: string
+    act.web.api.models.Lists.DynamicListMetadataFields:
+      description: ''
+      type: object
+      properties:
+        name:
+          description: Readable name of the field.
+          type: string
+        table:
+          description: The table/view where the data was found.
+          type: string
+        column:
+          description: The name of the column
+          type: string
+        dataType:
+          description: The criteria value will be represented by this datatype.
+          enum:
+          - IDKey
+          - Boolean
+          - DateTime
+          - String
+          - Numeric
+          - Image
+          - Calculated
+          - Memo
+          - AnnualEvent
+          type: string
+        list:
+          $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListDropdown'
+          description: The dropdown list that is assigned to the column.
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
+    act.web.api.models.Companies.Company:
+      description: A company is any entity that engages in business.
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this company.
+          type: string
+        name:
+          description: The company's given name.
+          type: string
+        address:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's business address.
+        billingAddress:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's billing address.
+        description:
+          description: A brief written representation or account of this company.
+          type: string
+        division:
+          description: The name of a smaller part of a parent company tasked with overseeing different types of products or services than those offered by the parent company.
+          type: string
+        fax:
+          description: The company's fax phone number.
+          type: string
+        faxExtension:
+          description: The company's fax phone number extension.
+          type: string
+        hasDivisions:
+          description: This readonly property indicates that this company has divisions.
+          type: boolean
+        hierarchyLevel:
+          format: int32
+          description: The positional level of where this company lays within a company hierarchy.
+          type: integer
+        idStatus:
+          description: The relative social or professional position of an individual within a group or organization.
+          type: string
+        importDate:
+          format: date-time
+          description: This readonly property displays the date that the opportunity was imported into the system.
+          type: string
+        industry:
+          description: Economic activity concerned with the processing of raw materials and manufacture of goods in factories.
+          type: string
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this company.
+          type: boolean
+        acl:
+          description: Access Levels
+          type: string
+        numberOfEmployees:
+          format: int32
+          description: The total number of employees that this company operates with.
+          type: integer
+        rootParentID:
+          description: The unique identifier (id) of the parent company.
+          type: string
+        parentID:
+          description: The unique identifier (id) of the parent company.
+          type: string
+        phone:
+          description: The company's phone number.
+          type: string
+        phoneExtension:
+          description: The company's phone number extension.
+          type: string
+        referredBy:
+          description: Mention or allude to.
+          type: string
+        region:
+          description: A part of a country, of the world, etc., that is different or separate from other parts in some way.
+          type: string
+        revenue:
+          format: double
+          description: The amount of money that this company actually receives during a specific period, including discounts and deductions for returned merchandise.
+          type: number
+        shippingAddress:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's shipping address.
+        sicCode:
+          description: Standard Industrial Classification (SIC) codes are four-digit numerical codes assigned by the U.S. government to business establishments to identify the primary business of the establishment.
+          type: string
+        territory:
+          description: Geographical area.
+          type: string
+        tickerSymbol:
+          description: An arrangement of characters (usually letters) representing a particular security listed on an exchange or otherwise traded publicly.
+          type: string
+        tollFreePhone:
+          description: The company's toll free phone number.
+          type: string
+        tollFreeExtension:
+          description: The company's toll free phone number.
+          type: string
+        website:
+          description: The company's website.
+          type: string
+        recordManagerID:
+          description: The record manager.
+          type: string
+        customFields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+        created:
+          format: date-time
+          type: string
+        edited:
+          format: date-time
+          type: string
+        editedBy:
+          type: string
+        recordManager:
+          type: string
+    act.web.api.models.Groups.GroupListRequest:
+      description: Assign group request model.
+      type: object
+      properties:
+        groups:
+          description: List of group identifiers.
+          type: array
+          items:
+            type: string
     act.web.api.models.Opportunities.Stage:
-      description: A class describes the stage state of a particular {act.web.api.models.Opportunities.Opportunity}
-        object.
+      description: A class describes the stage state of a particular {act.web.api.models.Opportunities.Opportunity} object.
       type: object
       properties:
         id:
@@ -2262,21 +2140,3 @@ components:
         process:
           $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
           description: Represents the current process for a given opportunity
-    act.web.api.models.Users.Accessor:
-      description: The user/team that is granted access.
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the accessor/user id
-          type: string
-        type:
-          description: The type of accessor (User = 1 or Team = 2)
-          enum:
-          - Unknown
-          - User
-          - Team
-          - Resource
-          type: string
-        name:
-          description: The name of the accessor
-          type: string

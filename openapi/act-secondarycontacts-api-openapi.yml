@@ -1,30 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Act! Web Secondary Contacts API
   version: v1
-  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.
-  contact:
-    name: Act! Developers
-    url: https://www.act.com/developer/
-  termsOfService: https://www.act.com/legal/terms-of-service/
+  title: act.web.api Secondary Contacts API
 servers:
 - url: https://apimta.act.com/act.web.api
-  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger document).
-- url: https://{server}/{customer}-api/act.web.api
-  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
-  variables:
-    server:
-      default: apimta.act.com
-    customer:
-      default: customer
-- url: https://{server}/act.web.api
-  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
-  variables:
-    server:
-      default: localhost
-security:
-- bearerAuth: []
-  actDatabaseName: []
 tags:
 - name: SecondaryContacts
 paths:
@@ -32,23 +11,24 @@ paths:
     get:
       tags:
       - SecondaryContacts
-      summary: Get a specific secondary contact.
+      summary: Get a specific secondary contact
       operationId: SecondaryContacts_Get_5AE7C09D
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier for the primary contact.
+        required: true
         schema:
           type: string
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given contact.
+        required: true
         schema:
           type: string
       - name: phoneFormat
         in: query
+        description: ''
         required: false
         schema:
           type: string
@@ -76,34 +56,57 @@ paths:
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     put:
       tags:
       - SecondaryContacts
-      summary: Update an already existing secondary contact.
+      summary: Update an already existing secondary contact
       operationId: SecondaryContacts_Put_5975AAF3
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier for the primary contact.
+        required: true
         schema:
           type: string
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given secondary contact.
+        required: true
         schema:
           type: string
       - name: phoneFormat
         in: query
+        description: ''
         required: false
         schema:
           type: string
           enum:
           - None
           - E164
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        '400':
+          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '404':
+          description: NotFound indicates that the requested resource does not exist on the server.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -118,43 +121,23 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
         description: The contact definition.
-      responses:
-        '200':
-          description: OK indicates that the request succeeded and that the requested information is in the response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-        '400':
-          description: BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
-        '404':
-          description: NotFound indicates that the requested resource does not exist on the server.
-        '500':
-          description: Unexpected error.
+        required: true
     delete:
       tags:
       - SecondaryContacts
-      summary: Delete an existing secondary contact.
+      summary: Delete an existing secondary contact
       operationId: SecondaryContacts_Delete_33369209
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier for the primary contact.
+        required: true
         schema:
           type: string
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given secondary contact.
+        required: true
         schema:
           type: string
       responses:
@@ -178,48 +161,34 @@ paths:
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     patch:
       tags:
       - SecondaryContacts
-      summary: Update (partially) an already existing secondary contact.
+      summary: Update (partially) an already existing secondary contact
       operationId: SecondaryContacts_Patch_29CC2E85
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier for the primary contact.
+        required: true
         schema:
           type: string
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given secondary contact.
+        required: true
         schema:
           type: string
       - name: phoneFormat
         in: query
+        description: ''
         required: false
         schema:
           type: string
           enum:
           - None
           - E164
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-          text/xml:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-        description: The contact definition.
       responses:
         '200':
           description: OK indicates that the request succeeded and that the requested information is in the response.
@@ -241,21 +210,39 @@ paths:
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        description: The contact definition.
+        required: true
   /api/contacts/{contactId}/secondary-contacts:
     get:
       tags:
       - SecondaryContacts
-      summary: Get all secondary contacts matching an (optional) OData query.
+      summary: Get all secondary contacts matching an (optional) OData query
       operationId: SecondaryContacts_Get_CD9BB980
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier for the primary contact.
+        required: true
         schema:
           type: string
       - name: phoneFormat
         in: query
+        description: ''
         required: false
         schema:
           type: string
@@ -285,42 +272,28 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
     post:
       tags:
       - SecondaryContacts
-      summary: Create a new secondary contact.
+      summary: Create a new secondary contact
       operationId: SecondaryContacts_Post_C7CBE102
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier for the primary contact.
+        required: true
         schema:
           type: string
       - name: phoneFormat
         in: query
+        description: ''
         required: false
         schema:
           type: string
           enum:
           - None
           - E164
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-          text/xml:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
-        description: The contact definition.
       responses:
         '201':
           description: Created indicates that the request resulted in a new resource created before the response was sent.
@@ -342,6 +315,23 @@ paths:
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/act.web.api.models.Contacts.Contact'
+        description: The contact definition.
+        required: true
   /api/contacts/{contactId}/secondary-contacts/{id}/promote:
     put:
       tags:
@@ -351,14 +341,14 @@ paths:
       parameters:
       - name: contactId
         in: path
-        required: true
         description: The unique identifier for the primary contact.
+        required: true
         schema:
           type: string
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given secondary contact.
+        required: true
         schema:
           type: string
       responses:
@@ -382,41 +372,12 @@ paths:
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
 components:
   schemas:
-    act.web.api.models.Address:
-      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
+    System.Object:
       type: object
-      properties:
-        line1:
-          description: Primary street address
-          type: string
-        line2:
-          description: Secondary street address
-          type: string
-        line3:
-          description: Miscellaneous street address
-          type: string
-        city:
-          description: An inhabited place of greater size, population, or importance than a town or village.
-          type: string
-        state:
-          description: A nation or territory considered as an organized political community under one government.
-          type: string
-        postalCode:
-          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
-          type: string
-        country:
-          description: A nation with its own government, occupying a particular territory.
-          type: string
-        latitude:
-          format: double
-          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
-          type: number
-        longitude:
-          format: double
-          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
-          type: number
+      properties: {}
     act.web.api.models.Contacts.Contact:
       description: The person who is designated for giving information or being a representative for an organization.
       type: object
@@ -644,21 +605,36 @@ components:
           type: string
         recordManager:
           type: string
-    System.Object:
+    act.web.api.models.Address:
+      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
       type: object
-      properties: {}
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize together with the Act-Database-Name header to mint a JWT bearer token.
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer <token> on every API request.'
-    actDatabaseName:
-      type: apiKey
-      in: header
-      name: Act-Database-Name
-      description: Name of the Act! database the request is scoped to.
+      properties:
+        line1:
+          description: Primary street address
+          type: string
+        line2:
+          description: Secondary street address
+          type: string
+        line3:
+          description: Miscellaneous street address
+          type: string
+        city:
+          description: An inhabited place of greater size, population, or importance than a town or village.
+          type: string
+        state:
+          description: A nation or territory considered as an organized political community under one government.
+          type: string
+        postalCode:
+          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
+          type: string
+        country:
+          description: A nation with its own government, occupying a particular territory.
+          type: string
+        latitude:
+          format: double
+          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
+          type: number
+        longitude:
+          format: double
+          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
+          type: number

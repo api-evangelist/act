@@ -1,30 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Act! Web History Types API
   version: v1
-  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies, groups, opportunities, activities, notes, history and custom entities. Reads support OData query options ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch. Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus an Act-Database-Name header.
-  contact:
-    name: Act! Developers
-    url: https://www.act.com/developer/
-  termsOfService: https://www.act.com/legal/terms-of-service/
+  title: act.web.api History Types API
 servers:
 - url: https://apimta.act.com/act.web.api
-  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger document).
-- url: https://{server}/{customer}-api/act.web.api
-  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
-  variables:
-    server:
-      default: apimta.act.com
-    customer:
-      default: customer
-- url: https://{server}/act.web.api
-  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
-  variables:
-    server:
-      default: localhost
-security:
-- bearerAuth: []
-  actDatabaseName: []
 tags:
 - name: HistoryTypes
 paths:
@@ -32,13 +11,13 @@ paths:
     get:
       tags:
       - HistoryTypes
-      summary: Get a specific history type.
+      summary: Get a specific history type
       operationId: HistoryTypes_GetHistoryTypeById_4E0AF16E
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given history type.
+        required: true
         schema:
           type: integer
           format: int32
@@ -61,18 +40,18 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/historytypes/{name}:
     get:
       tags:
       - HistoryTypes
-      summary: Deprecated (Please use '/api/history-types/{name}' instead).
+      summary: Deprecated (Please use '/api/history-types/{name}' instead)
       operationId: HistoryTypes_GetDeprecatedHistoryTypeByName_3232927F
-      deprecated: true
       parameters:
       - name: name
         in: path
-        required: true
         description: The name of the history document type.
+        required: true
         schema:
           type: string
       responses:
@@ -100,11 +79,12 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: true
   /api/history-types:
     get:
       tags:
       - HistoryTypes
-      summary: Gets all history types.
+      summary: Gets all history types
       operationId: HistoryTypes_GetHistoryTypes_2691B741
       responses:
         '200':
@@ -129,13 +109,13 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
   /api/historytypes:
     get:
       tags:
       - HistoryTypes
-      summary: Deprecated (Please use '/api/history-types' instead).
+      summary: Deprecated (Please use '/api/history-types' instead)
       operationId: HistoryTypes_GetDeprecatedHistoryTypes_76F493AB
-      deprecated: true
       responses:
         '200':
           description: OK indicates that the request succeeded and that the requested information is in the response.
@@ -159,17 +139,18 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: true
   /api/task-types/{id}/history-types:
     get:
       tags:
       - HistoryTypes
-      summary: Gets all history types for a specific tasks type by id.
+      summary: Gets all history types for a specific tasks type by id
       operationId: HistoryTypes_GetHistoryTypesByTaskTypeId_C004BADF
       parameters:
       - name: id
         in: path
-        required: true
         description: The unique identifier (id) for a given activity type.
+        required: true
         schema:
           type: integer
           format: int32
@@ -196,31 +177,9 @@ paths:
           description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
 components:
   schemas:
-    act.web.api.models.MetaData.TypeCodes.ActivityType:
-      description: ''
-      type: object
-      properties:
-        id:
-          format: int32
-          description: ''
-          type: integer
-        name:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        isActive:
-          description: ''
-          type: boolean
-        isCustom:
-          description: ''
-          type: boolean
-        activityTypeGuid:
-          description: ''
-          type: string
     act.web.api.models.MetaData.TypeCodes.HistoryType:
       description: ''
       type: object
@@ -253,18 +212,26 @@ components:
         isUserRecordable:
           description: ''
           type: boolean
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize together with the Act-Database-Name header to mint a JWT bearer token.
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer <token> on every API request.'
-    actDatabaseName:
-      type: apiKey
-      in: header
-      name: Act-Database-Name
-      description: Name of the Act! database the request is scoped to.
+    act.web.api.models.MetaData.TypeCodes.ActivityType:
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          description: ''
+          type: integer
+        name:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        isActive:
+          description: ''
+          type: boolean
+        isCustom:
+          description: ''
+          type: boolean
+        activityTypeGuid:
+          description: ''
+          type: string

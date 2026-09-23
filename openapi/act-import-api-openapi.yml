@@ -1,56 +1,47 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Act! Web API — Import
   version: v1
-  description: Act! Web API is a JSON-based REST API for the Act! CRM database, exposing contacts, companies,
-    groups, opportunities, activities, notes, history and custom entities. Reads support OData query options
-    ($filter, $orderby, $top, $skip, $select, $expand) and requests may be batched via POST /api/$batch.
-    Authentication is a JWT bearer token obtained from GET /authorize using HTTP Basic credentials plus
-    an Act-Database-Name header.
-  contact:
-    name: Act! Developers
-    url: https://www.act.com/developer/
-  termsOfService: https://www.act.com/legal/terms-of-service/
+  title: act.web.api Import API
 servers:
 - url: https://apimta.act.com/act.web.api
-  description: Act! Premium Cloud API — US region (host and basePath as published in the provider Swagger
-    document).
-- url: https://{server}/{customer}-api/act.web.api
-  description: Act! Premium Cloud tenant endpoint, per the Act! Web API home page.
-  variables:
-    server:
-      default: apimta.act.com
-    customer:
-      default: customer
-- url: https://{server}/act.web.api
-  description: Self-hosted Act! Premium for Web / Act! Premium Windows IIS deployment.
-  variables:
-    server:
-      default: localhost
 tags:
 - name: Import
-security:
-- bearerAuth: []
-  actDatabaseName: []
 paths:
   /api/import/mapping/{entityType}:
     post:
       tags:
       - Import
-      summary: Get list of target fields for mapping.
+      summary: Get list of target fields for mapping
       operationId: Import_PostImportMapping_C381049D
       parameters:
       - name: entityType
         in: path
-        required: true
         description: Type of entity (Contact, Company ectc.).
+        required: true
         schema:
           type: string
           enum:
           - Contact
           - Company
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Import.MappingData'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Import.MappingData'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Import.MappingData'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -65,33 +56,32 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Import.MappingDataRequest'
         description: Headers that should be mapped to target fields.
-      responses:
-        '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Import.MappingData'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Import.MappingData'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Import.MappingData'
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '500':
-          description: Unexpected error.
+        required: true
   /api/s3-import:
     post:
       tags:
       - Import
-      summary: Start import flow.
+      summary: Start import flow
       operationId: Import_PostImport_FF1F73F5
+      responses:
+        '200':
+          description: OK indicates that the request succeeded and that the requested information is in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Import.GenerateImport'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Import.GenerateImport'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/act.web.api.models.Import.GenerateImport'
+        '401':
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
+        '500':
+          description: Unexpected error.
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -106,42 +96,23 @@ paths:
             schema:
               $ref: '#/components/schemas/act.web.api.models.Import.ImportDataRequest'
         description: Import configurations.
-      responses:
-        '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Import.GenerateImport'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Import.GenerateImport'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/act.web.api.models.Import.GenerateImport'
-        '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
-        '500':
-          description: Unexpected error.
+        required: true
   /api/s3-import/{id}:
     get:
       tags:
       - Import
-      summary: Get import results.
+      summary: Get import results
       operationId: Import_GetImportResult_0BF82A0A
       parameters:
       - name: id
         in: path
-        required: true
         description: Unique import identifier.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -153,28 +124,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/act.web.api.models.Import.ImportResult'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '404':
           description: NotFound indicates that the requested resource does not exist on the server.
         '500':
           description: Unexpected error.
+      deprecated: false
     post:
       tags:
       - Import
-      summary: Imports contact records from .csv file.
+      summary: Imports contact records from .csv file
       operationId: Import_PostStartImport_39EDCFD5
       parameters:
       - name: id
         in: path
-        required: true
         description: Unique import identifier.
+        required: true
         schema:
           type: string
       responses:
         '200':
-          description: OK indicates that the request succeeded and that the requested information is in
-            the response.
+          description: OK indicates that the request succeeded and that the requested information is in the response.
           content:
             application/json:
               schema:
@@ -186,39 +156,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/System.Void'
         '401':
-          description: Unauthorized indicates that the requested resource requires authentication. The
-            WWW-Authenticate header contains the details of how to perform the authentication.
+          description: Unauthorized indicates that the requested resource requires authentication. The WWW-Authenticate header contains the details of how to perform the authentication.
         '500':
           description: Unexpected error.
+      deprecated: false
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: HTTP Basic credentials (Act! user name and password, RFC 7617) presented to GET /authorize
-        together with the Act-Database-Name header to mint a JWT bearer token.
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: 'JWT bearer token returned by GET /authorize (RFC 6750). Sent as Authorization: Bearer
-        <token> on every API request.'
-    actDatabaseName:
-      type: apiKey
-      in: header
-      name: Act-Database-Name
-      description: Name of the Act! database the request is scoped to.
   schemas:
-    System.Void:
-      type: object
-      properties: {}
-    act.web.api.models.Import.GenerateImport:
+    act.web.api.models.Import.MappingData:
+      description: ''
       type: object
       properties:
-        id:
-          type: string
-        preSignedUrl:
-          type: string
+        targetFields:
+          description: List of fields valid for mapping
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Import.WebImportField'
+        mappings:
+          description: Fields mappings
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Import.ResolvedMapping'
+        uniqueHeaders:
+          description: Define if all headers are unique
+          type: boolean
     act.web.api.models.Import.ImportDataRequest:
       type: object
       properties:
@@ -241,6 +201,22 @@ components:
           type: string
         tempFilePath:
           description: ''
+          type: string
+    act.web.api.models.Import.GenerateImport:
+      type: object
+      properties:
+        id:
+          type: string
+        preSignedUrl:
+          type: string
+    act.web.api.models.Import.WebImportField:
+      type: object
+      properties:
+        name:
+          description: Field name
+          type: string
+        display:
+          description: Display name
           type: string
     act.web.api.models.Import.ImportResult:
       description: Result of contacts import
@@ -268,31 +244,6 @@ components:
           type: array
           items:
             type: string
-    act.web.api.models.Import.MappingData:
-      description: ''
-      type: object
-      properties:
-        targetFields:
-          description: List of fields valid for mapping
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Import.WebImportField'
-        mappings:
-          description: Fields mappings
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Import.ResolvedMapping'
-        uniqueHeaders:
-          description: Define if all headers are unique
-          type: boolean
-    act.web.api.models.Import.MappingDataRequest:
-      type: object
-      properties:
-        headers:
-          description: Array of headers to map with fields
-          type: array
-          items:
-            type: string
     act.web.api.models.Import.ResolvedMapping:
       type: object
       properties:
@@ -302,12 +253,14 @@ components:
         targetField:
           $ref: '#/components/schemas/act.web.api.models.Import.WebImportField'
           description: ''
-    act.web.api.models.Import.WebImportField:
+    System.Void:
+      type: object
+      properties: {}
+    act.web.api.models.Import.MappingDataRequest:
       type: object
       properties:
-        name:
-          description: Field name
-          type: string
-        display:
-          description: Display name
-          type: string
+        headers:
+          description: Array of headers to map with fields
+          type: array
+          items:
+            type: string
