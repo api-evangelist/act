@@ -461,6 +461,80 @@ paths:
         required: true
 components:
   schemas:
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
+          type: boolean
+    act.web.api.models.Histories.HistoryType:
+      description: This class provides information about the history event.
+      type: object
+      properties:
+        id:
+          format: int32
+          description: This unique identifier (HistoryTypeId) for a given history type.
+          type: integer
+        name:
+          description: This defines the type of history event at which it will be known.
+          type: string
+        activityTypeId:
+          format: int32
+          description: This defines the type of activity event at which it will be known.
+          type: integer
+        activityTypeName:
+          description: This defines the type of activity event at which it will be known.
+          type: string
+        description:
+          description: A written representation or account of a history event.
+          type: string
+    System.Object:
+      type: object
+      properties: {}
     act.web.api.models.Histories.History:
       description: ''
       type: object
@@ -576,16 +650,6 @@ components:
         isInvited:
           description: Invited contact flag
           type: boolean
-    act.web.api.models.Groups.EmbeddedGroup:
-      description: An group entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given group.
-          type: string
-        name:
-          description: Gets the name of the group.
-          type: string
     act.web.api.models.Opportunities.EmbeddedOpportunity:
       description: An opportunity entity that displayed as a sub-child to a parent entity.
       type: object
@@ -595,68 +659,4 @@ components:
           type: string
         name:
           description: Gets the name of the opportunity.
-          type: string
-    act.web.api.models.Attachments.Attachment:
-      description: Provides properties information about attachments.
-      type: object
-      properties:
-        displayName:
-          description: Gets presentation name of the attachment.
-          type: string
-        fileExtension:
-          description: Gets the extension of the Attachment
-          type: string
-        fileName:
-          description: Gets a string representing the directory's full path.
-          type: string
-        fileSize:
-          format: int64
-          description: Gets the size (bytes) of the attachments.
-          type: integer
-        fileSizeDisplay:
-          description: Gets the displayable text representation of the attachment
-          type: string
-        fileType:
-          description: Gets the registered system file type name of the attachment
-          type: string
-        lastModified:
-          format: date-time
-          description: Gets the last modified date of the attachment
-          type: string
-        personal:
-          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
-          type: boolean
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Histories.HistoryType:
-      description: This class provides information about the history event.
-      type: object
-      properties:
-        id:
-          format: int32
-          description: This unique identifier (HistoryTypeId) for a given history type.
-          type: integer
-        name:
-          description: This defines the type of history event at which it will be known.
-          type: string
-        activityTypeId:
-          format: int32
-          description: This defines the type of activity event at which it will be known.
-          type: integer
-        activityTypeName:
-          description: This defines the type of activity event at which it will be known.
-          type: string
-        description:
-          description: A written representation or account of a history event.
-          type: string
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
-          type: string
-        name:
-          description: Gets the name of the company.
           type: string

@@ -166,35 +166,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Geographics.Mask:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: The unique identifier (id) for this phone format mask.
-          type: string
-        country:
-          $ref: '#/components/schemas/act.web.api.models.Geographics.Country'
-          description: A territory where this phone format mask is uses.
-        default:
-          description: Indicates that this mask is the default phone format mask.
-          type: boolean
-        format:
-          description: The mask that is used to format the phone number.
-          type: string
-        isActive:
-          description: Indicates that this mask is in an active state or not.
-          type: boolean
-    act.web.api.models.Geographics.Country:
-      description: A nation with its own government, occupying a particular territory.
-      type: object
-      properties:
-        id:
-          description: The unique identifier (id) for this country.
-          type: string
-        name:
-          description: The country's given name.
-          type: string
     act.web.api.models.Geographics.ContactCountByLocation:
       description: A nation with its own government, occupying a particular territory.
       type: object
@@ -217,3 +188,32 @@ components:
           format: int32
           description: Total number of contacts for a given location.
           type: integer
+    act.web.api.models.Geographics.Country:
+      description: A nation with its own government, occupying a particular territory.
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this country.
+          type: string
+        name:
+          description: The country's given name.
+          type: string
+    act.web.api.models.Geographics.Mask:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this phone format mask.
+          type: string
+        country:
+          $ref: '#/components/schemas/act.web.api.models.Geographics.Country'
+          description: A territory where this phone format mask is uses.
+        default:
+          description: Indicates that this mask is the default phone format mask.
+          type: boolean
+        format:
+          description: The mask that is used to format the phone number.
+          type: string
+        isActive:
+          description: Indicates that this mask is in an active state or not.
+          type: boolean

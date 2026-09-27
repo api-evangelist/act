@@ -1280,6 +1280,213 @@ paths:
       deprecated: false
 components:
   schemas:
+    act.web.api.models.Lists.DynamicListDropdown:
+      description: ''
+      type: object
+      properties:
+        name:
+          description: The name of the dropdown list.
+          type: string
+        isEditable:
+          description: If values can be added outside of what is defined in the list.
+          type: boolean
+        items:
+          description: The value items of the dropdown list.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Groups.GroupListRequest:
+      description: Assign group request model.
+      type: object
+      properties:
+        groups:
+          description: List of group identifiers.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Opportunities.Opportunity:
+      description: A contact or company which has been qualified.
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents a potential piece of business.
+          type: string
+        name:
+          description: The name of an opportunity.
+          type: string
+        actualCloseDate:
+          format: date-time
+          description: The date that the opportunity as closed.
+          type: string
+        companies:
+          description: List of companies that are associated to this opportunity entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
+        competitor:
+          description: Gets the name of the competitor for this opportunity.
+          type: string
+        contactNames:
+          description: The names of the contacts associated with this opportunity.
+          type: string
+        contacts:
+          description: List of contacts that are associated to this opportunity entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Contacts.EmbeddedContact'
+        creator:
+          description: The name of the creator of this opportunity.
+          type: string
+        daysOpen:
+          format: int32
+          description: The number of days this opportunity has been opened.
+          type: integer
+        daysInStage:
+          format: int32
+          description: the number of days this opportunity has been in a given stage.
+          type: integer
+        estimatedCloseDate:
+          format: date-time
+          description: The date the opportunity is expected to be closed.
+          type: string
+        stageStartDate:
+          format: date-time
+          description: The date the opportunity stage started.
+          type: string
+        grossMargin:
+          format: double
+          description: Represents the net sales less the cost of goods and services sold.
+          type: number
+        groups:
+          description: List of groups that are associated to this opportunity entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
+        isPrivate:
+          description: Indicates whether this opportunity is private
+          type: boolean
+        acl:
+          description: Access Levels
+          type: string
+        openDate:
+          format: date-time
+          description: The date the opportunity was opened.
+          type: string
+        probability:
+          format: int32
+          description: The likelihood this opportunity will will be won by the close date.
+          type: integer
+        productTotal:
+          format: double
+          description: The total cost of the product or services.
+          type: number
+        product:
+          description: Comma-delimited list of product names.
+          type: string
+        reason:
+          description: Describes why the opportunity status changed.
+          type: string
+        source:
+          description: Describes the source of the opportunity.
+          type: string
+        sourceId:
+          description: The external source id for the opportunity
+          type: string
+        stage:
+          $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
+          description: The stage of the opportunity.
+        status:
+          description: This gets/sets the opportunity status (0 = Open, 1 = Won, 2 = Lost, or 3 = inactive).
+          enum:
+          - Open
+          - Won
+          - Lost
+          - Inactive
+          type: string
+        statusName:
+          description: This displays the opportunity status name (Open, Won, Lost, or inactive).
+          type: string
+          readOnly: true
+        importDate:
+          format: date-time
+          description: This readonly property displays the date that the opportunity was imported into the system.
+          type: string
+        totalPerCompany:
+          format: double
+          description: The average total per associated company.
+          type: number
+        totalPerContact:
+          format: double
+          description: The average total per associated contact.
+          type: number
+        totalPerGroup:
+          format: double
+          description: The average total per associated group.
+          type: number
+        weightedTotal:
+          format: double
+          description: The weight of the product.
+          type: number
+        quickbooksInvoiceId:
+          description: Quickbooks external Id to match record with quickbooks contact
+          type: string
+        relatedEntitiesResolver:
+          description: 'If true: prevents related entities from serializing.'
+          type: boolean
+        recordManagerID:
+          description: The record manager.
+          type: string
+        customFields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+        created:
+          format: date-time
+          type: string
+        edited:
+          format: date-time
+          type: string
+        editedBy:
+          type: string
+        recordManager:
+          type: string
+    act.web.api.models.Lists.XmlValue:
+      type: object
+      properties:
+        type:
+          type: string
+        dataItem:
+          type: string
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Contacts.EmbeddedContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+          readOnly: true
+        company:
+          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+          type: string
+        isInvited:
+          description: Invited contact flag
+          type: boolean
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
     act.web.api.models.Groups.Group:
       description: Represents a group of ACT! entities.
       type: object
@@ -1337,39 +1544,279 @@ components:
           type: string
         recordManager:
           type: string
-    act.web.api.models.Address:
-      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
+    act.web.api.models.Contacts.AccessLevel:
+      description: ''
       type: object
       properties:
-        line1:
-          description: Primary street address
+        type:
+          description: Defines the entity's access level.
+          enum:
+          - Public
+          - Private
+          - LimitedAccess
           type: string
-        line2:
-          description: Secondary street address
+        accessors:
+          description: The accessors that have been selected for limited access.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+    act.web.api.models.Lists.DynamicListMetadata:
+      description: ''
+      type: object
+      properties:
+        name:
           type: string
-        line3:
-          description: Miscellaneous street address
+        type:
           type: string
-        city:
-          description: An inhabited place of greater size, population, or importance than a town or village.
+        fields:
+          description: The defines all the fields that can be used to build a dynamic list.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListMetadataFields'
+    act.web.api.models.Users.Accessor:
+      description: The user/team that is granted access.
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the accessor/user id
           type: string
-        state:
-          description: A nation or territory considered as an organized political community under one government.
+        type:
+          description: The type of accessor (User = 1 or Team = 2)
+          enum:
+          - Unknown
+          - User
+          - Team
+          - Resource
           type: string
-        postalCode:
-          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
+        name:
+          description: The name of the accessor
           type: string
-        country:
-          description: A nation with its own government, occupying a particular territory.
+    act.web.api.models.Companies.Company:
+      description: A company is any entity that engages in business.
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this company.
           type: string
-        latitude:
+        name:
+          description: The company's given name.
+          type: string
+        address:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's business address.
+        billingAddress:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's billing address.
+        description:
+          description: A brief written representation or account of this company.
+          type: string
+        division:
+          description: The name of a smaller part of a parent company tasked with overseeing different types of products or services than those offered by the parent company.
+          type: string
+        fax:
+          description: The company's fax phone number.
+          type: string
+        faxExtension:
+          description: The company's fax phone number extension.
+          type: string
+        hasDivisions:
+          description: This readonly property indicates that this company has divisions.
+          type: boolean
+        hierarchyLevel:
+          format: int32
+          description: The positional level of where this company lays within a company hierarchy.
+          type: integer
+        idStatus:
+          description: The relative social or professional position of an individual within a group or organization.
+          type: string
+        importDate:
+          format: date-time
+          description: This readonly property displays the date that the opportunity was imported into the system.
+          type: string
+        industry:
+          description: Economic activity concerned with the processing of raw materials and manufacture of goods in factories.
+          type: string
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this company.
+          type: boolean
+        acl:
+          description: Access Levels
+          type: string
+        numberOfEmployees:
+          format: int32
+          description: The total number of employees that this company operates with.
+          type: integer
+        rootParentID:
+          description: The unique identifier (id) of the parent company.
+          type: string
+        parentID:
+          description: The unique identifier (id) of the parent company.
+          type: string
+        phone:
+          description: The company's phone number.
+          type: string
+        phoneExtension:
+          description: The company's phone number extension.
+          type: string
+        referredBy:
+          description: Mention or allude to.
+          type: string
+        region:
+          description: A part of a country, of the world, etc., that is different or separate from other parts in some way.
+          type: string
+        revenue:
           format: double
-          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
+          description: The amount of money that this company actually receives during a specific period, including discounts and deductions for returned merchandise.
           type: number
-        longitude:
-          format: double
-          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
-          type: number
+        shippingAddress:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's shipping address.
+        sicCode:
+          description: Standard Industrial Classification (SIC) codes are four-digit numerical codes assigned by the U.S. government to business establishments to identify the primary business of the establishment.
+          type: string
+        territory:
+          description: Geographical area.
+          type: string
+        tickerSymbol:
+          description: An arrangement of characters (usually letters) representing a particular security listed on an exchange or otherwise traded publicly.
+          type: string
+        tollFreePhone:
+          description: The company's toll free phone number.
+          type: string
+        tollFreeExtension:
+          description: The company's toll free phone number.
+          type: string
+        website:
+          description: The company's website.
+          type: string
+        recordManagerID:
+          description: The record manager.
+          type: string
+        customFields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+        created:
+          format: date-time
+          type: string
+        edited:
+          format: date-time
+          type: string
+        editedBy:
+          type: string
+        recordManager:
+          type: string
+    act.web.api.models.Lists.Criteria:
+      description: Represents a single criteria item for filtering opportunities
+      type: object
+      properties:
+        columnId:
+          type: string
+        tableName:
+          type: string
+        columnName:
+          type: string
+        tableDisplayName:
+          type: string
+        columnDisplayName:
+          type: string
+        domain:
+          enum:
+          - IDKey
+          - Boolean
+          - DateTime
+          - String
+          - Numeric
+          - Image
+          - Calculated
+          - Memo
+          - AnnualEvent
+          type: string
+        operator:
+          enum:
+          - Contains
+          - StartsWith
+          - EndsWith
+          - EqualTo
+          - NotEqualTo
+          - GreaterThan
+          - GreaterThanEqualTo
+          - LessThan
+          - LessThanEqualTo
+          - Between
+          - OnOrAfter
+          - OnOrBefore
+          - WithinLast
+          - WithinNext
+          - DoesNotContain
+          - OlderThan
+          - AfterNext
+          - MonthEquals
+          - DayEquals
+          - YearEquals
+          - MonthNotEquals
+          - DayNotEquals
+          - YearNotEquals
+          - MonthGreaterThan
+          - DayGreaterThan
+          - YearGreaterThan
+          - MonthGreaterThanEqualTo
+          - DayGreaterThanEqualTo
+          - YearGreaterThanEqualTo
+          - MonthLessThan
+          - DayLessThan
+          - YearLessThan
+          - MonthLessThanEqualTo
+          - DayLessThanEqualTo
+          - YearLessThanEqualTo
+          - ContainsData
+          - DoesNotContainData
+          type: string
+        leftParentheses:
+          format: int32
+          type: integer
+        rightParentheses:
+          format: int32
+          type: integer
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Lists.XmlValue'
+        logicalOperator:
+          enum:
+          - End
+          - And
+          - Or
+          type: string
+    act.web.api.models.Lists.DynamicListMetadataFields:
+      description: ''
+      type: object
+      properties:
+        name:
+          description: Readable name of the field.
+          type: string
+        table:
+          description: The table/view where the data was found.
+          type: string
+        column:
+          description: The name of the column
+          type: string
+        dataType:
+          description: The criteria value will be represented by this datatype.
+          enum:
+          - IDKey
+          - Boolean
+          - DateTime
+          - String
+          - Numeric
+          - Image
+          - Calculated
+          - Memo
+          - AnnualEvent
+          type: string
+        list:
+          $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListDropdown'
+          description: The dropdown list that is assigned to the column.
     act.web.api.models.Contacts.Contact:
       description: The person who is designated for giving information or being a representative for an organization.
       type: object
@@ -1597,277 +2044,39 @@ components:
           type: string
         recordManager:
           type: string
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Lists.DynamicListMetadata:
-      description: ''
+    act.web.api.models.Address:
+      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
       type: object
       properties:
-        name:
+        line1:
+          description: Primary street address
           type: string
-        type:
+        line2:
+          description: Secondary street address
           type: string
-        fields:
-          description: The defines all the fields that can be used to build a dynamic list.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListMetadataFields'
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
+        line3:
+          description: Miscellaneous street address
           type: string
-        name:
-          description: Gets the name of the company.
+        city:
+          description: An inhabited place of greater size, population, or importance than a town or village.
           type: string
-    act.web.api.models.Contacts.EmbeddedContact:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
+        state:
+          description: A nation or territory considered as an organized political community under one government.
           type: string
-        displayName:
-          description: ''
+        postalCode:
+          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
           type: string
-          readOnly: true
-        company:
-          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+        country:
+          description: A nation with its own government, occupying a particular territory.
           type: string
-        isInvited:
-          description: Invited contact flag
-          type: boolean
-    act.web.api.models.Opportunities.Opportunity:
-      description: A contact or company which has been qualified.
-      type: object
-      properties:
-        id:
-          description: A unique identifier that represents a potential piece of business.
-          type: string
-        name:
-          description: The name of an opportunity.
-          type: string
-        actualCloseDate:
-          format: date-time
-          description: The date that the opportunity as closed.
-          type: string
-        companies:
-          description: List of companies that are associated to this opportunity entity.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Companies.EmbeddedCompany'
-        competitor:
-          description: Gets the name of the competitor for this opportunity.
-          type: string
-        contactNames:
-          description: The names of the contacts associated with this opportunity.
-          type: string
-        contacts:
-          description: List of contacts that are associated to this opportunity entity.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Contacts.EmbeddedContact'
-        creator:
-          description: The name of the creator of this opportunity.
-          type: string
-        daysOpen:
-          format: int32
-          description: The number of days this opportunity has been opened.
-          type: integer
-        daysInStage:
-          format: int32
-          description: the number of days this opportunity has been in a given stage.
-          type: integer
-        estimatedCloseDate:
-          format: date-time
-          description: The date the opportunity is expected to be closed.
-          type: string
-        stageStartDate:
-          format: date-time
-          description: The date the opportunity stage started.
-          type: string
-        grossMargin:
+        latitude:
           format: double
-          description: Represents the net sales less the cost of goods and services sold.
+          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
           type: number
-        groups:
-          description: List of groups that are associated to this opportunity entity.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Groups.EmbeddedGroup'
-        isPrivate:
-          description: Indicates whether this opportunity is private
-          type: boolean
-        acl:
-          description: Access Levels
-          type: string
-        openDate:
-          format: date-time
-          description: The date the opportunity was opened.
-          type: string
-        probability:
-          format: int32
-          description: The likelihood this opportunity will will be won by the close date.
-          type: integer
-        productTotal:
+        longitude:
           format: double
-          description: The total cost of the product or services.
+          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
           type: number
-        product:
-          description: Comma-delimited list of product names.
-          type: string
-        reason:
-          description: Describes why the opportunity status changed.
-          type: string
-        source:
-          description: Describes the source of the opportunity.
-          type: string
-        sourceId:
-          description: The external source id for the opportunity
-          type: string
-        stage:
-          $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
-          description: The stage of the opportunity.
-        status:
-          description: This gets/sets the opportunity status (0 = Open, 1 = Won, 2 = Lost, or 3 = inactive).
-          enum:
-          - Open
-          - Won
-          - Lost
-          - Inactive
-          type: string
-        statusName:
-          description: This displays the opportunity status name (Open, Won, Lost, or inactive).
-          type: string
-          readOnly: true
-        importDate:
-          format: date-time
-          description: This readonly property displays the date that the opportunity was imported into the system.
-          type: string
-        totalPerCompany:
-          format: double
-          description: The average total per associated company.
-          type: number
-        totalPerContact:
-          format: double
-          description: The average total per associated contact.
-          type: number
-        totalPerGroup:
-          format: double
-          description: The average total per associated group.
-          type: number
-        weightedTotal:
-          format: double
-          description: The weight of the product.
-          type: number
-        quickbooksInvoiceId:
-          description: Quickbooks external Id to match record with quickbooks contact
-          type: string
-        relatedEntitiesResolver:
-          description: 'If true: prevents related entities from serializing.'
-          type: boolean
-        recordManagerID:
-          description: The record manager.
-          type: string
-        customFields:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/System.Object'
-        created:
-          format: date-time
-          type: string
-        edited:
-          format: date-time
-          type: string
-        editedBy:
-          type: string
-        recordManager:
-          type: string
-    act.web.api.models.Lists.Criteria:
-      description: Represents a single criteria item for filtering opportunities
-      type: object
-      properties:
-        columnId:
-          type: string
-        tableName:
-          type: string
-        columnName:
-          type: string
-        tableDisplayName:
-          type: string
-        columnDisplayName:
-          type: string
-        domain:
-          enum:
-          - IDKey
-          - Boolean
-          - DateTime
-          - String
-          - Numeric
-          - Image
-          - Calculated
-          - Memo
-          - AnnualEvent
-          type: string
-        operator:
-          enum:
-          - Contains
-          - StartsWith
-          - EndsWith
-          - EqualTo
-          - NotEqualTo
-          - GreaterThan
-          - GreaterThanEqualTo
-          - LessThan
-          - LessThanEqualTo
-          - Between
-          - OnOrAfter
-          - OnOrBefore
-          - WithinLast
-          - WithinNext
-          - DoesNotContain
-          - OlderThan
-          - AfterNext
-          - MonthEquals
-          - DayEquals
-          - YearEquals
-          - MonthNotEquals
-          - DayNotEquals
-          - YearNotEquals
-          - MonthGreaterThan
-          - DayGreaterThan
-          - YearGreaterThan
-          - MonthGreaterThanEqualTo
-          - DayGreaterThanEqualTo
-          - YearGreaterThanEqualTo
-          - MonthLessThan
-          - DayLessThan
-          - YearLessThan
-          - MonthLessThanEqualTo
-          - DayLessThanEqualTo
-          - YearLessThanEqualTo
-          - ContainsData
-          - DoesNotContainData
-          type: string
-        leftParentheses:
-          format: int32
-          type: integer
-        rightParentheses:
-          format: int32
-          type: integer
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Lists.XmlValue'
-        logicalOperator:
-          enum:
-          - End
-          - And
-          - Or
-          type: string
     act.web.api.models.Opportunities.Process:
       description: The current process for a given opportunity.
       type: object
@@ -1897,225 +2106,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
-    act.web.api.models.Contacts.AccessLevel:
-      description: ''
-      type: object
-      properties:
-        type:
-          description: Defines the entity's access level.
-          enum:
-          - Public
-          - Private
-          - LimitedAccess
-          type: string
-        accessors:
-          description: The accessors that have been selected for limited access.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
-    act.web.api.models.Lists.DynamicListDropdown:
-      description: ''
-      type: object
-      properties:
-        name:
-          description: The name of the dropdown list.
-          type: string
-        isEditable:
-          description: If values can be added outside of what is defined in the list.
-          type: boolean
-        items:
-          description: The value items of the dropdown list.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Users.Accessor:
-      description: The user/team that is granted access.
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
       type: object
       properties:
         id:
-          description: Unique identifier for the accessor/user id
-          type: string
-        type:
-          description: The type of accessor (User = 1 or Team = 2)
-          enum:
-          - Unknown
-          - User
-          - Team
-          - Resource
+          description: Gets a unique identifier (id) for a given company.
           type: string
         name:
-          description: The name of the accessor
+          description: Gets the name of the company.
           type: string
-    act.web.api.models.Lists.XmlValue:
-      type: object
-      properties:
-        type:
-          type: string
-        dataItem:
-          type: string
-    act.web.api.models.Lists.DynamicListMetadataFields:
-      description: ''
-      type: object
-      properties:
-        name:
-          description: Readable name of the field.
-          type: string
-        table:
-          description: The table/view where the data was found.
-          type: string
-        column:
-          description: The name of the column
-          type: string
-        dataType:
-          description: The criteria value will be represented by this datatype.
-          enum:
-          - IDKey
-          - Boolean
-          - DateTime
-          - String
-          - Numeric
-          - Image
-          - Calculated
-          - Memo
-          - AnnualEvent
-          type: string
-        list:
-          $ref: '#/components/schemas/act.web.api.models.Lists.DynamicListDropdown'
-          description: The dropdown list that is assigned to the column.
-    act.web.api.models.Groups.EmbeddedGroup:
-      description: An group entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given group.
-          type: string
-        name:
-          description: Gets the name of the group.
-          type: string
-    act.web.api.models.Companies.Company:
-      description: A company is any entity that engages in business.
-      type: object
-      properties:
-        id:
-          description: The unique identifier (id) for this company.
-          type: string
-        name:
-          description: The company's given name.
-          type: string
-        address:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's business address.
-        billingAddress:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's billing address.
-        description:
-          description: A brief written representation or account of this company.
-          type: string
-        division:
-          description: The name of a smaller part of a parent company tasked with overseeing different types of products or services than those offered by the parent company.
-          type: string
-        fax:
-          description: The company's fax phone number.
-          type: string
-        faxExtension:
-          description: The company's fax phone number extension.
-          type: string
-        hasDivisions:
-          description: This readonly property indicates that this company has divisions.
-          type: boolean
-        hierarchyLevel:
-          format: int32
-          description: The positional level of where this company lays within a company hierarchy.
-          type: integer
-        idStatus:
-          description: The relative social or professional position of an individual within a group or organization.
-          type: string
-        importDate:
-          format: date-time
-          description: This readonly property displays the date that the opportunity was imported into the system.
-          type: string
-        industry:
-          description: Economic activity concerned with the processing of raw materials and manufacture of goods in factories.
-          type: string
-        isPrivate:
-          description: Indicates elevated security that only the creator/owner has access to this company.
-          type: boolean
-        acl:
-          description: Access Levels
-          type: string
-        numberOfEmployees:
-          format: int32
-          description: The total number of employees that this company operates with.
-          type: integer
-        rootParentID:
-          description: The unique identifier (id) of the parent company.
-          type: string
-        parentID:
-          description: The unique identifier (id) of the parent company.
-          type: string
-        phone:
-          description: The company's phone number.
-          type: string
-        phoneExtension:
-          description: The company's phone number extension.
-          type: string
-        referredBy:
-          description: Mention or allude to.
-          type: string
-        region:
-          description: A part of a country, of the world, etc., that is different or separate from other parts in some way.
-          type: string
-        revenue:
-          format: double
-          description: The amount of money that this company actually receives during a specific period, including discounts and deductions for returned merchandise.
-          type: number
-        shippingAddress:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's shipping address.
-        sicCode:
-          description: Standard Industrial Classification (SIC) codes are four-digit numerical codes assigned by the U.S. government to business establishments to identify the primary business of the establishment.
-          type: string
-        territory:
-          description: Geographical area.
-          type: string
-        tickerSymbol:
-          description: An arrangement of characters (usually letters) representing a particular security listed on an exchange or otherwise traded publicly.
-          type: string
-        tollFreePhone:
-          description: The company's toll free phone number.
-          type: string
-        tollFreeExtension:
-          description: The company's toll free phone number.
-          type: string
-        website:
-          description: The company's website.
-          type: string
-        recordManagerID:
-          description: The record manager.
-          type: string
-        customFields:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/System.Object'
-        created:
-          format: date-time
-          type: string
-        edited:
-          format: date-time
-          type: string
-        editedBy:
-          type: string
-        recordManager:
-          type: string
-    act.web.api.models.Groups.GroupListRequest:
-      description: Assign group request model.
-      type: object
-      properties:
-        groups:
-          description: List of group identifiers.
-          type: array
-          items:
-            type: string
     act.web.api.models.Opportunities.Stage:
       description: A class describes the stage state of a particular {act.web.api.models.Opportunities.Opportunity} object.
       type: object

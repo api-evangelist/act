@@ -317,6 +317,16 @@ paths:
         required: true
 components:
   schemas:
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
     act.web.api.models.Groups.EmbeddedGroup:
       description: An group entity that displayed as a sub-child to a parent entity.
       type: object
@@ -327,112 +337,6 @@ components:
         name:
           description: Gets the name of the group.
           type: string
-    act.web.api.models.Activities.RecurDay:
-      description: Specifying the day of a recurrence.
-      type: object
-      properties:
-        dayAsInt:
-          format: int32
-          description: An integer representation of the day of the week portion of a recurrence pattern.
-          type: integer
-        daysOfWeek:
-          description: Representation of the day of the week portion of a recurrence pattern.
-          type: array
-          items:
-            enum:
-            - Sunday
-            - Monday
-            - Tuesday
-            - Wednesday
-            - Thursday
-            - Friday
-            - Saturday
-            type: string
-        typedDay:
-          description: Describing the TypedDay (Day, WeekDay or Weekend Day) for the recurrence pattern when DayType is "Typed".
-          enum:
-          - None
-          - Day
-          - Weekday
-          - WeekendDay
-          type: string
-        dayType:
-          description: Describing the day-portion of the recurrence pattern.
-          enum:
-          - None
-          - Numbered
-          - Named
-          - Typed
-          type: string
-        ordinal:
-          description: Describes recurrence in relative terms for certain recurrence patterns (i.e. First, Third, Last) .
-          enum:
-          - None
-          - First
-          - Second
-          - Third
-          - Fourth
-          - Last
-          type: string
-    act.web.api.models.Opportunities.EmbeddedOpportunity:
-      description: An opportunity entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given opportunity.
-          type: string
-        name:
-          description: Gets the name of the opportunity.
-          type: string
-    act.web.api.models.Attachments.Attachment:
-      description: Provides properties information about attachments.
-      type: object
-      properties:
-        displayName:
-          description: Gets presentation name of the attachment.
-          type: string
-        fileExtension:
-          description: Gets the extension of the Attachment
-          type: string
-        fileName:
-          description: Gets a string representing the directory's full path.
-          type: string
-        fileSize:
-          format: int64
-          description: Gets the size (bytes) of the attachments.
-          type: integer
-        fileSizeDisplay:
-          description: Gets the displayable text representation of the attachment
-          type: string
-        fileType:
-          description: Gets the registered system file type name of the attachment
-          type: string
-        lastModified:
-          format: date-time
-          description: Gets the last modified date of the attachment
-          type: string
-        personal:
-          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
-          type: boolean
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Activities.EmbededActivityContact:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: A unique identifier that represents the attendee.
-          type: string
-        displayName:
-          description: The name of the attendee.
-          type: string
-        emailAddress:
-          description: The name of the attendee.
-          type: string
-        isInvited:
-          description: The name of the attendee.
-          type: boolean
     act.web.api.models.Activities.RecurSpec:
       description: ''
       type: object
@@ -467,16 +371,6 @@ components:
           - Weekly
           - Monthly
           - Yearly
-          type: string
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
-          type: string
-        name:
-          description: Gets the name of the company.
           type: string
     act.web.api.models.Activities.ActivitySeries:
       description: ''
@@ -622,3 +516,109 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
+    act.web.api.models.Activities.EmbededActivityContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier that represents the attendee.
+          type: string
+        displayName:
+          description: The name of the attendee.
+          type: string
+        emailAddress:
+          description: The name of the attendee.
+          type: string
+        isInvited:
+          description: The name of the attendee.
+          type: boolean
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
+          type: boolean
+    act.web.api.models.Activities.RecurDay:
+      description: Specifying the day of a recurrence.
+      type: object
+      properties:
+        dayAsInt:
+          format: int32
+          description: An integer representation of the day of the week portion of a recurrence pattern.
+          type: integer
+        daysOfWeek:
+          description: Representation of the day of the week portion of a recurrence pattern.
+          type: array
+          items:
+            enum:
+            - Sunday
+            - Monday
+            - Tuesday
+            - Wednesday
+            - Thursday
+            - Friday
+            - Saturday
+            type: string
+        typedDay:
+          description: Describing the TypedDay (Day, WeekDay or Weekend Day) for the recurrence pattern when DayType is "Typed".
+          enum:
+          - None
+          - Day
+          - Weekday
+          - WeekendDay
+          type: string
+        dayType:
+          description: Describing the day-portion of the recurrence pattern.
+          enum:
+          - None
+          - Numbered
+          - Named
+          - Typed
+          type: string
+        ordinal:
+          description: Describes recurrence in relative terms for certain recurrence patterns (i.e. First, Third, Last) .
+          enum:
+          - None
+          - First
+          - Second
+          - Third
+          - Fourth
+          - Last
+          type: string
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
+          type: string

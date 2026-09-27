@@ -1689,39 +1689,24 @@ components:
         href:
           description: Specifies the URL of the page the link will redirect to.
           type: string
-    act.web.api.models.Address:
-      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
+    act.web.api.models.Users.Accessor:
+      description: The user/team that is granted access.
       type: object
       properties:
-        line1:
-          description: Primary street address
+        id:
+          description: Unique identifier for the accessor/user id
           type: string
-        line2:
-          description: Secondary street address
+        type:
+          description: The type of accessor (User = 1 or Team = 2)
+          enum:
+          - Unknown
+          - User
+          - Team
+          - Resource
           type: string
-        line3:
-          description: Miscellaneous street address
+        name:
+          description: The name of the accessor
           type: string
-        city:
-          description: An inhabited place of greater size, population, or importance than a town or village.
-          type: string
-        state:
-          description: A nation or territory considered as an organized political community under one government.
-          type: string
-        postalCode:
-          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
-          type: string
-        country:
-          description: A nation with its own government, occupying a particular territory.
-          type: string
-        latitude:
-          format: double
-          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
-          type: number
-        longitude:
-          format: double
-          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
-          type: number
     act.web.api.models.Contacts.Contact:
       description: The person who is designated for giving information or being a representative for an organization.
       type: object
@@ -1949,24 +1934,55 @@ components:
           type: string
         recordManager:
           type: string
-    act.web.api.models.Users.Accessor:
-      description: The user/team that is granted access.
+    act.web.api.models.Contacts.AccessLevel:
+      description: ''
       type: object
       properties:
-        id:
-          description: Unique identifier for the accessor/user id
-          type: string
         type:
-          description: The type of accessor (User = 1 or Team = 2)
+          description: Defines the entity's access level.
           enum:
-          - Unknown
-          - User
-          - Team
-          - Resource
+          - Public
+          - Private
+          - LimitedAccess
           type: string
-        name:
-          description: The name of the accessor
+        accessors:
+          description: The accessors that have been selected for limited access.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+    act.web.api.models.Address:
+      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
+      type: object
+      properties:
+        line1:
+          description: Primary street address
           type: string
+        line2:
+          description: Secondary street address
+          type: string
+        line3:
+          description: Miscellaneous street address
+          type: string
+        city:
+          description: An inhabited place of greater size, population, or importance than a town or village.
+          type: string
+        state:
+          description: A nation or territory considered as an organized political community under one government.
+          type: string
+        postalCode:
+          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
+          type: string
+        country:
+          description: A nation with its own government, occupying a particular territory.
+          type: string
+        latitude:
+          format: double
+          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
+          type: number
+        longitude:
+          format: double
+          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
+          type: number
     System.Object:
       type: object
       properties: {}
@@ -1985,19 +2001,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Users.HyperLinks'
-    act.web.api.models.Contacts.AccessLevel:
-      description: ''
-      type: object
-      properties:
-        type:
-          description: Defines the entity's access level.
-          enum:
-          - Public
-          - Private
-          - LimitedAccess
-          type: string
-        accessors:
-          description: The accessors that have been selected for limited access.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'

@@ -448,19 +448,6 @@ components:
         definition:
           description: The configuration schema definitions file (XML|Json)
           type: string
-    act.web.api.models.Configuration.ConfigurationSettings:
-      description: This class defines a generic view settings.
-      type: object
-      properties:
-        userId:
-          description: The unique identifier (id) the user.
-          type: string
-        settingsDefinition:
-          description: The configuration schema definitions file (XML|Json)
-          type: string
-    System.Object:
-      type: object
-      properties: {}
     act.web.api.models.Users.CurrencySettings:
       description: ''
       type: object
@@ -477,3 +464,16 @@ components:
         symbolPosition:
           description: ''
           type: string
+    act.web.api.models.Configuration.ConfigurationSettings:
+      description: This class defines a generic view settings.
+      type: object
+      properties:
+        userId:
+          description: The unique identifier (id) the user.
+          type: string
+        settingsDefinition:
+          description: The configuration schema definitions file (XML|Json)
+          type: string
+    System.Object:
+      type: object
+      properties: {}

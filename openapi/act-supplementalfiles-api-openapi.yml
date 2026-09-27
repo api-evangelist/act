@@ -571,9 +571,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    System.Object:
-      type: object
-      properties: {}
     act.web.api.models.SupplementalFiles.Layout:
       description: ''
       type: object
@@ -597,6 +594,9 @@ components:
           format: date-time
           description: The date and time of the last modification.
           type: string
+    System.Object:
+      type: object
+      properties: {}
     act.web.api.models.Attachments.Attachment:
       description: Provides properties information about attachments.
       type: object

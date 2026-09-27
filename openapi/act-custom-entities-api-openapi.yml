@@ -251,23 +251,6 @@ paths:
         required: true
 components:
   schemas:
-    act.web.api.models.Contacts.EmbeddedContact:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        displayName:
-          description: ''
-          type: string
-          readOnly: true
-        company:
-          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
-          type: string
-        isInvited:
-          description: Invited contact flag
-          type: boolean
     act.web.api.models.CustomEntity:
       description: Represents the base properties of a custom table.
       type: object
@@ -309,6 +292,16 @@ components:
         recordOwner:
           description: The user's name that owners this record.
           type: string
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
     act.web.api.models.Groups.EmbeddedGroup:
       description: An group entity that displayed as a sub-child to a parent entity.
       type: object
@@ -319,6 +312,26 @@ components:
         name:
           description: Gets the name of the group.
           type: string
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Contacts.EmbeddedContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+          readOnly: true
+        company:
+          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+          type: string
+        isInvited:
+          description: Invited contact flag
+          type: boolean
     act.web.api.models.Opportunities.EmbeddedOpportunity:
       description: An opportunity entity that displayed as a sub-child to a parent entity.
       type: object
@@ -328,17 +341,4 @@ components:
           type: string
         name:
           description: Gets the name of the opportunity.
-          type: string
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
-          type: string
-        name:
-          description: Gets the name of the company.
           type: string

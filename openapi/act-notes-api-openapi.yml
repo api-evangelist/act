@@ -796,23 +796,16 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Contacts.EmbeddedContact:
-      description: ''
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
       type: object
       properties:
         id:
-          description: ''
+          description: Gets a unique identifier (id) for a given company.
           type: string
-        displayName:
-          description: ''
+        name:
+          description: Gets the name of the company.
           type: string
-          readOnly: true
-        company:
-          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
-          type: string
-        isInvited:
-          description: Invited contact flag
-          type: boolean
     act.web.api.models.Groups.EmbeddedGroup:
       description: An group entity that displayed as a sub-child to a parent entity.
       type: object
@@ -822,16 +815,6 @@ components:
           type: string
         name:
           description: Gets the name of the group.
-          type: string
-    act.web.api.models.Opportunities.EmbeddedOpportunity:
-      description: An opportunity entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given opportunity.
-          type: string
-        name:
-          description: Gets the name of the opportunity.
           type: string
     act.web.api.models.Notes.Note:
       description: ''
@@ -927,13 +910,30 @@ components:
     System.Object:
       type: object
       properties: {}
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
+    act.web.api.models.Contacts.EmbeddedContact:
+      description: ''
       type: object
       properties:
         id:
-          description: Gets a unique identifier (id) for a given company.
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+          readOnly: true
+        company:
+          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+          type: string
+        isInvited:
+          description: Invited contact flag
+          type: boolean
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
           type: string
         name:
-          description: Gets the name of the company.
+          description: Gets the name of the opportunity.
           type: string

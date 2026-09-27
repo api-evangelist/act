@@ -1681,185 +1681,19 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Activities.AlarmedActivityChanges:
-      description: "Represents the result of a poll for alarm updates: activities whose alarm state\n            has changed since the client last checked."
+    act.web.api.models.Tasks.SnoozeAlarmsRequest:
+      description: Request model for snoozing one or more activity alarms.
       type: object
       properties:
-        deletedIds:
-          description: "Activity IDs from the client's tracked set that are no longer alarmed\n            (cleared, snoozed past expiry, or deleted)."
+        activityIds:
+          description: "The ActivityID values of the activities whose alarms should be snoozed.\n            Corresponds to the ActivityID field returned by the alarm endpoints."
           type: array
           items:
             type: string
-        alarms:
-          description: The current state of alarmed activities matching the requested IDs.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivity'
-    act.web.api.models.Tasks.TaskListClearRequest:
-      description: Creates a history when clearing an activity
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearResultType'
-          description: ''
-        history:
-          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearTaskHistory'
-          description: ''
-        tasks:
-          description: List of tasks identifiers.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Activities.AlarmedActivity:
-      description: Represents an activity with an active alarm.
-      type: object
-      properties:
-        id:
-          description: A composite identifier combining the activity ID and occurrence date (activityId + MMddyyyy).
-          type: string
-        activityID:
-          description: The unique identifier of the underlying activity.
-          type: string
-        accessorId:
-          description: The unique identifier of the accessor-specific activity instance.
-          type: string
-        subject:
-          description: A description of the action to be completed.
-          type: string
-        activityTypeId:
+        snoozeMinutes:
           format: int32
-          description: The activity type identifier.
+          description: The number of minutes to snooze the alarms for.
           type: integer
-        activityTypeName:
-          description: The activity type name (e.g. Call, Meeting, To-do).
-          type: string
-        bannerColor:
-          description: The banner color associated with the activity type.
-          type: string
-        startTime:
-          format: date-time
-          description: The activity occurrence time in the server's local timezone.
-          type: string
-        alarmTime:
-          format: date-time
-          description: The local time at which the alarm is due to fire.
-          type: string
-        edited:
-          format: date-time
-          description: The last time the activity was updated.
-          type: string
-        isRecurring:
-          description: True if activity is recurring, otherwise false.
-          type: boolean
-        activityPriorityId:
-          format: int32
-          description: The activity priority identifier.
-          type: integer
-        isTimeless:
-          description: Indicates whether this activity has no specific time (all-day).
-          type: boolean
-        isUnreadSnooze:
-          description: Indicates whether there is an active snooze that has not yet been acknowledged.
-          type: boolean
-        canEdit:
-          description: Indicates whether the current user can edit this activity.
-          type: boolean
-        canGoTo:
-          description: Indicates whether the current user can navigate to the activity's associated contacts.
-          type: boolean
-        companies:
-          description: Display names of companies associated with this activity.
-          type: array
-          items:
-            type: string
-        contacts:
-          description: Display names of relevant contacts associated with this activity.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Attachments.Attachment:
-      description: Provides properties information about attachments.
-      type: object
-      properties:
-        displayName:
-          description: Gets presentation name of the attachment.
-          type: string
-        fileExtension:
-          description: Gets the extension of the Attachment
-          type: string
-        fileName:
-          description: Gets a string representing the directory's full path.
-          type: string
-        fileSize:
-          format: int64
-          description: Gets the size (bytes) of the attachments.
-          type: integer
-        fileSizeDisplay:
-          description: Gets the displayable text representation of the attachment
-          type: string
-        fileType:
-          description: Gets the registered system file type name of the attachment
-          type: string
-        lastModified:
-          format: date-time
-          description: Gets the last modified date of the attachment
-          type: string
-        personal:
-          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
-          type: boolean
-    act.web.api.models.Activities.ActivityPriority:
-      description: ''
-      type: object
-      properties:
-        id:
-          format: int32
-          description: Gets the unique identifier
-          type: integer
-        name:
-          description: Gets the textual name.
-          type: string
-        description:
-          description: Gets brief description of this activity priority.
-          type: string
-        isActive:
-          description: Indicates that the priority is active.
-          type: boolean
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Activities.ClearActivity:
-      description: Creates a history when clearing an activity
-      required:
-      - startTime
-      - endTime
-      type: object
-      properties:
-        historyType:
-          $ref: '#/components/schemas/act.web.api.models.Histories.HistoryType'
-          description: Provides information about the history event.
-        startTime:
-          format: date-time
-          description: The time the activity is to begin.
-          type: string
-        endTime:
-          format: date-time
-          description: The time the activity is to end.
-          type: string
-        includeDetailsToHistory:
-          description: Indicates that shared history includes details.
-          type: boolean
-        details:
-          description: Additional detailed information about the activity.
-          type: string
-        subject:
-          description: A description of the action to be completed.
-          type: string
-        isPrivate:
-          description: Indicates elevated security that only the creator/owner has access to this activity.
-          type: boolean
-        attachment:
-          $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
-          description: Gets the attachment referenced by this note.
     act.web.api.models.Tasks.ClearTaskHistory:
       description: Creates a history when clearing an activity
       type: object
@@ -1884,6 +1718,15 @@ components:
         isPrivate:
           description: Indicates elevated security that only the creator/owner has access to this activity.
           type: boolean
+    act.web.api.models.Tasks.ClearAlarmsRequest:
+      description: Request model for the bulk clear-alarms operation.
+      type: object
+      properties:
+        ids:
+          description: "IDs of the alarms to clear. Accepts either the 44-character composite format\n            (activityId + MMddyyyy, as returned by the alarms endpoint) or a plain 36-character\n            GUID (activityId only). When a GUID-only ID is provided, all occurrences of that\n            activity within the configured search range are cleared."
+          type: array
+          items:
+            type: string
     act.web.api.models.Histories.HistoryType:
       description: This class provides information about the history event.
       type: object
@@ -1904,6 +1747,85 @@ components:
           type: string
         description:
           description: A written representation or account of a history event.
+          type: string
+    act.web.api.models.Activities.RecurDay:
+      description: Specifying the day of a recurrence.
+      type: object
+      properties:
+        dayAsInt:
+          format: int32
+          description: An integer representation of the day of the week portion of a recurrence pattern.
+          type: integer
+        daysOfWeek:
+          description: Representation of the day of the week portion of a recurrence pattern.
+          type: array
+          items:
+            enum:
+            - Sunday
+            - Monday
+            - Tuesday
+            - Wednesday
+            - Thursday
+            - Friday
+            - Saturday
+            type: string
+        typedDay:
+          description: Describing the TypedDay (Day, WeekDay or Weekend Day) for the recurrence pattern when DayType is "Typed".
+          enum:
+          - None
+          - Day
+          - Weekday
+          - WeekendDay
+          type: string
+        dayType:
+          description: Describing the day-portion of the recurrence pattern.
+          enum:
+          - None
+          - Numbered
+          - Named
+          - Typed
+          type: string
+        ordinal:
+          description: Describes recurrence in relative terms for certain recurrence patterns (i.e. First, Third, Last) .
+          enum:
+          - None
+          - First
+          - Second
+          - Third
+          - Fourth
+          - Last
+          type: string
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Tasks.AlarmRequest:
+      description: Request model for alarm operations that act on one or more activities.
+      type: object
+      properties:
+        activityIds:
+          description: "The ActivityID values of the activities to act on.\n            Corresponds to the ActivityID field returned by the alarm endpoints."
+          type: array
+          items:
+            type: string
+    act.web.api.models.Tasks.TaskClearRequest:
+      description: Creates a history when clearing an activity
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearResultType'
+          description: ''
+        history:
+          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearTaskHistory'
+          description: ''
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
           type: string
     act.web.api.models.Activities.RecurSpec:
       description: ''
@@ -1939,16 +1861,6 @@ components:
           - Weekly
           - Monthly
           - Yearly
-          type: string
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
-          type: string
-        name:
-          description: Gets the name of the company.
           type: string
     act.web.api.models.Activities.ActivitySeries:
       description: ''
@@ -2094,95 +2006,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
-    act.web.api.models.Activities.RecurDay:
-      description: Specifying the day of a recurrence.
-      type: object
-      properties:
-        dayAsInt:
-          format: int32
-          description: An integer representation of the day of the week portion of a recurrence pattern.
-          type: integer
-        daysOfWeek:
-          description: Representation of the day of the week portion of a recurrence pattern.
-          type: array
-          items:
-            enum:
-            - Sunday
-            - Monday
-            - Tuesday
-            - Wednesday
-            - Thursday
-            - Friday
-            - Saturday
-            type: string
-        typedDay:
-          description: Describing the TypedDay (Day, WeekDay or Weekend Day) for the recurrence pattern when DayType is "Typed".
-          enum:
-          - None
-          - Day
-          - Weekday
-          - WeekendDay
-          type: string
-        dayType:
-          description: Describing the day-portion of the recurrence pattern.
-          enum:
-          - None
-          - Numbered
-          - Named
-          - Typed
-          type: string
-        ordinal:
-          description: Describes recurrence in relative terms for certain recurrence patterns (i.e. First, Third, Last) .
-          enum:
-          - None
-          - First
-          - Second
-          - Third
-          - Fourth
-          - Last
-          type: string
-    act.web.api.models.Tasks.TaskClearRequest:
-      description: Creates a history when clearing an activity
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearResultType'
-          description: ''
-        history:
-          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearTaskHistory'
-          description: ''
-    act.web.api.models.Tasks.TaskListRequest:
-      description: Creates a history when clearing an activity
-      type: object
-      properties:
-        tasks:
-          description: List of tasks identifiers.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Opportunities.EmbeddedOpportunity:
-      description: An opportunity entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given opportunity.
-          type: string
-        name:
-          description: Gets the name of the opportunity.
-          type: string
-    act.web.api.models.Tasks.SnoozeAlarmsRequest:
-      description: Request model for snoozing one or more activity alarms.
-      type: object
-      properties:
-        activityIds:
-          description: "The ActivityID values of the activities whose alarms should be snoozed.\n            Corresponds to the ActivityID field returned by the alarm endpoints."
-          type: array
-          items:
-            type: string
-        snoozeMinutes:
-          format: int32
-          description: The number of minutes to snooze the alarms for.
-          type: integer
     act.web.api.models.Activities.EmbededActivityContact:
       description: ''
       type: object
@@ -2199,15 +2022,6 @@ components:
         isInvited:
           description: The name of the attendee.
           type: boolean
-    act.web.api.models.Tasks.AlarmRequest:
-      description: Request model for alarm operations that act on one or more activities.
-      type: object
-      properties:
-        activityIds:
-          description: "The ActivityID values of the activities to act on.\n            Corresponds to the ActivityID field returned by the alarm endpoints."
-          type: array
-          items:
-            type: string
     act.web.api.models.Tasks.ClearResultType:
       description: ''
       type: object
@@ -2219,16 +2033,185 @@ components:
         name:
           description: This defines the type of history event at which it will be known.
           type: string
-    act.web.api.models.Groups.EmbeddedGroup:
-      description: An group entity that displayed as a sub-child to a parent entity.
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
+          type: boolean
+    act.web.api.models.Activities.AlarmedActivityChanges:
+      description: "Represents the result of a poll for alarm updates: activities whose alarm state\n            has changed since the client last checked."
+      type: object
+      properties:
+        deletedIds:
+          description: "Activity IDs from the client's tracked set that are no longer alarmed\n            (cleared, snoozed past expiry, or deleted)."
+          type: array
+          items:
+            type: string
+        alarms:
+          description: The current state of alarmed activities matching the requested IDs.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Activities.AlarmedActivity'
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
       type: object
       properties:
         id:
-          description: Gets a unique identifier (id) for a given group.
+          description: Gets a unique identifier (id) for a given opportunity.
           type: string
         name:
-          description: Gets the name of the group.
+          description: Gets the name of the opportunity.
           type: string
+    act.web.api.models.Tasks.TaskListClearRequest:
+      description: Creates a history when clearing an activity
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearResultType'
+          description: ''
+        history:
+          $ref: '#/components/schemas/act.web.api.models.Tasks.ClearTaskHistory'
+          description: ''
+        tasks:
+          description: List of tasks identifiers.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Activities.AlarmedActivity:
+      description: Represents an activity with an active alarm.
+      type: object
+      properties:
+        id:
+          description: A composite identifier combining the activity ID and occurrence date (activityId + MMddyyyy).
+          type: string
+        activityID:
+          description: The unique identifier of the underlying activity.
+          type: string
+        accessorId:
+          description: The unique identifier of the accessor-specific activity instance.
+          type: string
+        subject:
+          description: A description of the action to be completed.
+          type: string
+        activityTypeId:
+          format: int32
+          description: The activity type identifier.
+          type: integer
+        activityTypeName:
+          description: The activity type name (e.g. Call, Meeting, To-do).
+          type: string
+        bannerColor:
+          description: The banner color associated with the activity type.
+          type: string
+        startTime:
+          format: date-time
+          description: The activity occurrence time in the server's local timezone.
+          type: string
+        alarmTime:
+          format: date-time
+          description: The local time at which the alarm is due to fire.
+          type: string
+        edited:
+          format: date-time
+          description: The last time the activity was updated.
+          type: string
+        isRecurring:
+          description: True if activity is recurring, otherwise false.
+          type: boolean
+        activityPriorityId:
+          format: int32
+          description: The activity priority identifier.
+          type: integer
+        isTimeless:
+          description: Indicates whether this activity has no specific time (all-day).
+          type: boolean
+        isUnreadSnooze:
+          description: Indicates whether there is an active snooze that has not yet been acknowledged.
+          type: boolean
+        canEdit:
+          description: Indicates whether the current user can edit this activity.
+          type: boolean
+        canGoTo:
+          description: Indicates whether the current user can navigate to the activity's associated contacts.
+          type: boolean
+        companies:
+          description: Display names of companies associated with this activity.
+          type: array
+          items:
+            type: string
+        contacts:
+          description: Display names of relevant contacts associated with this activity.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
+    act.web.api.models.Activities.ClearActivity:
+      description: Creates a history when clearing an activity
+      required:
+      - startTime
+      - endTime
+      type: object
+      properties:
+        historyType:
+          $ref: '#/components/schemas/act.web.api.models.Histories.HistoryType'
+          description: Provides information about the history event.
+        startTime:
+          format: date-time
+          description: The time the activity is to begin.
+          type: string
+        endTime:
+          format: date-time
+          description: The time the activity is to end.
+          type: string
+        includeDetailsToHistory:
+          description: Indicates that shared history includes details.
+          type: boolean
+        details:
+          description: Additional detailed information about the activity.
+          type: string
+        subject:
+          description: A description of the action to be completed.
+          type: string
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this activity.
+          type: boolean
+        attachment:
+          $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
+          description: Gets the attachment referenced by this note.
     act.web.api.models.Activities.ActivityOccurrence:
       description: ''
       type: object
@@ -2377,12 +2360,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Opportunities.EmbeddedOpportunity'
-    act.web.api.models.Tasks.ClearAlarmsRequest:
-      description: Request model for the bulk clear-alarms operation.
+    act.web.api.models.Activities.ActivityPriority:
+      description: ''
       type: object
       properties:
-        ids:
-          description: "IDs of the alarms to clear. Accepts either the 44-character composite format\n            (activityId + MMddyyyy, as returned by the alarms endpoint) or a plain 36-character\n            GUID (activityId only). When a GUID-only ID is provided, all occurrences of that\n            activity within the configured search range are cleared."
+        id:
+          format: int32
+          description: Gets the unique identifier
+          type: integer
+        name:
+          description: Gets the textual name.
+          type: string
+        description:
+          description: Gets brief description of this activity priority.
+          type: string
+        isActive:
+          description: Indicates that the priority is active.
+          type: boolean
+    act.web.api.models.Tasks.TaskListRequest:
+      description: Creates a history when clearing an activity
+      type: object
+      properties:
+        tasks:
+          description: List of tasks identifiers.
           type: array
           items:
             type: string

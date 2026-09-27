@@ -349,6 +349,31 @@ paths:
         required: true
 components:
   schemas:
+    act.web.api.models.TaskTypes.TaskTypesHistoryType:
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          description: ''
+          type: integer
+        name:
+          description: Gets the name of this history type.
+          type: string
+        description:
+          description: Gets brief description of this history type.
+          type: string
+        clearType:
+          description: ''
+          enum:
+          - OTHER
+          - COMPLETED
+          - NOTCOMPLETED
+          - ERASED
+          type: string
+        isDefault:
+          description: Indicates that this history type is default.
+          type: boolean
     act.web.api.models.TaskTypes.TaskType:
       description: ''
       type: object
@@ -396,6 +421,16 @@ components:
         description:
           description: Gets the description of the picklist item.
           type: string
+    act.web.api.models.Preferences.TaskTypeDropDownFieldPreferences:
+      description: Describe activity type fields preferences.
+      type: object
+      properties:
+        code:
+          description: Field type.
+          type: string
+        value:
+          description: Display drop-down to this field.
+          type: boolean
     act.web.api.models.Preferences.TaskDefaultPreferences:
       description: ''
       type: object
@@ -426,41 +461,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Preferences.TaskTypeDropDownFieldPreferences'
-    act.web.api.models.Preferences.TaskTypeDropDownFieldPreferences:
-      description: Describe activity type fields preferences.
-      type: object
-      properties:
-        code:
-          description: Field type.
-          type: string
-        value:
-          description: Display drop-down to this field.
-          type: boolean
     System.Object:
       type: object
       properties: {}
-    act.web.api.models.TaskTypes.TaskTypesHistoryType:
-      description: ''
-      type: object
-      properties:
-        id:
-          format: int32
-          description: ''
-          type: integer
-        name:
-          description: Gets the name of this history type.
-          type: string
-        description:
-          description: Gets brief description of this history type.
-          type: string
-        clearType:
-          description: ''
-          enum:
-          - OTHER
-          - COMPLETED
-          - NOTCOMPLETED
-          - ERASED
-          type: string
-        isDefault:
-          description: Indicates that this history type is default.
-          type: boolean
