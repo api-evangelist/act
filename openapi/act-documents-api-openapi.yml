@@ -461,16 +461,6 @@ paths:
         required: true
 components:
   schemas:
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
-          type: string
-        name:
-          description: Gets the name of the company.
-          type: string
     act.web.api.models.Groups.EmbeddedGroup:
       description: An group entity that displayed as a sub-child to a parent entity.
       type: object
@@ -480,6 +470,16 @@ components:
           type: string
         name:
           description: Gets the name of the group.
+          type: string
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
           type: string
     act.web.api.models.Attachments.Attachment:
       description: Provides properties information about attachments.
@@ -511,6 +511,16 @@ components:
         personal:
           description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
           type: boolean
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string
     act.web.api.models.Histories.HistoryType:
       description: This class provides information about the history event.
       type: object
@@ -532,9 +542,6 @@ components:
         description:
           description: A written representation or account of a history event.
           type: string
-    System.Object:
-      type: object
-      properties: {}
     act.web.api.models.Histories.History:
       description: ''
       type: object
@@ -633,6 +640,9 @@ components:
         attachment:
           $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
           description: Gets the attachment referenced by this history item.
+    System.Object:
+      type: object
+      properties: {}
     act.web.api.models.Contacts.EmbeddedContact:
       description: ''
       type: object
@@ -650,13 +660,3 @@ components:
         isInvited:
           description: Invited contact flag
           type: boolean
-    act.web.api.models.Opportunities.EmbeddedOpportunity:
-      description: An opportunity entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given opportunity.
-          type: string
-        name:
-          description: Gets the name of the opportunity.
-          type: string

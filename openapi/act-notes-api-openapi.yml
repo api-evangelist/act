@@ -796,16 +796,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
-          type: string
-        name:
-          description: Gets the name of the company.
-          type: string
     act.web.api.models.Groups.EmbeddedGroup:
       description: An group entity that displayed as a sub-child to a parent entity.
       type: object
@@ -815,6 +805,56 @@ components:
           type: string
         name:
           description: Gets the name of the group.
+          type: string
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
+          type: string
+    act.web.api.models.Attachments.Attachment:
+      description: Provides properties information about attachments.
+      type: object
+      properties:
+        displayName:
+          description: Gets presentation name of the attachment.
+          type: string
+        fileExtension:
+          description: Gets the extension of the Attachment
+          type: string
+        fileName:
+          description: Gets a string representing the directory's full path.
+          type: string
+        fileSize:
+          format: int64
+          description: Gets the size (bytes) of the attachments.
+          type: integer
+        fileSizeDisplay:
+          description: Gets the displayable text representation of the attachment
+          type: string
+        fileType:
+          description: Gets the registered system file type name of the attachment
+          type: string
+        lastModified:
+          format: date-time
+          description: Gets the last modified date of the attachment
+          type: string
+        personal:
+          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
+          type: boolean
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
           type: string
     act.web.api.models.Notes.Note:
       description: ''
@@ -877,36 +917,6 @@ components:
         attachment:
           $ref: '#/components/schemas/act.web.api.models.Attachments.Attachment'
           description: Gets the attachment referenced by this note.
-    act.web.api.models.Attachments.Attachment:
-      description: Provides properties information about attachments.
-      type: object
-      properties:
-        displayName:
-          description: Gets presentation name of the attachment.
-          type: string
-        fileExtension:
-          description: Gets the extension of the Attachment
-          type: string
-        fileName:
-          description: Gets a string representing the directory's full path.
-          type: string
-        fileSize:
-          format: int64
-          description: Gets the size (bytes) of the attachments.
-          type: integer
-        fileSizeDisplay:
-          description: Gets the displayable text representation of the attachment
-          type: string
-        fileType:
-          description: Gets the registered system file type name of the attachment
-          type: string
-        lastModified:
-          format: date-time
-          description: Gets the last modified date of the attachment
-          type: string
-        personal:
-          description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
-          type: boolean
     System.Object:
       type: object
       properties: {}
@@ -927,13 +937,3 @@ components:
         isInvited:
           description: Invited contact flag
           type: boolean
-    act.web.api.models.Opportunities.EmbeddedOpportunity:
-      description: An opportunity entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given opportunity.
-          type: string
-        name:
-          description: Gets the name of the opportunity.
-          type: string

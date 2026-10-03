@@ -145,20 +145,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Utilities.LicenseInfo:
-      description: Registered license information
-      type: object
-      properties:
-        serialNumber:
-          description: The registered Act! license serial number
-          type: string
-        type:
-          description: The licensing option selected for this serial number (Subscription or Perpetual)
-          type: string
-        userLicenses:
-          format: int32
-          description: The number of user seats available for this serial number
-          type: integer
     act.web.api.models.Utilities.SystemInfo:
       description: Provides system information about the API
       type: object
@@ -176,6 +162,55 @@ components:
         culture:
           $ref: '#/components/schemas/act.web.api.models.Utilities.Culture'
           description: Provides information about the current culture.
+    act.web.api.models.Utilities.LicenseInfo:
+      description: Registered license information
+      type: object
+      properties:
+        serialNumber:
+          description: The registered Act! license serial number
+          type: string
+        type:
+          description: The licensing option selected for this serial number (Subscription or Perpetual)
+          type: string
+        userLicenses:
+          format: int32
+          description: The number of user seats available for this serial number
+          type: integer
+    act.web.api.models.Database.Currency:
+      description: ''
+      type: object
+      properties:
+        symbol:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        country:
+          description: ''
+          type: string
+        code:
+          description: ''
+          type: string
+        displayText:
+          description: ''
+          type: string
+        decimalDigits:
+          format: int32
+          description: ''
+          type: integer
+        decimalSeparator:
+          description: ''
+          type: string
+        groupSeparator:
+          description: ''
+          type: string
+        negativeSign:
+          description: ''
+          type: string
+        percentSymbol:
+          description: ''
+          type: string
     act.web.api.models.Utilities.DateFormat:
       description: ''
       type: object
@@ -220,38 +255,3 @@ components:
         dateTimeFormat:
           $ref: '#/components/schemas/act.web.api.models.Utilities.DateFormat'
           description: The Culture
-    act.web.api.models.Database.Currency:
-      description: ''
-      type: object
-      properties:
-        symbol:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        country:
-          description: ''
-          type: string
-        code:
-          description: ''
-          type: string
-        displayText:
-          description: ''
-          type: string
-        decimalDigits:
-          format: int32
-          description: ''
-          type: integer
-        decimalSeparator:
-          description: ''
-          type: string
-        groupSeparator:
-          description: ''
-          type: string
-        negativeSign:
-          description: ''
-          type: string
-        percentSymbol:
-          description: ''
-          type: string

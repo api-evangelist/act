@@ -292,6 +292,27 @@ paths:
         required: true
 components:
   schemas:
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Teams.Team:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        roster:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'
     act.web.api.models.Users.UserInfo:
       description: ''
       type: object
@@ -324,24 +345,3 @@ components:
         status:
           description: ''
           type: string
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Teams.Team:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        roster:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.UserInfo'

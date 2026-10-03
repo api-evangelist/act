@@ -127,6 +127,99 @@ paths:
         required: true
 components:
   schemas:
+    act.web.api.models.MarketingAutomation.CampaignResult:
+      description: ''
+      type: object
+      properties:
+        campaignId:
+          description: ''
+          type: string
+        campaignEmailId:
+          description: ''
+          type: string
+        campaignName:
+          description: ''
+          type: string
+        campaignResultsId:
+          description: ''
+          type: string
+        clicks:
+          format: int32
+          description: ''
+          type: integer
+        createDate:
+          format: date-time
+          description: ''
+          type: string
+        createUserId:
+          description: ''
+          type: string
+        creatorName:
+          description: ''
+          type: string
+        editDate:
+          format: date-time
+          description: ''
+          type: string
+        editorName:
+          description: ''
+          type: string
+        editUserId:
+          description: ''
+          type: string
+        hasComplained:
+          description: ''
+          type: boolean
+        isBounced:
+          description: ''
+          type: boolean
+        isPrivate:
+          description: ''
+          type: boolean
+        isUnsubscribed:
+          description: ''
+          type: boolean
+        jumpToURL:
+          description: ''
+          type: string
+        lastClickDate:
+          format: date-time
+          description: ''
+          type: string
+        managerName:
+          description: ''
+          type: string
+        manageUserId:
+          description: ''
+          type: string
+        openDate:
+          format: date-time
+          description: ''
+          type: string
+        opens:
+          format: int32
+          description: ''
+          type: integer
+        recipientEmail:
+          description: ''
+          type: string
+        sendDate:
+          format: date-time
+          description: ''
+          type: string
+        senderEmail:
+          description: ''
+          type: string
+        subjectLine:
+          description: ''
+          type: string
+        typeEnum:
+          format: int32
+          description: ''
+          type: integer
+        url:
+          description: ''
+          type: string
     act.web.api.models.MarketingAutomation.MarketingAutomationEmail:
       description: AMA Emails
       required:
@@ -296,96 +389,3 @@ components:
           format: int32
           description: ''
           type: integer
-    act.web.api.models.MarketingAutomation.CampaignResult:
-      description: ''
-      type: object
-      properties:
-        campaignId:
-          description: ''
-          type: string
-        campaignEmailId:
-          description: ''
-          type: string
-        campaignName:
-          description: ''
-          type: string
-        campaignResultsId:
-          description: ''
-          type: string
-        clicks:
-          format: int32
-          description: ''
-          type: integer
-        createDate:
-          format: date-time
-          description: ''
-          type: string
-        createUserId:
-          description: ''
-          type: string
-        creatorName:
-          description: ''
-          type: string
-        editDate:
-          format: date-time
-          description: ''
-          type: string
-        editorName:
-          description: ''
-          type: string
-        editUserId:
-          description: ''
-          type: string
-        hasComplained:
-          description: ''
-          type: boolean
-        isBounced:
-          description: ''
-          type: boolean
-        isPrivate:
-          description: ''
-          type: boolean
-        isUnsubscribed:
-          description: ''
-          type: boolean
-        jumpToURL:
-          description: ''
-          type: string
-        lastClickDate:
-          format: date-time
-          description: ''
-          type: string
-        managerName:
-          description: ''
-          type: string
-        manageUserId:
-          description: ''
-          type: string
-        openDate:
-          format: date-time
-          description: ''
-          type: string
-        opens:
-          format: int32
-          description: ''
-          type: integer
-        recipientEmail:
-          description: ''
-          type: string
-        sendDate:
-          format: date-time
-          description: ''
-          type: string
-        senderEmail:
-          description: ''
-          type: string
-        subjectLine:
-          description: ''
-          type: string
-        typeEnum:
-          format: int32
-          description: ''
-          type: integer
-        url:
-          description: ''
-          type: string

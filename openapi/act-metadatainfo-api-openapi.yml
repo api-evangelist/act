@@ -827,144 +827,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.MetaData.TypeCodes.EnumTypes:
-      description: ''
-      type: object
-      properties:
-        name:
-          description: ''
-          type: string
-        value:
-          format: int32
-          description: ''
-          type: integer
-    act.web.api.models.MetaData.Picklists.ColumnBindings:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        isLimitToList:
-          description: ''
-          type: boolean
-        isMultiSelect:
-          description: ''
-          type: boolean
-        isTypeAhead:
-          description: ''
-          type: boolean
-        showDescription:
-          description: ''
-          type: boolean
-    act.web.api.models.MetaData.Picklists.DropDownList:
-      description: Represents a typed list of custom values in the application database.
-      type: object
-      properties:
-        id:
-          description: Gets the unique identifier of the PickList object.
-          type: string
-        name:
-          description: Gets or sets the name of the PickList.
-          type: string
-        type:
-          description: Gets or sets the name of the PickList.
-          type: string
-        isEditable:
-          description: Indicates that the drop-down will allow editing.
-          type: boolean
-        isAutoInsert:
-          description: Indicates that the drop-down will allow multiple item selection.
-          type: boolean
-        description:
-          description: Gets or sets the description of the PickList.
-          type: string
-        created:
-          format: date-time
-          description: Gets the creation date of the PickList object.
-          type: string
-        edited:
-          format: date-time
-          description: Gets the edit date of the PickList object.
-          type: string
-        items:
-          description: List of drop-down list items that are associated to this drop-down list.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
-    act.web.api.models.MetaData.Schema.PickListInfo:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        isLimitToList:
-          description: ''
-          type: boolean
-        isMultiSelect:
-          description: ''
-          type: boolean
-        isTypeAhead:
-          description: ''
-          type: boolean
-        showDescription:
-          description: ''
-          type: boolean
-    act.web.api.models.MetaData.Picklists.DropDownPickListItem:
-      description: Represents a value item for a PickList object.
-      type: object
-      properties:
-        id:
-          description: Gets the unique identifier of the PickListItem object.
-          type: string
-        value:
-          description: Gets or sets the value of the PickListItem object.
-          type: string
-        description:
-          description: Gets the description of the picklist item.
-          type: string
-    act.web.api.models.MetaData.Schema.NewCustomTable:
-      description: Definition for creating a new custom table (custom entity).
-      required:
-      - name
-      - displayName
-      type: object
-      properties:
-        name:
-          description: "The technical name of the custom table. Becomes the physical table CUST_&lt;NAME&gt; and primary key &lt;NAME&gt;ID\n            (normalized to upper case). Letters, digits, and underscores only; must begin with a letter or underscore.\n            Maximum 27 characters (the framework prepends a 5-character \"CUST_\" prefix)."
-          maxLength: 27
-          minLength: 0
-          pattern: ^[A-Za-z_][A-Za-z0-9_]*$
-          type: string
-        displayName:
-          description: The user-facing display name of the custom table (the APC tab label). Stored verbatim. Maximum 32 characters.
-          maxLength: 32
-          minLength: 0
-          pattern: ^.*\S.*$
-          type: string
-        description:
-          description: An optional description of the custom table. Maximum 128 characters.
-          maxLength: 128
-          minLength: 0
-          type: string
-        isDefineField:
-          description: Indicates whether the custom table is visible in the Define Fields UI.
-          type: boolean
-        parentEntities:
-          description: "Optional parent entities to link this custom table to: Contacts, Groups, Companies, Opportunities.\n            When empty, a standalone top-level custom table is created; otherwise a sub-entity is created with a\n            many-to-many junction table to each named parent."
-          type: array
-          items:
-            type: string
     act.web.api.models.MetaData.Picklists.PickList:
       description: Represents a typed list of custom values in the application database.
       type: object
@@ -994,84 +856,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.ColumnBindings'
-    act.web.api.models.MetaData.Schema.Entity:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        displayName:
-          description: ''
-          type: string
-        isCustom:
-          description: ''
-          type: boolean
-        recordType:
-          description: ''
-          type: string
-        parents:
-          description: ''
-          type: string
-        createUserID:
-          description: ''
-          type: string
-        createDate:
-          format: date-time
-          description: ''
-          type: string
-    act.web.api.models.MetaData.Picklists.CreateDropDownList:
-      description: Represents a typed list of custom values in the application database.
-      required:
-      - name
-      - type
-      type: object
-      properties:
-        name:
-          description: Gets or sets the name of the PickList.
-          type: string
-        type:
-          description: The picklist data type.
-          enum:
-          - Character
-          - Currency
-          - Number
-          - Decimal
-          type: string
-        description:
-          description: Gets or sets the description of the PickList.
-          type: string
-        isEditable:
-          description: Defines if the picklist is editable.
-          type: boolean
-        isAutoInsert:
-          description: Defines if the picklist can create new items.
-          type: boolean
-        items:
-          description: Picklist Items
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
-    act.web.api.models.MetaData.Schema.FieldBehavior:
-      description: ''
-      type: object
-      properties:
-        fieldType:
-          description: The datatype of the fields being used in the calculated field (Currency, Decimal, Number).
-          enum:
-          - Number
-          - Currency
-          - Decimal
-          type: string
-        fields:
-          description: Comma delimited list of the entity column names being used in the  formula.
-          type: string
-        formula:
-          description: Specify formats or rules for entering data in the field.
-          type: string
     act.web.api.models.MetaData.Schema.NewColumn:
       description: ''
       required:
@@ -1147,6 +931,190 @@ components:
         calculated:
           $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.FieldBehavior'
           description: Calculated Field
+    act.web.api.models.MetaData.Picklists.ColumnBindings:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        isLimitToList:
+          description: ''
+          type: boolean
+        isMultiSelect:
+          description: ''
+          type: boolean
+        isTypeAhead:
+          description: ''
+          type: boolean
+        showDescription:
+          description: ''
+          type: boolean
+    act.web.api.models.MetaData.Schema.Entity:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+        isCustom:
+          description: ''
+          type: boolean
+        recordType:
+          description: ''
+          type: string
+        parents:
+          description: ''
+          type: string
+        createUserID:
+          description: ''
+          type: string
+        createDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.MetaData.Picklists.DropDownPickListItem:
+      description: Represents a value item for a PickList object.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the PickListItem object.
+          type: string
+        value:
+          description: Gets or sets the value of the PickListItem object.
+          type: string
+        description:
+          description: Gets the description of the picklist item.
+          type: string
+    act.web.api.models.MetaData.TypeCodes.EnumTypes:
+      description: ''
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        value:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.MetaData.Schema.PickListInfo:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        isLimitToList:
+          description: ''
+          type: boolean
+        isMultiSelect:
+          description: ''
+          type: boolean
+        isTypeAhead:
+          description: ''
+          type: boolean
+        showDescription:
+          description: ''
+          type: boolean
+    act.web.api.models.MetaData.Schema.FieldBehavior:
+      description: ''
+      type: object
+      properties:
+        fieldType:
+          description: The datatype of the fields being used in the calculated field (Currency, Decimal, Number).
+          enum:
+          - Number
+          - Currency
+          - Decimal
+          type: string
+        fields:
+          description: Comma delimited list of the entity column names being used in the  formula.
+          type: string
+        formula:
+          description: Specify formats or rules for entering data in the field.
+          type: string
+    act.web.api.models.MetaData.Picklists.DropDownList:
+      description: Represents a typed list of custom values in the application database.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the PickList object.
+          type: string
+        name:
+          description: Gets or sets the name of the PickList.
+          type: string
+        type:
+          description: Gets or sets the name of the PickList.
+          type: string
+        isEditable:
+          description: Indicates that the drop-down will allow editing.
+          type: boolean
+        isAutoInsert:
+          description: Indicates that the drop-down will allow multiple item selection.
+          type: boolean
+        description:
+          description: Gets or sets the description of the PickList.
+          type: string
+        created:
+          format: date-time
+          description: Gets the creation date of the PickList object.
+          type: string
+        edited:
+          format: date-time
+          description: Gets the edit date of the PickList object.
+          type: string
+        items:
+          description: List of drop-down list items that are associated to this drop-down list.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+    act.web.api.models.MetaData.Picklists.CreateDropDownList:
+      description: Represents a typed list of custom values in the application database.
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        name:
+          description: Gets or sets the name of the PickList.
+          type: string
+        type:
+          description: The picklist data type.
+          enum:
+          - Character
+          - Currency
+          - Number
+          - Decimal
+          type: string
+        description:
+          description: Gets or sets the description of the PickList.
+          type: string
+        isEditable:
+          description: Defines if the picklist is editable.
+          type: boolean
+        isAutoInsert:
+          description: Defines if the picklist can create new items.
+          type: boolean
+        items:
+          description: Picklist Items
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
     act.web.api.models.MetaData.Schema.AssignPicklist:
       description: ''
       required:
@@ -1307,3 +1275,35 @@ components:
         picklist:
           $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.PickListInfo'
           description: ''
+    act.web.api.models.MetaData.Schema.NewCustomTable:
+      description: Definition for creating a new custom table (custom entity).
+      required:
+      - name
+      - displayName
+      type: object
+      properties:
+        name:
+          description: "The technical name of the custom table. Becomes the physical table CUST_&lt;NAME&gt; and primary key &lt;NAME&gt;ID\n            (normalized to upper case). Letters, digits, and underscores only; must begin with a letter or underscore.\n            Maximum 27 characters (the framework prepends a 5-character \"CUST_\" prefix)."
+          maxLength: 27
+          minLength: 0
+          pattern: ^[A-Za-z_][A-Za-z0-9_]*$
+          type: string
+        displayName:
+          description: The user-facing display name of the custom table (the APC tab label). Stored verbatim. Maximum 32 characters.
+          maxLength: 32
+          minLength: 0
+          pattern: ^.*\S.*$
+          type: string
+        description:
+          description: An optional description of the custom table. Maximum 128 characters.
+          maxLength: 128
+          minLength: 0
+          type: string
+        isDefineField:
+          description: Indicates whether the custom table is visible in the Define Fields UI.
+          type: boolean
+        parentEntities:
+          description: "Optional parent entities to link this custom table to: Contacts, Groups, Companies, Opportunities.\n            When empty, a standalone top-level custom table is created; otherwise a sub-entity is created with a\n            many-to-many junction table to each named parent."
+          type: array
+          items:
+            type: string

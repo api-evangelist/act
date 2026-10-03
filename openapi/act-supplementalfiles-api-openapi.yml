@@ -571,29 +571,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.SupplementalFiles.Layout:
-      description: ''
-      type: object
-      properties:
-        entity:
-          description: The record type is the entity (Company, Contact, Group, Opportunity) that the layout definition represents.
-          enum:
-          - Contact
-          - Company
-          - Group
-          - Opportunity
-          - Product
-          type: string
-        fileName:
-          description: The name of the layout file.
-          type: string
-        isDefault:
-          description: The default layout.
-          type: boolean
-        lastEdit:
-          format: date-time
-          description: The date and time of the last modification.
-          type: string
     System.Object:
       type: object
       properties: {}
@@ -627,3 +604,26 @@ components:
         personal:
           description: Indicates whether the attachment is bound for the personal suppplemental files or the workgroup supplemental files.
           type: boolean
+    act.web.api.models.SupplementalFiles.Layout:
+      description: ''
+      type: object
+      properties:
+        entity:
+          description: The record type is the entity (Company, Contact, Group, Opportunity) that the layout definition represents.
+          enum:
+          - Contact
+          - Company
+          - Group
+          - Opportunity
+          - Product
+          type: string
+        fileName:
+          description: The name of the layout file.
+          type: string
+        isDefault:
+          description: The default layout.
+          type: boolean
+        lastEdit:
+          format: date-time
+          description: The date and time of the last modification.
+          type: string
