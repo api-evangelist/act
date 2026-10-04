@@ -442,43 +442,9 @@ components:
         comments:
           description: A brief description for the database lock.
           type: string
-    act.web.api.models.Database.DatabaseBackupInfo:
-      description: ''
+    System.Object:
       type: object
-      properties:
-        fileName:
-          description: ''
-          type: string
-        submitted:
-          description: ''
-          type: string
-        created:
-          description: ''
-          type: string
-        isUploaded:
-          description: ''
-          type: boolean
-        message:
-          description: ''
-          type: string
-    act.web.api.models.Database.LockRequest:
-      description: The request model when posting a database lock.
-      type: object
-      properties:
-        comments:
-          description: A brief description for the database lock.
-          type: string
-        delayUntilLock:
-          format: int32
-          description: The number of minutes to delay before a lock is placed on the database.
-          type: integer
-        reason:
-          description: The reason for the lock.
-          enum:
-          - General
-          - Restore
-          - SchemaChanges
-          type: string
+      properties: {}
     act.web.api.models.Database.NewDatabaseRequest:
       description: The database name must begin with a letter, consists only of letters, numbers, and underscore characters.
       required:
@@ -504,9 +470,6 @@ components:
         currency:
           description: "The currency format that will be used (default if not supplied).\n            api/multilanguage/currencies -- (DisplayText)"
           type: string
-    System.Object:
-      type: object
-      properties: {}
     act.web.api.models.Database.DatabaseBackupUser:
       description: This model is used to create a database backup file.
       type: object
@@ -516,4 +479,41 @@ components:
           type: string
         password:
           description: The password that will be used to secure the database basckup file.
+          type: string
+    act.web.api.models.Database.LockRequest:
+      description: The request model when posting a database lock.
+      type: object
+      properties:
+        comments:
+          description: A brief description for the database lock.
+          type: string
+        delayUntilLock:
+          format: int32
+          description: The number of minutes to delay before a lock is placed on the database.
+          type: integer
+        reason:
+          description: The reason for the lock.
+          enum:
+          - General
+          - Restore
+          - SchemaChanges
+          type: string
+    act.web.api.models.Database.DatabaseBackupInfo:
+      description: ''
+      type: object
+      properties:
+        fileName:
+          description: ''
+          type: string
+        submitted:
+          description: ''
+          type: string
+        created:
+          description: ''
+          type: string
+        isUploaded:
+          description: ''
+          type: boolean
+        message:
+          description: ''
           type: string

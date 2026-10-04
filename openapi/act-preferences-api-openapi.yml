@@ -483,6 +483,104 @@ paths:
         required: true
 components:
   schemas:
+    act.web.api.models.Preferences.TaskPreferences:
+      description: Activity preferences model.
+      type: object
+      properties:
+        clearingTasks:
+          description: When clearing tasks.
+          enum:
+          - Grey
+          - Strikeout
+          type: string
+        taskConflictChecking:
+          description: Activity conflict checking.
+          type: boolean
+        makeNewTaskPublic:
+          description: Make new activity public.
+          type: boolean
+        schedulingSeparateTasks:
+          description: Schedule separate activities.
+          type: boolean
+        scheduleTaskForNewContact:
+          description: Prompt to schedule an task for new contact.
+          type: boolean
+    act.web.api.models.Users.Preference:
+      description: User preferences.
+      type: object
+      properties:
+        id:
+          description: A base64 representation of the unique identifier (name).
+          type: string
+        name:
+          description: A unique identifier (key) for this preference.
+          type: string
+        value:
+          $ref: '#/components/schemas/System.Object'
+          description: The preference setting.
+        isAdmin:
+          description: ''
+          type: boolean
+    act.web.api.models.Preferences.DuplicatesPreferences:
+      description: Dup-checking preferences
+      type: object
+      properties:
+        fields:
+          description: List of selected indexes
+          type: string
+    act.web.api.models.Preferences.DuplicatesField:
+      description: Allowed for index field info.
+      type: object
+      properties:
+        columnName:
+          description: Field column name
+          type: string
+        displayName:
+          description: Field display name
+          type: string
+    act.web.api.models.Preferences.SalutationNamePreferences:
+      description: ''
+      type: object
+      properties:
+        nameAffixSettings:
+          description: List of affix types and values.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Preferences.NameAffixSetting'
+        salutationSettings:
+          description: List of salutation types.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationSetting'
+        autoShowDialog:
+          description: ''
+          type: boolean
+    act.web.api.models.Preferences.SalutationSetting:
+      description: Salutation type  input model.
+      type: object
+      properties:
+        code:
+          type: string
+        value:
+          type: boolean
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Preferences.NameAffixSetting:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: Affix type identifier.
+          type: string
+        name:
+          description: Affix typ name.
+          type: string
+        items:
+          description: List of affix values.
+          type: array
+          items:
+            type: string
     act.web.api.models.Preferences.CalendarColorPalette:
       description: ''
       type: object
@@ -515,102 +613,4 @@ components:
           type: string
         hsl:
           description: HSL (hue, saturation, lighting).
-          type: string
-    act.web.api.models.Preferences.SalutationNamePreferences:
-      description: ''
-      type: object
-      properties:
-        nameAffixSettings:
-          description: List of affix types and values.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Preferences.NameAffixSetting'
-        salutationSettings:
-          description: List of salutation types.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Preferences.SalutationSetting'
-        autoShowDialog:
-          description: ''
-          type: boolean
-    act.web.api.models.Preferences.SalutationSetting:
-      description: Salutation type  input model.
-      type: object
-      properties:
-        code:
-          type: string
-        value:
-          type: boolean
-    act.web.api.models.Preferences.NameAffixSetting:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: Affix type identifier.
-          type: string
-        name:
-          description: Affix typ name.
-          type: string
-        items:
-          description: List of affix values.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Users.Preference:
-      description: User preferences.
-      type: object
-      properties:
-        id:
-          description: A base64 representation of the unique identifier (name).
-          type: string
-        name:
-          description: A unique identifier (key) for this preference.
-          type: string
-        value:
-          $ref: '#/components/schemas/System.Object'
-          description: The preference setting.
-        isAdmin:
-          description: ''
-          type: boolean
-    act.web.api.models.Preferences.DuplicatesField:
-      description: Allowed for index field info.
-      type: object
-      properties:
-        columnName:
-          description: Field column name
-          type: string
-        displayName:
-          description: Field display name
-          type: string
-    act.web.api.models.Preferences.TaskPreferences:
-      description: Activity preferences model.
-      type: object
-      properties:
-        clearingTasks:
-          description: When clearing tasks.
-          enum:
-          - Grey
-          - Strikeout
-          type: string
-        taskConflictChecking:
-          description: Activity conflict checking.
-          type: boolean
-        makeNewTaskPublic:
-          description: Make new activity public.
-          type: boolean
-        schedulingSeparateTasks:
-          description: Schedule separate activities.
-          type: boolean
-        scheduleTaskForNewContact:
-          description: Prompt to schedule an task for new contact.
-          type: boolean
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Preferences.DuplicatesPreferences:
-      description: Dup-checking preferences
-      type: object
-      properties:
-        fields:
-          description: List of selected indexes
           type: string

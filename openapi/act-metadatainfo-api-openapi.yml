@@ -827,6 +827,19 @@ paths:
       deprecated: false
 components:
   schemas:
+    act.web.api.models.MetaData.Picklists.DropDownPickListItem:
+      description: Represents a value item for a PickList object.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the PickListItem object.
+          type: string
+        value:
+          description: Gets or sets the value of the PickListItem object.
+          type: string
+        description:
+          description: Gets the description of the picklist item.
+          type: string
     act.web.api.models.MetaData.Picklists.PickList:
       description: Represents a typed list of custom values in the application database.
       type: object
@@ -856,265 +869,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.ColumnBindings'
-    act.web.api.models.MetaData.Schema.NewColumn:
-      description: ''
-      required:
-      - name
-      - type
-      type: object
-      properties:
-        name:
-          description: The database column alias or display name.
-          type: string
-        type:
-          description: The Act! field data type.
-          enum:
-          - YesNo
-          - Character
-          - InitialCaps
-          - Lowercase
-          - Uppercase
-          - Memo
-          - Url
-          - Number
-          - Currency
-          - Decimal
-          - Date
-          - Time
-          - DateTime
-          - AnnualEvent
-          - Picture
-          - Calculated
-          - Email
-          - Phone
-          - Address
-          type: string
-        length:
-          format: int32
-          description: The size of the data type
-          type: integer
-        precision:
-          format: int32
-          description: Precision is the number of digits in a number
-          type: integer
-        scale:
-          format: int32
-          description: Scale is the number of digits to the right of the decimal point in a number
-          type: integer
-        defaultValue:
-          description: The default value of the field if nothing is provided.
-          type: string
-        fieldFormat:
-          description: Defines a specific format for this field.
-          type: string
-        isPrimary:
-          description: Primary fields are copied when duplicating the record.
-          type: boolean
-        isAllowBlank:
-          description: Indicates that this field will be a required field or not
-          type: boolean
-        isTracked:
-          description: Indicates that this field will track changes
-          type: boolean
-        changeEvent:
-          description: Sets up a change event trigger.
-          type: string
-        enterEvent:
-          description: Sets up a change event trigger.
-          type: string
-        leaveEvent:
-          description: Sets up a change event trigger.
-          type: string
-        picklist:
-          $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.AssignPicklist'
-          description: Provides a drop-down list of the items avaiable for this column
-        calculated:
-          $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.FieldBehavior'
-          description: Calculated Field
-    act.web.api.models.MetaData.Picklists.ColumnBindings:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        isLimitToList:
-          description: ''
-          type: boolean
-        isMultiSelect:
-          description: ''
-          type: boolean
-        isTypeAhead:
-          description: ''
-          type: boolean
-        showDescription:
-          description: ''
-          type: boolean
-    act.web.api.models.MetaData.Schema.Entity:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        displayName:
-          description: ''
-          type: string
-        isCustom:
-          description: ''
-          type: boolean
-        recordType:
-          description: ''
-          type: string
-        parents:
-          description: ''
-          type: string
-        createUserID:
-          description: ''
-          type: string
-        createDate:
-          format: date-time
-          description: ''
-          type: string
-    act.web.api.models.MetaData.Picklists.DropDownPickListItem:
-      description: Represents a value item for a PickList object.
-      type: object
-      properties:
-        id:
-          description: Gets the unique identifier of the PickListItem object.
-          type: string
-        value:
-          description: Gets or sets the value of the PickListItem object.
-          type: string
-        description:
-          description: Gets the description of the picklist item.
-          type: string
-    act.web.api.models.MetaData.TypeCodes.EnumTypes:
-      description: ''
-      type: object
-      properties:
-        name:
-          description: ''
-          type: string
-        value:
-          format: int32
-          description: ''
-          type: integer
-    act.web.api.models.MetaData.Schema.PickListInfo:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        isLimitToList:
-          description: ''
-          type: boolean
-        isMultiSelect:
-          description: ''
-          type: boolean
-        isTypeAhead:
-          description: ''
-          type: boolean
-        showDescription:
-          description: ''
-          type: boolean
-    act.web.api.models.MetaData.Schema.FieldBehavior:
-      description: ''
-      type: object
-      properties:
-        fieldType:
-          description: The datatype of the fields being used in the calculated field (Currency, Decimal, Number).
-          enum:
-          - Number
-          - Currency
-          - Decimal
-          type: string
-        fields:
-          description: Comma delimited list of the entity column names being used in the  formula.
-          type: string
-        formula:
-          description: Specify formats or rules for entering data in the field.
-          type: string
-    act.web.api.models.MetaData.Picklists.DropDownList:
-      description: Represents a typed list of custom values in the application database.
-      type: object
-      properties:
-        id:
-          description: Gets the unique identifier of the PickList object.
-          type: string
-        name:
-          description: Gets or sets the name of the PickList.
-          type: string
-        type:
-          description: Gets or sets the name of the PickList.
-          type: string
-        isEditable:
-          description: Indicates that the drop-down will allow editing.
-          type: boolean
-        isAutoInsert:
-          description: Indicates that the drop-down will allow multiple item selection.
-          type: boolean
-        description:
-          description: Gets or sets the description of the PickList.
-          type: string
-        created:
-          format: date-time
-          description: Gets the creation date of the PickList object.
-          type: string
-        edited:
-          format: date-time
-          description: Gets the edit date of the PickList object.
-          type: string
-        items:
-          description: List of drop-down list items that are associated to this drop-down list.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
-    act.web.api.models.MetaData.Picklists.CreateDropDownList:
-      description: Represents a typed list of custom values in the application database.
-      required:
-      - name
-      - type
-      type: object
-      properties:
-        name:
-          description: Gets or sets the name of the PickList.
-          type: string
-        type:
-          description: The picklist data type.
-          enum:
-          - Character
-          - Currency
-          - Number
-          - Decimal
-          type: string
-        description:
-          description: Gets or sets the description of the PickList.
-          type: string
-        isEditable:
-          description: Defines if the picklist is editable.
-          type: boolean
-        isAutoInsert:
-          description: Defines if the picklist can create new items.
-          type: boolean
-        items:
-          description: Picklist Items
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
     act.web.api.models.MetaData.Schema.AssignPicklist:
       description: ''
       required:
@@ -1142,9 +896,6 @@ components:
         showDescription:
           description: ''
           type: boolean
-    System.Object:
-      type: object
-      properties: {}
     act.web.api.models.MetaData.Schema.Column:
       description: ''
       type: object
@@ -1275,6 +1026,255 @@ components:
         picklist:
           $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.PickListInfo'
           description: ''
+    act.web.api.models.MetaData.Picklists.DropDownList:
+      description: Represents a typed list of custom values in the application database.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the PickList object.
+          type: string
+        name:
+          description: Gets or sets the name of the PickList.
+          type: string
+        type:
+          description: Gets or sets the name of the PickList.
+          type: string
+        isEditable:
+          description: Indicates that the drop-down will allow editing.
+          type: boolean
+        isAutoInsert:
+          description: Indicates that the drop-down will allow multiple item selection.
+          type: boolean
+        description:
+          description: Gets or sets the description of the PickList.
+          type: string
+        created:
+          format: date-time
+          description: Gets the creation date of the PickList object.
+          type: string
+        edited:
+          format: date-time
+          description: Gets the edit date of the PickList object.
+          type: string
+        items:
+          description: List of drop-down list items that are associated to this drop-down list.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+    act.web.api.models.MetaData.Schema.FieldBehavior:
+      description: ''
+      type: object
+      properties:
+        fieldType:
+          description: The datatype of the fields being used in the calculated field (Currency, Decimal, Number).
+          enum:
+          - Number
+          - Currency
+          - Decimal
+          type: string
+        fields:
+          description: Comma delimited list of the entity column names being used in the  formula.
+          type: string
+        formula:
+          description: Specify formats or rules for entering data in the field.
+          type: string
+    act.web.api.models.MetaData.Picklists.CreateDropDownList:
+      description: Represents a typed list of custom values in the application database.
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        name:
+          description: Gets or sets the name of the PickList.
+          type: string
+        type:
+          description: The picklist data type.
+          enum:
+          - Character
+          - Currency
+          - Number
+          - Decimal
+          type: string
+        description:
+          description: Gets or sets the description of the PickList.
+          type: string
+        isEditable:
+          description: Defines if the picklist is editable.
+          type: boolean
+        isAutoInsert:
+          description: Defines if the picklist can create new items.
+          type: boolean
+        items:
+          description: Picklist Items
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.MetaData.Picklists.DropDownPickListItem'
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.MetaData.TypeCodes.EnumTypes:
+      description: ''
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        value:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.MetaData.Schema.Entity:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+        isCustom:
+          description: ''
+          type: boolean
+        recordType:
+          description: ''
+          type: string
+        parents:
+          description: ''
+          type: string
+        createUserID:
+          description: ''
+          type: string
+        createDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.MetaData.Picklists.ColumnBindings:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        isLimitToList:
+          description: ''
+          type: boolean
+        isMultiSelect:
+          description: ''
+          type: boolean
+        isTypeAhead:
+          description: ''
+          type: boolean
+        showDescription:
+          description: ''
+          type: boolean
+    act.web.api.models.MetaData.Schema.PickListInfo:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        isLimitToList:
+          description: ''
+          type: boolean
+        isMultiSelect:
+          description: ''
+          type: boolean
+        isTypeAhead:
+          description: ''
+          type: boolean
+        showDescription:
+          description: ''
+          type: boolean
+    act.web.api.models.MetaData.Schema.NewColumn:
+      description: ''
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        name:
+          description: The database column alias or display name.
+          type: string
+        type:
+          description: The Act! field data type.
+          enum:
+          - YesNo
+          - Character
+          - InitialCaps
+          - Lowercase
+          - Uppercase
+          - Memo
+          - Url
+          - Number
+          - Currency
+          - Decimal
+          - Date
+          - Time
+          - DateTime
+          - AnnualEvent
+          - Picture
+          - Calculated
+          - Email
+          - Phone
+          - Address
+          type: string
+        length:
+          format: int32
+          description: The size of the data type
+          type: integer
+        precision:
+          format: int32
+          description: Precision is the number of digits in a number
+          type: integer
+        scale:
+          format: int32
+          description: Scale is the number of digits to the right of the decimal point in a number
+          type: integer
+        defaultValue:
+          description: The default value of the field if nothing is provided.
+          type: string
+        fieldFormat:
+          description: Defines a specific format for this field.
+          type: string
+        isPrimary:
+          description: Primary fields are copied when duplicating the record.
+          type: boolean
+        isAllowBlank:
+          description: Indicates that this field will be a required field or not
+          type: boolean
+        isTracked:
+          description: Indicates that this field will track changes
+          type: boolean
+        changeEvent:
+          description: Sets up a change event trigger.
+          type: string
+        enterEvent:
+          description: Sets up a change event trigger.
+          type: string
+        leaveEvent:
+          description: Sets up a change event trigger.
+          type: string
+        picklist:
+          $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.AssignPicklist'
+          description: Provides a drop-down list of the items avaiable for this column
+        calculated:
+          $ref: '#/components/schemas/act.web.api.models.MetaData.Schema.FieldBehavior'
+          description: Calculated Field
     act.web.api.models.MetaData.Schema.NewCustomTable:
       description: Definition for creating a new custom table (custom entity).
       required:

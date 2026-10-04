@@ -349,74 +349,6 @@ paths:
         required: true
 components:
   schemas:
-    act.web.api.models.TaskTypes.TaskTypesHistoryType:
-      description: ''
-      type: object
-      properties:
-        id:
-          format: int32
-          description: ''
-          type: integer
-        name:
-          description: Gets the name of this history type.
-          type: string
-        description:
-          description: Gets brief description of this history type.
-          type: string
-        clearType:
-          description: ''
-          enum:
-          - OTHER
-          - COMPLETED
-          - NOTCOMPLETED
-          - ERASED
-          type: string
-        isDefault:
-          description: Indicates that this history type is default.
-          type: boolean
-    act.web.api.models.Preferences.TaskDefaultPreferences:
-      description: ''
-      type: object
-      properties:
-        priority:
-          format: int32
-          description: Tasks type priority.
-          type: integer
-        reminder:
-          format: int32
-          description: The number of minutes before the tasks starts.
-          type: integer
-        duration:
-          format: int32
-          description: The number of minutes which the task with exists or lasts.
-          type: integer
-        isAllDayEvent:
-          description: All day event.
-          type: boolean
-        autoRollover:
-          description: Allow auto roll over to today.
-          type: boolean
-        color:
-          description: 'Calendar hex color for a given task type [Green = #00b19e, Orange = #fe5000, Purple = #566bee, Plum = #9d04b8, Blue = #03b3ff, Yellow = #e5cd48, Raspberry = #be2951, Emerald = #26906f, DarkBlue = #008cc5, Grape = #263690] | <b>GET: api/preferences/task-types/color-palette</b>.'
-          type: string
-        taskDropDownFields:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Preferences.TaskTypeDropDownFieldPreferences'
-    act.web.api.models.MetaData.Picklists.DropDownPickListItem:
-      description: Represents a value item for a PickList object.
-      type: object
-      properties:
-        id:
-          description: Gets the unique identifier of the PickListItem object.
-          type: string
-        value:
-          description: Gets or sets the value of the PickListItem object.
-          type: string
-        description:
-          description: Gets the description of the picklist item.
-          type: string
     act.web.api.models.TaskTypes.TaskType:
       description: ''
       type: object
@@ -451,6 +383,44 @@ components:
         defaultPreferences:
           $ref: '#/components/schemas/act.web.api.models.Preferences.TaskDefaultPreferences'
           description: ''
+    act.web.api.models.MetaData.Picklists.DropDownPickListItem:
+      description: Represents a value item for a PickList object.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the PickListItem object.
+          type: string
+        value:
+          description: Gets or sets the value of the PickListItem object.
+          type: string
+        description:
+          description: Gets the description of the picklist item.
+          type: string
+    act.web.api.models.TaskTypes.TaskTypesHistoryType:
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          description: ''
+          type: integer
+        name:
+          description: Gets the name of this history type.
+          type: string
+        description:
+          description: Gets brief description of this history type.
+          type: string
+        clearType:
+          description: ''
+          enum:
+          - OTHER
+          - COMPLETED
+          - NOTCOMPLETED
+          - ERASED
+          type: string
+        isDefault:
+          description: Indicates that this history type is default.
+          type: boolean
     System.Object:
       type: object
       properties: {}
@@ -464,3 +434,33 @@ components:
         value:
           description: Display drop-down to this field.
           type: boolean
+    act.web.api.models.Preferences.TaskDefaultPreferences:
+      description: ''
+      type: object
+      properties:
+        priority:
+          format: int32
+          description: Tasks type priority.
+          type: integer
+        reminder:
+          format: int32
+          description: The number of minutes before the tasks starts.
+          type: integer
+        duration:
+          format: int32
+          description: The number of minutes which the task with exists or lasts.
+          type: integer
+        isAllDayEvent:
+          description: All day event.
+          type: boolean
+        autoRollover:
+          description: Allow auto roll over to today.
+          type: boolean
+        color:
+          description: 'Calendar hex color for a given task type [Green = #00b19e, Orange = #fe5000, Purple = #566bee, Plum = #9d04b8, Blue = #03b3ff, Yellow = #e5cd48, Raspberry = #be2951, Emerald = #26906f, DarkBlue = #008cc5, Grape = #263690] | <b>GET: api/preferences/task-types/color-palette</b>.'
+          type: string
+        taskDropDownFields:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Preferences.TaskTypeDropDownFieldPreferences'

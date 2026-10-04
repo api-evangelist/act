@@ -421,33 +421,6 @@ paths:
         required: true
 components:
   schemas:
-    act.web.api.models.Configuration.ConfigurationSettings:
-      description: This class defines a generic view settings.
-      type: object
-      properties:
-        userId:
-          description: The unique identifier (id) the user.
-          type: string
-        settingsDefinition:
-          description: The configuration schema definitions file (XML|Json)
-          type: string
-    act.web.api.models.Users.OpportunityPipelineViewSettings:
-      description: ''
-      type: object
-      properties:
-        userId:
-          description: ''
-          type: string
-        fiscalYearStartMonth:
-          format: int32
-          description: ''
-          type: integer
-        currencySettings:
-          $ref: '#/components/schemas/act.web.api.models.Users.CurrencySettings'
-          description: ''
-        filterPreferences:
-          description: ''
-          type: string
     act.web.api.models.Configuration.ConfigurationDefinition:
       description: This class defines a generic view definitions.
       type: object
@@ -477,3 +450,30 @@ components:
     System.Object:
       type: object
       properties: {}
+    act.web.api.models.Configuration.ConfigurationSettings:
+      description: This class defines a generic view settings.
+      type: object
+      properties:
+        userId:
+          description: The unique identifier (id) the user.
+          type: string
+        settingsDefinition:
+          description: The configuration schema definitions file (XML|Json)
+          type: string
+    act.web.api.models.Users.OpportunityPipelineViewSettings:
+      description: ''
+      type: object
+      properties:
+        userId:
+          description: ''
+          type: string
+        fiscalYearStartMonth:
+          format: int32
+          description: ''
+          type: integer
+        currencySettings:
+          $ref: '#/components/schemas/act.web.api.models.Users.CurrencySettings'
+          description: ''
+        filterPreferences:
+          description: ''
+          type: string

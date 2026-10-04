@@ -1970,6 +1970,68 @@ paths:
         required: true
 components:
   schemas:
+    act.web.api.models.Opportunities.OpportunityListRequest:
+      description: Assign opportunities request model.
+      type: object
+      properties:
+        opportunities:
+          description: List of opportunity identifiers.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Opportunities.Stage:
+      description: A class describes the stage state of a particular {act.web.api.models.Opportunities.Opportunity} object.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the stage.
+          type: string
+        name:
+          description: Gets/Sets the name of the stage.
+          type: string
+        description:
+          description: Gets/Sets the description of the stage.
+          type: string
+        probability:
+          format: int32
+          description: Gets/Sets the probability of the stage.
+          type: integer
+        number:
+          format: int32
+          description: The order of the stage progresses throw the process lifecycle.
+          type: integer
+        process:
+          $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
+          description: Represents the current process for a given opportunity
+    act.web.api.models.Opportunities.Process:
+      description: The current process for a given opportunity.
+      type: object
+      properties:
+        id:
+          description: Gets the unique identifier of the process.
+          type: string
+        name:
+          description: The name of the process.
+          type: string
+        description:
+          description: The description of the process.
+          type: string
+        status:
+          description: The description of the process.
+          enum:
+          - None
+          - Active
+          - Inactive
+          type: string
+        stagesCount:
+          format: int32
+          description: Count of stages of current process
+          type: integer
+        stages:
+          description: Customized stages for the new process
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
     act.web.api.models.Groups.EmbeddedGroup:
       description: An group entity that displayed as a sub-child to a parent entity.
       type: object
@@ -1980,6 +2042,82 @@ components:
         name:
           description: Gets the name of the group.
           type: string
+    act.web.api.models.Opportunities.StageInfo:
+      description: A class describes the stage of a particular {act.web.api.models.Opportunities.Opportunity} object.
+      type: object
+      properties:
+        name:
+          description: The name of the stage.
+          type: string
+        description:
+          description: The description of the stage.
+          type: string
+        probability:
+          format: int32
+          description: The probability of the stage.
+          type: integer
+        number:
+          format: int32
+          description: The order of the stage progresses throw the process lifecycle.
+          type: integer
+    act.web.api.models.Opportunities.ProcessRequest:
+      description: The current process for a given opportunity.
+      type: object
+      properties:
+        name:
+          description: The name of the process.
+          type: string
+        status:
+          description: ''
+          enum:
+          - None
+          - Active
+          - Inactive
+          type: string
+        description:
+          description: The description of the process.
+          type: string
+        stages:
+          description: Customized stages for the new process.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Opportunities.StageInfo'
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Contacts.AccessLevel:
+      description: ''
+      type: object
+      properties:
+        type:
+          description: Defines the entity's access level.
+          enum:
+          - Public
+          - Private
+          - LimitedAccess
+          type: string
+        accessors:
+          description: The accessors that have been selected for limited access.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+    act.web.api.models.Contacts.EmbeddedContact:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        displayName:
+          description: ''
+          type: string
+          readOnly: true
+        company:
+          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
+          type: string
+        isInvited:
+          description: Invited contact flag
+          type: boolean
     act.web.api.models.Opportunities.Opportunity:
       description: A contact or company which has been qualified.
       type: object
@@ -2126,116 +2264,6 @@ components:
           type: string
         recordManager:
           type: string
-    act.web.api.models.Opportunities.OpportunityListRequest:
-      description: Assign opportunities request model.
-      type: object
-      properties:
-        opportunities:
-          description: List of opportunity identifiers.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Opportunities.Process:
-      description: The current process for a given opportunity.
-      type: object
-      properties:
-        id:
-          description: Gets the unique identifier of the process.
-          type: string
-        name:
-          description: The name of the process.
-          type: string
-        description:
-          description: The description of the process.
-          type: string
-        status:
-          description: The description of the process.
-          enum:
-          - None
-          - Active
-          - Inactive
-          type: string
-        stagesCount:
-          format: int32
-          description: Count of stages of current process
-          type: integer
-        stages:
-          description: Customized stages for the new process
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Opportunities.Stage'
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
-          type: string
-        name:
-          description: Gets the name of the company.
-          type: string
-    act.web.api.models.Contacts.AccessLevel:
-      description: ''
-      type: object
-      properties:
-        type:
-          description: Defines the entity's access level.
-          enum:
-          - Public
-          - Private
-          - LimitedAccess
-          type: string
-        accessors:
-          description: The accessors that have been selected for limited access.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
-    act.web.api.models.Opportunities.ProcessRequest:
-      description: The current process for a given opportunity.
-      type: object
-      properties:
-        name:
-          description: The name of the process.
-          type: string
-        status:
-          description: ''
-          enum:
-          - None
-          - Active
-          - Inactive
-          type: string
-        description:
-          description: The description of the process.
-          type: string
-        stages:
-          description: Customized stages for the new process.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Opportunities.StageInfo'
-    act.web.api.models.Opportunities.Stage:
-      description: A class describes the stage state of a particular {act.web.api.models.Opportunities.Opportunity} object.
-      type: object
-      properties:
-        id:
-          description: Gets the unique identifier of the stage.
-          type: string
-        name:
-          description: Gets/Sets the name of the stage.
-          type: string
-        description:
-          description: Gets/Sets the description of the stage.
-          type: string
-        probability:
-          format: int32
-          description: Gets/Sets the probability of the stage.
-          type: integer
-        number:
-          format: int32
-          description: The order of the stage progresses throw the process lifecycle.
-          type: integer
-        process:
-          $ref: '#/components/schemas/act.web.api.models.Opportunities.Process'
-          description: Represents the current process for a given opportunity
     act.web.api.models.Users.Accessor:
       description: The user/team that is granted access.
       type: object
@@ -2254,24 +2282,6 @@ components:
         name:
           description: The name of the accessor
           type: string
-    act.web.api.models.Opportunities.StageInfo:
-      description: A class describes the stage of a particular {act.web.api.models.Opportunities.Opportunity} object.
-      type: object
-      properties:
-        name:
-          description: The name of the stage.
-          type: string
-        description:
-          description: The description of the stage.
-          type: string
-        probability:
-          format: int32
-          description: The probability of the stage.
-          type: integer
-        number:
-          format: int32
-          description: The order of the stage progresses throw the process lifecycle.
-          type: integer
     act.web.api.models.Opportunities.OpportunityProduct:
       description: This class describes a particular product that is associated with an opportunity.
       type: object
@@ -2343,23 +2353,13 @@ components:
           type: string
         recordManager:
           type: string
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Contacts.EmbeddedContact:
-      description: ''
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
       type: object
       properties:
         id:
-          description: ''
+          description: Gets a unique identifier (id) for a given company.
           type: string
-        displayName:
-          description: ''
+        name:
+          description: Gets the name of the company.
           type: string
-          readOnly: true
-        company:
-          description: 'AS-1763 - API: Expose Opportunity Company name for use in Companion, removed [JsonIgnore]'
-          type: string
-        isInvited:
-          description: Invited contact flag
-          type: boolean

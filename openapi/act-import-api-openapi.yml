@@ -162,35 +162,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Import.MappingData:
-      description: ''
-      type: object
-      properties:
-        targetFields:
-          description: List of fields valid for mapping
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Import.WebImportField'
-        mappings:
-          description: Fields mappings
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Import.ResolvedMapping'
-        uniqueHeaders:
-          description: Define if all headers are unique
-          type: boolean
-    System.Void:
-      type: object
-      properties: {}
-    act.web.api.models.Import.WebImportField:
-      type: object
-      properties:
-        name:
-          description: Field name
-          type: string
-        display:
-          description: Display name
-          type: string
     act.web.api.models.Import.GenerateImport:
       type: object
       properties:
@@ -198,6 +169,32 @@ components:
           type: string
         preSignedUrl:
           type: string
+    act.web.api.models.Import.ImportDataRequest:
+      type: object
+      properties:
+        mappings:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Import.ResolvedMapping'
+        hasHeaders:
+          description: ''
+          type: boolean
+        contentType:
+          description: ''
+          type: string
+        entityType:
+          description: ''
+          enum:
+          - Contact
+          - Company
+          type: string
+        tempFilePath:
+          description: ''
+          type: string
+    System.Void:
+      type: object
+      properties: {}
     act.web.api.models.Import.ImportResult:
       description: Result of contacts import
       type: object
@@ -224,28 +221,39 @@ components:
           type: array
           items:
             type: string
-    act.web.api.models.Import.ImportDataRequest:
+    act.web.api.models.Import.MappingDataRequest:
       type: object
       properties:
+        headers:
+          description: Array of headers to map with fields
+          type: array
+          items:
+            type: string
+    act.web.api.models.Import.MappingData:
+      description: ''
+      type: object
+      properties:
+        targetFields:
+          description: List of fields valid for mapping
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Import.WebImportField'
         mappings:
-          description: ''
+          description: Fields mappings
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Import.ResolvedMapping'
-        hasHeaders:
-          description: ''
+        uniqueHeaders:
+          description: Define if all headers are unique
           type: boolean
-        contentType:
-          description: ''
+    act.web.api.models.Import.WebImportField:
+      type: object
+      properties:
+        name:
+          description: Field name
           type: string
-        entityType:
-          description: ''
-          enum:
-          - Contact
-          - Company
-          type: string
-        tempFilePath:
-          description: ''
+        display:
+          description: Display name
           type: string
     act.web.api.models.Import.ResolvedMapping:
       type: object
@@ -256,11 +264,3 @@ components:
         targetField:
           $ref: '#/components/schemas/act.web.api.models.Import.WebImportField'
           description: ''
-    act.web.api.models.Import.MappingDataRequest:
-      type: object
-      properties:
-        headers:
-          description: Array of headers to map with fields
-          type: array
-          items:
-            type: string

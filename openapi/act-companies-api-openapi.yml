@@ -1050,161 +1050,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    act.web.api.models.Companies.CompanyListRequest:
-      description: Assign contacts request model.
-      type: object
-      properties:
-        companies:
-          description: List of contact identifiers.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Companies.Company:
-      description: A company is any entity that engages in business.
-      type: object
-      properties:
-        id:
-          description: The unique identifier (id) for this company.
-          type: string
-        name:
-          description: The company's given name.
-          type: string
-        address:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's business address.
-        billingAddress:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's billing address.
-        description:
-          description: A brief written representation or account of this company.
-          type: string
-        division:
-          description: The name of a smaller part of a parent company tasked with overseeing different types of products or services than those offered by the parent company.
-          type: string
-        fax:
-          description: The company's fax phone number.
-          type: string
-        faxExtension:
-          description: The company's fax phone number extension.
-          type: string
-        hasDivisions:
-          description: This readonly property indicates that this company has divisions.
-          type: boolean
-        hierarchyLevel:
-          format: int32
-          description: The positional level of where this company lays within a company hierarchy.
-          type: integer
-        idStatus:
-          description: The relative social or professional position of an individual within a group or organization.
-          type: string
-        importDate:
-          format: date-time
-          description: This readonly property displays the date that the opportunity was imported into the system.
-          type: string
-        industry:
-          description: Economic activity concerned with the processing of raw materials and manufacture of goods in factories.
-          type: string
-        isPrivate:
-          description: Indicates elevated security that only the creator/owner has access to this company.
-          type: boolean
-        acl:
-          description: Access Levels
-          type: string
-        numberOfEmployees:
-          format: int32
-          description: The total number of employees that this company operates with.
-          type: integer
-        rootParentID:
-          description: The unique identifier (id) of the parent company.
-          type: string
-        parentID:
-          description: The unique identifier (id) of the parent company.
-          type: string
-        phone:
-          description: The company's phone number.
-          type: string
-        phoneExtension:
-          description: The company's phone number extension.
-          type: string
-        referredBy:
-          description: Mention or allude to.
-          type: string
-        region:
-          description: A part of a country, of the world, etc., that is different or separate from other parts in some way.
-          type: string
-        revenue:
-          format: double
-          description: The amount of money that this company actually receives during a specific period, including discounts and deductions for returned merchandise.
-          type: number
-        shippingAddress:
-          $ref: '#/components/schemas/act.web.api.models.Address'
-          description: The company's shipping address.
-        sicCode:
-          description: Standard Industrial Classification (SIC) codes are four-digit numerical codes assigned by the U.S. government to business establishments to identify the primary business of the establishment.
-          type: string
-        territory:
-          description: Geographical area.
-          type: string
-        tickerSymbol:
-          description: An arrangement of characters (usually letters) representing a particular security listed on an exchange or otherwise traded publicly.
-          type: string
-        tollFreePhone:
-          description: The company's toll free phone number.
-          type: string
-        tollFreeExtension:
-          description: The company's toll free phone number.
-          type: string
-        website:
-          description: The company's website.
-          type: string
-        recordManagerID:
-          description: The record manager.
-          type: string
-        customFields:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/System.Object'
-        created:
-          format: date-time
-          type: string
-        edited:
-          format: date-time
-          type: string
-        editedBy:
-          type: string
-        recordManager:
-          type: string
-    act.web.api.models.Users.WebInfo:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        hyperLinks:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.HyperLinks'
-    act.web.api.models.Contacts.AccessLevel:
-      description: ''
-      type: object
-      properties:
-        type:
-          description: Defines the entity's access level.
-          enum:
-          - Public
-          - Private
-          - LimitedAccess
-          type: string
-        accessors:
-          description: The accessors that have been selected for limited access.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
     act.web.api.models.Contacts.Contact:
       description: The person who is designated for giving information or being a representative for an organization.
       type: object
@@ -1432,6 +1277,210 @@ components:
           type: string
         recordManager:
           type: string
+    act.web.api.models.Companies.Company:
+      description: A company is any entity that engages in business.
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this company.
+          type: string
+        name:
+          description: The company's given name.
+          type: string
+        address:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's business address.
+        billingAddress:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's billing address.
+        description:
+          description: A brief written representation or account of this company.
+          type: string
+        division:
+          description: The name of a smaller part of a parent company tasked with overseeing different types of products or services than those offered by the parent company.
+          type: string
+        fax:
+          description: The company's fax phone number.
+          type: string
+        faxExtension:
+          description: The company's fax phone number extension.
+          type: string
+        hasDivisions:
+          description: This readonly property indicates that this company has divisions.
+          type: boolean
+        hierarchyLevel:
+          format: int32
+          description: The positional level of where this company lays within a company hierarchy.
+          type: integer
+        idStatus:
+          description: The relative social or professional position of an individual within a group or organization.
+          type: string
+        importDate:
+          format: date-time
+          description: This readonly property displays the date that the opportunity was imported into the system.
+          type: string
+        industry:
+          description: Economic activity concerned with the processing of raw materials and manufacture of goods in factories.
+          type: string
+        isPrivate:
+          description: Indicates elevated security that only the creator/owner has access to this company.
+          type: boolean
+        acl:
+          description: Access Levels
+          type: string
+        numberOfEmployees:
+          format: int32
+          description: The total number of employees that this company operates with.
+          type: integer
+        rootParentID:
+          description: The unique identifier (id) of the parent company.
+          type: string
+        parentID:
+          description: The unique identifier (id) of the parent company.
+          type: string
+        phone:
+          description: The company's phone number.
+          type: string
+        phoneExtension:
+          description: The company's phone number extension.
+          type: string
+        referredBy:
+          description: Mention or allude to.
+          type: string
+        region:
+          description: A part of a country, of the world, etc., that is different or separate from other parts in some way.
+          type: string
+        revenue:
+          format: double
+          description: The amount of money that this company actually receives during a specific period, including discounts and deductions for returned merchandise.
+          type: number
+        shippingAddress:
+          $ref: '#/components/schemas/act.web.api.models.Address'
+          description: The company's shipping address.
+        sicCode:
+          description: Standard Industrial Classification (SIC) codes are four-digit numerical codes assigned by the U.S. government to business establishments to identify the primary business of the establishment.
+          type: string
+        territory:
+          description: Geographical area.
+          type: string
+        tickerSymbol:
+          description: An arrangement of characters (usually letters) representing a particular security listed on an exchange or otherwise traded publicly.
+          type: string
+        tollFreePhone:
+          description: The company's toll free phone number.
+          type: string
+        tollFreeExtension:
+          description: The company's toll free phone number.
+          type: string
+        website:
+          description: The company's website.
+          type: string
+        recordManagerID:
+          description: The record manager.
+          type: string
+        customFields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+        created:
+          format: date-time
+          type: string
+        edited:
+          format: date-time
+          type: string
+        editedBy:
+          type: string
+        recordManager:
+          type: string
+    act.web.api.models.Users.HyperLinks:
+      description: Anchor tags associated with an entity.
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: Name of the anchor link tag
+          type: string
+        href:
+          description: Specifies the URL of the page the link will redirect to.
+          type: string
+    act.web.api.models.Users.WebInfo:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        hyperLinks:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.HyperLinks'
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Address:
+      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
+      type: object
+      properties:
+        line1:
+          description: Primary street address
+          type: string
+        line2:
+          description: Secondary street address
+          type: string
+        line3:
+          description: Miscellaneous street address
+          type: string
+        city:
+          description: An inhabited place of greater size, population, or importance than a town or village.
+          type: string
+        state:
+          description: A nation or territory considered as an organized political community under one government.
+          type: string
+        postalCode:
+          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
+          type: string
+        country:
+          description: A nation with its own government, occupying a particular territory.
+          type: string
+        latitude:
+          format: double
+          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
+          type: number
+        longitude:
+          format: double
+          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
+          type: number
+    act.web.api.models.Companies.CompanyListRequest:
+      description: Assign contacts request model.
+      type: object
+      properties:
+        companies:
+          description: List of contact identifiers.
+          type: array
+          items:
+            type: string
+    act.web.api.models.Contacts.AccessLevel:
+      description: ''
+      type: object
+      properties:
+        type:
+          description: Defines the entity's access level.
+          enum:
+          - Public
+          - Private
+          - LimitedAccess
+          type: string
+        accessors:
+          description: The accessors that have been selected for limited access.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
     act.web.api.models.Users.Accessor:
       description: The user/team that is granted access.
       type: object
@@ -1478,52 +1527,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Companies.SubCompany'
-    act.web.api.models.Users.HyperLinks:
-      description: Anchor tags associated with an entity.
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: Name of the anchor link tag
-          type: string
-        href:
-          description: Specifies the URL of the page the link will redirect to.
-          type: string
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Address:
-      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
-      type: object
-      properties:
-        line1:
-          description: Primary street address
-          type: string
-        line2:
-          description: Secondary street address
-          type: string
-        line3:
-          description: Miscellaneous street address
-          type: string
-        city:
-          description: An inhabited place of greater size, population, or importance than a town or village.
-          type: string
-        state:
-          description: A nation or territory considered as an organized political community under one government.
-          type: string
-        postalCode:
-          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
-          type: string
-        country:
-          description: A nation with its own government, occupying a particular territory.
-          type: string
-        latitude:
-          format: double
-          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
-          type: number
-        longitude:
-          format: double
-          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
-          type: number

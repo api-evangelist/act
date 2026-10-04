@@ -251,36 +251,6 @@ paths:
         required: true
 components:
   schemas:
-    act.web.api.models.Groups.EmbeddedGroup:
-      description: An group entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given group.
-          type: string
-        name:
-          description: Gets the name of the group.
-          type: string
-    act.web.api.models.Opportunities.EmbeddedOpportunity:
-      description: An opportunity entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given opportunity.
-          type: string
-        name:
-          description: Gets the name of the opportunity.
-          type: string
-    act.web.api.models.Companies.EmbeddedCompany:
-      description: A company entity that displayed as a sub-child to a parent entity.
-      type: object
-      properties:
-        id:
-          description: Gets a unique identifier (id) for a given company.
-          type: string
-        name:
-          description: Gets the name of the company.
-          type: string
     act.web.api.models.CustomEntity:
       description: Represents the base properties of a custom table.
       type: object
@@ -322,6 +292,16 @@ components:
         recordOwner:
           description: The user's name that owners this record.
           type: string
+    act.web.api.models.Groups.EmbeddedGroup:
+      description: An group entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given group.
+          type: string
+        name:
+          description: Gets the name of the group.
+          type: string
     System.Object:
       type: object
       properties: {}
@@ -342,3 +322,23 @@ components:
         isInvited:
           description: Invited contact flag
           type: boolean
+    act.web.api.models.Opportunities.EmbeddedOpportunity:
+      description: An opportunity entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given opportunity.
+          type: string
+        name:
+          description: Gets the name of the opportunity.
+          type: string
+    act.web.api.models.Companies.EmbeddedCompany:
+      description: A company entity that displayed as a sub-child to a parent entity.
+      type: object
+      properties:
+        id:
+          description: Gets a unique identifier (id) for a given company.
+          type: string
+        name:
+          description: Gets the name of the company.
+          type: string

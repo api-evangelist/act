@@ -347,54 +347,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.WebHooks.WebhookRequest:
-      description: WebhookRequest URL parameters
-      type: object
-      properties:
-        monitor:
-          description: The entity the webhook will monitor.
-          enum:
-          - Activities
-          - Companies
-          - Contacts
-          - Fields
-          - Groups
-          - History
-          - Opportunities
-          - Products
-          - Custom
-          type: string
-        triggerEvent:
-          description: WebhookRequest action on the monitored table.
-          enum:
-          - Alarms
-          - Created
-          - Updated
-          type: string
-        monitorName:
-          description: The entity name the webhook will monitor (only need to set for custom tables.
-          type: string
-        queryOption:
-          description: This defines a composite OData query options that can be used to perform query composition. Currently this only supports $filter, $orderby, $top, $skip, and $count
-          type: string
-        callbackUrl:
-          description: The callback url that the webhook will send the response.
-          type: string
-        callbackId:
-          description: Client defined unique identifier (id) for this webhook.
-          type: string
-        callbackToken:
-          description: The callback client secret.
-          type: string
-        certHashString:
-          description: The SHA1 hash value for the X.509v3 certificate as a hexadecimal string to verify https calls to callback URL.
-          type: string
-        description:
-          description: A brief description of why this webhook is being created.
-          type: string
-    System.Object:
-      type: object
-      properties: {}
     act.web.api.models.WebHooks.RegistrationViewModel:
       description: Provides information about the registered webhook.
       type: object
@@ -483,3 +435,51 @@ components:
         description:
           description: A brief description of why this webhook is being created.
           type: string
+    act.web.api.models.WebHooks.WebhookRequest:
+      description: WebhookRequest URL parameters
+      type: object
+      properties:
+        monitor:
+          description: The entity the webhook will monitor.
+          enum:
+          - Activities
+          - Companies
+          - Contacts
+          - Fields
+          - Groups
+          - History
+          - Opportunities
+          - Products
+          - Custom
+          type: string
+        triggerEvent:
+          description: WebhookRequest action on the monitored table.
+          enum:
+          - Alarms
+          - Created
+          - Updated
+          type: string
+        monitorName:
+          description: The entity name the webhook will monitor (only need to set for custom tables.
+          type: string
+        queryOption:
+          description: This defines a composite OData query options that can be used to perform query composition. Currently this only supports $filter, $orderby, $top, $skip, and $count
+          type: string
+        callbackUrl:
+          description: The callback url that the webhook will send the response.
+          type: string
+        callbackId:
+          description: Client defined unique identifier (id) for this webhook.
+          type: string
+        callbackToken:
+          description: The callback client secret.
+          type: string
+        certHashString:
+          description: The SHA1 hash value for the X.509v3 certificate as a hexadecimal string to verify https calls to callback URL.
+          type: string
+        description:
+          description: A brief description of why this webhook is being created.
+          type: string
+    System.Object:
+      type: object
+      properties: {}

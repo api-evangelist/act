@@ -2067,51 +2067,32 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Analytics.EmailAction:
-      description: Describes information about e-marketing email actions
-      type: object
-      properties:
-        action:
-          description: Gets the e-marketing action.
-          type: string
-        count:
-          format: int32
-          description: Gets the total number of actions related to the number of e-marketing emails sent.
-          type: integer
-        percent:
-          format: int32
-          description: Gets the percentage of actions to sent e-marketing emails.
-          type: integer
-    act.web.api.models.Analytics.SalesByRepDetail:
+    act.web.api.models.Analytics.CustomData:
       description: ''
       type: object
       properties:
-        oppName:
+        label:
           description: ''
           type: string
-        repName:
-          description: ''
-          type: string
-        oppValue:
+        value:
           format: double
           description: ''
           type: number
-        closedDate:
-          format: date-time
+        numbericFormat:
           description: ''
           type: string
-    act.web.api.models.Analytics.WonLostMetrics:
-      description: Describes opportunity wins vs losses.
+    act.web.api.models.Analytics.SalesByRep:
+      description: ''
       type: object
       properties:
-        status:
+        salesRep:
           description: ''
           type: string
         revenue:
           format: double
           description: ''
           type: number
-        count:
+        oppCount:
           format: int32
           description: ''
           type: integer
@@ -2123,88 +2104,132 @@ components:
           format: int32
           description: ''
           type: integer
-    act.web.api.models.Analytics.EmarketingHistory:
-      description: Describes historical e-marketing information.
-      type: object
-      properties:
-        sends:
-          format: int32
-          description: Gets the total number of e-marketing emails sent.
-          type: integer
-        emailActions:
-          description: Describes information about e-marketing email actions
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Analytics.EmailAction'
-    act.web.api.models.Analytics.UserActivityCount:
+    act.web.api.models.Analytics.ForecastByProductDetail:
       description: ''
       type: object
       properties:
-        userId:
+        oppName:
           description: ''
           type: string
-        userName:
+        productName:
           description: ''
           type: string
-        activityCount:
+        probabilityPct:
           format: int32
           description: ''
           type: integer
-    act.web.api.models.Analytics.PeriodicRevenueAndCost:
+        status:
+          description: ''
+          type: string
+        productWeightedValue:
+          format: double
+          description: ''
+          type: number
+        estCloseDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.CampaignLeadInfo:
+      description: A Breakdown of opportunities within a campaign (# of opportunities, total and weighted values).
+      type: object
+      properties:
+        campaignId:
+          description: ''
+          type: string
+        campaignName:
+          description: ''
+          type: string
+        leadCount:
+          format: int32
+          description: ''
+          type: integer
+        totalValue:
+          format: double
+          description: ''
+          type: number
+        weightedValue:
+          format: double
+          description: ''
+          type: number
+    act.web.api.models.Analytics.OpportunityStageCount:
+      description: ''
+      type: object
+      properties:
+        stageId:
+          description: A unique identifier that represents the stage of the opportunity.
+          type: string
+        stageName:
+          description: The name of the stage that the opportunity is in.
+          type: string
+        value:
+          format: double
+          description: The total cost of the product or services.
+          type: number
+        count:
+          format: int32
+          description: Total number of opportunties in this stage.
+          type: integer
+        ordinal:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.ForecastByProduct:
       description: Sales revenue or revenues is income received from selling goods or services over a period of time.
       type: object
       properties:
-        timePeriod:
-          description: The name of a specific time interval.
+        productId:
+          description: Unique identifier for the product.
           type: string
-        alternateText:
-          description: ''
+        productName:
+          description: Defines a unique name for the product.
           type: string
-        revenue:
+        totalValue:
           format: double
-          description: The income generated from sale of goods or services, or any other use of capital or assets, associated with the main operations of an organization before any costs or expenses are deducted.
+          description: The total product amount.
           type: number
-        cost:
+        weightedValue:
           format: double
-          description: An amount that has to be paid or given up in order to get something.
+          description: ''
           type: number
         oppCount:
           format: int32
-          description: Total count of opportunity produces assicated with the revenue.
+          description: ''
           type: integer
-    act.web.api.models.Analytics.TaskListActivity:
-      description: Activity to display in user's analytics task list
+        totalValuePercent:
+          format: double
+          description: ''
+          type: number
+        weightedValuePercent:
+          format: double
+          description: ''
+          type: number
+        countPercent:
+          format: double
+          description: ''
+          type: number
+    act.web.api.models.Analytics.CloseReasonDetails:
+      description: ''
       type: object
       properties:
-        id:
-          description: A unique identifier for the activity
+        oppId:
+          description: ''
           type: string
-        accessorActivityId:
-          description: The unique id of the intersection between the accessor and the activity
+        oppName:
+          description: ''
           type: string
-        contactCount:
-          format: int32
-          description: The number of contacts associated with this activity
-          type: integer
-        startTime:
+        status:
+          description: ''
+          type: string
+        closeReason:
+          description: ''
+          type: string
+        actualValue:
+          format: double
+          description: ''
+          type: number
+        actualCloseDate:
           format: date-time
-          description: The start time of the activity
-          type: string
-        regarding:
-          description: The subject of the activity
-          type: string
-        type:
-          description: The type of the activity
-          type: string
-        typeId:
-          format: int32
-          description: The numerical type of the activity
-          type: integer
-        priority:
-          description: The priority of the activity
-          type: string
-        scheduledWith:
-          description: One or more of the contacts associated with the activity
+          description: ''
           type: string
     act.web.api.models.Analytics.MarketingLead:
       description: ''
@@ -2249,31 +2274,171 @@ components:
           format: int32
           description: ''
           type: integer
-    act.web.api.models.Analytics.ForecastByRepDetail:
+    act.web.api.models.Analytics.CampaignResult:
       description: ''
       type: object
       properties:
-        oppName:
+        campaignDate:
+          format: date-time
           description: ''
           type: string
-        repName:
+        campaignName:
           description: ''
           type: string
-        probabilityPct:
+        sends:
           format: int32
           description: ''
           type: integer
-        status:
+        opens:
+          format: int32
           description: ''
+          type: integer
+        clicks:
+          format: int32
+          description: ''
+          type: integer
+        uniqueClicks:
+          format: int32
+          description: ''
+          type: integer
+        uniqueSends:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.EmailAction:
+      description: Describes information about e-marketing email actions
+      type: object
+      properties:
+        action:
+          description: Gets the e-marketing action.
           type: string
+        count:
+          format: int32
+          description: Gets the total number of actions related to the number of e-marketing emails sent.
+          type: integer
+        percent:
+          format: int32
+          description: Gets the percentage of actions to sent e-marketing emails.
+          type: integer
+    act.web.api.models.Analytics.ForecastByRep:
+      description: Sales revenue or revenues is income received from selling goods or services over a period of time.
+      type: object
+      properties:
+        salesRep:
+          description: The name of the sales rep.
+          type: string
+        userId:
+          description: Unique identifier for the user.
+          type: string
+        totalValue:
+          format: double
+          description: The total product amount.
+          type: number
         weightedValue:
           format: double
           description: ''
           type: number
-        estCloseDate:
-          format: date-time
+        oppCount:
+          format: int32
+          description: ''
+          type: integer
+        totalValuePercent:
+          format: double
+          description: ''
+          type: number
+        weightedValuePercent:
+          format: double
+          description: ''
+          type: number
+        countPercent:
+          format: double
+          description: ''
+          type: number
+    act.web.api.models.Analytics.UserActivityCount:
+      description: ''
+      type: object
+      properties:
+        userId:
           description: ''
           type: string
+        userName:
+          description: ''
+          type: string
+        activityCount:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.PeriodicActualAndPredictedRevenue:
+      description: "This model describes actual revenue vs. potential revenue vs. projected (weighted) revenue for a given time period. Projected values\n            are available for future time periods and describe the weighted total value of open activities. Potential is the total value\n            of all active opportunities for the time period"
+      type: object
+      properties:
+        timePeriod:
+          description: The name of a specific time interval
+          type: string
+        actual:
+          format: double
+          description: The actual revenue with the time period.
+          type: number
+        potential:
+          format: double
+          description: The total value of all active opportunities for the time period.
+          type: number
+        projected:
+          format: double
+          description: The projected weighted revenue for a given time period.
+          type: number
+    act.web.api.models.Analytics.SalesByProduct:
+      description: ''
+      type: object
+      properties:
+        productId:
+          description: ''
+          type: string
+        productName:
+          description: ''
+          type: string
+        revenue:
+          format: double
+          description: ''
+          type: number
+        percent:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.WonLostMetrics:
+      description: Describes opportunity wins vs losses.
+      type: object
+      properties:
+        status:
+          description: ''
+          type: string
+        revenue:
+          format: double
+          description: ''
+          type: number
+        count:
+          format: int32
+          description: ''
+          type: integer
+        revenuePercent:
+          format: int32
+          description: ''
+          type: integer
+        countPercent:
+          format: int32
+          description: ''
+          type: integer
+    act.web.api.models.Analytics.CloseReasonCount:
+      description: Totals the number of closed reasons.
+      type: object
+      properties:
+        reason:
+          description: ''
+          type: string
+        count:
+          format: int32
+          description: ''
+          type: integer
     act.web.api.Controllers.AnalyticsPipeline:
       description: ''
       type: object
@@ -2336,59 +2501,162 @@ components:
           type: array
           items:
             type: string
-    act.web.api.models.Analytics.OpportunityStageCount:
+    act.web.api.models.Analytics.SalesByRepDetail:
       description: ''
       type: object
       properties:
+        oppName:
+          description: ''
+          type: string
+        repName:
+          description: ''
+          type: string
+        oppValue:
+          format: double
+          description: ''
+          type: number
+        closedDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.TimeInStage:
+      description: Describes information about the average time an opportunity is in a stage.
+      type: object
+      properties:
         stageId:
-          description: A unique identifier that represents the stage of the opportunity.
+          description: Unique identifier for the stage.
           type: string
         stageName:
-          description: The name of the stage that the opportunity is in.
+          description: The name of the stage.
           type: string
-        value:
+        avgDays:
           format: double
-          description: The total cost of the product or services.
+          description: The average time in stage (days).
           type: number
-        count:
-          format: int32
-          description: Total number of opportunties in this stage.
-          type: integer
-        ordinal:
+    act.web.api.models.Analytics.SalesByProductDetail:
+      description: ''
+      type: object
+      properties:
+        oppName:
+          description: ''
+          type: string
+        productName:
+          description: ''
+          type: string
+        productValue:
+          format: double
+          description: ''
+          type: number
+        closedDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.UserActivityDetail:
+      description: ''
+      type: object
+      properties:
+        activityId:
+          description: ''
+          type: string
+        regarding:
+          description: ''
+          type: string
+        startTime:
+          format: date-time
+          description: ''
+          type: string
+        type:
+          description: ''
+          type: string
+        userName:
+          description: ''
+          type: string
+        contactName:
+          description: ''
+          type: string
+        location:
+          description: ''
+          type: string
+    act.web.api.models.Analytics.ForecastByRepDetail:
+      description: ''
+      type: object
+      properties:
+        oppName:
+          description: ''
+          type: string
+        repName:
+          description: ''
+          type: string
+        probabilityPct:
           format: int32
           description: ''
           type: integer
-    act.web.api.models.Analytics.ForecastByProduct:
-      description: Sales revenue or revenues is income received from selling goods or services over a period of time.
-      type: object
-      properties:
-        productId:
-          description: Unique identifier for the product.
+        status:
+          description: ''
           type: string
-        productName:
-          description: Defines a unique name for the product.
-          type: string
-        totalValue:
-          format: double
-          description: The total product amount.
-          type: number
         weightedValue:
           format: double
           description: ''
           type: number
-        oppCount:
+        estCloseDate:
+          format: date-time
+          description: ''
+          type: string
+    act.web.api.models.Analytics.EmarketingHistory:
+      description: Describes historical e-marketing information.
+      type: object
+      properties:
+        sends:
           format: int32
-          description: ''
+          description: Gets the total number of e-marketing emails sent.
           type: integer
-        totalValuePercent:
-          format: double
+        emailActions:
+          description: Describes information about e-marketing email actions
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Analytics.EmailAction'
+    act.web.api.models.Analytics.TaskListActivity:
+      description: Activity to display in user's analytics task list
+      type: object
+      properties:
+        id:
+          description: A unique identifier for the activity
+          type: string
+        accessorActivityId:
+          description: The unique id of the intersection between the accessor and the activity
+          type: string
+        contactCount:
+          format: int32
+          description: The number of contacts associated with this activity
+          type: integer
+        startTime:
+          format: date-time
+          description: The start time of the activity
+          type: string
+        regarding:
+          description: The subject of the activity
+          type: string
+        type:
+          description: The type of the activity
+          type: string
+        typeId:
+          format: int32
+          description: The numerical type of the activity
+          type: integer
+        priority:
+          description: The priority of the activity
+          type: string
+        scheduledWith:
+          description: One or more of the contacts associated with the activity
+          type: string
+    act.web.api.models.Analytics.KpiData:
+      description: ''
+      type: object
+      properties:
+        label:
           description: ''
-          type: number
-        weightedValuePercent:
-          format: double
-          description: ''
-          type: number
-        countPercent:
+          type: string
+        value:
           format: double
           description: ''
           type: number
@@ -2434,17 +2702,6 @@ components:
           format: int32
           description: Probability of successfully winning the sale
           type: integer
-    act.web.api.models.Analytics.CloseReasonCount:
-      description: Totals the number of closed reasons.
-      type: object
-      properties:
-        reason:
-          description: ''
-          type: string
-        count:
-          format: int32
-          description: ''
-          type: integer
     act.web.api.models.Analytics.CampaignInfo:
       description: ''
       type: object
@@ -2459,282 +2716,25 @@ components:
           format: date-time
           description: ''
           type: string
-    act.web.api.models.Analytics.CustomData:
-      description: ''
-      type: object
-      properties:
-        label:
-          description: ''
-          type: string
-        value:
-          format: double
-          description: ''
-          type: number
-        numbericFormat:
-          description: ''
-          type: string
-    act.web.api.models.Analytics.UserActivityDetail:
-      description: ''
-      type: object
-      properties:
-        activityId:
-          description: ''
-          type: string
-        regarding:
-          description: ''
-          type: string
-        startTime:
-          format: date-time
-          description: ''
-          type: string
-        type:
-          description: ''
-          type: string
-        userName:
-          description: ''
-          type: string
-        contactName:
-          description: ''
-          type: string
-        location:
-          description: ''
-          type: string
-    act.web.api.models.Analytics.ForecastByProductDetail:
-      description: ''
-      type: object
-      properties:
-        oppName:
-          description: ''
-          type: string
-        productName:
-          description: ''
-          type: string
-        probabilityPct:
-          format: int32
-          description: ''
-          type: integer
-        status:
-          description: ''
-          type: string
-        productWeightedValue:
-          format: double
-          description: ''
-          type: number
-        estCloseDate:
-          format: date-time
-          description: ''
-          type: string
-    act.web.api.models.Analytics.PeriodicActualAndPredictedRevenue:
-      description: "This model describes actual revenue vs. potential revenue vs. projected (weighted) revenue for a given time period. Projected values\n            are available for future time periods and describe the weighted total value of open activities. Potential is the total value\n            of all active opportunities for the time period"
-      type: object
-      properties:
-        timePeriod:
-          description: The name of a specific time interval
-          type: string
-        actual:
-          format: double
-          description: The actual revenue with the time period.
-          type: number
-        potential:
-          format: double
-          description: The total value of all active opportunities for the time period.
-          type: number
-        projected:
-          format: double
-          description: The projected weighted revenue for a given time period.
-          type: number
-    act.web.api.models.Analytics.CloseReasonDetails:
-      description: ''
-      type: object
-      properties:
-        oppId:
-          description: ''
-          type: string
-        oppName:
-          description: ''
-          type: string
-        status:
-          description: ''
-          type: string
-        closeReason:
-          description: ''
-          type: string
-        actualValue:
-          format: double
-          description: ''
-          type: number
-        actualCloseDate:
-          format: date-time
-          description: ''
-          type: string
-    act.web.api.models.Analytics.SalesByProductDetail:
-      description: ''
-      type: object
-      properties:
-        oppName:
-          description: ''
-          type: string
-        productName:
-          description: ''
-          type: string
-        productValue:
-          format: double
-          description: ''
-          type: number
-        closedDate:
-          format: date-time
-          description: ''
-          type: string
-    act.web.api.models.Analytics.ForecastByRep:
+    act.web.api.models.Analytics.PeriodicRevenueAndCost:
       description: Sales revenue or revenues is income received from selling goods or services over a period of time.
       type: object
       properties:
-        salesRep:
-          description: The name of the sales rep.
+        timePeriod:
+          description: The name of a specific time interval.
           type: string
-        userId:
-          description: Unique identifier for the user.
-          type: string
-        totalValue:
-          format: double
-          description: The total product amount.
-          type: number
-        weightedValue:
-          format: double
-          description: ''
-          type: number
-        oppCount:
-          format: int32
-          description: ''
-          type: integer
-        totalValuePercent:
-          format: double
-          description: ''
-          type: number
-        weightedValuePercent:
-          format: double
-          description: ''
-          type: number
-        countPercent:
-          format: double
-          description: ''
-          type: number
-    act.web.api.models.Analytics.SalesByRep:
-      description: ''
-      type: object
-      properties:
-        salesRep:
+        alternateText:
           description: ''
           type: string
         revenue:
           format: double
-          description: ''
+          description: The income generated from sale of goods or services, or any other use of capital or assets, associated with the main operations of an organization before any costs or expenses are deducted.
+          type: number
+        cost:
+          format: double
+          description: An amount that has to be paid or given up in order to get something.
           type: number
         oppCount:
           format: int32
-          description: ''
+          description: Total count of opportunity produces assicated with the revenue.
           type: integer
-        revenuePercent:
-          format: int32
-          description: ''
-          type: integer
-        countPercent:
-          format: int32
-          description: ''
-          type: integer
-    act.web.api.models.Analytics.CampaignLeadInfo:
-      description: A Breakdown of opportunities within a campaign (# of opportunities, total and weighted values).
-      type: object
-      properties:
-        campaignId:
-          description: ''
-          type: string
-        campaignName:
-          description: ''
-          type: string
-        leadCount:
-          format: int32
-          description: ''
-          type: integer
-        totalValue:
-          format: double
-          description: ''
-          type: number
-        weightedValue:
-          format: double
-          description: ''
-          type: number
-    act.web.api.models.Analytics.KpiData:
-      description: ''
-      type: object
-      properties:
-        label:
-          description: ''
-          type: string
-        value:
-          format: double
-          description: ''
-          type: number
-    act.web.api.models.Analytics.CampaignResult:
-      description: ''
-      type: object
-      properties:
-        campaignDate:
-          format: date-time
-          description: ''
-          type: string
-        campaignName:
-          description: ''
-          type: string
-        sends:
-          format: int32
-          description: ''
-          type: integer
-        opens:
-          format: int32
-          description: ''
-          type: integer
-        clicks:
-          format: int32
-          description: ''
-          type: integer
-        uniqueClicks:
-          format: int32
-          description: ''
-          type: integer
-        uniqueSends:
-          format: int32
-          description: ''
-          type: integer
-    act.web.api.models.Analytics.SalesByProduct:
-      description: ''
-      type: object
-      properties:
-        productId:
-          description: ''
-          type: string
-        productName:
-          description: ''
-          type: string
-        revenue:
-          format: double
-          description: ''
-          type: number
-        percent:
-          format: int32
-          description: ''
-          type: integer
-    act.web.api.models.Analytics.TimeInStage:
-      description: Describes information about the average time an opportunity is in a stage.
-      type: object
-      properties:
-        stageId:
-          description: Unique identifier for the stage.
-          type: string
-        stageName:
-          description: The name of the stage.
-          type: string
-        avgDays:
-          format: double
-          description: The average time in stage (days).
-          type: number
