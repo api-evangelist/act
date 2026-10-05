@@ -1,0 +1,12 @@
+{
+ "url": "https://apimta.act.com/act.web.api/swagger/docs/v1",
+ "requested_url": "https://apimta.act.com/act.web.api/swagger/docs/v1",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 701492,
+ "sha256": "f0ee29ad84fbf2c0d2aed6cfcab4d5f56e0f98c2918edd62dd941510fb64a057",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
