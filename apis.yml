@@ -272,6 +272,8 @@ apis:
   - type: OpenAPI
     url: openapi/act-task-types-api-openapi.yml
 common:
+  - type: RateLimits
+    url: rate-limits/act-rate-limits.yml
   - type: CapabilityMap
     url: capabilities/act-capability-edges.yml
     name: Act! CRM Business Capability Map
