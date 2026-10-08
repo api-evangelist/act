@@ -117,3 +117,43 @@ sales_contact:
 gaps:
   - No API-specific plan, quota or overage published.
   - Rate limits exist for Act! Premium Cloud but are not attached to any tier (see rate-limits/act-rate-limits.yml).
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - seat
+  units:
+  - seat
+  plans:
+  - name: Act! Advantage Standard
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Act! Advantage Professional
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Act! Advantage Ultimate
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Act! Premium Desktop
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
