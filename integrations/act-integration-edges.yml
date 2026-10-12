@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/act/integrations
 - https://zapier.com/apps/act-crm/integrations
@@ -7,6 +7,7 @@ source:
 - https://composio.dev/toolkits/act
 - https://monid.ai/tools/act
 checked:
+- https://aws.amazon.com/marketplace/
 - https://composio.dev/toolkits/act
 - https://monid.ai/tools/act
 - https://n8n.io/integrations/act/
@@ -14,5 +15,20 @@ checked:
 - https://zapier.com/apps/act/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-tzjj2xqeiwk5g
+  listing_count: 1
+  apps:
+  - Act! Advantage CRM
+  seller_name: Act!
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
 templates: []
