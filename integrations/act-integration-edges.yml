@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/act/integrations
+- https://zapier.com/apps/act-crm/integrations
+- https://n8n.io/integrations/act/
+- https://composio.dev/toolkits/act
+- https://monid.ai/tools/act
+checked:
+- https://composio.dev/toolkits/act
+- https://monid.ai/tools/act
+- https://n8n.io/integrations/act/
+- https://zapier.com/apps/act-crm/integrations
+- https://zapier.com/apps/act/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
