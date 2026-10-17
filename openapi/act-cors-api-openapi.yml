@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - CORS
-      summary: Cors get allowed cors 656 A6 DCA
+      summary: Cors get allowed cors 656 A6DCA
       operationId: Cors_GetAllowedCors_656A6DCA
       responses:
         '200':

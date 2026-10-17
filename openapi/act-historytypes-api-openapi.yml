@@ -180,6 +180,29 @@ paths:
       deprecated: false
 components:
   schemas:
+    act.web.api.models.MetaData.TypeCodes.ActivityType:
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          description: ''
+          type: integer
+        name:
+          description: ''
+          type: string
+        description:
+          description: ''
+          type: string
+        isActive:
+          description: ''
+          type: boolean
+        isCustom:
+          description: ''
+          type: boolean
+        activityTypeGuid:
+          description: ''
+          type: string
     act.web.api.models.MetaData.TypeCodes.HistoryType:
       description: ''
       type: object
@@ -212,26 +235,3 @@ components:
         isUserRecordable:
           description: ''
           type: boolean
-    act.web.api.models.MetaData.TypeCodes.ActivityType:
-      description: ''
-      type: object
-      properties:
-        id:
-          format: int32
-          description: ''
-          type: integer
-        name:
-          description: ''
-          type: string
-        description:
-          description: ''
-          type: string
-        isActive:
-          description: ''
-          type: boolean
-        isCustom:
-          description: ''
-          type: boolean
-        activityTypeGuid:
-          description: ''
-          type: string

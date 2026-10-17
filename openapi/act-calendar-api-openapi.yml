@@ -167,43 +167,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Calendar.ScheduledItems'
-    act.web.api.models.Calendar.ScheduledItems:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        recordType:
-          description: ''
-          enum:
-          - Activity
-          - History
-          type: string
-        title:
-          description: ''
-          type: string
-        duration:
-          format: double
-          description: ''
-          type: number
-        durationDisplay:
-          description: ''
-          type: string
-        startTime:
-          format: date-time
-          description: ''
-          type: string
-        endTime:
-          format: date-time
-          description: ''
-          type: string
-        details:
-          description: ''
-          type: string
-        isPrivate:
-          description: ''
-          type: boolean
     act.web.api.models.Calendar.CalendarPreferences:
       description: ''
       type: object
@@ -269,5 +232,42 @@ components:
           description: ''
           type: integer
         displayEvents:
+          description: ''
+          type: boolean
+    act.web.api.models.Calendar.ScheduledItems:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
+        recordType:
+          description: ''
+          enum:
+          - Activity
+          - History
+          type: string
+        title:
+          description: ''
+          type: string
+        duration:
+          format: double
+          description: ''
+          type: number
+        durationDisplay:
+          description: ''
+          type: string
+        startTime:
+          format: date-time
+          description: ''
+          type: string
+        endTime:
+          format: date-time
+          description: ''
+          type: string
+        details:
+          description: ''
+          type: string
+        isPrivate:
           description: ''
           type: boolean

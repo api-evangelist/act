@@ -483,6 +483,21 @@ paths:
         required: true
 components:
   schemas:
+    act.web.api.models.Preferences.NameAffixSetting:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: Affix type identifier.
+          type: string
+        name:
+          description: Affix typ name.
+          type: string
+        items:
+          description: List of affix values.
+          type: array
+          items:
+            type: string
     act.web.api.models.Preferences.TaskPreferences:
       description: Activity preferences model.
       type: object
@@ -505,38 +520,12 @@ components:
         scheduleTaskForNewContact:
           description: Prompt to schedule an task for new contact.
           type: boolean
-    act.web.api.models.Users.Preference:
-      description: User preferences.
-      type: object
-      properties:
-        id:
-          description: A base64 representation of the unique identifier (name).
-          type: string
-        name:
-          description: A unique identifier (key) for this preference.
-          type: string
-        value:
-          $ref: '#/components/schemas/System.Object'
-          description: The preference setting.
-        isAdmin:
-          description: ''
-          type: boolean
     act.web.api.models.Preferences.DuplicatesPreferences:
       description: Dup-checking preferences
       type: object
       properties:
         fields:
           description: List of selected indexes
-          type: string
-    act.web.api.models.Preferences.DuplicatesField:
-      description: Allowed for index field info.
-      type: object
-      properties:
-        columnName:
-          description: Field column name
-          type: string
-        displayName:
-          description: Field display name
           type: string
     act.web.api.models.Preferences.SalutationNamePreferences:
       description: ''
@@ -563,24 +552,35 @@ components:
           type: string
         value:
           type: boolean
-    System.Object:
+    act.web.api.models.Preferences.DuplicatesField:
+      description: Allowed for index field info.
       type: object
-      properties: {}
-    act.web.api.models.Preferences.NameAffixSetting:
-      description: ''
+      properties:
+        columnName:
+          description: Field column name
+          type: string
+        displayName:
+          description: Field display name
+          type: string
+    act.web.api.models.Users.Preference:
+      description: User preferences.
       type: object
       properties:
         id:
-          description: Affix type identifier.
+          description: A base64 representation of the unique identifier (name).
           type: string
         name:
-          description: Affix typ name.
+          description: A unique identifier (key) for this preference.
           type: string
-        items:
-          description: List of affix values.
-          type: array
-          items:
-            type: string
+        value:
+          $ref: '#/components/schemas/System.Object'
+          description: The preference setting.
+        isAdmin:
+          description: ''
+          type: boolean
+    System.Object:
+      type: object
+      properties: {}
     act.web.api.models.Preferences.CalendarColorPalette:
       description: ''
       type: object

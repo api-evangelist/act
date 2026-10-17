@@ -1050,6 +1050,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    act.web.api.models.Contacts.AccessLevel:
+      description: ''
+      type: object
+      properties:
+        type:
+          description: Defines the entity's access level.
+          enum:
+          - Public
+          - Private
+          - LimitedAccess
+          type: string
+        accessors:
+          description: The accessors that have been selected for limited access.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
     act.web.api.models.Contacts.Contact:
       description: The person who is designated for giving information or being a representative for an organization.
       type: object
@@ -1277,6 +1293,34 @@ components:
           type: string
         recordManager:
           type: string
+    act.web.api.models.Companies.SubCompany:
+      description: A company is any entity that engages in business.
+      type: object
+      properties:
+        id:
+          description: The unique identifier (id) for this company.
+          type: string
+        name:
+          description: The company's given name.
+          type: string
+        rootParentID:
+          description: The unique identifier (id) of the parent company.
+          type: string
+        parentID:
+          description: The unique identifier (id) of the parent company.
+          type: string
+        hasDivisions:
+          description: This readonly property indicates that this company has divisions.
+          type: boolean
+        hierarchyLevel:
+          format: int32
+          description: The positional level of where this company lays within a company hierarchy.
+          type: integer
+        divisions:
+          description: List of divisions (sub-companies) that are associated to this opportunity entity.
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Companies.SubCompany'
     act.web.api.models.Companies.Company:
       description: A company is any entity that engages in business.
       type: object
@@ -1392,37 +1436,15 @@ components:
           type: string
         recordManager:
           type: string
-    act.web.api.models.Users.HyperLinks:
-      description: Anchor tags associated with an entity.
+    act.web.api.models.Companies.CompanyListRequest:
+      description: Assign contacts request model.
       type: object
       properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: Name of the anchor link tag
-          type: string
-        href:
-          description: Specifies the URL of the page the link will redirect to.
-          type: string
-    act.web.api.models.Users.WebInfo:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        hyperLinks:
-          description: ''
+        companies:
+          description: List of contact identifiers.
           type: array
           items:
-            $ref: '#/components/schemas/act.web.api.models.Users.HyperLinks'
-    System.Object:
-      type: object
-      properties: {}
+            type: string
     act.web.api.models.Address:
       description: A specific place where a person, business, or organization can be found and where physical mail can be received.
       type: object
@@ -1456,31 +1478,19 @@ components:
           format: double
           description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
           type: number
-    act.web.api.models.Companies.CompanyListRequest:
-      description: Assign contacts request model.
+    act.web.api.models.Users.HyperLinks:
+      description: Anchor tags associated with an entity.
       type: object
       properties:
-        companies:
-          description: List of contact identifiers.
-          type: array
-          items:
-            type: string
-    act.web.api.models.Contacts.AccessLevel:
-      description: ''
-      type: object
-      properties:
-        type:
-          description: Defines the entity's access level.
-          enum:
-          - Public
-          - Private
-          - LimitedAccess
+        id:
+          description: ''
           type: string
-        accessors:
-          description: The accessors that have been selected for limited access.
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.Accessor'
+        name:
+          description: Name of the anchor link tag
+          type: string
+        href:
+          description: Specifies the URL of the page the link will redirect to.
+          type: string
     act.web.api.models.Users.Accessor:
       description: The user/team that is granted access.
       type: object
@@ -1499,31 +1509,21 @@ components:
         name:
           description: The name of the accessor
           type: string
-    act.web.api.models.Companies.SubCompany:
-      description: A company is any entity that engages in business.
+    act.web.api.models.Users.WebInfo:
+      description: ''
       type: object
       properties:
         id:
-          description: The unique identifier (id) for this company.
+          description: ''
           type: string
         name:
-          description: The company's given name.
+          description: ''
           type: string
-        rootParentID:
-          description: The unique identifier (id) of the parent company.
-          type: string
-        parentID:
-          description: The unique identifier (id) of the parent company.
-          type: string
-        hasDivisions:
-          description: This readonly property indicates that this company has divisions.
-          type: boolean
-        hierarchyLevel:
-          format: int32
-          description: The positional level of where this company lays within a company hierarchy.
-          type: integer
-        divisions:
-          description: List of divisions (sub-companies) that are associated to this opportunity entity.
+        hyperLinks:
+          description: ''
           type: array
           items:
-            $ref: '#/components/schemas/act.web.api.models.Companies.SubCompany'
+            $ref: '#/components/schemas/act.web.api.models.Users.HyperLinks'
+    System.Object:
+      type: object
+      properties: {}

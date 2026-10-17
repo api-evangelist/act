@@ -166,28 +166,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Geographics.ContactCountByLocation:
-      description: A nation with its own government, occupying a particular territory.
-      type: object
-      properties:
-        countryName:
-          description: A nation with its own government, occupying a particular territory.
-          type: string
-        postalCode:
-          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
-          type: string
-        latitude:
-          format: double
-          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
-          type: number
-        longitude:
-          format: double
-          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
-          type: number
-        contactCount:
-          format: int32
-          description: Total number of contacts for a given location.
-          type: integer
     act.web.api.models.Geographics.Country:
       description: A nation with its own government, occupying a particular territory.
       type: object
@@ -217,3 +195,25 @@ components:
         isActive:
           description: Indicates that this mask is in an active state or not.
           type: boolean
+    act.web.api.models.Geographics.ContactCountByLocation:
+      description: A nation with its own government, occupying a particular territory.
+      type: object
+      properties:
+        countryName:
+          description: A nation with its own government, occupying a particular territory.
+          type: string
+        postalCode:
+          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
+          type: string
+        latitude:
+          format: double
+          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
+          type: number
+        longitude:
+          format: double
+          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
+          type: number
+        contactCount:
+          format: int32
+          description: Total number of contacts for a given location.
+          type: integer

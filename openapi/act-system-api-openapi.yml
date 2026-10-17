@@ -145,42 +145,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    act.web.api.models.Utilities.LicenseInfo:
-      description: Registered license information
-      type: object
-      properties:
-        serialNumber:
-          description: The registered Act! license serial number
-          type: string
-        type:
-          description: The licensing option selected for this serial number (Subscription or Perpetual)
-          type: string
-        userLicenses:
-          format: int32
-          description: The number of user seats available for this serial number
-          type: integer
-    act.web.api.models.Utilities.Culture:
-      description: Provides information about the current culture.
-      type: object
-      properties:
-        displayName:
-          description: Gets the full localized culture name.
-          type: string
-        name:
-          description: Gets the culture name in the format languagecode2-country/regioncode2.
-          type: string
-        nativeName:
-          description: Gets the culture name, consisting of the language, the country/region, and the optional script, that the culture is set to display.
-          type: string
-        threeLetterISOLanguageName:
-          description: Gets the ISO 639-2 three-letter code for the language of the current System.Globalization.CultureInfo.
-          type: string
-        twoLetterISOLanguageName:
-          description: Gets the ISO 639-1 two-letter code for the language of the current System.Globalization.CultureInfo.
-          type: string
-        dateTimeFormat:
-          $ref: '#/components/schemas/act.web.api.models.Utilities.DateFormat'
-          description: The Culture
     act.web.api.models.Utilities.DateFormat:
       description: ''
       type: object
@@ -238,6 +202,42 @@ components:
         percentSymbol:
           description: ''
           type: string
+    act.web.api.models.Utilities.Culture:
+      description: Provides information about the current culture.
+      type: object
+      properties:
+        displayName:
+          description: Gets the full localized culture name.
+          type: string
+        name:
+          description: Gets the culture name in the format languagecode2-country/regioncode2.
+          type: string
+        nativeName:
+          description: Gets the culture name, consisting of the language, the country/region, and the optional script, that the culture is set to display.
+          type: string
+        threeLetterISOLanguageName:
+          description: Gets the ISO 639-2 three-letter code for the language of the current System.Globalization.CultureInfo.
+          type: string
+        twoLetterISOLanguageName:
+          description: Gets the ISO 639-1 two-letter code for the language of the current System.Globalization.CultureInfo.
+          type: string
+        dateTimeFormat:
+          $ref: '#/components/schemas/act.web.api.models.Utilities.DateFormat'
+          description: The Culture
+    act.web.api.models.Utilities.LicenseInfo:
+      description: Registered license information
+      type: object
+      properties:
+        serialNumber:
+          description: The registered Act! license serial number
+          type: string
+        type:
+          description: The licensing option selected for this serial number (Subscription or Perpetual)
+          type: string
+        userLicenses:
+          format: int32
+          description: The number of user seats available for this serial number
+          type: integer
     act.web.api.models.Utilities.SystemInfo:
       description: Provides system information about the API
       type: object

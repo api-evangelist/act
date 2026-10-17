@@ -150,7 +150,7 @@ paths:
         '500':
           description: Unexpected error.
       deprecated: false
-      summary: Database get demo data status D1 CD9 D1 F
+      summary: Database get demo data status D1CD9D1F
       x-summary-source: derived
   /api/database/backups:
     get:
@@ -393,6 +393,31 @@ paths:
       deprecated: false
 components:
   schemas:
+    act.web.api.models.Database.NewDatabaseRequest:
+      description: The database name must begin with a letter, consists only of letters, numbers, and underscore characters.
+      required:
+      - databaseName
+      - username
+      - password
+      type: object
+      properties:
+        databaseName:
+          description: Database name (no spaces, punctuation, and must begin with a letter)  Maximum length is 32 characters.
+          maxLength: 32
+          minLength: 0
+          type: string
+        username:
+          description: The database administrator
+          type: string
+        password:
+          description: The database administrator's password.
+          type: string
+        shared:
+          description: Database will be a shared
+          type: boolean
+        currency:
+          description: "The currency format that will be used (default if not supplied).\n            api/multilanguage/currencies -- (DisplayText)"
+          type: string
     act.web.api.models.Database.LockResult:
       description: ''
       type: object
@@ -442,34 +467,6 @@ components:
         comments:
           description: A brief description for the database lock.
           type: string
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Database.NewDatabaseRequest:
-      description: The database name must begin with a letter, consists only of letters, numbers, and underscore characters.
-      required:
-      - databaseName
-      - username
-      - password
-      type: object
-      properties:
-        databaseName:
-          description: Database name (no spaces, punctuation, and must begin with a letter)  Maximum length is 32 characters.
-          maxLength: 32
-          minLength: 0
-          type: string
-        username:
-          description: The database administrator
-          type: string
-        password:
-          description: The database administrator's password.
-          type: string
-        shared:
-          description: Database will be a shared
-          type: boolean
-        currency:
-          description: "The currency format that will be used (default if not supplied).\n            api/multilanguage/currencies -- (DisplayText)"
-          type: string
     act.web.api.models.Database.DatabaseBackupUser:
       description: This model is used to create a database backup file.
       type: object
@@ -498,6 +495,9 @@ components:
           - Restore
           - SchemaChanges
           type: string
+    System.Object:
+      type: object
+      properties: {}
     act.web.api.models.Database.DatabaseBackupInfo:
       description: ''
       type: object

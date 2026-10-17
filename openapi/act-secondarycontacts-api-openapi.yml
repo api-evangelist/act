@@ -375,6 +375,39 @@ paths:
       deprecated: false
 components:
   schemas:
+    act.web.api.models.Address:
+      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
+      type: object
+      properties:
+        line1:
+          description: Primary street address
+          type: string
+        line2:
+          description: Secondary street address
+          type: string
+        line3:
+          description: Miscellaneous street address
+          type: string
+        city:
+          description: An inhabited place of greater size, population, or importance than a town or village.
+          type: string
+        state:
+          description: A nation or territory considered as an organized political community under one government.
+          type: string
+        postalCode:
+          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
+          type: string
+        country:
+          description: A nation with its own government, occupying a particular territory.
+          type: string
+        latitude:
+          format: double
+          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
+          type: number
+        longitude:
+          format: double
+          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
+          type: number
     System.Object:
       type: object
       properties: {}
@@ -605,36 +638,3 @@ components:
           type: string
         recordManager:
           type: string
-    act.web.api.models.Address:
-      description: A specific place where a person, business, or organization can be found and where physical mail can be received.
-      type: object
-      properties:
-        line1:
-          description: Primary street address
-          type: string
-        line2:
-          description: Secondary street address
-          type: string
-        line3:
-          description: Miscellaneous street address
-          type: string
-        city:
-          description: An inhabited place of greater size, population, or importance than a town or village.
-          type: string
-        state:
-          description: A nation or territory considered as an organized political community under one government.
-          type: string
-        postalCode:
-          description: A code of letters and digits added to a postal address to aid in the sorting of mail.
-          type: string
-        country:
-          description: A nation with its own government, occupying a particular territory.
-          type: string
-        latitude:
-          format: double
-          description: The angular distance of a place north or south of the earth's equator, or of a celestial object north or south of the celestial equator, usually expressed in degrees and minutes.
-          type: number
-        longitude:
-          format: double
-          description: The angular distance of a place east or west of the meridian at Greenwich, England, or west of the standard meridian of a celestial object, usually expressed in degrees and minutes.
-          type: number

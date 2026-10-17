@@ -665,6 +665,37 @@ paths:
         required: true
 components:
   schemas:
+    act.web.api.models.Users.Feature:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: A unique identifier for the user's permission.
+          type: string
+        name:
+          description: The static name of a feature (for lookup purposes).
+          type: string
+        alias:
+          description: The display name of a feature.
+          type: string
+        description:
+          description: The display description of a feature.
+          type: string
+        isAllowed:
+          description: Indicates whether the feature is currently allowed.
+          type: boolean
+        type:
+          description: Gets or sets the feature type of the feature.
+          enum:
+          - CreateEdit
+          - DeleteMy
+          - DeleteOther
+          - ManagerOther
+          - Other
+          type: string
+        category:
+          $ref: '#/components/schemas/act.web.api.models.Users.FeatureSet'
+          description: The feature set of which this feature is a part.
     act.web.api.models.Users.OpportunityPipelineViewSettings:
       description: ''
       type: object
@@ -681,61 +712,6 @@ components:
           description: ''
         filterPreferences:
           description: ''
-          type: string
-    act.web.api.models.Users.Permission:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: The unique identitifer for a permission
-          type: string
-        alias:
-          description: The display name of a feature.
-          type: string
-    act.web.api.models.Users.CurrencySettings:
-      description: ''
-      type: object
-      properties:
-        symbol:
-          description: ''
-          type: string
-        decimalSeparator:
-          description: ''
-          type: string
-        groupSeparator:
-          description: ''
-          type: string
-        symbolPosition:
-          description: ''
-          type: string
-    System.Object:
-      type: object
-      properties: {}
-    act.web.api.models.Configuration.ConfigurationSettings:
-      description: This class defines a generic view settings.
-      type: object
-      properties:
-        userId:
-          description: The unique identifier (id) the user.
-          type: string
-        settingsDefinition:
-          description: The configuration schema definitions file (XML|Json)
-          type: string
-    act.web.api.models.Users.FeatureSet:
-      description: ''
-      type: object
-      properties:
-        id:
-          description: A unique identifier for the featureSet.
-          type: string
-        name:
-          description: The static name of a featureSet (for lookup purposes).
-          type: string
-        alias:
-          description: The display name of a featureSet.
-          type: string
-        description:
-          description: The display description of a featureSet.
           type: string
     act.web.api.models.Users.NewUser:
       description: Create a new user account
@@ -792,37 +768,56 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/act.web.api.models.Users.Permission'
-    act.web.api.models.Users.Feature:
+    act.web.api.models.Users.ConvertContact:
+      description: Create a new user account
+      type: object
+      properties:
+        username:
+          description: A unique login id
+          type: string
+        password:
+          description: The password used to login
+          type: string
+        roleName:
+          description: ''
+          type: string
+        status:
+          description: ''
+          enum:
+          - Active
+          - Inactive
+          - Deleted
+          type: string
+        mustChangePassword:
+          description: ''
+          type: boolean
+        canChangePassword:
+          description: ''
+          type: boolean
+        passwordExpires:
+          description: ''
+          type: boolean
+        permissions:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/act.web.api.models.Users.Permission'
+    act.web.api.models.Users.FeatureSet:
       description: ''
       type: object
       properties:
         id:
-          description: A unique identifier for the user's permission.
+          description: A unique identifier for the featureSet.
           type: string
         name:
-          description: The static name of a feature (for lookup purposes).
+          description: The static name of a featureSet (for lookup purposes).
           type: string
         alias:
-          description: The display name of a feature.
+          description: The display name of a featureSet.
           type: string
         description:
-          description: The display description of a feature.
+          description: The display description of a featureSet.
           type: string
-        isAllowed:
-          description: Indicates whether the feature is currently allowed.
-          type: boolean
-        type:
-          description: Gets or sets the feature type of the feature.
-          enum:
-          - CreateEdit
-          - DeleteMy
-          - DeleteOther
-          - ManagerOther
-          - Other
-          type: string
-        category:
-          $ref: '#/components/schemas/act.web.api.models.Users.FeatureSet'
-          description: The feature set of which this feature is a part.
     act.web.api.models.Configuration.ConfigurationDefinition:
       description: This class defines a generic view definitions.
       type: object
@@ -832,6 +827,22 @@ components:
           type: string
         definition:
           description: The configuration schema definitions file (XML|Json)
+          type: string
+    act.web.api.models.Users.CurrencySettings:
+      description: ''
+      type: object
+      properties:
+        symbol:
+          description: ''
+          type: string
+        decimalSeparator:
+          description: ''
+          type: string
+        groupSeparator:
+          description: ''
+          type: string
+        symbolPosition:
+          description: ''
           type: string
     act.web.api.models.Users.Accessor:
       description: The user/team that is granted access.
@@ -883,37 +894,26 @@ components:
         status:
           description: ''
           type: string
-    act.web.api.models.Users.ConvertContact:
-      description: Create a new user account
+    act.web.api.models.Configuration.ConfigurationSettings:
+      description: This class defines a generic view settings.
       type: object
       properties:
-        username:
-          description: A unique login id
+        userId:
+          description: The unique identifier (id) the user.
           type: string
-        password:
-          description: The password used to login
+        settingsDefinition:
+          description: The configuration schema definitions file (XML|Json)
           type: string
-        roleName:
-          description: ''
+    System.Object:
+      type: object
+      properties: {}
+    act.web.api.models.Users.Permission:
+      description: ''
+      type: object
+      properties:
+        id:
+          description: The unique identitifer for a permission
           type: string
-        status:
-          description: ''
-          enum:
-          - Active
-          - Inactive
-          - Deleted
+        alias:
+          description: The display name of a feature.
           type: string
-        mustChangePassword:
-          description: ''
-          type: boolean
-        canChangePassword:
-          description: ''
-          type: boolean
-        passwordExpires:
-          description: ''
-          type: boolean
-        permissions:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/act.web.api.models.Users.Permission'
