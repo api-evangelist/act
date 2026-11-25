@@ -137,53 +137,66 @@ Postman and Open Collection request collections.
 
 OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Act Activityseries Api Phrasing Overlay](https://apis.io/overlays/act/act-activityseries-api-phrasing-overlay/)
-- [Act Analytics Api Phrasing Overlay](https://apis.io/overlays/act/act-analytics-api-phrasing-overlay/)
-- [Act Calendar Api Phrasing Overlay](https://apis.io/overlays/act/act-calendar-api-phrasing-overlay/)
-- [Act Companies Api Phrasing Overlay](https://apis.io/overlays/act/act-companies-api-phrasing-overlay/)
-- [Act Configurations Api Phrasing Overlay](https://apis.io/overlays/act/act-configurations-api-phrasing-overlay/)
-- [Act Contacts Api Phrasing Overlay](https://apis.io/overlays/act/act-contacts-api-phrasing-overlay/)
-- [Act Cors Api Phrasing Overlay](https://apis.io/overlays/act/act-cors-api-phrasing-overlay/)
-- [Act Custom Entities Api Phrasing Overlay](https://apis.io/overlays/act/act-custom-entities-api-phrasing-overlay/)
-- [Act Database Api Phrasing Overlay](https://apis.io/overlays/act/act-database-api-phrasing-overlay/)
-- [Act Document Types Api Phrasing Overlay](https://apis.io/overlays/act/act-document-types-api-phrasing-overlay/)
-- [Act Documents Api Phrasing Overlay](https://apis.io/overlays/act/act-documents-api-phrasing-overlay/)
-- [Act Geographics Api Phrasing Overlay](https://apis.io/overlays/act/act-geographics-api-phrasing-overlay/)
-- [Act Groups Api Phrasing Overlay](https://apis.io/overlays/act/act-groups-api-phrasing-overlay/)
-- [Act History Api Phrasing Overlay](https://apis.io/overlays/act/act-history-api-phrasing-overlay/)
-- [Act Historytypes Api Phrasing Overlay](https://apis.io/overlays/act/act-historytypes-api-phrasing-overlay/)
-- [Act Import Api Phrasing Overlay](https://apis.io/overlays/act/act-import-api-phrasing-overlay/)
-- [Act Marketingautomations Api Phrasing Overlay](https://apis.io/overlays/act/act-marketingautomations-api-phrasing-overlay/)
-- [Act Metadatainfo Api Phrasing Overlay](https://apis.io/overlays/act/act-metadatainfo-api-phrasing-overlay/)
-- [Act Notes Api Phrasing Overlay](https://apis.io/overlays/act/act-notes-api-phrasing-overlay/)
-- [Act Opportunities Api Phrasing Overlay](https://apis.io/overlays/act/act-opportunities-api-phrasing-overlay/)
-- [Act Preferences Api Phrasing Overlay](https://apis.io/overlays/act/act-preferences-api-phrasing-overlay/)
-- [Act Products Api Phrasing Overlay](https://apis.io/overlays/act/act-products-api-phrasing-overlay/)
-- [Act Secondarycontacts Api Phrasing Overlay](https://apis.io/overlays/act/act-secondarycontacts-api-phrasing-overlay/)
-- [Act Supplementalfiles Api Phrasing Overlay](https://apis.io/overlays/act/act-supplementalfiles-api-phrasing-overlay/)
-- [Act Sync Data Api Phrasing Overlay](https://apis.io/overlays/act/act-sync-data-api-phrasing-overlay/)
+- [Act! CRM Activityseries Api Phrasing Overlay](https://apis.io/overlays/act/act-activityseries-api-phrasing-overlay/)
+- [Act! CRM Analytics Api Phrasing Overlay](https://apis.io/overlays/act/act-analytics-api-phrasing-overlay/)
+- [Act! CRM Calendar Api Phrasing Overlay](https://apis.io/overlays/act/act-calendar-api-phrasing-overlay/)
+- [Act! CRM Companies Api Phrasing Overlay](https://apis.io/overlays/act/act-companies-api-phrasing-overlay/)
+- [Act! CRM Configurations Api Phrasing Overlay](https://apis.io/overlays/act/act-configurations-api-phrasing-overlay/)
+- [Act! CRM Contacts Api Phrasing Overlay](https://apis.io/overlays/act/act-contacts-api-phrasing-overlay/)
+- [Act! CRM Cors Api Phrasing Overlay](https://apis.io/overlays/act/act-cors-api-phrasing-overlay/)
+- [Act! CRM Custom Entities Api Phrasing Overlay](https://apis.io/overlays/act/act-custom-entities-api-phrasing-overlay/)
+- [Act! CRM Database Api Phrasing Overlay](https://apis.io/overlays/act/act-database-api-phrasing-overlay/)
+- [Act! CRM Document Types Api Phrasing Overlay](https://apis.io/overlays/act/act-document-types-api-phrasing-overlay/)
+- [Act! CRM Documents Api Phrasing Overlay](https://apis.io/overlays/act/act-documents-api-phrasing-overlay/)
+- [Act! CRM Geographics Api Phrasing Overlay](https://apis.io/overlays/act/act-geographics-api-phrasing-overlay/)
+- [Act! CRM Groups Api Phrasing Overlay](https://apis.io/overlays/act/act-groups-api-phrasing-overlay/)
+- [Act! CRM History Api Phrasing Overlay](https://apis.io/overlays/act/act-history-api-phrasing-overlay/)
+- [Act! CRM Historytypes Api Phrasing Overlay](https://apis.io/overlays/act/act-historytypes-api-phrasing-overlay/)
+- [Act! CRM Import Api Phrasing Overlay](https://apis.io/overlays/act/act-import-api-phrasing-overlay/)
+- [Act! CRM Marketingautomations Api Phrasing Overlay](https://apis.io/overlays/act/act-marketingautomations-api-phrasing-overlay/)
+- [Act! CRM Metadatainfo Api Phrasing Overlay](https://apis.io/overlays/act/act-metadatainfo-api-phrasing-overlay/)
+- [Act! CRM Notes Api Phrasing Overlay](https://apis.io/overlays/act/act-notes-api-phrasing-overlay/)
+- [Act! CRM Opportunities Api Phrasing Overlay](https://apis.io/overlays/act/act-opportunities-api-phrasing-overlay/)
+- [Act! CRM Preferences Api Phrasing Overlay](https://apis.io/overlays/act/act-preferences-api-phrasing-overlay/)
+- [Act! CRM Products Api Phrasing Overlay](https://apis.io/overlays/act/act-products-api-phrasing-overlay/)
+- [Act! CRM Secondarycontacts Api Phrasing Overlay](https://apis.io/overlays/act/act-secondarycontacts-api-phrasing-overlay/)
+- [Act! CRM Supplementalfiles Api Phrasing Overlay](https://apis.io/overlays/act/act-supplementalfiles-api-phrasing-overlay/)
+- [Act! CRM Sync Data Api Phrasing Overlay](https://apis.io/overlays/act/act-sync-data-api-phrasing-overlay/)
 - …and 7 more published on APIs.io
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Act! CRM API Rules](https://apis.io/rules/act/act-rules/)
 
 #### Security (4)
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Act Authentication](https://apis.io/security/act/act-authentication/)
-- [Act Domain Security](https://apis.io/security/act/act-domain-security/)
-- [Act Trust Center](https://apis.io/security/act/act-trust-center/)
-- [Act Vulnerability Disclosure](https://apis.io/security/act/act-vulnerability-disclosure/)
+- [Act! CRM Authentication](https://apis.io/security/act/act-authentication/)
+- [Act! CRM Domain Security](https://apis.io/security/act/act-domain-security/)
+- [Act! CRM Trust Center](https://apis.io/security/act/act-trust-center/)
+- [Act! CRM Vulnerability Disclosure](https://apis.io/security/act/act-vulnerability-disclosure/)
 
-#### Plans and pricing (1)
+#### Plans and pricing (2)
 
 Published plans, tiers and prices.
 
-- [Act Plans Pricing](https://apis.io/plans/act/act-plans-pricing/)
+- [Act! CRM Plans Pricing](https://apis.io/plans/act/act-plans-pricing/)
+- [Act! CRM Price Estimates](https://apis.io/plans/act/act-price-estimates/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [Act Rate Limits](https://apis.io/rate-limits/act/act-rate-limits/)
+- [Act! CRM Rate Limits](https://apis.io/rate-limits/act/act-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Act! CRM Finops](https://apis.io/finops/act/act-finops/)
 
 ## Where to find this API
 
@@ -204,18 +217,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 70.0** — exemplar · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 73.7** — exemplar · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
 | Discoverability | 71.4 |
-| Contract quality | 55.3 |
-| Contract governance | 18.2 |
-| Operational transparency | 60.5 |
+| Contract quality | 59.9 |
+| Contract governance | 31.8 |
+| Operational transparency | 61.9 |
 | Developer ergonomics | 66.1 |
-| Access clarity | 92.1 |
+| Access clarity | 95.7 |
 
-**Agent readiness 25.7** — agent-aware
+**Agent readiness 25.2** — agent-aware
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -240,6 +253,10 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Agentic Commerce | — |
 | Pagination Ratio | — |
 | Operation Distinctiveness | mostly (partial credit) |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
 **Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
 
